@@ -5,17 +5,23 @@ import Foundation
 final class SystemMetricsProvider {
     private var lastSnapshot: CPUSnapshot?
     private var lastComputedUsage: Double = 0
+    private var lastNetworkSnapshot: NetworkSnapshot?
+    private var lastNetworkMetrics: NetworkMetrics = .zero
 
     func fetchMetrics() -> ActivityMetrics {
         let cpuUsage = readCPUUsage()
         let (usedMemory, totalMemory) = readMemoryUsage()
         let processCount = NSWorkspace.shared.runningApplications.count
+        let network = readNetworkUsage()
+        let disk = readDiskUsage()
 
         return ActivityMetrics(
             cpuUsage: cpuUsage,
             memoryUsed: usedMemory,
             memoryTotal: totalMemory,
-            runningProcesses: processCount
+            runningProcesses: processCount,
+            network: network,
+            disk: disk
         )
     }
 
@@ -56,7 +62,7 @@ final class SystemMetricsProvider {
             totalTicks += UInt64(cpuStates[base + Int(CPU_STATE_IDLE)])
         }
 
-        let snapshot = CPUSnapshot(total: totalTicks, idle: idleTicks)
+        let snapshot = CPUSnapshot(totalTicks: totalTicks, idleTicks: idleTicks)
         let usage = snapshot.usage(relativeTo: lastSnapshot)
         lastSnapshot = snapshot
         lastComputedUsage = usage
@@ -87,6 +93,107 @@ final class SystemMetricsProvider {
             Measurement(value: Double(total), unit: .bytes)
         )
     }
+
+    private func readNetworkUsage() -> NetworkMetrics {
+        guard let snapshot = captureNetworkSnapshot() else {
+            return lastNetworkMetrics
+        }
+
+        guard let previousSnapshot = lastNetworkSnapshot else {
+            lastNetworkSnapshot = snapshot
+            lastNetworkMetrics = .zero
+            return .zero
+        }
+
+        lastNetworkSnapshot = snapshot
+
+        let interval = snapshot.timestamp.timeIntervalSince(previousSnapshot.timestamp)
+        guard interval > 0 else {
+            return lastNetworkMetrics
+        }
+
+        let receivedDelta: UInt64
+        if snapshot.receivedBytes >= previousSnapshot.receivedBytes {
+            receivedDelta = snapshot.receivedBytes - previousSnapshot.receivedBytes
+        } else {
+            receivedDelta = snapshot.receivedBytes
+        }
+
+        let sentDelta: UInt64
+        if snapshot.sentBytes >= previousSnapshot.sentBytes {
+            sentDelta = snapshot.sentBytes - previousSnapshot.sentBytes
+        } else {
+            sentDelta = snapshot.sentBytes
+        }
+
+        let metrics = NetworkMetrics(
+            receivedBytesPerSecond: Double(receivedDelta) / interval,
+            sentBytesPerSecond: Double(sentDelta) / interval
+        )
+
+        lastNetworkMetrics = metrics
+        return metrics
+    }
+
+    private func captureNetworkSnapshot() -> NetworkSnapshot? {
+        var interfaceAddresses: UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&interfaceAddresses) == 0, let firstAddress = interfaceAddresses else {
+            return nil
+        }
+
+        defer {
+            freeifaddrs(firstAddress)
+        }
+
+        var received: UInt64 = 0
+        var sent: UInt64 = 0
+        var pointer: UnsafeMutablePointer<ifaddrs>? = firstAddress
+
+        while let current = pointer?.pointee {
+            if
+                let address = current.ifa_addr,
+                address.pointee.sa_family == UInt8(AF_LINK),
+                let dataPointer = unsafeBitCast(current.ifa_data, to: UnsafeMutablePointer<if_data>?.self)
+            {
+                let name = String(cString: current.ifa_name)
+                if !name.hasPrefix("lo") {
+                    received &+= UInt64(dataPointer.pointee.ifi_ibytes)
+                    sent &+= UInt64(dataPointer.pointee.ifi_obytes)
+                }
+            }
+
+            pointer = current.ifa_next
+        }
+
+        return NetworkSnapshot(
+            receivedBytes: received,
+            sentBytes: sent,
+            timestamp: Date()
+        )
+    }
+
+    private func readDiskUsage() -> DiskMetrics {
+        do {
+            let attributes = try FileManager.default.attributesOfFileSystem(forPath: "/")
+            guard
+                let total = attributes[.systemSize] as? NSNumber,
+                let free = attributes[.systemFreeSize] as? NSNumber
+            else {
+                return .placeholder
+            }
+
+            let totalBytes = total.doubleValue
+            let freeBytes = max(free.doubleValue, 0)
+            let usedBytes = max(totalBytes - freeBytes, 0)
+
+            return DiskMetrics(
+                used: Measurement(value: usedBytes, unit: .bytes),
+                total: Measurement(value: totalBytes, unit: .bytes)
+            )
+        } catch {
+            return .placeholder
+        }
+    }
 }
 
 private struct CPUSnapshot {
@@ -103,4 +210,10 @@ private struct CPUSnapshot {
         let busy = totalDelta - idleDelta
         return max(0, min(1, busy / totalDelta))
     }
+}
+
+private struct NetworkSnapshot {
+    let receivedBytes: UInt64
+    let sentBytes: UInt64
+    let timestamp: Date
 }

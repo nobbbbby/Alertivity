@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum ActivityStatus: String, Sendable {
+enum ActivityStatus: String, Sendable, Equatable {
     case normal
     case elevated
     case critical
