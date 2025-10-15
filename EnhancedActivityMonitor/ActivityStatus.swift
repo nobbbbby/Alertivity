@@ -1,4 +1,14 @@
 import SwiftUI
+import Foundation
+import AppKit
+
+private func symbolOrFallback(_ name: String) -> String {
+    if NSImage(systemSymbolName: name, accessibilityDescription: nil) != nil {
+        return name
+    } else {
+        return "waveform"
+    }
+}
 
 enum ActivityStatus: String, Sendable, Equatable {
     case normal
@@ -28,12 +38,19 @@ enum ActivityStatus: String, Sendable, Equatable {
     }
 
     func message(for metrics: ActivityMetrics) -> String {
+        if !metrics.hasLiveData {
+            return "Collecting live metrics…"
+        }
+
         switch self {
         case .normal:
-            return "Everything looks healthy. CPU usage is at \(metrics.cpuUsage.formatted(.percent))"
+            return "Everything looks healthy. "
         case .elevated:
             return "Usage is elevated. Keep an eye on resource-intensive tasks."
         case .critical:
+            if let culprit = metrics.highActivityProcesses.first {
+                return "High-activity process: \(culprit.displayName) is consuming \(culprit.cpuDescription) of CPU. Consider closing or force quitting it."
+            }
             return "Performance may be impacted. Consider closing demanding apps."
         }
     }
@@ -52,11 +69,11 @@ enum ActivityStatus: String, Sendable, Equatable {
     var symbolName: String {
         switch self {
         case .normal:
-            return "waveform"
+            return symbolOrFallback("waveform.low")
         case .elevated:
-            return "waveform.circle"
+            return symbolOrFallback("waveform.mid")
         case .critical:
-            return "exclamationmark.triangle"
+            return "waveform"
         }
     }
 }

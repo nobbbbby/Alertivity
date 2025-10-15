@@ -1,4 +1,67 @@
 import SwiftUI
+import AppKit
+
+enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
+    case status
+    case cpu
+    case memory
+    case disk
+    case network
+    case processes
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .status:
+            return "Status icon"
+        case .cpu:
+            return "CPU usage"
+        case .memory:
+            return "Memory usage"
+        case .disk:
+            return "Disk activity"
+        case .network:
+            return "Network throughput"
+        case .processes:
+            return "Running processes"
+        }
+    }
+
+    var symbolName: String {
+        switch self {
+        case .status:
+            return "waveform"
+        case .cpu:
+            return "cpu"
+        case .memory:
+            return "memorychip"
+        case .disk:
+            return "internaldrive"
+        case .network:
+            return "arrow.up.arrow.down"
+        case .processes:
+            return "gearshape"
+        }
+    }
+
+    var metricSelection: MetricMenuSelection? {
+        switch self {
+        case .status:
+            return nil
+        case .cpu:
+            return .cpu
+        case .memory:
+            return .memory
+        case .disk:
+            return .disk
+        case .network:
+            return .network
+        case .processes:
+            return .processes
+        }
+    }
+}
 
 enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     case cpu
@@ -6,22 +69,6 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     case disk
     case network
     case processes
-
-    static func enabled(
-        cpu: Bool,
-        memory: Bool,
-        disk: Bool,
-        network: Bool,
-        processes: Bool
-    ) -> [MetricMenuSelection] {
-        var selections: [MetricMenuSelection] = []
-        if cpu { selections.append(.cpu) }
-        if memory { selections.append(.memory) }
-        if disk { selections.append(.disk) }
-        if network { selections.append(.network) }
-        if processes { selections.append(.processes) }
-        return selections
-    }
 
     var shortLabel: String {
         switch self {
@@ -62,7 +109,7 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
         case .disk:
             return "internaldrive"
         case .network:
-            return "arrow.up.arrow.down.circle"
+            return "arrow.up.arrow.down"
         case .processes:
             return "gearshape"
         }
@@ -127,44 +174,62 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
 struct MetricMenuLabel: View {
     let metrics: ActivityMetrics
     let selection: MetricMenuSelection
+    let showIcon: Bool
 
     var body: some View {
-        Text("\(selection.shortLabel) \(selection.formattedValue(for: metrics))")
-            .font(.system(size: 12, weight: .semibold, design: .rounded))
-            .monospacedDigit()
-            .padding(.horizontal, 6)
-            .padding(.vertical, 2)
-            .background(
-                Capsule()
-                    .fill(Color.secondary.opacity(0.15))
-            )
-            .accessibilityLabel(selection.title)
-            .accessibilityValue(selection.accessibilityValue(for: metrics))
+        HStack(spacing: 4) {
+            if selection == .network {
+                let nsImage = MenuBarNetworkStackedRenderer.makeImage(
+                    download: metrics.network.formattedDownload + "/s",
+                    upload: metrics.network.formattedUpload + "/s",
+                    symbolName: showIcon ? selection.symbolName : nil
+                )
+                Image(nsImage: nsImage)
+                    .renderingMode(.template)
+                    .foregroundStyle(.primary)
+            } else {
+                if showIcon {
+                    Image(systemName: selection.symbolName)
+                        .font(.system(size: 11, weight: .medium))
+                        .fixedSize()
+                        .layoutPriority(1)
+                }
+
+                Text(selection.formattedValue(for: metrics))
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+            }
+        }
+        .padding(.horizontal, 6)
+        .padding(.vertical, 2)
+        .background(
+            Capsule()
+                .fill(Color.secondary.opacity(0.15))
+        )
+        .accessibilityLabel(selection.title)
+        .accessibilityValue(selection.accessibilityValue(for: metrics))
     }
 }
 
 struct MetricMenuBarLabel: View {
     let status: ActivityStatus
     let metrics: ActivityMetrics
-    let showStatusSymbol: Bool
-    let selections: [MetricMenuSelection]
+    let isVisible: Bool
+    let iconType: MenuIconType
+    let showIcon: Bool
 
     var body: some View {
         HStack(spacing: 6) {
-            if showStatusSymbol {
-                Image(systemName: status.symbolName)
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(status.accentColor, .secondary)
-            }
-
-            if selections.isEmpty {
-                if !showStatusSymbol {
+            if isVisible {
+                switch iconType {
+                case .status:
                     Image(systemName: status.symbolName)
-                        .foregroundStyle(.primary)
-                }
-            } else {
-                ForEach(selections, id: \.self) { selection in
-                    MetricMenuLabel(metrics: metrics, selection: selection)
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(status.accentColor, .secondary)
+                case .cpu, .memory, .disk, .network, .processes:
+                    if let selection = iconType.metricSelection {
+                        MetricMenuLabel(metrics: metrics, selection: selection, showIcon: showIcon)
+                    }
                 }
             }
         }
@@ -175,13 +240,15 @@ struct MetricMenuBarLabel: View {
     }
 
     private var accessibilityDescription: String {
-        guard !selections.isEmpty else {
-            return status.title
+        guard isVisible else {
+            return "Menu icon hidden"
         }
 
-        return selections
-            .map { "\($0.shortLabel) \($0.formattedValue(for: metrics))" }
-            .joined(separator: ", ")
+        if let selection = iconType.metricSelection {
+            return "\(selection.shortLabel) \(selection.formattedValue(for: metrics))"
+        }
+
+        return status.title
     }
 }
 
@@ -216,6 +283,8 @@ struct MetricMenuDetailView: View {
             Text("Status: \(status.title)")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
         case .memory:
             Gauge(value: metrics.memoryUsage, in: 0...1) {
                 Text(metrics.memoryUsage.formatted(.percent.precision(.fractionLength(1))))
@@ -225,6 +294,8 @@ struct MetricMenuDetailView: View {
             Text(selection.detailSummary(for: metrics))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
         case .disk:
             Gauge(value: metrics.disk.usage, in: 0...1) {
                 Text(metrics.disk.usage.formatted(.percent.precision(.fractionLength(1))))
@@ -234,11 +305,19 @@ struct MetricMenuDetailView: View {
             Text(selection.detailSummary(for: metrics))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
         case .network:
             VStack(alignment: .leading, spacing: 4) {
                 Text("Download: \(metrics.network.formattedDownload)/s")
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
                 Text("Upload: \(metrics.network.formattedUpload)/s")
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
                 Text("Total: \(metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond))/s")
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .monospacedDigit()
             .font(.footnote)
@@ -247,10 +326,89 @@ struct MetricMenuDetailView: View {
             Text(selection.detailSummary(for: metrics))
                 .font(.title3)
                 .monospacedDigit()
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
             Text("Process count reflects the latest system sample.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
         }
+    }
+}
+
+// Helper for rendering a compact two-line network badge as an NSImage suitable for the menu bar label
+private enum MenuBarNetworkStackedRenderer {
+    static func makeImage(download: String, upload: String, symbolName: String? = nil) -> NSImage {
+        let font = NSFont.monospacedDigitSystemFont(ofSize: 9, weight: .semibold)
+        // Draw in white and mark as template so the system can tint appropriately
+        let color = NSColor.white
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .right
+
+        let attrs: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: color,
+            .paragraphStyle: paragraph
+        ]
+
+        let line1 = NSString(string: "↓ " + download)
+        let line2 = NSString(string: "↑ " + upload)
+
+        let size1 = line1.size(withAttributes: attrs)
+        let size2 = line2.size(withAttributes: attrs)
+        let spacing: CGFloat = 0.0
+        let textBlockWidth = ceil(max(size1.width, size2.width))
+        let textBlockHeight = ceil(size1.height + spacing + size2.height)
+
+        // Optional SF Symbol on the left
+        let iconSpacing: CGFloat = symbolName == nil ? 0 : 4
+        var iconSize = NSSize(width: 0, height: 0)
+        var symbolImage: NSImage?
+        if let name = symbolName, let baseSymbol = NSImage(systemSymbolName: name, accessibilityDescription: nil) {
+            let baseConfig = NSImage.SymbolConfiguration(pointSize: 11, weight: .medium)
+            // Render symbol in white; final image will be template-tinted by SwiftUI
+            if let colorConfig = NSImage.SymbolConfiguration(hierarchicalColor: .white).applying(baseConfig) as NSImage.SymbolConfiguration?,
+               let tinted = baseSymbol.withSymbolConfiguration(colorConfig) {
+                symbolImage = tinted
+            } else if let configured = baseSymbol.withSymbolConfiguration(baseConfig) {
+                symbolImage = configured
+            } else {
+                symbolImage = baseSymbol
+            }
+            if let img = symbolImage {
+                iconSize = img.size
+            }
+        }
+
+        let width = ceil(iconSize.width + iconSpacing + textBlockWidth)
+        let height = ceil(max(iconSize.height, textBlockHeight))
+
+        let imageSize = NSSize(width: width, height: height)
+        let image = NSImage(size: imageSize)
+        image.lockFocusFlipped(false)
+        defer { image.unlockFocus() }
+
+        // Draw optional icon, vertically centered
+        if let img = symbolImage {
+            let iconY = (height - iconSize.height) / 2
+            img.draw(in: NSRect(origin: CGPoint(x: 0, y: iconY), size: iconSize), from: .zero, operation: .sourceOver, fraction: 1.0)
+        }
+
+        // Draw stacked text on the right, right-aligned within its block
+        let textBaseX = iconSize.width + iconSpacing
+        let bottomY = (height - textBlockHeight) / 2
+
+        // Bottom line (upload)
+        let line2Origin = CGPoint(x: textBaseX + (textBlockWidth - size2.width), y: bottomY)
+        line2.draw(at: line2Origin, withAttributes: attrs)
+
+        // Top line (download)
+        let line1Origin = CGPoint(x: textBaseX + (textBlockWidth - size1.width), y: bottomY + size2.height + spacing)
+        line1.draw(at: line1Origin, withAttributes: attrs)
+
+        image.isTemplate = true
+        return image
     }
 }
 
@@ -258,12 +416,32 @@ struct MetricMenuDetailView: View {
 struct MetricMenuViews_Previews: PreviewProvider {
     static var previews: some View {
         VStack(alignment: .leading, spacing: 20) {
-            MetricMenuBarLabel(
-                status: .normal,
-                metrics: .previewNormal,
-                showStatusSymbol: true,
-                selections: [.cpu, .memory, .network]
+            
+            HStack{                MetricMenuBarLabel(
+                status: .critical,
+                metrics: .previewCritical,
+                isVisible: true,
+                iconType: .status,
+                showIcon: false
             )
+                MetricMenuBarLabel(
+                    status: .normal,
+                    metrics: .previewNormal,
+                    isVisible: true,
+                    iconType: .cpu,
+                    showIcon: false
+                )
+                MetricMenuBarLabel(
+                    status: .normal,
+                    metrics: .previewNormal,
+                    isVisible: true,
+                    iconType: .network,
+                    showIcon: true
+                )
+
+
+            }
+
 
             ForEach(MetricMenuSelection.allCases, id: \.self) { selection in
                 MetricMenuDetailView(metrics: .previewNormal, selection: selection)

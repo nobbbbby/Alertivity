@@ -3,73 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
-
-/* Begin PBXBuildFile section */
-		AA0000000000000000000020 /* ActivityMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000010 /* ActivityMetrics.swift */; };
-		AA0000000000000000000021 /* ActivityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000011 /* ActivityMonitor.swift */; };
-		AA0000000000000000000022 /* ActivityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000012 /* ActivityStatus.swift */; };
-		AA0000000000000000000023 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000013 /* ContentView.swift */; };
-		AA0000000000000000000024 /* EnhancedActivityMonitorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000014 /* EnhancedActivityMonitorApp.swift */; };
-		AA0000000000000000000025 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000015 /* NotificationManager.swift */; };
-		AA0000000000000000000026 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000016 /* SettingsView.swift */; };
-		AA0000000000000000000027 /* SystemMetricsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000017 /* SystemMetricsProvider.swift */; };
-		AA0000000000000000000028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000009 /* Assets.xcassets */; };
-		AA0000000000000000000029 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000018 /* Preview Assets.xcassets */; };
-		C9CA6A5F2E9E9994002048E5 /* MetricMenuViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CA6A5E2E9E9994002048E5 /* MetricMenuViews.swift */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA0000000000000000000003 /* EnhancedActivityMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnhancedActivityMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA0000000000000000000008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA0000000000000000000009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA0000000000000000000010 /* ActivityMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMetrics.swift; sourceTree = "<group>"; };
-		AA0000000000000000000011 /* ActivityMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMonitor.swift; sourceTree = "<group>"; };
-		AA0000000000000000000012 /* ActivityStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStatus.swift; sourceTree = "<group>"; };
-		AA0000000000000000000013 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		AA0000000000000000000014 /* EnhancedActivityMonitorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedActivityMonitorApp.swift; sourceTree = "<group>"; };
-		AA0000000000000000000015 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		AA0000000000000000000016 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		AA0000000000000000000017 /* SystemMetricsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetricsProvider.swift; sourceTree = "<group>"; };
-		AA0000000000000000000018 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C9CA6A5E2E9E9994002048E5 /* MetricMenuViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMenuViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C96C6D6B2E9F8D57006AAF07 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = AA0000000000000000000002 /* EnhancedActivityMonitor */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C96C6D5E2E9F8D57006AAF07 /* EnhancedActivityMonitor */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C96C6D6B2E9F8D57006AAF07 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = EnhancedActivityMonitor; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXGroup section */
 		AA0000000000000000000004 = {
 			isa = PBXGroup;
 			children = (
-				AA0000000000000000000005 /* EnhancedActivityMonitor */,
+				C96C6D5E2E9F8D57006AAF07 /* EnhancedActivityMonitor */,
 				AA0000000000000000000019,
 			);
-			sourceTree = "<group>";
-		};
-		AA0000000000000000000005 /* EnhancedActivityMonitor */ = {
-			isa = PBXGroup;
-			children = (
-				AA0000000000000000000014 /* EnhancedActivityMonitorApp.swift */,
-				AA0000000000000000000013 /* ContentView.swift */,
-				AA0000000000000000000016 /* SettingsView.swift */,
-				AA0000000000000000000015 /* NotificationManager.swift */,
-				AA0000000000000000000010 /* ActivityMetrics.swift */,
-				AA0000000000000000000011 /* ActivityMonitor.swift */,
-				AA0000000000000000000012 /* ActivityStatus.swift */,
-				AA0000000000000000000017 /* SystemMetricsProvider.swift */,
-				AA0000000000000000000009 /* Assets.xcassets */,
-				AA0000000000000000000008 /* Info.plist */,
-				AA0000000000000000000006 /* Preview Content */,
-				C9CA6A5E2E9E9994002048E5 /* MetricMenuViews.swift */,
-			);
-			path = EnhancedActivityMonitor;
-			sourceTree = "<group>";
-		};
-		AA0000000000000000000006 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				AA0000000000000000000018 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		AA0000000000000000000019 = {
@@ -93,6 +54,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				C96C6D5E2E9F8D57006AAF07 /* EnhancedActivityMonitor */,
+			);
 			name = EnhancedActivityMonitor;
 			productName = EnhancedActivityMonitor;
 			productReference = AA0000000000000000000003 /* EnhancedActivityMonitor.app */;
@@ -106,7 +70,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					AA0000000000000000000002 = {
 						CreatedOnToolsVersion = 15.0;
@@ -136,8 +100,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA0000000000000000000029 /* Preview Assets.xcassets in Resources */,
-				AA0000000000000000000028 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,15 +110,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9CA6A5F2E9E9994002048E5 /* MetricMenuViews.swift in Sources */,
-				AA0000000000000000000027 /* SystemMetricsProvider.swift in Sources */,
-				AA0000000000000000000026 /* SettingsView.swift in Sources */,
-				AA0000000000000000000025 /* NotificationManager.swift in Sources */,
-				AA0000000000000000000024 /* EnhancedActivityMonitorApp.swift in Sources */,
-				AA0000000000000000000023 /* ContentView.swift in Sources */,
-				AA0000000000000000000022 /* ActivityStatus.swift in Sources */,
-				AA0000000000000000000021 /* ActivityMonitor.swift in Sources */,
-				AA0000000000000000000020 /* ActivityMetrics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,16 +146,20 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"EnhancedActivityMonitor/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -232,6 +189,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.EnhancedActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -269,15 +227,19 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"EnhancedActivityMonitor/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -300,6 +262,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.EnhancedActivityMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -312,7 +275,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = EnhancedActivityMonitor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Enhanced AM";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -332,7 +295,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = EnhancedActivityMonitor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Enhanced AM";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";

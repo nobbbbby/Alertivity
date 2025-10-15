@@ -7,22 +7,70 @@ final class SystemMetricsProvider {
     private var lastComputedUsage: Double = 0
     private var lastNetworkSnapshot: NetworkSnapshot?
     private var lastNetworkMetrics: NetworkMetrics = .zero
+    private var lastHighActivityProcesses: [ProcessUsage] = []
+    private var lastMetrics: ActivityMetrics = .placeholder
+    private var processActivityStartTimes: [Int32: Date] = [:]
+
+    var highActivityDuration: TimeInterval = 120 {
+        didSet {
+            if highActivityDuration < 0 {
+                highActivityDuration = 0
+                return
+            }
+            if abs(highActivityDuration - oldValue) > .ulpOfOne {
+                processActivityStartTimes.removeAll()
+                lastHighActivityProcesses = []
+            }
+        }
+    }
 
     func fetchMetrics() -> ActivityMetrics {
+        print("🔵 fetchMetrics() called")
+        let timestamp = Date()
         let cpuUsage = readCPUUsage()
-        let (usedMemory, totalMemory) = readMemoryUsage()
-        let processCount = NSWorkspace.shared.runningApplications.count
-        let network = readNetworkUsage()
-        let disk = readDiskUsage()
 
-        return ActivityMetrics(
+        let memoryUsage = readMemoryUsage()
+        var usedMemory = memoryUsage?.used ?? lastMetrics.memoryUsed
+        var totalMemory = memoryUsage?.total ?? lastMetrics.memoryTotal
+
+        if usedMemory.converted(to: .bytes).value == 0, lastMetrics.hasLiveData {
+            usedMemory = lastMetrics.memoryUsed
+        }
+        if totalMemory.converted(to: .bytes).value == 0, lastMetrics.hasLiveData {
+            totalMemory = lastMetrics.memoryTotal
+        }
+
+        var processCount = NSWorkspace.shared.runningApplications.count
+        if processCount == 0, lastMetrics.hasLiveData {
+            processCount = lastMetrics.runningProcesses
+        }
+
+        let network = readNetworkUsage()
+
+        var disk = readDiskUsage() ?? lastMetrics.disk
+        if disk.usage == 0, lastMetrics.hasLiveData {
+            disk = lastMetrics.disk
+        }
+
+        if let processes = readTopProcesses() {
+            lastHighActivityProcesses = filterHighActivityProcesses(processes, at: timestamp)
+        } else if !lastMetrics.highActivityProcesses.isEmpty {
+            lastHighActivityProcesses = lastMetrics.highActivityProcesses
+        }
+
+        let metrics = ActivityMetrics(
             cpuUsage: cpuUsage,
             memoryUsed: usedMemory,
             memoryTotal: totalMemory,
             runningProcesses: processCount,
             network: network,
-            disk: disk
+            disk: disk,
+            highActivityProcesses: lastHighActivityProcesses
         )
+
+        lastMetrics = metrics
+        print("🔵 fetchMetrics() completed successfully, hasLiveData=\(metrics.hasLiveData)")
+        return metrics
     }
 
     private func readCPUUsage() -> Double {
@@ -69,7 +117,7 @@ final class SystemMetricsProvider {
         return usage
     }
 
-    private func readMemoryUsage() -> (Measurement<UnitInformationStorage>, Measurement<UnitInformationStorage>) {
+    private func readMemoryUsage() -> (used: Measurement<UnitInformationStorage>, total: Measurement<UnitInformationStorage>)? {
         var size = mach_msg_type_number_t(MemoryLayout<vm_statistics64_data_t>.size / MemoryLayout<integer_t>.size)
         var vmStat = vm_statistics64()
         let result = withUnsafeMutablePointer(to: &vmStat) { pointer -> kern_return_t in
@@ -79,8 +127,7 @@ final class SystemMetricsProvider {
         }
 
         guard result == KERN_SUCCESS else {
-            let totalMemory = Measurement(value: Double(ProcessInfo.processInfo.physicalMemory), unit: UnitInformationStorage.bytes)
-            return (.init(value: 0, unit: .bytes), totalMemory)
+            return nil
         }
 
         let pageSize = UInt64(vm_kernel_page_size)
@@ -89,8 +136,8 @@ final class SystemMetricsProvider {
         let used = max(total - free, 0)
 
         return (
-            Measurement(value: Double(used), unit: .bytes),
-            Measurement(value: Double(total), unit: .bytes)
+            used: Measurement(value: Double(used), unit: .bytes),
+            total: Measurement(value: Double(total), unit: .bytes)
         )
     }
 
@@ -172,14 +219,14 @@ final class SystemMetricsProvider {
         )
     }
 
-    private func readDiskUsage() -> DiskMetrics {
+    private func readDiskUsage() -> DiskMetrics? {
         do {
             let attributes = try FileManager.default.attributesOfFileSystem(forPath: "/")
             guard
                 let total = attributes[.systemSize] as? NSNumber,
                 let free = attributes[.systemFreeSize] as? NSNumber
             else {
-                return .placeholder
+                return nil
             }
 
             let totalBytes = total.doubleValue
@@ -191,7 +238,113 @@ final class SystemMetricsProvider {
                 total: Measurement(value: totalBytes, unit: .bytes)
             )
         } catch {
-            return .placeholder
+            return nil
+        }
+    }
+
+    private func readTopProcesses(limit: Int = 5) -> [ProcessUsage]? {
+        print("  🔹 readTopProcesses() starting...")
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/ps")
+        process.arguments = ["-axo", "pid=,pcpu=,pmem=,comm=", "-r"]
+
+        let pipe = Pipe()
+        process.standardOutput = pipe
+        process.standardError = Pipe()
+
+        let outputData = NSMutableData()
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        // Read data on background queue to prevent blocking
+        DispatchQueue.global(qos: .userInitiated).async {
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            outputData.append(data)
+            semaphore.signal()
+        }
+
+        do {
+            try process.run()
+        } catch {
+            return nil
+        }
+
+        // Wait for process with timeout (2 seconds)
+        let waitResult = semaphore.wait(timeout: .now() + 2.0)
+        
+        if waitResult == .timedOut {
+            print("  🔸 readTopProcesses() TIMEOUT - terminating ps process")
+            process.terminate()
+            return nil
+        }
+
+        process.waitUntilExit()
+
+        guard process.terminationStatus == 0 else {
+            print("  🔸 readTopProcesses() failed with status \(process.terminationStatus)")
+            return nil
+        }
+
+        guard let output = String(data: outputData as Data, encoding: .utf8) else {
+            print("  🔸 readTopProcesses() failed to decode output")
+            return nil
+        }
+        
+        print("  🔹 readTopProcesses() completed successfully")
+
+        let lines = output.split(separator: "\n")
+        var usages: [ProcessUsage] = []
+
+        for line in lines {
+            if usages.count >= limit { break }
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            guard !trimmed.isEmpty else { continue }
+
+            let parts = trimmed.split(separator: " ", maxSplits: 3, omittingEmptySubsequences: true)
+            guard parts.count == 4 else { continue }
+
+            guard
+                let pidValue = Int32(parts[0]),
+                let cpuValue = Double(parts[1]),
+                let memoryValue = Double(parts[2])
+            else {
+                continue
+            }
+
+            let command = String(parts[3])
+            let usage = ProcessUsage(
+                pid: pidValue,
+                command: command,
+                cpuPercent: max(cpuValue / 100, 0),
+                memoryPercent: max(memoryValue / 100, 0)
+            )
+
+            usages.append(usage)
+        }
+
+        return usages
+    }
+
+    private func filterHighActivityProcesses(_ processes: [ProcessUsage], at timestamp: Date) -> [ProcessUsage] {
+        let activePIDs = Set(processes.map(\.pid))
+
+        for pid in activePIDs {
+            if processActivityStartTimes[pid] == nil {
+                processActivityStartTimes[pid] = timestamp
+            }
+        }
+
+        let trackedPIDs = Set(processActivityStartTimes.keys)
+        for pid in trackedPIDs.subtracting(activePIDs) {
+            processActivityStartTimes.removeValue(forKey: pid)
+        }
+
+        guard highActivityDuration > 0 else {
+            return processes
+        }
+
+        return processes.filter { process in
+            guard let start = processActivityStartTimes[process.pid] else { return false }
+            return timestamp.timeIntervalSince(start) >= highActivityDuration
         }
     }
 }

@@ -1,12 +1,48 @@
 import Foundation
 
-struct ActivityMetrics: Sendable {
+struct ProcessUsage: Identifiable, Hashable, Sendable {
+    let pid: Int32
+    let command: String
+    let cpuPercent: Double
+    let memoryPercent: Double
+
+    var id: Int32 { pid }
+
+    var displayName: String {
+        let trimmed = command.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return "Unknown Process" }
+        let url = URL(fileURLWithPath: trimmed)
+        let last = url.lastPathComponent
+        return last.isEmpty ? trimmed : last
+    }
+
+    var cpuDescription: String {
+        cpuPercent.formatted(.percent.precision(.fractionLength(0)))
+    }
+
+    var memoryDescription: String {
+        memoryPercent.formatted(.percent.precision(.fractionLength(0)))
+    }
+
+    var searchTerm: String {
+        displayName
+    }
+
+    static let preview: [ProcessUsage] = [
+        ProcessUsage(pid: 1234, command: "/Applications/Xcode.app/Contents/MacOS/Xcode", cpuPercent: 0.82, memoryPercent: 0.14),
+        ProcessUsage(pid: 5678, command: "/Applications/Safari.app/Contents/MacOS/Safari", cpuPercent: 0.34, memoryPercent: 0.09),
+        ProcessUsage(pid: 9012, command: "/usr/bin/Terminal", cpuPercent: 0.21, memoryPercent: 0.04)
+    ]
+}
+
+struct ActivityMetrics: Sendable, Equatable {
     var cpuUsage: Double
     var memoryUsed: Measurement<UnitInformationStorage>
     var memoryTotal: Measurement<UnitInformationStorage>
     var runningProcesses: Int
     var network: NetworkMetrics
     var disk: DiskMetrics
+    var highActivityProcesses: [ProcessUsage]
 
     var memoryUsage: Double {
         guard memoryTotal.value > 0 else { return 0 }
@@ -19,11 +55,24 @@ struct ActivityMetrics: Sendable {
         memoryTotal: Measurement(value: Double(ProcessInfo.processInfo.physicalMemory) / 1_073_741_824, unit: .gigabytes),
         runningProcesses: 0,
         network: .zero,
-        disk: .placeholder
+        disk: .placeholder,
+        highActivityProcesses: []
     )
 }
 
 extension ActivityMetrics {
+    /// Returns true once the metrics differ from the initial placeholder sample.
+    var hasLiveData: Bool {
+        if self == .placeholder { return false }
+        if runningProcesses > 0 { return true }
+        if cpuUsage > 0 { return true }
+        if memoryUsed.converted(to: .bytes).value > 0 { return true }
+        if disk.used.converted(to: .bytes).value > 0 { return true }
+        if network.totalBytesPerSecond > 0 { return true }
+        if !highActivityProcesses.isEmpty { return true }
+        return false
+    }
+
     var cpuUsagePercentage: Double {
         min(max(cpuUsage, 0), 1)
     }
@@ -40,7 +89,8 @@ extension ActivityMetrics {
         disk: DiskMetrics(
             used: Measurement(value: 380, unit: .gigabytes),
             total: Measurement(value: 512, unit: .gigabytes)
-        )
+        ),
+        highActivityProcesses: ProcessUsage.preview
     )
 
     static let previewElevated = ActivityMetrics(
@@ -55,7 +105,8 @@ extension ActivityMetrics {
         disk: DiskMetrics(
             used: Measurement(value: 410, unit: .gigabytes),
             total: Measurement(value: 512, unit: .gigabytes)
-        )
+        ),
+        highActivityProcesses: ProcessUsage.preview
     )
 
     static let previewCritical = ActivityMetrics(
@@ -70,11 +121,12 @@ extension ActivityMetrics {
         disk: DiskMetrics(
             used: Measurement(value: 470, unit: .gigabytes),
             total: Measurement(value: 512, unit: .gigabytes)
-        )
+        ),
+        highActivityProcesses: ProcessUsage.preview
     )
 }
 
-struct NetworkMetrics: Sendable {
+struct NetworkMetrics: Sendable, Equatable {
     var receivedBytesPerSecond: Double
     var sentBytesPerSecond: Double
 
@@ -109,7 +161,7 @@ struct NetworkMetrics: Sendable {
     )
 }
 
-struct DiskMetrics: Sendable {
+struct DiskMetrics: Sendable, Equatable {
     var used: Measurement<UnitInformationStorage>
     var total: Measurement<UnitInformationStorage>
 

@@ -9,14 +9,12 @@ struct EnhancedActivityMonitorApp: App {
     @AppStorage("notice.menu.enabled") private var isMenuIconEnabled = true
     @AppStorage("notice.menu.onlyHigh") private var menuIconOnlyWhenHigh = false
     @AppStorage("notice.notifications.enabled") private var notificationsEnabled = false
-    @AppStorage("notice.menu.metrics.enabled") private var metricMenuIconsEnabled = false
-    @AppStorage("notice.menu.metrics.cpu") private var cpuMenuIconEnabled = true
-    @AppStorage("notice.menu.metrics.memory") private var memoryMenuIconEnabled = false
-    @AppStorage("notice.menu.metrics.disk") private var diskMenuIconEnabled = false
-    @AppStorage("notice.menu.metrics.network") private var networkMenuIconEnabled = false
-    @AppStorage("notice.menu.metrics.processes") private var processMenuIconEnabled = false
+    @AppStorage("notice.menu.iconType") private var menuIconType = MenuIconType.status
+    @AppStorage("notice.menu.showMetricIcon") private var showMetricIcon = false
+    @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120
 
     @State private var isMenuBarInserted = true
+    @State private var hasInitialized = false
 
     var body: some Scene {
         WindowGroup {
@@ -25,21 +23,35 @@ struct EnhancedActivityMonitorApp: App {
                 isMenuIconEnabled: $isMenuIconEnabled,
                 menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
                 notificationsEnabled: $notificationsEnabled,
-                metricMenuIconsEnabled: $metricMenuIconsEnabled,
-                cpuMenuIconEnabled: $cpuMenuIconEnabled,
-                memoryMenuIconEnabled: $memoryMenuIconEnabled,
-                diskMenuIconEnabled: $diskMenuIconEnabled,
-                networkMenuIconEnabled: $networkMenuIconEnabled,
-                processMenuIconEnabled: $processMenuIconEnabled
+                menuIconType: $menuIconType,
+                showMetricIcon: $showMetricIcon,
+                highActivityDurationSeconds: $highActivityDurationSeconds
             )
+            .padding()
             .onAppear {
-                monitor.startMonitoring()
+                print("🟢 ContentView.onAppear called, hasInitialized=\(hasInitialized)")
+                guard !hasInitialized else {
+                    print("🟢 Already initialized, skipping onAppear logic")
+                    return
+                }
+                hasInitialized = true
+                
                 updateMenuBarInsertion(for: monitor.status)
+                let normalizedDuration = normalizedHighActivityDurationSeconds(highActivityDurationSeconds)
+                if normalizedDuration != highActivityDurationSeconds {
+                    highActivityDurationSeconds = normalizedDuration
+                }
+                monitor.highActivityDuration = TimeInterval(normalizedDuration)
             }
             .onChange(of: monitor.status) { newValue in
                 updateMenuBarInsertion(for: newValue)
                 if notificationsEnabled {
                     notificationManager.postNotificationIfNeeded(for: newValue, metrics: monitor.metrics)
+                }
+            }
+            .onChange(of: monitor.metrics) { newMetrics in
+                if notificationsEnabled {
+                    notificationManager.postNotificationIfNeeded(for: monitor.status, metrics: newMetrics)
                 }
             }
             .onChange(of: notificationsEnabled) { isEnabled in
@@ -53,25 +65,19 @@ struct EnhancedActivityMonitorApp: App {
             .onChange(of: menuIconOnlyWhenHigh) { _ in
                 updateMenuBarInsertion(for: monitor.status)
             }
-            .onChange(of: metricMenuIconsEnabled) { _ in
+            .onChange(of: menuIconType) { _ in
                 updateMenuBarInsertion(for: monitor.status)
             }
-            .onChange(of: cpuMenuIconEnabled) { _ in
-                updateMenuBarInsertion(for: monitor.status)
-            }
-            .onChange(of: memoryMenuIconEnabled) { _ in
-                updateMenuBarInsertion(for: monitor.status)
-            }
-            .onChange(of: diskMenuIconEnabled) { _ in
-                updateMenuBarInsertion(for: monitor.status)
-            }
-            .onChange(of: networkMenuIconEnabled) { _ in
-                updateMenuBarInsertion(for: monitor.status)
-            }
-            .onChange(of: processMenuIconEnabled) { _ in
-                updateMenuBarInsertion(for: monitor.status)
+            .onChange(of: highActivityDurationSeconds) { newValue in
+                let normalized = normalizedHighActivityDurationSeconds(newValue)
+                if normalized != newValue {
+                    highActivityDurationSeconds = normalized
+                } else {
+                    monitor.highActivityDuration = TimeInterval(normalized)
+                }
             }
         }
+        .windowResizability(.contentSize)
 
         MenuBarExtra(
             isInserted: $isMenuBarInserted
@@ -79,13 +85,9 @@ struct EnhancedActivityMonitorApp: App {
             VStack(alignment: .leading, spacing: 12) {
                 MenuStatusView(metrics: monitor.metrics, status: monitor.status)
 
-                if metricMenuIconsEnabled && !enabledMetricSelections.isEmpty {
+                if let selection = menuIconType.metricSelection {
                     Divider()
-                    VStack(alignment: .leading, spacing: 12) {
-                        ForEach(enabledMetricSelections, id: \.self) { selection in
-                            MetricMenuDetailView(metrics: monitor.metrics, selection: selection)
-                        }
-                    }
+                    MetricMenuDetailView(metrics: monitor.metrics, selection: selection)
                 }
             }
             .frame(minWidth: 220, alignment: .leading)
@@ -94,45 +96,24 @@ struct EnhancedActivityMonitorApp: App {
             MetricMenuBarLabel(
                 status: monitor.status,
                 metrics: monitor.metrics,
-                showStatusSymbol: shouldShowStatusSymbol(for: monitor.status),
-                selections: metricMenuIconsEnabled ? enabledMetricSelections : []
+                isVisible: shouldShowMenuIcon(for: monitor.status),
+                iconType: menuIconType,
+                showIcon: showMetricIcon
             )
         }
         .menuBarExtraStyle(.window)
-
-        Settings {
-            SettingsView(
-                isMenuIconEnabled: $isMenuIconEnabled,
-                menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
-                notificationsEnabled: $notificationsEnabled,
-                metricMenuIconsEnabled: $metricMenuIconsEnabled,
-                cpuMenuIconEnabled: $cpuMenuIconEnabled,
-                memoryMenuIconEnabled: $memoryMenuIconEnabled,
-                diskMenuIconEnabled: $diskMenuIconEnabled,
-                networkMenuIconEnabled: $networkMenuIconEnabled,
-                processMenuIconEnabled: $processMenuIconEnabled
-            )
-        }
     }
 
     private func updateMenuBarInsertion(for status: ActivityStatus) {
-        let showStatus = shouldShowStatusSymbol(for: status)
-        let showMetrics = metricMenuIconsEnabled && !enabledMetricSelections.isEmpty
-        isMenuBarInserted = showStatus || showMetrics
+        isMenuBarInserted = shouldShowMenuIcon(for: status)
     }
 
-    private func shouldShowStatusSymbol(for status: ActivityStatus) -> Bool {
+    private func shouldShowMenuIcon(for status: ActivityStatus) -> Bool {
         guard isMenuIconEnabled else { return false }
         return menuIconOnlyWhenHigh ? status == .critical : true
     }
 
-    private var enabledMetricSelections: [MetricMenuSelection] {
-        MetricMenuSelection.enabled(
-            cpu: cpuMenuIconEnabled,
-            memory: memoryMenuIconEnabled,
-            disk: diskMenuIconEnabled,
-            network: networkMenuIconEnabled,
-            processes: processMenuIconEnabled
-        )
+    private func normalizedHighActivityDurationSeconds(_ value: Int) -> Int {
+        min(max(value, 10), 600)
     }
 }
