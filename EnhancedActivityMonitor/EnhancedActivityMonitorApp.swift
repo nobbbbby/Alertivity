@@ -1,84 +1,38 @@
 import SwiftUI
 import UserNotifications
+import AppKit
 
 @main
 struct EnhancedActivityMonitorApp: App {
     @StateObject private var monitor = ActivityMonitor()
     @StateObject private var notificationManager = NotificationManager()
 
-    @AppStorage("notice.menu.enabled") private var isMenuIconEnabled = true
-    @AppStorage("notice.menu.onlyHigh") private var menuIconOnlyWhenHigh = false
-    @AppStorage("notice.notifications.enabled") private var notificationsEnabled = false
+    @AppStorage("notice.menu.enabled") private var isMenuIconEnabled = true {
+        didSet { updateMenuBarInsertion(for: monitor.status) }
+    }
+    @AppStorage("notice.menu.onlyHigh") private var menuIconOnlyWhenHigh = false {
+        didSet { updateMenuBarInsertion(for: monitor.status) }
+    }
+    @AppStorage("notice.notifications.enabled") private var notificationsEnabled = false {
+        didSet {
+            if notificationsEnabled {
+                notificationManager.requestAuthorizationIfNeeded()
+            }
+        }
+    }
     @AppStorage("notice.menu.iconType") private var menuIconType = MenuIconType.status
     @AppStorage("notice.menu.showMetricIcon") private var showMetricIcon = false
-    @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120
+    @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120 {
+        didSet { applyHighActivityDurationUpdate(for: highActivityDurationSeconds) }
+    }
+    @AppStorage("monitor.topProcesses.cpuThresholdPercent") private var highActivityCPUThresholdPercent = 20 {
+        didSet { applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent) }
+    }
 
     @State private var isMenuBarInserted = true
     @State private var hasInitialized = false
 
     var body: some Scene {
-        WindowGroup {
-            ContentView(
-                monitor: monitor,
-                isMenuIconEnabled: $isMenuIconEnabled,
-                menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
-                notificationsEnabled: $notificationsEnabled,
-                menuIconType: $menuIconType,
-                showMetricIcon: $showMetricIcon,
-                highActivityDurationSeconds: $highActivityDurationSeconds
-            )
-            .padding()
-            .onAppear {
-                print("🟢 ContentView.onAppear called, hasInitialized=\(hasInitialized)")
-                guard !hasInitialized else {
-                    print("🟢 Already initialized, skipping onAppear logic")
-                    return
-                }
-                hasInitialized = true
-                
-                updateMenuBarInsertion(for: monitor.status)
-                let normalizedDuration = normalizedHighActivityDurationSeconds(highActivityDurationSeconds)
-                if normalizedDuration != highActivityDurationSeconds {
-                    highActivityDurationSeconds = normalizedDuration
-                }
-                monitor.highActivityDuration = TimeInterval(normalizedDuration)
-            }
-            .onChange(of: monitor.status) { newValue in
-                updateMenuBarInsertion(for: newValue)
-                if notificationsEnabled {
-                    notificationManager.postNotificationIfNeeded(for: newValue, metrics: monitor.metrics)
-                }
-            }
-            .onChange(of: monitor.metrics) { newMetrics in
-                if notificationsEnabled {
-                    notificationManager.postNotificationIfNeeded(for: monitor.status, metrics: newMetrics)
-                }
-            }
-            .onChange(of: notificationsEnabled) { isEnabled in
-                if isEnabled {
-                    notificationManager.requestAuthorizationIfNeeded()
-                }
-            }
-            .onChange(of: isMenuIconEnabled) { _ in
-                updateMenuBarInsertion(for: monitor.status)
-            }
-            .onChange(of: menuIconOnlyWhenHigh) { _ in
-                updateMenuBarInsertion(for: monitor.status)
-            }
-            .onChange(of: menuIconType) { _ in
-                updateMenuBarInsertion(for: monitor.status)
-            }
-            .onChange(of: highActivityDurationSeconds) { newValue in
-                let normalized = normalizedHighActivityDurationSeconds(newValue)
-                if normalized != newValue {
-                    highActivityDurationSeconds = normalized
-                } else {
-                    monitor.highActivityDuration = TimeInterval(normalized)
-                }
-            }
-        }
-        .windowResizability(.contentSize)
-
         MenuBarExtra(
             isInserted: $isMenuBarInserted
         ) {
@@ -89,19 +43,79 @@ struct EnhancedActivityMonitorApp: App {
                     Divider()
                     MetricMenuDetailView(metrics: monitor.metrics, selection: selection)
                 }
+
+                Divider()
+                if #available(macOS 14.0, *) {
+                    SettingsLink {
+                        Text("Open Settings…")
+                            .font(.system(size: 12, weight: .medium))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 6)
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
             }
             .frame(minWidth: 220, alignment: .leading)
             .padding()
         } label: {
-            MetricMenuBarLabel(
-                status: monitor.status,
-                metrics: monitor.metrics,
-                isVisible: shouldShowMenuIcon(for: monitor.status),
-                iconType: menuIconType,
-                showIcon: showMetricIcon
+            MenuBarLabelLifecycleView(
+                monitor: monitor,
+                isMenuIconEnabled: $isMenuIconEnabled,
+                menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
+                menuIconType: $menuIconType,
+                showMetricIcon: $showMetricIcon,
+                initialize: performInitialSetup,
+                onStatusChange: handleStatusChange,
+                onMetricsChange: handleMetricsChange
             )
         }
         .menuBarExtraStyle(.window)
+
+        Settings {
+            SettingsView().frame(width: 400)
+        }
+    }
+
+    private func performInitialSetup() {
+        guard !hasInitialized else { return }
+        hasInitialized = true
+
+        updateMenuBarInsertion(for: monitor.status)
+        applyHighActivityDurationUpdate(for: highActivityDurationSeconds)
+        applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent)
+    }
+
+    private func handleStatusChange(_ newValue: ActivityStatus) {
+        updateMenuBarInsertion(for: newValue)
+        if notificationsEnabled {
+            notificationManager.postNotificationIfNeeded(for: newValue, metrics: monitor.metrics)
+        }
+    }
+
+    private func handleMetricsChange(_ newMetrics: ActivityMetrics) {
+        if notificationsEnabled {
+            notificationManager.postNotificationIfNeeded(for: monitor.status, metrics: newMetrics)
+        }
+    }
+
+    private func applyHighActivityDurationUpdate(for value: Int) {
+        let normalized = normalizedHighActivityDurationSeconds(value)
+        if normalized != value {
+            highActivityDurationSeconds = normalized
+        } else {
+            monitor.highActivityDuration = TimeInterval(normalized)
+        }
+    }
+
+    private func applyHighActivityCPUThresholdUpdate(for value: Int) {
+        let normalized = normalizedCPUThresholdPercent(value)
+        if normalized != value {
+            highActivityCPUThresholdPercent = normalized
+        } else {
+            monitor.highActivityCPUThreshold = Double(normalized) / 100.0
+        }
     }
 
     private func updateMenuBarInsertion(for status: ActivityStatus) {
@@ -115,5 +129,45 @@ struct EnhancedActivityMonitorApp: App {
 
     private func normalizedHighActivityDurationSeconds(_ value: Int) -> Int {
         min(max(value, 10), 600)
+    }
+
+    private func normalizedCPUThresholdPercent(_ value: Int) -> Int {
+        min(max(value, 1), 100)
+    }
+
+}
+
+private struct MenuBarLabelLifecycleView: View {
+    @ObservedObject var monitor: ActivityMonitor
+    @Binding var isMenuIconEnabled: Bool
+    @Binding var menuIconOnlyWhenHigh: Bool
+    @Binding var menuIconType: MenuIconType
+    @Binding var showMetricIcon: Bool
+    let initialize: () -> Void
+    let onStatusChange: (ActivityStatus) -> Void
+    let onMetricsChange: (ActivityMetrics) -> Void
+
+    var body: some View {
+        MetricMenuBarLabel(
+            status: monitor.status,
+            metrics: monitor.metrics,
+            isVisible: isMenuIconVisible,
+            iconType: menuIconType,
+            showIcon: showMetricIcon
+        )
+        .onAppear(perform: initialize)
+        .onChange(of: monitor.status, perform: onStatusChange)
+        .onChange(of: monitor.metrics, perform: onMetricsChange)
+        .onChange(of: isMenuIconEnabled) { _ in
+            onStatusChange(monitor.status)
+        }
+        .onChange(of: menuIconOnlyWhenHigh) { _ in
+            onStatusChange(monitor.status)
+        }
+    }
+
+    private var isMenuIconVisible: Bool {
+        guard isMenuIconEnabled else { return false }
+        return menuIconOnlyWhenHigh ? monitor.status == .critical : true
     }
 }

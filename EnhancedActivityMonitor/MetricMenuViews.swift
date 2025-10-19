@@ -196,7 +196,7 @@ struct MetricMenuLabel: View {
                 }
 
                 Text(selection.formattedValue(for: metrics))
-                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .font(.system(size: 12, design: .rounded))
                     .monospacedDigit()
             }
         }
@@ -340,7 +340,7 @@ struct MetricMenuDetailView: View {
 // Helper for rendering a compact two-line network badge as an NSImage suitable for the menu bar label
 private enum MenuBarNetworkStackedRenderer {
     static func makeImage(download: String, upload: String, symbolName: String? = nil) -> NSImage {
-        let font = NSFont.monospacedDigitSystemFont(ofSize: 9, weight: .semibold)
+        let font = NSFont.monospacedDigitSystemFont(ofSize: 9, weight: .regular)
         // Draw in white and mark as template so the system can tint appropriately
         let color = NSColor.white
         let paragraph = NSMutableParagraphStyle()
@@ -413,46 +413,43 @@ private enum MenuBarNetworkStackedRenderer {
 }
 
 #if DEBUG
-struct MetricMenuViews_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            
-            HStack{                MetricMenuBarLabel(
+#Preview("Metric Menu Components") {
+    VStack(alignment: .leading, spacing: 24) {
+        HStack(spacing: 16) {
+            MetricMenuBarLabel(
                 status: .critical,
                 metrics: .previewCritical,
                 isVisible: true,
                 iconType: .status,
                 showIcon: false
             )
-                MetricMenuBarLabel(
-                    status: .normal,
-                    metrics: .previewNormal,
-                    isVisible: true,
-                    iconType: .cpu,
-                    showIcon: false
-                )
-                MetricMenuBarLabel(
-                    status: .normal,
-                    metrics: .previewNormal,
-                    isVisible: true,
-                    iconType: .network,
-                    showIcon: true
-                )
-
-
-            }
-
-
-            ForEach(MetricMenuSelection.allCases, id: \.self) { selection in
-                MetricMenuDetailView(metrics: .previewNormal, selection: selection)
-                    .padding()
-                    .frame(width: 260, alignment: .leading)
-                    .background(.thinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-            }
+            MetricMenuBarLabel(
+                status: .normal,
+                metrics: .previewNormal,
+                isVisible: true,
+                iconType: .cpu,
+                showIcon: false
+            )
+            MetricMenuBarLabel(
+                status: .normal,
+                metrics: .previewNormal,
+                isVisible: true,
+                iconType: .network,
+                showIcon: true
+            )
         }
-        .padding(24)
-        .frame(width: 320, alignment: .leading)
+
+        Divider()
+
+        ForEach(MetricMenuSelection.allCases, id: \.self) { selection in
+            MetricMenuDetailView(metrics: .previewNormal, selection: selection)
+                .padding()
+                .frame(width: 260, alignment: .leading)
+                .background(.thinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
     }
+    .padding(24)
+    .frame(width: 340, alignment: .leading)
 }
 #endif

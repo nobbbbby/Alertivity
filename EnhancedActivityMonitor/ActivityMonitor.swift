@@ -9,7 +9,6 @@ final class ActivityMonitor: ObservableObject {
     private var timer: Timer?
     private let queue: DispatchQueue = DispatchQueue(label: "activity-monitor.queue")
     private var isMonitoring = false
-    private let instanceID = UUID().uuidString.prefix(8)
 
     init(
         metrics: ActivityMetrics = .placeholder,
@@ -19,31 +18,17 @@ final class ActivityMonitor: ObservableObject {
         provider: SystemMetricsProvider = SystemMetricsProvider(),
         highActivityDuration: TimeInterval = 120
     ) {
-        print("[\(instanceID)] ActivityMonitor.init called, autoStart=\(autoStart)")
         self.provider = provider
         self.provider.highActivityDuration = highActivityDuration
         _metrics = Published(initialValue: metrics)
         _status = Published(initialValue: status)
-        if autoStart {
-            print("[\(instanceID)] Calling startMonitoring from init")
-            startMonitoring(interval: interval)
-        }
-    }
-    
-    deinit {
-        print("[\(instanceID)] ActivityMonitor.deinit - instance being deallocated")
+        if autoStart { startMonitoring(interval: interval) }
     }
 
     func startMonitoring(interval: TimeInterval = 5) {
-        print("[\(instanceID)] startMonitoring called, isMonitoring=\(isMonitoring)")
-        guard !isMonitoring else {
-            print("[\(instanceID)] Already monitoring, skipping")
-            return
-        }
-        
         stopMonitoring()
+        guard interval > 0 else { return }
         isMonitoring = true
-        print("[\(instanceID)] Starting monitoring with interval \(interval)s")
 
         fetchMetricsOnce()
 
@@ -52,11 +37,9 @@ final class ActivityMonitor: ObservableObject {
         }
         self.timer = timer
         RunLoop.main.add(timer, forMode: .common)
-        print("[\(instanceID)] Timer started")
     }
 
     func stopMonitoring() {
-        print("[\(instanceID)] stopMonitoring called")
         timer?.invalidate()
         timer = nil
         isMonitoring = false
@@ -68,21 +51,11 @@ final class ActivityMonitor: ObservableObject {
     }
 
     private func fetchMetricsOnce() {
-        print("[\(instanceID)] fetchMetricsOnce() called, Thread: \(Thread.current)")
-        print("[\(instanceID)] Call stack: \(Thread.callStackSymbols.prefix(5).joined(separator: "\n"))")
         queue.async { [weak self] in
-            print("[\(self?.instanceID ?? "nil")] queue.async block started")
-            guard let self else {
-                print("[nil] self is nil in queue.async, returning")
-                return
-            }
-            print("[\(instanceID)] About to call provider.fetchMetrics()")
+            guard let self else { return }
             let metrics = self.provider.fetchMetrics()
-            print("[\(instanceID)] fetchMetrics() returned, updating on main thread")
             DispatchQueue.main.async {
-                print("[\(self.instanceID)] main.async block started, calling update")
                 self.update(with: metrics)
-                print("[\(self.instanceID)] update completed, metrics.hasLiveData=\(metrics.hasLiveData)")
             }
         }
     }
@@ -90,5 +63,10 @@ final class ActivityMonitor: ObservableObject {
     var highActivityDuration: TimeInterval {
         get { provider.highActivityDuration }
         set { provider.highActivityDuration = newValue }
+    }
+
+    var highActivityCPUThreshold: Double {
+        get { provider.highActivityCPUThreshold }
+        set { provider.highActivityCPUThreshold = max(0, min(1, newValue)) }
     }
 }

@@ -1,132 +1,107 @@
 import SwiftUI
 import AppKit
 
-struct ContentView: View {
-    @ObservedObject var monitor: ActivityMonitor
+private let highActivityDurationOptions: [Int] = [30, 60, 120,  240, 600]
+private let highActivityCPUThresholdOptions: [Int] = Array(stride(from: 20, through: 100, by: 15))
 
-    @Binding var isMenuIconEnabled: Bool
-    @Binding var menuIconOnlyWhenHigh: Bool
-    @Binding var notificationsEnabled: Bool
-    @Binding var menuIconType: MenuIconType
-    @Binding var showMetricIcon: Bool
-    @Binding var highActivityDurationSeconds: Int
+struct SettingsView: View {
+    @AppStorage("notice.menu.enabled") private var isMenuIconEnabled = true
+    @AppStorage("notice.menu.onlyHigh") private var menuIconOnlyWhenHigh = false
+    @AppStorage("notice.notifications.enabled") private var notificationsEnabled = false
+    @AppStorage("notice.menu.iconType") private var menuIconType = MenuIconType.status
+    @AppStorage("notice.menu.showMetricIcon") private var showMetricIcon = false
+    @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120
+    @AppStorage("monitor.topProcesses.cpuThresholdPercent") private var highActivityCPUThresholdPercent = 20
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            MetricsSummaryView(metrics: monitor.metrics, status: monitor.status)
+        TabView {
+            // Menu Bar tab
+            VStack(alignment: .leading, spacing: 12) {
+                MenuBarSettingsFields(
+                    isMenuIconEnabled: $isMenuIconEnabled,
+                    menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
+                    menuIconType: $menuIconType,
+                    showMetricIcon: $showMetricIcon
+                )
 
-            Divider()
+                Divider()
+                Text("Display an activity indicator in the menu bar and choose when it appears.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(.none)
+            }
+            .padding(.horizontal,50)
+            .tabItem { Label("Menu Bar", systemImage: "waveform") }
 
+            // Notifications tab
+            VStack(alignment: .leading, spacing: 12) {
+                NotificationSettingsFields(notificationsEnabled: $notificationsEnabled)
+
+                Divider()
+                Text("Deliver macOS notifications whenever activity is critical or a process spikes usage.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(.none)
+            }
+            .padding(.horizontal,50)
+            .tabItem { Label("Notifications", systemImage: "bell") }
+
+            // Detection Settings tab
+            VStack(alignment: .leading, spacing: 12) {
+                DetectionSettingsFields(
+                    highActivityDurationSeconds: $highActivityDurationSeconds,
+                    highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent
+                )
+
+                Divider()
+                Text("Processes must exceed the CPU threshold for the selected duration before they're marked as high activity.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(nil)
+            }
+            .padding(.horizontal,50)
+            .tabItem { Label("Detection", systemImage: "gearshape") }
+        }
+    .padding(.vertical, 20)
+    .frame(minWidth: 420)
+    }
+}
+
+// MARK: - Previews
+
+#if DEBUG
+private struct NoticePreferencesPreviewContainer: View {
+    @State private var isMenuIconEnabled = true
+    @State private var menuIconOnlyWhenHigh = false
+    @State private var notificationsEnabled = true
+    @State private var menuIconType: MenuIconType = .status
+    @State private var showMetricIcon = true
+    @State private var highActivityDurationSeconds = highActivityDurationOptions[3]
+    @State private var highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[3]
+
+    var body: some View {
+        Form {
             NoticePreferencesView(
                 isMenuIconEnabled: $isMenuIconEnabled,
                 menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
                 notificationsEnabled: $notificationsEnabled,
                 menuIconType: $menuIconType,
                 showMetricIcon: $showMetricIcon,
-                highActivityDurationSeconds: $highActivityDurationSeconds
+                highActivityDurationSeconds: $highActivityDurationSeconds,
+                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent
             )
         }
-        .frame(minWidth: 300, alignment: .leading)
     }
 }
 
-struct MetricsSummaryView: View {
-    let metrics: ActivityMetrics
-    let status: ActivityStatus
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack(alignment: .center, spacing: 12) {
-                Image(systemName: status.symbolName)
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(status.accentColor, .secondary)
-                    .font(.system(size: 48))
-
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(status.title)
-                        .font(.title)
-                        .bold()
-                    Text(status.message(for: metrics))
-                        .font(.callout)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(nil)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-
-            if metrics.hasLiveData {
-                Grid(alignment: .leading, horizontalSpacing: 24, verticalSpacing: 12) {
-                    GridRow {
-                        Label("CPU", systemImage: "cpu")
-                            .font(.headline)
-                        metricGauge(
-                            value: metrics.cpuUsage,
-                            tint: status.accentColor,
-                            formattedValue: metrics.cpuUsage.formatted(.percent.precision(.fractionLength(0)))
-                        )
-                    }
-
-                    GridRow {
-                        Label("Memory", systemImage: "memorychip")
-                            .font(.headline)
-                        metricGauge(
-                            value: metrics.memoryUsage,
-                            tint: .blue,
-                            formattedValue: metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0)))
-                        )
-                    }
-
-                    GridRow {
-                        Label("Disk", systemImage: "internaldrive")
-                            .font(.headline)
-                        metricGauge(
-                            value: metrics.disk.usage,
-                            tint: .orange,
-                            formattedValue: metrics.disk.usage.formatted(.percent.precision(.fractionLength(0)))
-                        )
-                    }
-
-                    GridRow {
-                        Label("Network", systemImage: "arrow.up.arrow.down")
-                            .font(.headline)
-                        Text("↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s")
-                            .monospacedDigit()
-                            .lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-
-                    GridRow {
-                        Label("Processes", systemImage: "gearshape")
-                            .font(.headline)
-                        Text("\(metrics.runningProcesses)")
-                            .monospacedDigit()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-            } else {
-                VStack(alignment: .leading, spacing: 12) {
-                    ProgressView()
-                    Text("Waiting for live system metrics…")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-    }
+#Preview("Settings") {
+    SettingsView()
+        .frame(width: 420)
 }
 
-private func metricGauge(value: Double, tint: Color, formattedValue: String) -> some View {
-    HStack(spacing: 12) {
-        Gauge(value: value, in: 0...1) { EmptyView() }
-            .gaugeStyle(.accessoryLinearCapacity)
-            .tint(tint)
-        
-        Text(formattedValue)
-            .monospacedDigit()
-    }
-    .frame(maxWidth: .infinity, alignment: .leading)
+#Preview("Notice Preferences") {
+    NoticePreferencesPreviewContainer()
+        .frame(width: 360)
 }
 
 struct NoticePreferencesView: View {
@@ -136,110 +111,40 @@ struct NoticePreferencesView: View {
     @Binding var menuIconType: MenuIconType
     @Binding var showMetricIcon: Bool
     @Binding var highActivityDurationSeconds: Int
+    @Binding var highActivityCPUThresholdPercent: Int
 
+    @ViewBuilder
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            // Menu Bar Section
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Menu Bar")
-                    .font(.headline)
-                
-                Toggle(isOn: $isMenuIconEnabled) {
-                    VStack(alignment: .leading) {
-                        Text("Show indicator")
-                        Text("Display an activity icon in the menu bar.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                
-                if isMenuIconEnabled {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Toggle(isOn: $menuIconOnlyWhenHigh) {
-                            VStack(alignment: .leading) {
-                                Text("Only show on high activity")
-                                Text("Hide the icon until usage reaches the critical threshold.")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(nil)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        }
-                        Form {
-                            Section (header: Text("Icon type")){
-                                Picker("", selection: $menuIconType) {
-                                    ForEach(MenuIconType.allCases) { iconType in
-                                        Label(iconType.title, systemImage: iconType.symbolName)
-                                            .tag(iconType)
-                                    }
-                                }
-                                .labelsHidden()
-                                .pickerStyle(.menu)
-                                .frame(width: 220, alignment: .leading)
-                                
-                                if menuIconType.metricSelection != nil {
-                                    Toggle(isOn: $showMetricIcon) {
-                                        VStack(alignment: .leading) {
-                                            Text("Show metric icon")
-                                            Text("Display an icon alongside the metric value.")
-                                                .lineLimit(nil)
-                                                .font(.caption)
-                                                .foregroundStyle(.secondary)
-                                        }
-                                    }
-                                    
-                                }
-                            }
-                        
-                        }
-                 
-                    }
-                    .padding(.leading, 20)
-                }
-            }
-            
-            Divider()
-            
-            // Notifications Section
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Notifications")
-                    .font(.headline)
-                
-                Toggle(isOn: $notificationsEnabled) {
-                    VStack(alignment: .leading) {
-                        Text("Enable system notifications")
-                        Text("Deliver macOS notifications when activity is high.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-            }
-            
-            Divider()
-            
-            // Shared Settings Section
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Detection Settings")
-                    .font(.headline)
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("High activity duration")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .bold()
-                    Stepper(value: $highActivityDurationSeconds, in: 10...600, step: 5) {
-                        Text("\(highActivityDurationSeconds) seconds")
-                            .monospacedDigit()
-                    }
-                    Text("High-activity processes must stay active for at least this long to appear.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(nil)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
+        Section {
+            MenuBarSettingsFields(
+                isMenuIconEnabled: $isMenuIconEnabled,
+                menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
+                menuIconType: $menuIconType,
+                showMetricIcon: $showMetricIcon
+            )
+        } header: {
+            Text("Menu Bar")
+        } footer: {
+            Text("Display an activity indicator in the menu bar and choose when it appears.")
+        }
+
+        Section {
+            NotificationSettingsFields(notificationsEnabled: $notificationsEnabled)
+        } header: {
+            Text("Notifications")
+        } footer: {
+            Text("Deliver macOS notifications whenever activity is critical or a process spikes usage.")
+        }
+
+        Section {
+            DetectionSettingsFields(
+                highActivityDurationSeconds: $highActivityDurationSeconds,
+                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent
+            )
+        } header: {
+            Text("Detection Settings")
+        } footer: {
+            Text("Processes must exceed the CPU threshold for the selected duration before they're marked as high activity.")
         }
     }
 }
@@ -250,10 +155,17 @@ struct MenuStatusView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(status.title)
-                .font(.headline)
+            HStack(){
+                Image(systemName: status.symbolName)
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(status.accentColor, .secondary)
+                    
+                Text(status.title)
+                    .font(.headline)
+            }
+            
             Text(status.message(for: metrics))
-                .lineLimit(nil)
+                .lineLimit(.none)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 
@@ -281,7 +193,7 @@ struct MenuStatusView: View {
                 MenuMetricRow(systemImage: "arrow.up.arrow.down") {
                     Text("↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s")
                         .monospacedDigit()
-                        .lineLimit(nil)
+                        .lineLimit(.none)
                         .fixedSize(horizontal: false, vertical: true)
                 }
 
@@ -297,15 +209,17 @@ struct MenuStatusView: View {
                         .foregroundStyle(.secondary)
                         .bold()
                     ForEach(Array(metrics.highActivityProcesses.prefix(3))) { process in
-                        HStack(){
+                        HStack {
                             Button {
                                 ProcessActions.revealInActivityMonitor(process)
                             } label: {
                                 MenuProcessRow(process: process)
                             }
                             .buttonStyle(.plain)
-                            
-                            Button("",systemImage: "xmark.circle") {
+
+                            Spacer()
+
+                            Button("", systemImage: "xmark.circle") {
                                 ProcessActions.terminate(process)
                             }
                             .buttonStyle(.plain)
@@ -323,6 +237,24 @@ struct MenuStatusView: View {
         }
         .frame(minWidth: 220, alignment: .leading)
     }
+}
+
+#Preview("Menu Status – Normal") {
+    MenuStatusView(metrics: .previewNormal, status: .normal)
+        .frame(width: 240)
+        .padding()
+}
+
+#Preview("Menu Status – Elevated") {
+    MenuStatusView(metrics: .previewElevated, status: .elevated)
+        .frame(width: 240)
+        .padding()
+}
+
+#Preview("Menu Status – Critical") {
+    MenuStatusView(metrics: .previewCritical, status: .critical)
+        .frame(width: 240)
+        .padding()
 }
 
 private struct MenuMetricRow<Content: View>: View {
@@ -347,102 +279,117 @@ private struct MenuMetricRow<Content: View>: View {
 
 private struct MenuProcessRow: View {
     let process: ProcessUsage
+    @State private var isHovering = false
 
     var body: some View {
-
-            
-            VStack(alignment: .leading, spacing: 2) {
-                HStack(alignment: .center, spacing: 12) {
-                    let path = process.command
-                    let appPath: String = {
-                        if let range = path.range(of: ".app/") {
-                            return String(path[..<range.lowerBound]) + ".app"
-                        } else {
-                            return path
-                        }
-                    }()
-                    let nsImage = NSWorkspace.shared.icon(forFile: appPath)
-                    Image(nsImage: nsImage)
-                        .resizable()
-                        .frame(width: 16, height: 16)
-                    
-                    Text(process.displayName)
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .lineLimit(nil)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
+        VStack(alignment: .leading, spacing: 2) {
+            HStack(alignment: .center, spacing: 12) {
+                let path = process.command
+                let appPath: String = {
+                    if let range = path.range(of: ".app/") {
+                        return String(path[..<range.lowerBound]) + ".app"
+                    } else {
+                        return path
+                    }
+                }()
+                let nsImage = NSWorkspace.shared.icon(forFile: appPath)
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .frame(width: 16, height: 16)
                 
-                Text("CPU \(process.cpuDescription) • Mem \(process.memoryDescription)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(nil)
+                Text(process.displayName)
+                    .font(.callout)
+                    .fontWeight(.semibold)
+                    .lineLimit(.none)
                     .fixedSize(horizontal: false, vertical: true)
             }
+            
+            Text("CPU \(process.cpuDescription) • Mem \(process.memoryDescription)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(.none)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(6)
+//        .background(
+//            RoundedRectangle(cornerRadius: 8)
+//                .fill(Color.secondary.opacity(isHovering ? 0.18 : 0.08))
+//        )
+        .onHover { over in
+            isHovering = over
+        }
     }
 }
 
-#Preview("ContentView • Normal") {
-    ContentView(
-        monitor: ActivityMonitor(metrics: .previewNormal, status: .normal, autoStart: false),
-        isMenuIconEnabled: .constant(true),
-        menuIconOnlyWhenHigh: .constant(false),
-        notificationsEnabled: .constant(false),
-        menuIconType: .constant(.cpu),
-        showMetricIcon: .constant(false),
-        highActivityDurationSeconds: .constant(60)
+#Preview("Process Row") {
+    let sample = ProcessUsage.preview.first ?? ProcessUsage(
+        pid: 4242,
+        command: "/Applications/Preview.app/Contents/MacOS/Preview",
+        cpuPercent: 0.42,
+        memoryPercent: 0.08
     )
-    .frame(minWidth: 200, alignment: .leading)
-    .padding()
-}
 
-#Preview("ContentView • Critical") {
-    ContentView(
-        monitor: ActivityMonitor(metrics: .previewCritical, status: .critical, autoStart: false),
-        isMenuIconEnabled: .constant(true),
-        menuIconOnlyWhenHigh: .constant(true),
-        notificationsEnabled: .constant(true),
-        menuIconType: .constant(.cpu),
-        showMetricIcon: .constant(true),
-        highActivityDurationSeconds: .constant(60)
-    )
-    .frame(minWidth: 300, alignment: .leading)
-}
-
-#Preview("Metrics Summary • Elevated") {
-    MetricsSummaryView(metrics: .previewElevated, status: .elevated)
+    MenuProcessRow(process: sample)
+        .frame(width: 260)
         .padding()
-        .frame(maxWidth: 460)
+}
+#endif
+
+// MARK: - Shared Settings Controls
+
+private struct MenuBarSettingsFields: View {
+    @Binding var isMenuIconEnabled: Bool
+    @Binding var menuIconOnlyWhenHigh: Bool
+    @Binding var menuIconType: MenuIconType
+    @Binding var showMetricIcon: Bool
+
+    var body: some View {
+        Toggle("Show indicator", isOn: $isMenuIconEnabled)
+
+        Toggle("Only show on high activity", isOn: $menuIconOnlyWhenHigh)
+            .disabled(!isMenuIconEnabled)
+
+        Picker("Icon type:", selection: $menuIconType) {
+            ForEach(MenuIconType.allCases) { iconType in
+                Label(iconType.title, systemImage: iconType.symbolName)
+                    .tag(iconType)
+            }
+        }
+        .disabled(!isMenuIconEnabled)
+        .pickerStyle(.menu)
+
+        if menuIconType.metricSelection != nil {
+            Toggle("Show metric icon", isOn: $showMetricIcon)
+                .disabled(!isMenuIconEnabled)
+        }
+    }
 }
 
-#Preview("Notice Preferences • Icon Enabled") {
-    NoticePreferencesView(
-        isMenuIconEnabled: .constant(true),
-        menuIconOnlyWhenHigh: .constant(true),
-        notificationsEnabled: .constant(true),
-        menuIconType: .constant(.memory),
-        showMetricIcon: .constant(true),
-        highActivityDurationSeconds: .constant(60)
-    )
-    .padding()
-    .frame(width: 360)
+private struct NotificationSettingsFields: View {
+    @Binding var notificationsEnabled: Bool
+
+    var body: some View {
+        Toggle("Enable system notifications", isOn: $notificationsEnabled)
+    }
 }
 
-#Preview("Notice Preferences • Icon Hidden") {
-    NoticePreferencesView(
-        isMenuIconEnabled: .constant(false),
-        menuIconOnlyWhenHigh: .constant(false),
-        notificationsEnabled: .constant(false),
-        menuIconType: .constant(.status),
-        showMetricIcon: .constant(false),
-        highActivityDurationSeconds: .constant(60)
-    )
-    .padding()
-    .frame(width: 360)
-}
+private struct DetectionSettingsFields: View {
+    @Binding var highActivityDurationSeconds: Int
+    @Binding var highActivityCPUThresholdPercent: Int
 
-#Preview("Menu Status • Critical") {
-    MenuStatusView(metrics: .previewCritical, status: .critical)
-        .padding()
-        .frame(width: 240, alignment: .leading)
+    var body: some View {
+        Picker("High activity duration:", selection: $highActivityDurationSeconds) {
+            ForEach(highActivityDurationOptions, id: \.self) { value in
+                Text("\(value) seconds").tag(value)
+            }
+        }
+        .pickerStyle(.menu)
+
+        Picker("CPU threshold:", selection: $highActivityCPUThresholdPercent) {
+            ForEach(highActivityCPUThresholdOptions, id: \.self) { value in
+                Text("\(value)%").tag(value)
+            }
+        }
+        .pickerStyle(.menu)
+    }
 }

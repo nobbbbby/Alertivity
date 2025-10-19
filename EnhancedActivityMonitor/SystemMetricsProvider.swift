@@ -10,6 +10,14 @@ final class SystemMetricsProvider {
     private var lastHighActivityProcesses: [ProcessUsage] = []
     private var lastMetrics: ActivityMetrics = .placeholder
     private var processActivityStartTimes: [Int32: Date] = [:]
+    private let highActivityProcessLimit = 12
+    // Interface prefixes that are ignored to prevent counting loopback, virtual, or tunnel traffic twice.
+    private let excludedInterfacePrefixes = [
+        "lo", "utun", "awdl", "vmnet", "bridge", "llw", "ap", "p2p", "gif", "stf", "vnic", "tap", "tun"
+    ]
+
+    // CPU threshold (0.0 ... 1.0) a process must meet/exceed to be tracked as high activity
+    var highActivityCPUThreshold: Double = 0.2
 
     var highActivityDuration: TimeInterval = 120 {
         didSet {
@@ -25,7 +33,6 @@ final class SystemMetricsProvider {
     }
 
     func fetchMetrics() -> ActivityMetrics {
-        print("🔵 fetchMetrics() called")
         let timestamp = Date()
         let cpuUsage = readCPUUsage()
 
@@ -69,7 +76,6 @@ final class SystemMetricsProvider {
         )
 
         lastMetrics = metrics
-        print("🔵 fetchMetrics() completed successfully, hasLiveData=\(metrics.hasLiveData)")
         return metrics
     }
 
@@ -203,7 +209,7 @@ final class SystemMetricsProvider {
                 let dataPointer = unsafeBitCast(current.ifa_data, to: UnsafeMutablePointer<if_data>?.self)
             {
                 let name = String(cString: current.ifa_name)
-                if !name.hasPrefix("lo") {
+                if !excludedInterfacePrefixes.contains(where: { name.hasPrefix($0) }) {
                     received &+= UInt64(dataPointer.pointee.ifi_ibytes)
                     sent &+= UInt64(dataPointer.pointee.ifi_obytes)
                 }
@@ -242,8 +248,7 @@ final class SystemMetricsProvider {
         }
     }
 
-    private func readTopProcesses(limit: Int = 5) -> [ProcessUsage]? {
-        print("  🔹 readTopProcesses() starting...")
+    private func readTopProcesses() -> [ProcessUsage]? {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/ps")
         process.arguments = ["-axo", "pid=,pcpu=,pmem=,comm=", "-r"]
@@ -272,30 +277,23 @@ final class SystemMetricsProvider {
         let waitResult = semaphore.wait(timeout: .now() + 2.0)
         
         if waitResult == .timedOut {
-            print("  🔸 readTopProcesses() TIMEOUT - terminating ps process")
             process.terminate()
             return nil
         }
 
         process.waitUntilExit()
 
-        guard process.terminationStatus == 0 else {
-            print("  🔸 readTopProcesses() failed with status \(process.terminationStatus)")
-            return nil
-        }
+        guard process.terminationStatus == 0 else { return nil }
 
         guard let output = String(data: outputData as Data, encoding: .utf8) else {
-            print("  🔸 readTopProcesses() failed to decode output")
             return nil
         }
-        
-        print("  🔹 readTopProcesses() completed successfully")
 
         let lines = output.split(separator: "\n")
         var usages: [ProcessUsage] = []
+        usages.reserveCapacity(highActivityProcessLimit)
 
         for line in lines {
-            if usages.count >= limit { break }
             let trimmed = line.trimmingCharacters(in: .whitespaces)
             guard !trimmed.isEmpty else { continue }
 
@@ -318,7 +316,10 @@ final class SystemMetricsProvider {
                 memoryPercent: max(memoryValue / 100, 0)
             )
 
+            guard usage.cpuPercent >= highActivityCPUThreshold else { continue }
+
             usages.append(usage)
+            if usages.count >= highActivityProcessLimit { break }
         }
 
         return usages
