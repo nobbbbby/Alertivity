@@ -257,7 +257,7 @@ struct MetricMenuDetailView: View {
     let selection: MetricMenuSelection
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 3) {
             Label {
                 Text(selection.title)
                     .font(.headline)
@@ -267,7 +267,7 @@ struct MetricMenuDetailView: View {
 
             detailContent
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .leading).padding(3)
     }
 
     @ViewBuilder
@@ -275,40 +275,43 @@ struct MetricMenuDetailView: View {
         switch selection {
         case .cpu:
             let status = ActivityStatus(metrics: metrics)
-            Gauge(value: metrics.cpuUsage, in: 0...1) {
-                Text(metrics.cpuUsage.formatted(.percent.precision(.fractionLength(1))))
-            }
-            .gaugeStyle(.accessoryLinearCapacity)
-            .tint(status.accentColor)
+            gaugeRow(
+                value: metrics.cpuUsage,
+                tint: status.accentColor,
+                title: selection.title,
+                formattedValue: metrics.cpuUsage.formatted(.percent.precision(.fractionLength(1)))
+            )
             Text("Status: \(status.title)")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
         case .memory:
-            Gauge(value: metrics.memoryUsage, in: 0...1) {
-                Text(metrics.memoryUsage.formatted(.percent.precision(.fractionLength(1))))
-            }
-            .gaugeStyle(.accessoryLinearCapacity)
-            .tint(.blue)
+            gaugeRow(
+                value: metrics.memoryUsage,
+                tint: .blue,
+                title: selection.title,
+                formattedValue: metrics.memoryUsage.formatted(.percent.precision(.fractionLength(1)))
+            )
             Text(selection.detailSummary(for: metrics))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
         case .disk:
-            Gauge(value: metrics.disk.usage, in: 0...1) {
-                Text(metrics.disk.usage.formatted(.percent.precision(.fractionLength(1))))
-            }
-            .gaugeStyle(.accessoryLinearCapacity)
-            .tint(.orange)
+            gaugeRow(
+                value: metrics.disk.usage,
+                tint: .orange,
+                title: selection.title,
+                formattedValue: metrics.disk.usage.formatted(.percent.precision(.fractionLength(1)))
+            )
             Text(selection.detailSummary(for: metrics))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
         case .network:
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing:0) {
                 Text("Download: \(metrics.network.formattedDownload)/s")
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
@@ -334,6 +337,28 @@ struct MetricMenuDetailView: View {
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
         }
+    }
+
+    private func gaugeRow(value: Double, tint: Color, title: String, formattedValue: String) -> some View {
+        HStack(spacing: 8) {
+            Gauge(value: value, in: 0...1) {
+                Text(title)
+            } currentValueLabel: {
+                EmptyView()
+            }
+            .labelsHidden()
+            .gaugeStyle(.accessoryLinearCapacity)
+            .tint(tint)
+            .frame(maxWidth: .infinity)
+
+            Text(formattedValue)
+                .font(.footnote)
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+                .fixedSize()
+        }
+        .accessibilityLabel(title)
+        .accessibilityValue(formattedValue)
     }
 }
 
@@ -443,7 +468,7 @@ private enum MenuBarNetworkStackedRenderer {
 
         ForEach(MetricMenuSelection.allCases, id: \.self) { selection in
             MetricMenuDetailView(metrics: .previewNormal, selection: selection)
-                .padding()
+                .padding(8)
                 .frame(width: 260, alignment: .leading)
                 .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 12))

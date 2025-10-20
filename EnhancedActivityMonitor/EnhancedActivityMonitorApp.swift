@@ -36,29 +36,24 @@ struct EnhancedActivityMonitorApp: App {
         MenuBarExtra(
             isInserted: $isMenuBarInserted
         ) {
-            VStack(alignment: .leading, spacing: 12) {
-                MenuStatusView(metrics: monitor.metrics, status: monitor.status)
+            VStack(alignment: .leading, spacing: 5) {
+                MenuStatusView(metrics: monitor.metrics, status: monitor.status).padding(6)
 
                 if let selection = menuIconType.metricSelection {
-                    Divider()
-                    MetricMenuDetailView(metrics: monitor.metrics, selection: selection)
+                    Divider().padding(.horizontal,6)
+                    MetricMenuDetailView(metrics: monitor.metrics, selection: selection).padding(.horizontal,6)
                 }
 
                 Divider()
                 if #available(macOS 14.0, *) {
-                    SettingsLink {
-                        Text("Open Settings…")
-                            .font(.system(size: 12, weight: .medium))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.vertical, 4)
-                            .padding(.horizontal, 6)
-                    }
+                    SettingsMenuLinkRow()
                 } else {
                     // Fallback on earlier versions
                 }
             }
             .frame(minWidth: 220, alignment: .leading)
-            .padding()
+            .padding(6)
+            
         } label: {
             MenuBarLabelLifecycleView(
                 monitor: monitor,
@@ -171,3 +166,40 @@ private struct MenuBarLabelLifecycleView: View {
         return menuIconOnlyWhenHigh ? monitor.status == .critical : true
     }
 }
+
+@available(macOS 14.0, *)
+private struct SettingsMenuLinkRow: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var isHovering = false
+
+    var body: some View {
+        SettingsLink {
+            Text("Open Settings…")
+                .font(.system(size: 12, weight: .medium))
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .buttonStyle(.plain)
+        .contentShape(Rectangle())
+//        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 8)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.gray.opacity(isHovering ? 0.3 : 0))
+        )
+        .onHover { isHovering = $0 }
+        .animation(.easeInOut(duration: 0.12), value: isHovering)
+        .simultaneousGesture(TapGesture().onEnded {
+            dismiss()
+        })
+    }
+}
+
+#if DEBUG
+@available(macOS 14.0, *)
+#Preview("Settings Link") {
+    SettingsMenuLinkRow()
+    .frame(width: 220)
+    .padding()
+}
+#endif

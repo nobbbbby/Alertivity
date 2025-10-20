@@ -29,6 +29,8 @@ struct SettingsView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .lineLimit(.none)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal,50)
             .tabItem { Label("Menu Bar", systemImage: "waveform") }
@@ -42,6 +44,8 @@ struct SettingsView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .lineLimit(.none)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal,50)
             .tabItem { Label("Notifications", systemImage: "bell") }
@@ -58,6 +62,8 @@ struct SettingsView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal,50)
             .tabItem { Label("Detection", systemImage: "gearshape") }
@@ -154,61 +160,59 @@ struct MenuStatusView: View {
     let status: ActivityStatus
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(){
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .center, spacing: 8) {
                 Image(systemName: status.symbolName)
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(status.accentColor, .secondary)
-                    
+                    .font(.system(size: 18, weight: .medium))
+
                 Text(status.title)
-                    .font(.headline)
+                    .font(.system(size: 15, weight: .semibold))
+
+                Spacer(minLength: 0)
             }
-            
+
             Text(status.message(for: metrics))
-                .lineLimit(.none)
-                .font(.subheadline)
+                .font(.callout)
                 .foregroundStyle(.secondary)
-                
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
 
             Divider()
 
             if metrics.hasLiveData {
-                MenuMetricRow(systemImage: "cpu") {
-                    Text(metrics.cpuUsage.formatted(.percent.precision(.fractionLength(0))))
-                        .monospacedDigit()
-                }
+                MenuMetricRow(
+                    systemImage: "cpu",
+                    value: metrics.cpuUsage.formatted(.percent.precision(.fractionLength(0)))
+                )
 
-                MenuMetricRow(systemImage: "memorychip") {
-                    Text(metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0))))
-                        .monospacedDigit()
-                }
+                MenuMetricRow(
+                    systemImage: "memorychip",
+                    value: metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0)))
+                )
 
-                MenuMetricRow(systemImage: "internaldrive") {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(metrics.disk.usage.formatted(.percent.precision(.fractionLength(0))))
-                            .monospacedDigit()
-                    }
-                }
+                MenuMetricRow(
+                    systemImage: "internaldrive",
+                    value: metrics.disk.usage.formatted(.percent.precision(.fractionLength(0)))
+                )
 
-                MenuMetricRow(systemImage: "arrow.up.arrow.down") {
-                    Text("↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s")
-                        .monospacedDigit()
-                        .lineLimit(.none)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
+                MenuMetricRow(
+                    systemImage: "arrow.up.arrow.down",
+                    value: "↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s"
+                )
 
-                MenuMetricRow(systemImage: "gearshape") {
-                    Text("\(metrics.runningProcesses)")
-                        .monospacedDigit()
-                }
-
+                MenuMetricRow(
+                    systemImage: "gearshape",
+                    value: "\(metrics.runningProcesses)"
+                )
+                
                 if !metrics.highActivityProcesses.isEmpty {
                     Divider()
                     Text("High-activity processes")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .bold()
-                    ForEach(Array(metrics.highActivityProcesses.prefix(3))) { process in
+                        .font(.callout.weight(.semibold))
+                        .foregroundStyle(.primary)
+                    ForEach(Array(metrics.highActivityProcesses)) { process in
                         HStack {
                             Button {
                                 ProcessActions.revealInActivityMonitor(process)
@@ -222,6 +226,7 @@ struct MenuStatusView: View {
                             Button("", systemImage: "xmark.circle") {
                                 ProcessActions.terminate(process)
                             }
+                            .labelStyle(.iconOnly)
                             .buttonStyle(.plain)
                         }
                     }
@@ -257,22 +262,34 @@ struct MenuStatusView: View {
         .padding()
 }
 
-private struct MenuMetricRow<Content: View>: View {
+private struct MenuMetricRow: View {
     let systemImage: String
-    let content: () -> Content
+    let title: String?
+    let value: String
 
-    init(systemImage: String, @ViewBuilder content: @escaping () -> Content) {
+    init(systemImage: String, title: String? = nil, value: String) {
         self.systemImage = systemImage
-        self.content = content
+        self.title = title
+        self.value = value
     }
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 12) {
+        HStack(alignment: .firstTextBaseline, spacing: 6) {
             Image(systemName: systemImage)
+                .font(.system(size: 14, weight: .medium))
                 .frame(width: 20, alignment: .center)
 
-            content()
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if let title {
+                Text(title)
+                    .font(.system(size: 13, weight: .semibold))
+            }
+
+            Spacer(minLength: 8)
+
+            Text(value)
+                .font(.system(size: 13))
+                .monospacedDigit()
+                .foregroundStyle(.primary)
         }
     }
 }
@@ -310,14 +327,18 @@ private struct MenuProcessRow: View {
                 .lineLimit(.none)
                 .fixedSize(horizontal: false, vertical: true)
         }
-        .padding(6)
-//        .background(
-//            RoundedRectangle(cornerRadius: 8)
-//                .fill(Color.secondary.opacity(isHovering ? 0.18 : 0.08))
-//        )
+        .frame(maxWidth: .infinity, alignment: .leading)
+//        .padding(.vertical, 6)
+//        .padding(.horizontal, )
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.accentColor.opacity(isHovering ? 0.14 : 0))
+        )
+        .contentShape(Rectangle())
         .onHover { over in
             isHovering = over
         }
+        .animation(.easeInOut(duration: 0.12), value: isHovering)
     }
 }
 
