@@ -31,6 +31,9 @@ struct AlertivityApp: App {
     }
     @AppStorage("notice.menu.iconType") private var menuIconType = MenuIconType.status
     @AppStorage("notice.menu.showMetricIcon") private var showMetricIcon = false
+    @AppStorage("notice.menu.autoSwitch") private var isMenuIconAutoSwitchEnabled = false {
+        didSet { enforceAutoSwitchDependencies(isEnabled: isMenuIconAutoSwitchEnabled) }
+    }
     @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120 {
         didSet { applyHighActivityDurationUpdate(for: highActivityDurationSeconds) }
     }
@@ -70,6 +73,7 @@ struct AlertivityApp: App {
                 menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
                 menuIconType: $menuIconType,
                 showMetricIcon: $showMetricIcon,
+                autoSwitchEnabled: $isMenuIconAutoSwitchEnabled,
                 initialize: performInitialSetup,
                 onStatusChange: handleStatusChange,
                 onMetricsChange: handleMetricsChange
@@ -92,6 +96,7 @@ struct AlertivityApp: App {
         updateMenuBarInsertion(for: monitor.status)
         applyHighActivityDurationUpdate(for: highActivityDurationSeconds)
         applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent)
+        enforceAutoSwitchDependencies(isEnabled: isMenuIconAutoSwitchEnabled)
     }
 
     private func handleStatusChange(_ newValue: ActivityStatus) {
@@ -131,7 +136,15 @@ struct AlertivityApp: App {
 
     private func shouldShowMenuIcon(for status: ActivityStatus) -> Bool {
         guard isMenuIconEnabled else { return false }
-        return menuIconOnlyWhenHigh ? status == .critical : true
+        return menuIconOnlyWhenHigh ? status.level == .critical : true
+    }
+
+    private func resolvedMenuIconType(for metrics: ActivityMetrics) -> MenuIconType {
+        resolveMenuIconType(
+            autoSwitchEnabled: isMenuIconAutoSwitchEnabled,
+            defaultIconType: menuIconType,
+            metrics: metrics
+        )
     }
 
     private func normalizedHighActivityDurationSeconds(_ value: Int) -> Int {
@@ -171,6 +184,12 @@ struct AlertivityApp: App {
                 }
             }
             return
+        }
+    }
+
+    private func enforceAutoSwitchDependencies(isEnabled: Bool) {
+        if isEnabled && !showMetricIcon {
+            showMetricIcon = true
         }
     }
 
@@ -230,6 +249,7 @@ private struct MenuBarLabelLifecycleView: View {
     @Binding var menuIconOnlyWhenHigh: Bool
     @Binding var menuIconType: MenuIconType
     @Binding var showMetricIcon: Bool
+    @Binding var autoSwitchEnabled: Bool
     let initialize: () -> Void
     let onStatusChange: (ActivityStatus) -> Void
     let onMetricsChange: (ActivityMetrics) -> Void
@@ -239,8 +259,8 @@ private struct MenuBarLabelLifecycleView: View {
             status: monitor.status,
             metrics: monitor.metrics,
             isVisible: isMenuIconVisible,
-            iconType: menuIconType,
-            showIcon: showMetricIcon
+            iconType: resolvedIconType,
+            showIcon: shouldShowMetricIcon
         )
         .onAppear(perform: initialize)
         .onChange(of: monitor.status, perform: onStatusChange)
@@ -255,7 +275,20 @@ private struct MenuBarLabelLifecycleView: View {
 
     private var isMenuIconVisible: Bool {
         guard isMenuIconEnabled else { return false }
-        return menuIconOnlyWhenHigh ? monitor.status == .critical : true
+        return menuIconOnlyWhenHigh ? monitor.status.level == .critical : true
+    }
+
+    private var resolvedIconType: MenuIconType {
+        resolveMenuIconType(
+            autoSwitchEnabled: autoSwitchEnabled,
+            defaultIconType: menuIconType,
+            metrics: monitor.metrics
+        )
+    }
+
+    private var shouldShowMetricIcon: Bool {
+        guard resolvedIconType.metricSelection != nil else { return false }
+        return showMetricIcon || autoSwitchEnabled
     }
 }
 

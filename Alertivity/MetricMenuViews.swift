@@ -69,6 +69,37 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     case disk
     case network
     case processes
+    static let autoSwitchPriority: [MetricMenuSelection] = [.cpu, .memory, .network, .disk]
+
+    var menuIconType: MenuIconType {
+        switch self {
+        case .cpu:
+            return .cpu
+        case .memory:
+            return .memory
+        case .disk:
+            return .disk
+        case .network:
+            return .network
+        }
+    }
+
+    func isHighActivity(for metrics: ActivityMetrics) -> Bool {
+        switch self {
+        case .cpu:
+            return metrics.cpuUsage >= 0.6
+        case .memory:
+            return metrics.memoryUsage >= 0.8
+        case .disk:
+            return metrics.disk.usage >= 0.9
+        case .network:
+            return metrics.network.totalBytesPerSecond >= 5_000_000 // ~5 MB/s sustained
+        }
+    }
+
+    static func highestPriorityHighActivity(in metrics: ActivityMetrics) -> MetricMenuSelection? {
+        autoSwitchPriority.first { $0.isHighActivity(for: metrics) }
+    }
 
     var shortLabel: String {
         switch self {
@@ -169,6 +200,13 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
         formatter.numberFormatter.maximumFractionDigits = 1
         return formatter
     }()
+}
+
+func resolveMenuIconType(autoSwitchEnabled: Bool, defaultIconType: MenuIconType, metrics: ActivityMetrics) -> MenuIconType {
+    guard autoSwitchEnabled, let activeMetric = MetricMenuSelection.highestPriorityHighActivity(in: metrics) else {
+        return defaultIconType
+    }
+    return activeMetric.menuIconType
 }
 
 struct MetricMenuLabel: View {

@@ -14,6 +14,7 @@ struct SettingsView: View {
     @AppStorage("notice.notifications.enabled") private var notificationsEnabled = false
     @AppStorage("notice.menu.iconType") private var menuIconType = MenuIconType.status
     @AppStorage("notice.menu.showMetricIcon") private var showMetricIcon = false
+    @AppStorage("notice.menu.autoSwitch") private var isMenuIconAutoSwitchEnabled = false
     @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120
     @AppStorage("monitor.topProcesses.cpuThresholdPercent") private var highActivityCPUThresholdPercent = 20
 
@@ -32,7 +33,8 @@ struct SettingsView: View {
                     isMenuIconEnabled: $isMenuIconEnabled,
                     menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
                     menuIconType: $menuIconType,
-                    showMetricIcon: $showMetricIcon
+                    showMetricIcon: $showMetricIcon,
+                    autoSwitchEnabled: $isMenuIconAutoSwitchEnabled
                 )
 
                 Text("Choose when the indicator appears and what it shows.")
@@ -79,6 +81,7 @@ struct NoticePreferencesView: View {
     @Binding var notificationsEnabled: Bool
     @Binding var menuIconType: MenuIconType
     @Binding var showMetricIcon: Bool
+    @Binding var menuIconAutoSwitchEnabled: Bool
     @Binding var highActivityDurationSeconds: Int
     @Binding var highActivityCPUThresholdPercent: Int
 
@@ -89,7 +92,8 @@ struct NoticePreferencesView: View {
                 isMenuIconEnabled: $isMenuIconEnabled,
                 menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
                 menuIconType: $menuIconType,
-                showMetricIcon: $showMetricIcon
+                showMetricIcon: $showMetricIcon,
+                autoSwitchEnabled: $menuIconAutoSwitchEnabled
             )
         }
 
@@ -294,6 +298,7 @@ private struct NoticePreferencesPreviewContainer: View {
     @State private var notificationsEnabled = true
     @State private var menuIconType: MenuIconType = .status
     @State private var showMetricIcon = true
+    @State private var menuIconAutoSwitchEnabled = false
     @State private var highActivityDurationSeconds = highActivityDurationOptions[3]
     @State private var highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[3]
 
@@ -305,6 +310,7 @@ private struct NoticePreferencesPreviewContainer: View {
                 notificationsEnabled: $notificationsEnabled,
                 menuIconType: $menuIconType,
                 showMetricIcon: $showMetricIcon,
+                menuIconAutoSwitchEnabled: $menuIconAutoSwitchEnabled,
                 highActivityDurationSeconds: $highActivityDurationSeconds,
                 highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent
             )
@@ -364,13 +370,11 @@ private struct MenuBarSettingsFields: View {
     @Binding var menuIconOnlyWhenHigh: Bool
     @Binding var menuIconType: MenuIconType
     @Binding var showMetricIcon: Bool
+    @Binding var autoSwitchEnabled: Bool
 
     var body: some View {
         Toggle("Show indicator", isOn: $isMenuIconEnabled)
-        Toggle("Only show on high activity", isOn: $menuIconOnlyWhenHigh)
-            .disabled(!isMenuIconEnabled)
-
-        Picker("Icon type:", selection: $menuIconType) {
+        Picker("Default icon type:", selection: $menuIconType) {
             ForEach(MenuIconType.allCases) { iconType in
                 Label(iconType.title, systemImage: iconType.symbolName)
                     .tag(iconType)
@@ -379,9 +383,32 @@ private struct MenuBarSettingsFields: View {
         .disabled(!isMenuIconEnabled)
         .pickerStyle(.menu)
 
-        if menuIconType.metricSelection != nil {
+        let autoSwitchBinding = Binding<Bool>(
+            get: { autoSwitchEnabled },
+            set: { newValue in
+                autoSwitchEnabled = newValue
+                if newValue && !showMetricIcon {
+                    showMetricIcon = true
+                }
+            }
+        )
+
+        Toggle("Auto switch to busiest metric", isOn: autoSwitchBinding)
+            .disabled(!isMenuIconEnabled)
+
+        Text("Auto switch shows the busiest metric; when activity is normal it uses your Default icon type.")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.leading, 18)
+            .padding(.bottom, 2)
+
+        Toggle("Only show on high activity", isOn: $menuIconOnlyWhenHigh)
+            .disabled(!isMenuIconEnabled)
+
+        if menuIconType.metricSelection != nil || autoSwitchEnabled {
             Toggle("Show metric icon", isOn: $showMetricIcon)
-                .disabled(!isMenuIconEnabled)
+                .disabled(!isMenuIconEnabled || autoSwitchEnabled)
         }
     }
 }
