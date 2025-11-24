@@ -7,7 +7,6 @@ enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
     case memory
     case disk
     case network
-    case processes
 
     var id: String { rawValue }
 
@@ -23,8 +22,6 @@ enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
             return "Disk activity"
         case .network:
             return "Network throughput"
-        case .processes:
-            return "Running processes"
         }
     }
 
@@ -40,8 +37,6 @@ enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
             return "internaldrive"
         case .network:
             return "arrow.up.arrow.down"
-        case .processes:
-            return "gearshape"
         }
     }
 
@@ -57,8 +52,6 @@ enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
             return .disk
         case .network:
             return .network
-        case .processes:
-            return .processes
         }
     }
 }
@@ -68,7 +61,7 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     case memory
     case disk
     case network
-    case processes
+
     static let autoSwitchPriority: [MetricMenuSelection] = [.cpu, .memory, .network, .disk]
 
     var menuIconType: MenuIconType {
@@ -111,8 +104,6 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
             return "DSK"
         case .network:
             return "NET"
-        case .processes:
-            return "PRC"
         }
     }
 
@@ -126,8 +117,6 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
             return "Disk Activity"
         case .network:
             return "Network Throughput"
-        case .processes:
-            return "Running Processes"
         }
     }
 
@@ -141,8 +130,6 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
             return "internaldrive"
         case .network:
             return "arrow.up.arrow.down"
-        case .processes:
-            return "gearshape"
         }
     }
 
@@ -156,8 +143,6 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
             metrics.disk.usage.formatted(.percent.precision(.fractionLength(0)))
         case .network:
             metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond) + "/s"
-        case .processes:
-            "\(metrics.runningProcesses)"
         }
     }
 
@@ -171,8 +156,6 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
             return "Disk usage \(metrics.disk.usage.formatted(.percent.precision(.fractionLength(1))))"
         case .network:
             return "Total network throughput \(metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond)) per second"
-        case .processes:
-            return "\(metrics.runningProcesses) running processes"
         }
     }
 
@@ -188,8 +171,6 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
             return metrics.disk.formattedUsageSummary
         case .network:
             return "↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s"
-        case .processes:
-            return "Currently tracking \(metrics.runningProcesses) processes"
         }
     }
 
@@ -213,29 +194,42 @@ struct MetricMenuLabel: View {
     let metrics: ActivityMetrics
     let selection: MetricMenuSelection
     let showIcon: Bool
+    let tint: Color?
+
+    init(metrics: ActivityMetrics, selection: MetricMenuSelection, showIcon: Bool, tint: Color? = nil) {
+        self.metrics = metrics
+        self.selection = selection
+        self.showIcon = showIcon
+        self.tint = tint
+    }
 
     var body: some View {
+        let resolvedTint: Color = tint ?? .primary
+
         HStack(spacing: 4) {
             if selection == .network {
                 let nsImage = MenuBarNetworkStackedRenderer.makeImage(
                     download: metrics.network.formattedDownload + "/s",
                     upload: metrics.network.formattedUpload + "/s",
-                    symbolName: showIcon ? selection.symbolName : nil
+                    symbolName: showIcon ? selection.symbolName : nil,
+                    tint: MenuBarNetworkStackedRenderer.nsColor(for: tint)
                 )
                 Image(nsImage: nsImage)
-                    .renderingMode(.template)
-                    .foregroundStyle(.primary)
+                    .renderingMode(.original)
             } else {
                 if showIcon {
                     Image(systemName: selection.symbolName)
+                        .symbolRenderingMode(.palette)
                         .font(.system(size: 11, weight: .medium))
                         .fixedSize()
                         .layoutPriority(1)
+                        .foregroundStyle(resolvedTint)
                 }
 
                 Text(selection.formattedValue(for: metrics))
                     .font(.system(size: 12, design: .rounded))
                     .monospacedDigit()
+                    .foregroundStyle(.primary)
             }
         }
         .padding(.horizontal, 6)
@@ -264,9 +258,14 @@ struct MetricMenuBarLabel: View {
                     Image(systemName: status.symbolName)
                         .symbolRenderingMode(.palette)
                         .foregroundStyle(status.accentColor, .secondary)
-                case .cpu, .memory, .disk, .network, .processes:
+                case .cpu, .memory, .disk, .network:
                     if let selection = iconType.metricSelection {
-                        MetricMenuLabel(metrics: metrics, selection: selection, showIcon: showIcon)
+                        MetricMenuLabel(
+                            metrics: metrics,
+                            selection: selection,
+                            showIcon: showIcon,
+                            tint: tint(for: selection, metrics: metrics)
+                        )
                     }
                 }
             }
@@ -288,130 +287,44 @@ struct MetricMenuBarLabel: View {
 
         return status.title
     }
-}
 
-struct MetricMenuDetailView: View {
-    let metrics: ActivityMetrics
-    let selection: MetricMenuSelection
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 3) {
-            Label {
-                Text(selection.title)
-                    .font(.headline)
-            } icon: {
-                Image(systemName: selection.symbolName)
-            }
-
-            detailContent
-        }
-        .frame(maxWidth: .infinity, alignment: .leading).padding(3)
-    }
-
-    @ViewBuilder
-    private var detailContent: some View {
+    private func tint(for selection: MetricMenuSelection, metrics: ActivityMetrics) -> Color? {
         switch selection {
         case .cpu:
-            let status = ActivityStatus(metrics: metrics)
-            gaugeRow(
-                value: metrics.cpuUsage,
-                tint: status.accentColor,
-                title: selection.title,
-                formattedValue: metrics.cpuUsage.formatted(.percent.precision(.fractionLength(1)))
-            )
-            Text("Status: \(status.title)")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
+            return color(for: metrics.cpuSeverity)
         case .memory:
-            gaugeRow(
-                value: metrics.memoryUsage,
-                tint: .blue,
-                title: selection.title,
-                formattedValue: metrics.memoryUsage.formatted(.percent.precision(.fractionLength(1)))
-            )
-            Text(selection.detailSummary(for: metrics))
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
+            return color(for: metrics.memorySeverity)
         case .disk:
-            gaugeRow(
-                value: metrics.disk.usage,
-                tint: .orange,
-                title: selection.title,
-                formattedValue: metrics.disk.usage.formatted(.percent.precision(.fractionLength(1)))
-            )
-            Text(selection.detailSummary(for: metrics))
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
+            return color(for: metrics.diskSeverity)
         case .network:
-            VStack(alignment: .leading, spacing:0) {
-                Text("Download: \(metrics.network.formattedDownload)/s")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Upload: \(metrics.network.formattedUpload)/s")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Total: \(metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond))/s")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .monospacedDigit()
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-        case .processes:
-            Text(selection.detailSummary(for: metrics))
-                .font(.title3)
-                .monospacedDigit()
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
-            Text("Process count reflects the latest system sample.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
+            return selection.isHighActivity(for: metrics) ? status.accentColor : nil
         }
     }
 
-    private func gaugeRow(value: Double, tint: Color, title: String, formattedValue: String) -> some View {
-        HStack(spacing: 8) {
-            Gauge(value: value, in: 0...1) {
-                Text(title)
-            } currentValueLabel: {
-                EmptyView()
-            }
-            .labelsHidden()
-            .gaugeStyle(.accessoryLinearCapacity)
-            .tint(tint)
-            .frame(maxWidth: .infinity)
-
-            Text(formattedValue)
-                .font(.footnote)
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .fixedSize()
+    private func color(for severity: ActivityMetrics.MetricSeverity) -> Color? {
+        switch severity {
+        case .critical:
+            return .red
+        case .elevated:
+            return .yellow
+        case .normal:
+            return nil
         }
-        .accessibilityLabel(title)
-        .accessibilityValue(formattedValue)
     }
 }
 
 // Helper for rendering a compact two-line network badge as an NSImage suitable for the menu bar label
 private enum MenuBarNetworkStackedRenderer {
-    static func makeImage(download: String, upload: String, symbolName: String? = nil) -> NSImage {
-        let font = NSFont.monospacedDigitSystemFont(ofSize: 9, weight: .regular)
-        // Draw in white and mark as template so the system can tint appropriately
-        let color = NSColor.white
+    static func makeImage(download: String, upload: String, symbolName: String? = nil, tint: NSColor?) -> NSImage {
+        let font = NSFont.monospacedDigitSystemFont(ofSize: 10, weight: .medium)
+        let hasTint = tint != nil
+        let textColor = hasTint ? NSColor.labelColor : NSColor.black
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .right
 
         let attrs: [NSAttributedString.Key: Any] = [
             .font: font,
-            .foregroundColor: color,
+            .foregroundColor: textColor,
             .paragraphStyle: paragraph
         ]
 
@@ -430,10 +343,8 @@ private enum MenuBarNetworkStackedRenderer {
         var symbolImage: NSImage?
         if let name = symbolName, let baseSymbol = NSImage(systemSymbolName: name, accessibilityDescription: nil) {
             let baseConfig = NSImage.SymbolConfiguration(pointSize: 11, weight: .medium)
-            // Render symbol in white; final image will be template-tinted by SwiftUI
-            if let colorConfig = NSImage.SymbolConfiguration(hierarchicalColor: .white).applying(baseConfig) as NSImage.SymbolConfiguration?,
-               let tinted = baseSymbol.withSymbolConfiguration(colorConfig) {
-                symbolImage = tinted
+            if let tint, let colored = baseSymbol.withSymbolConfiguration(NSImage.SymbolConfiguration(hierarchicalColor: tint).applying(baseConfig)) {
+                symbolImage = colored
             } else if let configured = baseSymbol.withSymbolConfiguration(baseConfig) {
                 symbolImage = configured
             } else {
@@ -470,8 +381,22 @@ private enum MenuBarNetworkStackedRenderer {
         let line1Origin = CGPoint(x: textBaseX + (textBlockWidth - size1.width), y: bottomY + size2.height + spacing)
         line1.draw(at: line1Origin, withAttributes: attrs)
 
-        image.isTemplate = true
+        image.isTemplate = !hasTint
         return image
+    }
+
+    static func nsColor(for color: Color?) -> NSColor? {
+        guard let color else { return nil }
+        switch color {
+        case .red:
+            return .systemRed
+        case .yellow:
+            return .systemYellow
+        case .green:
+            return .systemGreen
+        default:
+            return .labelColor
+        }
     }
 }
 
@@ -480,7 +405,7 @@ private enum MenuBarNetworkStackedRenderer {
     VStack(alignment: .leading, spacing: 24) {
         HStack(spacing: 16) {
             MetricMenuBarLabel(
-                status: .critical,
+                status: .elevated,
                 metrics: .previewCritical,
                 isVisible: true,
                 iconType: .status,
@@ -505,7 +430,7 @@ private enum MenuBarNetworkStackedRenderer {
         Divider()
 
         ForEach(MetricMenuSelection.allCases, id: \.self) { selection in
-            MetricMenuDetailView(metrics: .previewNormal, selection: selection)
+            MetricMenuLabel(metrics: .previewNormal, selection: selection, showIcon: true, tint: Color.orange)
                 .padding(8)
                 .frame(width: 260, alignment: .leading)
                 .background(.thinMaterial)

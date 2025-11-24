@@ -51,11 +51,6 @@ struct AlertivityApp: App {
             VStack(alignment: .leading, spacing: 5) {
                 MenuStatusView(metrics: monitor.metrics, status: monitor.status).padding(6)
 
-                if let selection = menuIconType.metricSelection {
-                    Divider().padding(.horizontal,6)
-                    MetricMenuDetailView(metrics: monitor.metrics, selection: selection).padding(.horizontal,6)
-                }
-
                 Divider()
                 if #available(macOS 14.0, *) {
                     SettingsMenuLinkRow()
@@ -97,6 +92,7 @@ struct AlertivityApp: App {
         applyHighActivityDurationUpdate(for: highActivityDurationSeconds)
         applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent)
         enforceAutoSwitchDependencies(isEnabled: isMenuIconAutoSwitchEnabled)
+        sanitizeMenuIconType()
     }
 
     private func handleStatusChange(_ newValue: ActivityStatus) {
@@ -190,6 +186,13 @@ struct AlertivityApp: App {
     private func enforceAutoSwitchDependencies(isEnabled: Bool) {
         if isEnabled && !showMetricIcon {
             showMetricIcon = true
+        }
+    }
+
+    private func sanitizeMenuIconType() {
+        let stored = UserDefaults.standard.string(forKey: "notice.menu.iconType")
+        if let raw = stored, MenuIconType(rawValue: raw) == nil {
+            menuIconType = .status
         }
     }
 

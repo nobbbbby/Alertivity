@@ -166,13 +166,8 @@ struct MenuStatusView: View {
                     systemImage: "arrow.up.arrow.down",
                     value: "↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s"
                 )
-
-                MenuMetricRow(
-                    systemImage: "gearshape",
-                    value: "\(metrics.runningProcesses)"
-                )
                 
-                if !metrics.highActivityProcesses.isEmpty {
+                if status.trigger != .disk && !metrics.highActivityProcesses.isEmpty {
                     Divider()
                     Text("High-activity processes")
                         .font(.callout.weight(.semibold))

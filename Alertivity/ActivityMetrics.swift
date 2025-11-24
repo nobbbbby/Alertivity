@@ -126,6 +126,48 @@ extension ActivityMetrics {
     )
 }
 
+extension ActivityMetrics {
+    enum MetricSeverity: Int, Sendable {
+        case normal = 0
+        case elevated = 1
+        case critical = 2
+    }
+
+    var cpuSeverity: MetricSeverity {
+        switch cpuUsagePercentage {
+        case ..<0.5:
+            return .normal
+        case 0.5..<0.8:
+            return .elevated
+        default:
+            return .critical
+        }
+    }
+
+    var memorySeverity: MetricSeverity {
+        switch memoryUsage {
+        case ..<0.7:
+            return .normal
+        case 0.7..<0.85:
+            return .elevated
+        default:
+            return .critical
+        }
+    }
+
+    var diskSeverity: MetricSeverity {
+        switch disk.usage {
+        case ..<0.85:
+            return .normal
+        case 0.85..<0.95:
+            return .elevated
+        default:
+            return .critical
+        }
+    }
+
+}
+
 struct NetworkMetrics: Sendable, Equatable {
     var receivedBytesPerSecond: Double
     var sentBytesPerSecond: Double
