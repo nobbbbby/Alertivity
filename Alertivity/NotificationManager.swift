@@ -38,7 +38,7 @@ final class NotificationManager: NSObject, ObservableObject {
     func postNotificationIfNeeded(for status: ActivityStatus, metrics: ActivityMetrics) {
         guard authorizationStatus == .authorized else { return }
         let hasHighActivityProcess = !metrics.highActivityProcesses.isEmpty
-        guard status == .critical || hasHighActivityProcess else { return }
+        guard status.level == .critical || hasHighActivityProcess else { return }
 
         let now = Date()
         if let last = lastNotificationDate, now.timeIntervalSince(last) < throttleInterval {
@@ -46,19 +46,31 @@ final class NotificationManager: NSObject, ObservableObject {
         }
 
         let content = UNMutableNotificationContent()
-        content.title = status.title
+        content.title = status.notificationTitle(for: metrics)
         content.body = status.message(for: metrics)
         content.sound = .default
-        if let culprit = metrics.highActivityProcesses.first {
+
+        var userInfo: [String: Any] = [:]
+
+        if let trigger = status.trigger {
+            userInfo["triggerMetric"] = trigger.rawValue
+            if let value = status.triggerValue(for: metrics) {
+                userInfo["triggerValue"] = value
+            }
+        }
+
+        if let culprit = metrics.highActivityProcesses.first, status.trigger != .disk {
             content.subtitle = "\(culprit.displayName) is using \(culprit.cpuDescription)"
-            content.userInfo = [
+            userInfo.merge([
                 "pid": NSNumber(value: culprit.pid),
                 "command": culprit.command,
                 "cpu": culprit.cpuPercent,
                 "memory": culprit.memoryPercent
-            ]
+            ]) { _, new in new }
             content.categoryIdentifier = Category.criticalProcess
         }
+
+        content.userInfo = userInfo
 
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,

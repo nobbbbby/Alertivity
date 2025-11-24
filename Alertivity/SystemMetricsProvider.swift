@@ -18,6 +18,8 @@ final class SystemMetricsProvider {
 
     // CPU threshold (0.0 ... 1.0) a process must meet/exceed to be tracked as high activity
     var highActivityCPUThreshold: Double = 0.2
+    // Memory threshold (0.0 ... 1.0) a process must meet/exceed to be tracked as high activity for memory pressure
+    var highActivityMemoryThreshold: Double = 0.15
 
     var highActivityDuration: TimeInterval = 120 {
         didSet {
@@ -313,10 +315,12 @@ final class SystemMetricsProvider {
                 pid: pidValue,
                 command: command,
                 cpuPercent: max(cpuValue / 100, 0),
-                memoryPercent: max(memoryValue / 100, 0)
+                memoryPercent: min(max(memoryValue / 100, 0), 1)
             )
 
-            guard usage.cpuPercent >= highActivityCPUThreshold else { continue }
+            let exceedsCPU = usage.cpuPercent >= highActivityCPUThreshold
+            let exceedsMemory = usage.memoryPercent >= highActivityMemoryThreshold
+            guard exceedsCPU || exceedsMemory else { continue }
 
             usages.append(usage)
             if usages.count >= highActivityProcessLimit { break }
