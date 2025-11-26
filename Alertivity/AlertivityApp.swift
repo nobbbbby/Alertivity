@@ -40,6 +40,9 @@ struct AlertivityApp: App {
     @AppStorage("monitor.topProcesses.cpuThresholdPercent") private var highActivityCPUThresholdPercent = 20 {
         didSet { applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent) }
     }
+    @AppStorage("monitor.topProcesses.memoryThresholdPercent") private var highActivityMemoryThresholdPercent = 15 {
+        didSet { applyHighActivityMemoryThresholdUpdate(for: highActivityMemoryThresholdPercent) }
+    }
 
     @State private var isMenuBarInserted = true
     @State private var hasInitialized = false
@@ -91,6 +94,7 @@ struct AlertivityApp: App {
         updateMenuBarInsertion(for: monitor.status)
         applyHighActivityDurationUpdate(for: highActivityDurationSeconds)
         applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent)
+        applyHighActivityMemoryThresholdUpdate(for: highActivityMemoryThresholdPercent)
         enforceAutoSwitchDependencies(isEnabled: isMenuIconAutoSwitchEnabled)
         sanitizeMenuIconType()
     }
@@ -126,6 +130,15 @@ struct AlertivityApp: App {
         }
     }
 
+    private func applyHighActivityMemoryThresholdUpdate(for value: Int) {
+        let normalized = normalizedMemoryThresholdPercent(value)
+        if normalized != value {
+            highActivityMemoryThresholdPercent = normalized
+        } else {
+            monitor.highActivityMemoryThreshold = Double(normalized) / 100.0
+        }
+    }
+
     private func updateMenuBarInsertion(for status: ActivityStatus) {
         isMenuBarInserted = shouldShowMenuIcon(for: status)
     }
@@ -149,6 +162,10 @@ struct AlertivityApp: App {
 
     private func normalizedCPUThresholdPercent(_ value: Int) -> Int {
         min(max(value, 1), 100)
+    }
+
+    private func normalizedMemoryThresholdPercent(_ value: Int) -> Int {
+        min(max(value, 5), 50)
     }
 
     private func applyDockVisibility(for isHidden: Bool) {

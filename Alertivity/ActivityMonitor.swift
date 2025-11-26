@@ -69,4 +69,9 @@ final class ActivityMonitor: ObservableObject {
         get { provider.highActivityCPUThreshold }
         set { provider.highActivityCPUThreshold = max(0, min(1, newValue)) }
     }
+
+    var highActivityMemoryThreshold: Double {
+        get { provider.highActivityMemoryThreshold }
+        set { provider.highActivityMemoryThreshold = max(0, min(1, newValue)) }
+    }
 }

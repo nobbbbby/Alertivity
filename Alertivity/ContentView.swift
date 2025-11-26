@@ -3,6 +3,7 @@ import AppKit
 
 private let highActivityDurationOptions: [Int] = [30, 60, 120,  240, 600]
 private let highActivityCPUThresholdOptions: [Int] = Array(stride(from: 20, through: 100, by: 15))
+private let highActivityMemoryThresholdOptions: [Int] = Array(stride(from: 5, through: 50, by: 5))
     
 private let tabPadding: EdgeInsets = EdgeInsets(top: 24, leading: 45, bottom: 28, trailing: 45)
 
@@ -17,6 +18,7 @@ struct SettingsView: View {
     @AppStorage("notice.menu.autoSwitch") private var isMenuIconAutoSwitchEnabled = false
     @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120
     @AppStorage("monitor.topProcesses.cpuThresholdPercent") private var highActivityCPUThresholdPercent = 20
+    @AppStorage("monitor.topProcesses.memoryThresholdPercent") private var highActivityMemoryThresholdPercent = 15
 
     var body: some View {
         TabView {
@@ -60,10 +62,11 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 12) {
                 DetectionSettingsFields(
                     highActivityDurationSeconds: $highActivityDurationSeconds,
-                    highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent
+                    highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent,
+                    highActivityMemoryThresholdPercent: $highActivityMemoryThresholdPercent
                 )
 
-                Text("Flags processes over \(highActivityCPUThresholdPercent)% for \(highActivityDurationSeconds) seconds.")
+                Text("Flags processes over \(highActivityCPUThresholdPercent)% CPU or \(highActivityMemoryThresholdPercent)% memory for \(highActivityDurationSeconds) seconds.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -84,6 +87,7 @@ struct NoticePreferencesView: View {
     @Binding var menuIconAutoSwitchEnabled: Bool
     @Binding var highActivityDurationSeconds: Int
     @Binding var highActivityCPUThresholdPercent: Int
+    @Binding var highActivityMemoryThresholdPercent: Int
 
     @ViewBuilder
     var body: some View {
@@ -109,10 +113,11 @@ struct NoticePreferencesView: View {
         Section("Detection") {
             DetectionSettingsFields(
                 highActivityDurationSeconds: $highActivityDurationSeconds,
-                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent
+                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent,
+                highActivityMemoryThresholdPercent: $highActivityMemoryThresholdPercent
             )
 
-            Text("Flags processes over \(highActivityCPUThresholdPercent)% for \(highActivityDurationSeconds) seconds.")
+            Text("Flags processes over \(highActivityCPUThresholdPercent)% CPU or \(highActivityMemoryThresholdPercent)% memory for \(highActivityDurationSeconds) seconds.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -296,6 +301,7 @@ private struct NoticePreferencesPreviewContainer: View {
     @State private var menuIconAutoSwitchEnabled = false
     @State private var highActivityDurationSeconds = highActivityDurationOptions[3]
     @State private var highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[3]
+    @State private var highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[2]
 
     var body: some View {
         Form {
@@ -307,7 +313,8 @@ private struct NoticePreferencesPreviewContainer: View {
                 showMetricIcon: $showMetricIcon,
                 menuIconAutoSwitchEnabled: $menuIconAutoSwitchEnabled,
                 highActivityDurationSeconds: $highActivityDurationSeconds,
-                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent
+                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent,
+                highActivityMemoryThresholdPercent: $highActivityMemoryThresholdPercent
             )
         }
     }
@@ -419,6 +426,7 @@ private struct NotificationSettingsFields: View {
 private struct DetectionSettingsFields: View {
     @Binding var highActivityDurationSeconds: Int
     @Binding var highActivityCPUThresholdPercent: Int
+    @Binding var highActivityMemoryThresholdPercent: Int
 
     var body: some View {
         Picker("High activity duration:", selection: $highActivityDurationSeconds) {
@@ -430,6 +438,13 @@ private struct DetectionSettingsFields: View {
 
         Picker("CPU threshold:", selection: $highActivityCPUThresholdPercent) {
             ForEach(highActivityCPUThresholdOptions, id: \.self) { value in
+                Text("\(value)%").tag(value)
+            }
+        }
+        .pickerStyle(.menu)
+
+        Picker("Memory threshold:", selection: $highActivityMemoryThresholdPercent) {
+            ForEach(highActivityMemoryThresholdOptions, id: \.self) { value in
                 Text("\(value)%").tag(value)
             }
         }
