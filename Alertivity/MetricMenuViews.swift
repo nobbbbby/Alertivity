@@ -62,7 +62,11 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     case disk
     case network
 
-    static let autoSwitchPriority: [MetricMenuSelection] = [.cpu, .memory, .network, .disk]
+    static let autoSwitchPriority: [MetricMenuSelection] = [.cpu, .memory, .disk, .network]
+
+    static func autoSwitchPriorityIndex(_ selection: MetricMenuSelection) -> Int {
+        autoSwitchPriority.firstIndex(of: selection) ?? autoSwitchPriority.count
+    }
 
     var menuIconType: MenuIconType {
         switch self {
@@ -78,20 +82,11 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     }
 
     func isHighActivity(for metrics: ActivityMetrics) -> Bool {
-        switch self {
-        case .cpu:
-            return metrics.cpuUsage >= 0.6
-        case .memory:
-            return metrics.memoryUsage >= 0.8
-        case .disk:
-            return metrics.disk.totalBytesPerSecond >= 20_000_000 // ~20 MB/s sustained
-        case .network:
-            return metrics.network.totalBytesPerSecond >= 5_000_000 // ~5 MB/s sustained
-        }
+        metrics.severity(for: self) == .critical
     }
 
     static func highestPriorityHighActivity(in metrics: ActivityMetrics) -> MetricMenuSelection? {
-        autoSwitchPriority.first { $0.isHighActivity(for: metrics) }
+        metrics.highestSeverityMetric(allowedSeverities: [.critical])?.0
     }
 
     var shortLabel: String {
@@ -183,8 +178,8 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     }()
 }
 
-func resolveMenuIconType(autoSwitchEnabled: Bool, defaultIconType: MenuIconType, metrics: ActivityMetrics) -> MenuIconType {
-    guard autoSwitchEnabled, let activeMetric = MetricMenuSelection.highestPriorityHighActivity(in: metrics) else {
+func resolveMenuIconType(autoSwitchEnabled: Bool, defaultIconType: MenuIconType, autoSwitchSelection: MetricMenuSelection?) -> MenuIconType {
+    guard autoSwitchEnabled, let activeMetric = autoSwitchSelection else {
         return defaultIconType
     }
     return activeMetric.menuIconType
@@ -285,7 +280,7 @@ struct MetricMenuBarLabel: View {
                 case .status:
                     Image(systemName: status.symbolName)
                         .symbolRenderingMode(.palette)
-                        .foregroundStyle(status.accentColor, .secondary)
+                        .foregroundStyle(status.iconTint ?? .primary, .secondary)
                 case .cpu, .memory, .disk, .network:
                     if let selection = iconType.metricSelection {
                         MetricMenuLabel(
@@ -317,27 +312,8 @@ struct MetricMenuBarLabel: View {
     }
 
     private func tint(for selection: MetricMenuSelection, metrics: ActivityMetrics) -> Color? {
-        switch selection {
-        case .cpu:
-            return color(for: metrics.cpuSeverity)
-        case .memory:
-            return color(for: metrics.memorySeverity)
-        case .disk:
-            return selection.isHighActivity(for: metrics) ? status.accentColor : nil
-        case .network:
-            return selection.isHighActivity(for: metrics) ? status.accentColor : nil
-        }
-    }
-
-    private func color(for severity: ActivityMetrics.MetricSeverity) -> Color? {
-        switch severity {
-        case .critical:
-            return .red
-        case .elevated:
-            return .yellow
-        case .normal:
-            return nil
-        }
+        guard status.level != .normal else { return nil }
+        return StatusColorPalette.color(for: metrics.severity(for: selection))
     }
 }
 

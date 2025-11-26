@@ -157,6 +157,50 @@ extension ActivityMetrics {
         }
     }
 
+    var networkSeverity: MetricSeverity {
+        switch network.totalBytesPerSecond {
+        case ..<5_000_000: // ~5 MB/s
+            return .normal
+        case 5_000_000..<20_000_000: // ~5-20 MB/s
+            return .elevated
+        default:
+            return .critical
+        }
+    }
+
+    func severity(for selection: MetricMenuSelection) -> MetricSeverity {
+        switch selection {
+        case .cpu:
+            return cpuSeverity
+        case .memory:
+            return memorySeverity
+        case .disk:
+            return diskSeverity
+        case .network:
+            return networkSeverity
+        }
+    }
+
+    func highestSeverityMetric(
+        allowedSeverities: Set<MetricSeverity> = [.elevated, .critical]
+    ) -> (MetricMenuSelection, MetricSeverity)? {
+        let ranked: [(MetricMenuSelection, MetricSeverity)] = [
+            (.cpu, cpuSeverity),
+            (.memory, memorySeverity),
+            (.disk, diskSeverity),
+            (.network, networkSeverity)
+        ]
+
+        let filtered = ranked.filter { allowedSeverities.contains($0.1) }
+        guard !filtered.isEmpty else { return nil }
+
+        return filtered.max { lhs, rhs in
+            if lhs.1 == rhs.1 {
+                return MetricMenuSelection.autoSwitchPriorityIndex(lhs.0) > MetricMenuSelection.autoSwitchPriorityIndex(rhs.0)
+            }
+            return lhs.1.rawValue < rhs.1.rawValue
+        }
+    }
 }
 
 struct NetworkMetrics: Sendable, Equatable {

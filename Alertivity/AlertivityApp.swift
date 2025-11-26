@@ -135,14 +135,6 @@ struct AlertivityApp: App {
         return menuIconOnlyWhenHigh ? status.level == .critical : true
     }
 
-    private func resolvedMenuIconType(for metrics: ActivityMetrics) -> MenuIconType {
-        resolveMenuIconType(
-            autoSwitchEnabled: isMenuIconAutoSwitchEnabled,
-            defaultIconType: menuIconType,
-            metrics: metrics
-        )
-    }
-
     private func normalizedHighActivityDurationSeconds(_ value: Int) -> Int {
         min(max(value, 10), 600)
     }
@@ -256,6 +248,9 @@ private struct MenuBarLabelLifecycleView: View {
     let initialize: () -> Void
     let onStatusChange: (ActivityStatus) -> Void
     let onMetricsChange: (ActivityMetrics) -> Void
+    @State private var autoSwitchSelection: MetricMenuSelection?
+    @State private var pendingAutoSwitchSelection: MetricMenuSelection?
+    @State private var pendingAutoSwitchSamples: Int = 0
 
     var body: some View {
         MetricMenuBarLabel(
@@ -265,14 +260,23 @@ private struct MenuBarLabelLifecycleView: View {
             iconType: resolvedIconType,
             showIcon: shouldShowMetricIcon
         )
-        .onAppear(perform: initialize)
+        .onAppear {
+            initialize()
+            updateAutoSwitchSelection(for: monitor.metrics)
+        }
         .onChange(of: monitor.status, perform: onStatusChange)
         .onChange(of: monitor.metrics, perform: onMetricsChange)
+        .onChange(of: monitor.metrics) { metrics in
+            updateAutoSwitchSelection(for: metrics)
+        }
         .onChange(of: isMenuIconEnabled) { _ in
             onStatusChange(monitor.status)
         }
         .onChange(of: menuIconOnlyWhenHigh) { _ in
             onStatusChange(monitor.status)
+        }
+        .onChange(of: autoSwitchEnabled) { _ in
+            updateAutoSwitchSelection(for: monitor.metrics)
         }
     }
 
@@ -285,13 +289,43 @@ private struct MenuBarLabelLifecycleView: View {
         resolveMenuIconType(
             autoSwitchEnabled: autoSwitchEnabled,
             defaultIconType: menuIconType,
-            metrics: monitor.metrics
+            autoSwitchSelection: autoSwitchSelection
         )
     }
 
     private var shouldShowMetricIcon: Bool {
         guard resolvedIconType.metricSelection != nil else { return false }
         return showMetricIcon || autoSwitchEnabled
+    }
+
+    private func updateAutoSwitchSelection(for metrics: ActivityMetrics) {
+        guard autoSwitchEnabled else {
+            autoSwitchSelection = nil
+            pendingAutoSwitchSelection = nil
+            pendingAutoSwitchSamples = 0
+            return
+        }
+
+        let candidate = metrics.highestSeverityMetric(allowedSeverities: [.critical])?.0
+
+        if candidate == autoSwitchSelection {
+            pendingAutoSwitchSelection = nil
+            pendingAutoSwitchSamples = 0
+            return
+        }
+
+        if pendingAutoSwitchSelection == candidate {
+            pendingAutoSwitchSamples += 1
+        } else {
+            pendingAutoSwitchSelection = candidate
+            pendingAutoSwitchSamples = 1
+        }
+
+        if pendingAutoSwitchSamples >= 2 {
+            autoSwitchSelection = candidate
+            pendingAutoSwitchSelection = nil
+            pendingAutoSwitchSamples = 0
+        }
     }
 }
 
