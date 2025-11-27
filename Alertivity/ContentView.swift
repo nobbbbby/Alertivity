@@ -134,7 +134,7 @@ struct MenuStatusView: View {
             HStack(alignment: .center, spacing: 8) {
                 Image(systemName: status.symbolName)
                     .symbolRenderingMode(.palette)
-                    .foregroundStyle(status.accentColor, .secondary)
+                    .foregroundStyle(status.iconTint ?? .primary, .secondary)
                     .font(.system(size: 18, weight: .medium))
 
                 Text(status.title)
@@ -164,7 +164,7 @@ struct MenuStatusView: View {
 
                 MenuMetricRow(
                     systemImage: "internaldrive",
-                    value: metrics.disk.usage.formatted(.percent.precision(.fractionLength(0)))
+                    value: metrics.disk.formattedReadWriteSummary
                 )
 
                 MenuMetricRow(

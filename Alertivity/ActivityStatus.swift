@@ -2,6 +2,34 @@ import SwiftUI
 import Foundation
 import AppKit
 
+struct StatusColorPalette {
+    static let normal = Color.primary
+    static let elevated = Color.yellow
+    static let critical = Color.red
+
+    static func color(for level: ActivityStatus.Level) -> Color {
+        switch level {
+        case .normal:
+            return normal
+        case .elevated:
+            return elevated
+        case .critical:
+            return critical
+        }
+    }
+
+    static func color(for severity: ActivityMetrics.MetricSeverity) -> Color? {
+        switch severity {
+        case .normal:
+            return nil
+        case .elevated:
+            return elevated
+        case .critical:
+            return critical
+        }
+    }
+}
+
 private func symbolOrFallback(_ name: String) -> String {
     if NSImage(systemSymbolName: name, accessibilityDescription: nil) != nil {
         return name
@@ -21,6 +49,7 @@ struct ActivityStatus: Sendable, Equatable {
         case cpu
         case memory
         case disk
+        case network
     }
 
     let level: Level
@@ -35,11 +64,13 @@ struct ActivityStatus: Sendable, Equatable {
         let cpuSeverity = metrics.cpuSeverity
         let memorySeverity = metrics.memorySeverity
         let diskSeverity = metrics.diskSeverity
+        let networkSeverity = metrics.networkSeverity
 
         let ranked: [(TriggerMetric, ActivityMetrics.MetricSeverity, Double)] = [
             (.cpu, cpuSeverity, metrics.cpuUsagePercentage),
             (.memory, memorySeverity, metrics.memoryUsage),
-            (.disk, diskSeverity, metrics.disk.usage)
+            (.disk, diskSeverity, metrics.disk.totalBytesPerSecond),
+            (.network, networkSeverity, metrics.network.totalBytesPerSecond)
         ]
 
         let highest = ranked.max { lhs, rhs in
@@ -70,13 +101,15 @@ struct ActivityStatus: Sendable, Equatable {
     }
 
     var accentColor: Color {
+        StatusColorPalette.color(for: level)
+    }
+
+    var iconTint: Color? {
         switch level {
         case .normal:
-            return .green
-        case .elevated:
-            return .yellow
-        case .critical:
-            return .red
+            return nil
+        case .elevated, .critical:
+            return accentColor
         }
     }
 
@@ -110,7 +143,8 @@ struct ActivityStatus: Sendable, Equatable {
         let nonNormalMetrics: [String] = [
             metrics.cpuSeverity != .normal ? "CPU \(metrics.cpuUsagePercentage.formatted(.percent.precision(.fractionLength(0))))" : nil,
             metrics.memorySeverity != .normal ? "Mem \(metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0))))" : nil,
-            metrics.diskSeverity != .normal ? "Disk \(metrics.disk.usage.formatted(.percent.precision(.fractionLength(0))))" : nil
+            metrics.diskSeverity != .normal ? "Disk \(metrics.disk.formattedTotalPerSecond)/s" : nil,
+            metrics.networkSeverity != .normal ? "Net \(metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond))/s" : nil
         ].compactMap { $0 }
 
         let summary = nonNormalMetrics.joined(separator: ", ")
@@ -155,7 +189,9 @@ struct ActivityStatus: Sendable, Equatable {
         case .memory:
             return metrics.memoryUsage
         case .disk:
-            return metrics.disk.usage
+            return metrics.disk.totalBytesPerSecond
+        case .network:
+            return metrics.network.totalBytesPerSecond
         }
     }
 
@@ -171,7 +207,9 @@ struct ActivityStatus: Sendable, Equatable {
         case .memory:
             return "Memory"
         case .disk:
-            return "Disk"
+            return "Disk throughput"
+        case .network:
+            return "Network throughput"
         }
     }
 
@@ -182,7 +220,9 @@ struct ActivityStatus: Sendable, Equatable {
         case .memory:
             return metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0)))
         case .disk:
-            return metrics.disk.usage.formatted(.percent.precision(.fractionLength(0)))
+            return metrics.disk.formattedTotalPerSecond + "/s"
+        case .network:
+            return metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond) + "/s"
         }
     }
 
@@ -193,10 +233,12 @@ struct ActivityStatus: Sendable, Equatable {
     private static func priority(for trigger: TriggerMetric) -> Int {
         switch trigger {
         case .cpu:
-            return 3
+            return 4
         case .memory:
-            return 2
+            return 3
         case .disk:
+            return 2
+        case .network:
             return 1
         }
     }

@@ -3,8 +3,8 @@
 Alertivity is a macOS menu bar utility that samples CPU, memory, disk, network, and process data so you can spot trouble early. It summarizes system health as Normal/Elevated/Critical, highlights the metric that triggered the state, and offers quick actions on culprit processes.
 
 ## Features
-- Live system sampling every few seconds with status driven by the highest-severity metric across CPU, memory, and disk.
-- Menu bar indicator that can show overall status or a specific metric (CPU, memory, disk, network); optional auto-switch picks the busiest metric using priority CPU > Memory > Network > Disk, and you can hide the indicator unless status is critical.
+- Live system sampling every few seconds with status driven by the highest-severity metric across CPU, memory, disk, and network (with light hysteresis to avoid flapping).
+- Menu bar indicator that can show overall status or a specific metric (CPU, memory, disk, network); optional auto-switch swaps on critical severity only using priority CPU > Memory > Disk > Network and a short dwell, and you can hide the indicator unless status is critical.
 - Compact menu showing per-metric summaries, network throughput, and high-activity processes for CPU/memory/network with quick actions to reveal the process in Activity Monitor or terminate it (disk is excluded to avoid slow sampling).
 - Notifications for critical status or high-activity processes, including the triggering metric/value and culprit metadata; delivery is throttled to avoid spam.
 - Settings tabs for Dock visibility, launch at login, menu icon behavior (default icon type, auto-switch, show-only-on-high-activity, show metric icon), notification opt-in, and detection thresholds (CPU percentage and required duration).
@@ -14,8 +14,8 @@ Alertivity is a macOS menu bar utility that samples CPU, memory, disk, network, 
 - Xcode 15 or later with Swift 5 / SwiftUI
 
 ## Default thresholds
-- Status levels: CPU (<50 / 50–79 / ≥80%), Memory (<70 / 70–84 / ≥85% of total), Disk (<85 / 85–94 / ≥95% of total)
-- Auto-switch (busiest metric detection): CPU if ≥60%, Memory ≥80%, Network total ≥5 MB/s, Disk ≥90% used
+- Status levels: CPU (<50 / 50–79 / ≥80%), Memory (<70 / 70–84 / ≥85% of total), Disk throughput (<20 MB/s / 20–99 MB/s / ≥100 MB/s aggregated read+write), Network throughput (<5 MB/s / 5–19 MB/s / ≥20 MB/s aggregated send+receive)
+- Auto-switch (busiest metric detection): triggers only on Critical severity using the above thresholds, honors priority CPU > Memory > Disk > Network, and requires two consecutive samples before switching
 - High-activity process list: CPU ≥20% sustained for 120s (Memory threshold is 15% but CPU drives the default rule)
 
 ## Build and Run

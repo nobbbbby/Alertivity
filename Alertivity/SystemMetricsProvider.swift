@@ -1,12 +1,16 @@
 import AppKit
 import Darwin
 import Foundation
+import IOKit
+import IOKit.storage
 
 final class SystemMetricsProvider {
     private var lastSnapshot: CPUSnapshot?
     private var lastComputedUsage: Double = 0
     private var lastNetworkSnapshot: NetworkSnapshot?
     private var lastNetworkMetrics: NetworkMetrics = .zero
+    private var lastDiskSnapshot: DiskIOSnapshot?
+    private var lastDiskMetrics: DiskMetrics = .zero
     private var lastHighActivityProcesses: [ProcessUsage] = []
     private var lastMetrics: ActivityMetrics = .placeholder
     private var processActivityStartTimes: [Int32: Date] = [:]
@@ -56,8 +60,8 @@ final class SystemMetricsProvider {
 
         let network = readNetworkUsage()
 
-        var disk = readDiskUsage() ?? lastMetrics.disk
-        if disk.usage == 0, lastMetrics.hasLiveData {
+        var disk = readDiskThroughput()
+        if disk.totalBytesPerSecond == 0, lastMetrics.hasLiveData {
             disk = lastMetrics.disk
         }
 
@@ -227,27 +231,71 @@ final class SystemMetricsProvider {
         )
     }
 
-    private func readDiskUsage() -> DiskMetrics? {
-        do {
-            let attributes = try FileManager.default.attributesOfFileSystem(forPath: "/")
-            guard
-                let total = attributes[.systemSize] as? NSNumber,
-                let free = attributes[.systemFreeSize] as? NSNumber
-            else {
-                return nil
-            }
+    private func readDiskThroughput() -> DiskMetrics {
+        guard let snapshot = captureDiskSnapshot() else {
+            return lastDiskMetrics
+        }
 
-            let totalBytes = total.doubleValue
-            let freeBytes = max(free.doubleValue, 0)
-            let usedBytes = max(totalBytes - freeBytes, 0)
+        guard let previous = lastDiskSnapshot else {
+            lastDiskSnapshot = snapshot
+            lastDiskMetrics = .zero
+            return lastDiskMetrics
+        }
 
-            return DiskMetrics(
-                used: Measurement(value: usedBytes, unit: .bytes),
-                total: Measurement(value: totalBytes, unit: .bytes)
-            )
-        } catch {
+        lastDiskSnapshot = snapshot
+
+        let interval = snapshot.timestamp.timeIntervalSince(previous.timestamp)
+        guard interval > 0 else {
+            return lastDiskMetrics
+        }
+
+        let readDelta = snapshot.readBytes >= previous.readBytes ? snapshot.readBytes - previous.readBytes : snapshot.readBytes
+        let writeDelta = snapshot.writeBytes >= previous.writeBytes ? snapshot.writeBytes - previous.writeBytes : snapshot.writeBytes
+
+        let metrics = DiskMetrics(
+            readBytesPerSecond: Double(readDelta) / interval,
+            writeBytesPerSecond: Double(writeDelta) / interval
+        )
+        lastDiskMetrics = metrics
+        return metrics
+    }
+
+    private func captureDiskSnapshot() -> DiskIOSnapshot? {
+        guard let matching = IOServiceMatching("IOBlockStorageDriver") else {
             return nil
         }
+
+        var iterator: io_iterator_t = 0
+        let result = IOServiceGetMatchingServices(kIOMainPortDefault, matching, &iterator)
+        guard result == KERN_SUCCESS else { return nil }
+        defer { IOObjectRelease(iterator) }
+
+        var read: UInt64 = 0
+        var wrote: UInt64 = 0
+
+        let statsKey = kIOBlockStorageDriverStatisticsKey as String
+        let bytesReadKey = kIOBlockStorageDriverStatisticsBytesReadKey as String
+        let bytesWrittenKey = kIOBlockStorageDriverStatisticsBytesWrittenKey as String
+
+        while case let service = IOIteratorNext(iterator), service != 0 {
+            if let property = IORegistryEntryCreateCFProperty(service, statsKey as CFString, kCFAllocatorDefault, 0)?
+                .takeRetainedValue() as? NSDictionary
+            {
+                if let bytesRead = property[bytesReadKey] as? NSNumber {
+                    read &+= bytesRead.uint64Value
+                }
+                if let bytesWritten = property[bytesWrittenKey] as? NSNumber {
+                    wrote &+= bytesWritten.uint64Value
+                }
+            }
+            IOObjectRelease(service)
+        }
+
+        return DiskIOSnapshot(
+            readBytes: read,
+            writeBytes: wrote,
+            timestamp: Date()
+        )
     }
 
     private func readTopProcesses() -> [ProcessUsage]? {
@@ -373,5 +421,11 @@ private struct CPUSnapshot {
 private struct NetworkSnapshot {
     let receivedBytes: UInt64
     let sentBytes: UInt64
+    let timestamp: Date
+}
+
+private struct DiskIOSnapshot {
+    let readBytes: UInt64
+    let writeBytes: UInt64
     let timestamp: Date
 }

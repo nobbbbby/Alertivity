@@ -55,7 +55,7 @@ struct ActivityMetrics: Sendable, Equatable {
         memoryTotal: Measurement(value: Double(ProcessInfo.processInfo.physicalMemory) / 1_073_741_824, unit: .gigabytes),
         runningProcesses: 0,
         network: .zero,
-        disk: .placeholder,
+        disk: .zero,
         highActivityProcesses: []
     )
 }
@@ -67,7 +67,7 @@ extension ActivityMetrics {
         if runningProcesses > 0 { return true }
         if cpuUsage > 0 { return true }
         if memoryUsed.converted(to: .bytes).value > 0 { return true }
-        if disk.used.converted(to: .bytes).value > 0 { return true }
+        if disk.totalBytesPerSecond > 0 { return true }
         if network.totalBytesPerSecond > 0 { return true }
         if !highActivityProcesses.isEmpty { return true }
         return false
@@ -86,10 +86,7 @@ extension ActivityMetrics {
             receivedBytesPerSecond: 1_200_000,
             sentBytesPerSecond: 820_000
         ),
-        disk: DiskMetrics(
-            used: Measurement(value: 380, unit: .gigabytes),
-            total: Measurement(value: 512, unit: .gigabytes)
-        ),
+        disk: DiskMetrics(readBytesPerSecond: 900_000, writeBytesPerSecond: 600_000),
         highActivityProcesses: ProcessUsage.preview
     )
 
@@ -102,10 +99,7 @@ extension ActivityMetrics {
             receivedBytesPerSecond: 6_300_000,
             sentBytesPerSecond: 4_800_000
         ),
-        disk: DiskMetrics(
-            used: Measurement(value: 410, unit: .gigabytes),
-            total: Measurement(value: 512, unit: .gigabytes)
-        ),
+        disk: DiskMetrics(readBytesPerSecond: 12_000_000, writeBytesPerSecond: 9_500_000),
         highActivityProcesses: ProcessUsage.preview
     )
 
@@ -118,10 +112,7 @@ extension ActivityMetrics {
             receivedBytesPerSecond: 12_400_000,
             sentBytesPerSecond: 9_600_000
         ),
-        disk: DiskMetrics(
-            used: Measurement(value: 470, unit: .gigabytes),
-            total: Measurement(value: 512, unit: .gigabytes)
-        ),
+        disk: DiskMetrics(readBytesPerSecond: 95_000_000, writeBytesPerSecond: 72_000_000),
         highActivityProcesses: ProcessUsage.preview
     )
 }
@@ -156,16 +147,60 @@ extension ActivityMetrics {
     }
 
     var diskSeverity: MetricSeverity {
-        switch disk.usage {
-        case ..<0.85:
+        switch disk.totalBytesPerSecond {
+        case ..<20_000_000: // ~20 MB/s
             return .normal
-        case 0.85..<0.95:
+        case 20_000_000..<100_000_000: // ~20-100 MB/s
             return .elevated
         default:
             return .critical
         }
     }
 
+    var networkSeverity: MetricSeverity {
+        switch network.totalBytesPerSecond {
+        case ..<5_000_000: // ~5 MB/s
+            return .normal
+        case 5_000_000..<20_000_000: // ~5-20 MB/s
+            return .elevated
+        default:
+            return .critical
+        }
+    }
+
+    func severity(for selection: MetricMenuSelection) -> MetricSeverity {
+        switch selection {
+        case .cpu:
+            return cpuSeverity
+        case .memory:
+            return memorySeverity
+        case .disk:
+            return diskSeverity
+        case .network:
+            return networkSeverity
+        }
+    }
+
+    func highestSeverityMetric(
+        allowedSeverities: Set<MetricSeverity> = [.elevated, .critical]
+    ) -> (MetricMenuSelection, MetricSeverity)? {
+        let ranked: [(MetricMenuSelection, MetricSeverity)] = [
+            (.cpu, cpuSeverity),
+            (.memory, memorySeverity),
+            (.disk, diskSeverity),
+            (.network, networkSeverity)
+        ]
+
+        let filtered = ranked.filter { allowedSeverities.contains($0.1) }
+        guard !filtered.isEmpty else { return nil }
+
+        return filtered.max { lhs, rhs in
+            if lhs.1 == rhs.1 {
+                return MetricMenuSelection.autoSwitchPriorityIndex(lhs.0) > MetricMenuSelection.autoSwitchPriorityIndex(rhs.0)
+            }
+            return lhs.1.rawValue < rhs.1.rawValue
+        }
+    }
 }
 
 struct NetworkMetrics: Sendable, Equatable {
@@ -204,43 +239,44 @@ struct NetworkMetrics: Sendable, Equatable {
 }
 
 struct DiskMetrics: Sendable, Equatable {
-    var used: Measurement<UnitInformationStorage>
-    var total: Measurement<UnitInformationStorage>
+    var readBytesPerSecond: Double
+    var writeBytesPerSecond: Double
 
-    var usage: Double {
-        let usedBytes = used.converted(to: .bytes).value
-        let totalBytes = total.converted(to: .bytes).value
-        guard totalBytes > 0 else { return 0 }
-        return min(max(usedBytes / totalBytes, 0), 1)
+    var totalBytesPerSecond: Double {
+        max(0, readBytesPerSecond + writeBytesPerSecond)
     }
 
-    var free: Measurement<UnitInformationStorage> {
-        let freeBytes = max(total.converted(to: .bytes).value - used.converted(to: .bytes).value, 0)
-        return Measurement(value: freeBytes, unit: .bytes).converted(to: .gigabytes)
+    func formattedBytesPerSecond(_ bytes: Double) -> String {
+        Self.byteFormatter.string(fromByteCount: Int64(max(bytes, 0)))
     }
 
-    var formattedUsed: String {
-        Self.measurementFormatter.string(from: used.converted(to: .gigabytes))
+    var formattedReadPerSecond: String {
+        formattedBytesPerSecond(readBytesPerSecond)
     }
 
-    var formattedTotal: String {
-        Self.measurementFormatter.string(from: total.converted(to: .gigabytes))
+    var formattedWritePerSecond: String {
+        formattedBytesPerSecond(writeBytesPerSecond)
     }
 
-    var formattedUsageSummary: String {
-        "\(formattedUsed) of \(formattedTotal)"
+    var formattedTotalPerSecond: String {
+        formattedBytesPerSecond(totalBytesPerSecond)
     }
 
-    private static let measurementFormatter: MeasurementFormatter = {
-        let formatter = MeasurementFormatter()
-        formatter.unitOptions = .providedUnit
-        formatter.unitStyle = .medium
-        formatter.numberFormatter.maximumFractionDigits = 1
+    var formattedReadWriteSummary: String {
+        "↑ \(formattedReadPerSecond)/s • ↓ \(formattedWritePerSecond)/s"
+    }
+
+    private static let byteFormatter: ByteCountFormatter = {
+        let formatter = ByteCountFormatter()
+        formatter.allowedUnits = [.useBytes, .useKB, .useMB, .useGB]
+        formatter.countStyle = .binary
+        formatter.includesUnit = true
+        formatter.isAdaptive = true
         return formatter
     }()
 
-    static let placeholder = DiskMetrics(
-        used: Measurement(value: 0, unit: .gigabytes),
-        total: Measurement(value: 1, unit: .gigabytes)
+    static let zero = DiskMetrics(
+        readBytesPerSecond: 0,
+        writeBytesPerSecond: 0
     )
 }

@@ -19,7 +19,7 @@ enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
         case .memory:
             return "Memory usage"
         case .disk:
-            return "Disk activity"
+            return "Disk throughput"
         case .network:
             return "Network throughput"
         }
@@ -62,7 +62,11 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     case disk
     case network
 
-    static let autoSwitchPriority: [MetricMenuSelection] = [.cpu, .memory, .network, .disk]
+    static let autoSwitchPriority: [MetricMenuSelection] = [.cpu, .memory, .disk, .network]
+
+    static func autoSwitchPriorityIndex(_ selection: MetricMenuSelection) -> Int {
+        autoSwitchPriority.firstIndex(of: selection) ?? autoSwitchPriority.count
+    }
 
     var menuIconType: MenuIconType {
         switch self {
@@ -78,20 +82,11 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     }
 
     func isHighActivity(for metrics: ActivityMetrics) -> Bool {
-        switch self {
-        case .cpu:
-            return metrics.cpuUsage >= 0.6
-        case .memory:
-            return metrics.memoryUsage >= 0.8
-        case .disk:
-            return metrics.disk.usage >= 0.9
-        case .network:
-            return metrics.network.totalBytesPerSecond >= 5_000_000 // ~5 MB/s sustained
-        }
+        metrics.severity(for: self) == .critical
     }
 
     static func highestPriorityHighActivity(in metrics: ActivityMetrics) -> MetricMenuSelection? {
-        autoSwitchPriority.first { $0.isHighActivity(for: metrics) }
+        metrics.highestSeverityMetric(allowedSeverities: [.critical])?.0
     }
 
     var shortLabel: String {
@@ -114,7 +109,7 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
         case .memory:
             return "Memory Usage"
         case .disk:
-            return "Disk Activity"
+            return "Disk Throughput"
         case .network:
             return "Network Throughput"
         }
@@ -140,7 +135,7 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
         case .memory:
             metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0)))
         case .disk:
-            metrics.disk.usage.formatted(.percent.precision(.fractionLength(0)))
+            metrics.disk.formattedTotalPerSecond + "/s"
         case .network:
             metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond) + "/s"
         }
@@ -153,7 +148,7 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
         case .memory:
             return "Memory usage \(metrics.memoryUsage.formatted(.percent.precision(.fractionLength(1))))"
         case .disk:
-            return "Disk usage \(metrics.disk.usage.formatted(.percent.precision(.fractionLength(1))))"
+            return "Total disk throughput \(metrics.disk.formattedTotalPerSecond) per second"
         case .network:
             return "Total network throughput \(metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond)) per second"
         }
@@ -168,7 +163,7 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
             let total = metrics.memoryTotal.converted(to: .gigabytes)
             return "Using \(Self.measurementFormatter.string(from: used)) of \(Self.measurementFormatter.string(from: total))"
         case .disk:
-            return metrics.disk.formattedUsageSummary
+            return metrics.disk.formattedReadWriteSummary + " (total \(metrics.disk.formattedTotalPerSecond)/s)"
         case .network:
             return "↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s"
         }
@@ -183,8 +178,8 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     }()
 }
 
-func resolveMenuIconType(autoSwitchEnabled: Bool, defaultIconType: MenuIconType, metrics: ActivityMetrics) -> MenuIconType {
-    guard autoSwitchEnabled, let activeMetric = MetricMenuSelection.highestPriorityHighActivity(in: metrics) else {
+func resolveMenuIconType(autoSwitchEnabled: Bool, defaultIconType: MenuIconType, autoSwitchSelection: MetricMenuSelection?) -> MenuIconType {
+    guard autoSwitchEnabled, let activeMetric = autoSwitchSelection else {
         return defaultIconType
     }
     return activeMetric.menuIconType
@@ -195,6 +190,7 @@ struct MetricMenuLabel: View {
     let selection: MetricMenuSelection
     let showIcon: Bool
     let tint: Color?
+    @Environment(\.colorScheme) private var colorScheme
 
     init(metrics: ActivityMetrics, selection: MetricMenuSelection, showIcon: Bool, tint: Color? = nil) {
         self.metrics = metrics
@@ -208,14 +204,41 @@ struct MetricMenuLabel: View {
 
         HStack(spacing: 4) {
             if selection == .network {
-                let nsImage = MenuBarNetworkStackedRenderer.makeImage(
-                    download: metrics.network.formattedDownload + "/s",
-                    upload: metrics.network.formattedUpload + "/s",
+                let nsTint = MenuBarStackedRenderer.nsColor(for: tint)
+                let isTemplate = nsTint == nil
+                let nsImage = MenuBarStackedRenderer.makeImage(
+                    topLine: "↓ " + metrics.network.formattedDownload + "/s",
+                    bottomLine: "↑ " + metrics.network.formattedUpload + "/s",
                     symbolName: showIcon ? selection.symbolName : nil,
-                    tint: MenuBarNetworkStackedRenderer.nsColor(for: tint)
+                    tint: nsTint,
+                    appearance: MenuBarStackedRenderer.appearance(for: colorScheme)
                 )
-                Image(nsImage: nsImage)
-                    .renderingMode(.original)
+                if isTemplate {
+                    Image(nsImage: nsImage)
+                        .renderingMode(.template)
+                        .foregroundStyle(.primary)
+                } else {
+                    Image(nsImage: nsImage)
+                        .renderingMode(.original)
+                }
+            } else if selection == .disk {
+                let nsTint = MenuBarStackedRenderer.nsColor(for: tint)
+                let isTemplate = nsTint == nil
+                let nsImage = MenuBarStackedRenderer.makeImage(
+                    topLine: "↑ " + metrics.disk.formattedReadPerSecond + "/s",
+                    bottomLine: "↓ " + metrics.disk.formattedWritePerSecond + "/s",
+                    symbolName: showIcon ? selection.symbolName : nil,
+                    tint: nsTint,
+                    appearance: MenuBarStackedRenderer.appearance(for: colorScheme)
+                )
+                if isTemplate {
+                    Image(nsImage: nsImage)
+                        .renderingMode(.template)
+                        .foregroundStyle(.primary)
+                } else {
+                    Image(nsImage: nsImage)
+                        .renderingMode(.original)
+                }
             } else {
                 if showIcon {
                     Image(systemName: selection.symbolName)
@@ -257,7 +280,7 @@ struct MetricMenuBarLabel: View {
                 case .status:
                     Image(systemName: status.symbolName)
                         .symbolRenderingMode(.palette)
-                        .foregroundStyle(status.accentColor, .secondary)
+                        .foregroundStyle(status.iconTint ?? .primary, .secondary)
                 case .cpu, .memory, .disk, .network:
                     if let selection = iconType.metricSelection {
                         MetricMenuLabel(
@@ -289,36 +312,28 @@ struct MetricMenuBarLabel: View {
     }
 
     private func tint(for selection: MetricMenuSelection, metrics: ActivityMetrics) -> Color? {
-        switch selection {
-        case .cpu:
-            return color(for: metrics.cpuSeverity)
-        case .memory:
-            return color(for: metrics.memorySeverity)
-        case .disk:
-            return color(for: metrics.diskSeverity)
-        case .network:
-            return selection.isHighActivity(for: metrics) ? status.accentColor : nil
-        }
-    }
-
-    private func color(for severity: ActivityMetrics.MetricSeverity) -> Color? {
-        switch severity {
-        case .critical:
-            return .red
-        case .elevated:
-            return .yellow
-        case .normal:
-            return nil
-        }
+        guard status.level != .normal else { return nil }
+        return StatusColorPalette.color(for: metrics.severity(for: selection))
     }
 }
 
-// Helper for rendering a compact two-line network badge as an NSImage suitable for the menu bar label
-private enum MenuBarNetworkStackedRenderer {
-    static func makeImage(download: String, upload: String, symbolName: String? = nil, tint: NSColor?) -> NSImage {
+// Helper for rendering a compact two-line badge as an NSImage suitable for the menu bar label (no VStack support)
+private enum MenuBarStackedRenderer {
+    static func appearance(for colorScheme: ColorScheme) -> NSAppearance {
+        switch colorScheme {
+        case .dark:
+            return NSAppearance(named: .darkAqua) ?? NSAppearance.current ?? NSAppearance(named: .aqua)!
+        case .light:
+            fallthrough
+        @unknown default:
+            return NSAppearance(named: .aqua) ?? NSAppearance.current ?? NSAppearance(named: .darkAqua)!
+        }
+    }
+
+    static func makeImage(topLine: String, bottomLine: String, symbolName: String? = nil, tint: NSColor?, appearance: NSAppearance) -> NSImage {
         let font = NSFont.monospacedDigitSystemFont(ofSize: 10, weight: .medium)
         let hasTint = tint != nil
-        let textColor = hasTint ? NSColor.labelColor : NSColor.black
+        let textColor = NSColor.labelColor
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .right
 
@@ -328,12 +343,12 @@ private enum MenuBarNetworkStackedRenderer {
             .paragraphStyle: paragraph
         ]
 
-        let line1 = NSString(string: "↓ " + download)
-        let line2 = NSString(string: "↑ " + upload)
+        let line1 = NSString(string: topLine)
+        let line2 = NSString(string: bottomLine)
 
         let size1 = line1.size(withAttributes: attrs)
         let size2 = line2.size(withAttributes: attrs)
-        let spacing: CGFloat = 0.0
+        let spacing: CGFloat = -1.0 // tighten vertical gap between lines
         let textBlockWidth = ceil(max(size1.width, size2.width))
         let textBlockHeight = ceil(size1.height + spacing + size2.height)
 
@@ -360,26 +375,28 @@ private enum MenuBarNetworkStackedRenderer {
 
         let imageSize = NSSize(width: width, height: height)
         let image = NSImage(size: imageSize)
-        image.lockFocusFlipped(false)
-        defer { image.unlockFocus() }
+        appearance.performAsCurrentDrawingAppearance {
+            image.lockFocusFlipped(false)
+            defer { image.unlockFocus() }
 
-        // Draw optional icon, vertically centered
-        if let img = symbolImage {
-            let iconY = (height - iconSize.height) / 2
-            img.draw(in: NSRect(origin: CGPoint(x: 0, y: iconY), size: iconSize), from: .zero, operation: .sourceOver, fraction: 1.0)
+            // Draw optional icon, vertically centered
+            if let img = symbolImage {
+                let iconY = (height - iconSize.height) / 2
+                img.draw(in: NSRect(origin: CGPoint(x: 0, y: iconY), size: iconSize), from: .zero, operation: .sourceOver, fraction: 1.0)
+            }
+
+            // Draw stacked text on the right, right-aligned within its block
+            let textBaseX = iconSize.width + iconSpacing
+            let bottomY = (height - textBlockHeight) / 2
+
+            // Bottom line (upload)
+            let line2Origin = CGPoint(x: textBaseX + (textBlockWidth - size2.width), y: bottomY)
+            line2.draw(at: line2Origin, withAttributes: attrs)
+
+            // Top line (download)
+            let line1Origin = CGPoint(x: textBaseX + (textBlockWidth - size1.width), y: bottomY + size2.height + spacing)
+            line1.draw(at: line1Origin, withAttributes: attrs)
         }
-
-        // Draw stacked text on the right, right-aligned within its block
-        let textBaseX = iconSize.width + iconSpacing
-        let bottomY = (height - textBlockHeight) / 2
-
-        // Bottom line (upload)
-        let line2Origin = CGPoint(x: textBaseX + (textBlockWidth - size2.width), y: bottomY)
-        line2.draw(at: line2Origin, withAttributes: attrs)
-
-        // Top line (download)
-        let line1Origin = CGPoint(x: textBaseX + (textBlockWidth - size1.width), y: bottomY + size2.height + spacing)
-        line1.draw(at: line1Origin, withAttributes: attrs)
 
         image.isTemplate = !hasTint
         return image
@@ -430,7 +447,7 @@ private enum MenuBarNetworkStackedRenderer {
         Divider()
 
         ForEach(MetricMenuSelection.allCases, id: \.self) { selection in
-            MetricMenuLabel(metrics: .previewNormal, selection: selection, showIcon: true, tint: Color.orange)
+            MetricMenuLabel(metrics: .previewNormal, selection: selection, showIcon: true, tint: nil)
                 .padding(8)
                 .frame(width: 260, alignment: .leading)
                 .background(.thinMaterial)

@@ -9,6 +9,8 @@ final class ActivityMonitor: ObservableObject {
     private var timer: Timer?
     private let queue: DispatchQueue = DispatchQueue(label: "activity-monitor.queue")
     private var isMonitoring = false
+    private var pendingStatus: ActivityStatus?
+    private var pendingStatusSamples: Int = 0
 
     init(
         metrics: ActivityMetrics = .placeholder,
@@ -47,7 +49,8 @@ final class ActivityMonitor: ObservableObject {
 
     private func update(with metrics: ActivityMetrics) {
         self.metrics = metrics
-        self.status = ActivityStatus(metrics: metrics)
+        let candidateStatus = ActivityStatus(metrics: metrics)
+        self.status = resolveStatusTransition(to: candidateStatus)
     }
 
     private func fetchMetricsOnce() {
@@ -73,5 +76,29 @@ final class ActivityMonitor: ObservableObject {
     var highActivityMemoryThreshold: Double {
         get { provider.highActivityMemoryThreshold }
         set { provider.highActivityMemoryThreshold = max(0, min(1, newValue)) }
+    }
+
+    private func resolveStatusTransition(to candidate: ActivityStatus) -> ActivityStatus {
+        // If the level is unchanged, accept the new status immediately (allows trigger updates without delay).
+        if candidate.level == status.level {
+            pendingStatus = nil
+            pendingStatusSamples = 0
+            return candidate
+        }
+
+        if pendingStatus == candidate {
+            pendingStatusSamples += 1
+        } else {
+            pendingStatus = candidate
+            pendingStatusSamples = 1
+        }
+
+        if pendingStatusSamples >= 2 {
+            pendingStatus = nil
+            pendingStatusSamples = 0
+            return candidate
+        } else {
+            return status
+        }
     }
 }
