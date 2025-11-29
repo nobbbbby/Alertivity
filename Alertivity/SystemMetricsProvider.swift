@@ -21,9 +21,31 @@ final class SystemMetricsProvider {
     ]
 
     // CPU threshold (0.0 ... 1.0) a process must meet/exceed to be tracked as high activity
-    var highActivityCPUThreshold: Double = 0.2
+    var highActivityCPUThreshold: Double = 0.2 {
+        didSet {
+            let clamped = min(max(highActivityCPUThreshold, 0), 1)
+            if clamped != highActivityCPUThreshold {
+                highActivityCPUThreshold = clamped
+                return
+            }
+            if abs(highActivityCPUThreshold - oldValue) > .ulpOfOne {
+                resetHighActivityTracking()
+            }
+        }
+    }
     // Memory threshold (0.0 ... 1.0) a process must meet/exceed to be tracked as high activity for memory pressure
-    var highActivityMemoryThreshold: Double = 0.15
+    var highActivityMemoryThreshold: Double = 0.15 {
+        didSet {
+            let clamped = min(max(highActivityMemoryThreshold, 0), 1)
+            if clamped != highActivityMemoryThreshold {
+                highActivityMemoryThreshold = clamped
+                return
+            }
+            if abs(highActivityMemoryThreshold - oldValue) > .ulpOfOne {
+                resetHighActivityTracking()
+            }
+        }
+    }
 
     var highActivityDuration: TimeInterval = 120 {
         didSet {
@@ -32,10 +54,23 @@ final class SystemMetricsProvider {
                 return
             }
             if abs(highActivityDuration - oldValue) > .ulpOfOne {
-                processActivityStartTimes.removeAll()
-                lastHighActivityProcesses = []
+                resetHighActivityTracking()
             }
         }
+    }
+
+    private func resetHighActivityTracking() {
+        processActivityStartTimes.removeAll()
+        lastHighActivityProcesses = []
+    }
+
+    @discardableResult
+    func simulateFilterHighActivity(processes: [ProcessUsage], at timestamp: Date) -> [ProcessUsage] {
+        filterHighActivityProcesses(processes, at: timestamp)
+    }
+
+    var trackedProcessIDsForTesting: Set<Int32> {
+        Set(processActivityStartTimes.keys)
     }
 
     func fetchMetrics() -> ActivityMetrics {

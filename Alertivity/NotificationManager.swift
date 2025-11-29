@@ -36,9 +36,25 @@ final class NotificationManager: NSObject, ObservableObject {
     }
 
     func postNotificationIfNeeded(for status: ActivityStatus, metrics: ActivityMetrics) {
-        guard authorizationStatus == .authorized else { return }
+        let isAuthorized: Bool
+        switch authorizationStatus {
+        case .authorized, .provisional:
+            isAuthorized = true
+        default:
+            isAuthorized = false
+        }
+        guard isAuthorized else { return }
         let hasHighActivityProcess = !metrics.highActivityProcesses.isEmpty
-        guard status.level == .critical || hasHighActivityProcess else { return }
+
+        let shouldNotifyForCriticalState: Bool
+        if status.level == .critical, let trigger = status.trigger {
+            shouldNotifyForCriticalState = trigger == .cpu || trigger == .memory
+        } else {
+            shouldNotifyForCriticalState = false
+        }
+
+        guard shouldNotifyForCriticalState || hasHighActivityProcess else { return }
+        let trigger = status.trigger
 
         let now = Date()
         if let last = lastNotificationDate, now.timeIntervalSince(last) < throttleInterval {
@@ -52,14 +68,14 @@ final class NotificationManager: NSObject, ObservableObject {
 
         var userInfo: [String: Any] = [:]
 
-        if let trigger = status.trigger {
+        if let trigger {
             userInfo["triggerMetric"] = trigger.rawValue
-            if let value = status.triggerValue(for: metrics) {
-                userInfo["triggerValue"] = value
-            }
+        }
+        if let value = status.triggerValue(for: metrics) {
+            userInfo["triggerValue"] = value
         }
 
-        if let culprit = metrics.highActivityProcesses.first, status.trigger != .disk {
+        if let culprit = metrics.highActivityProcesses.first, trigger != .disk {
             content.subtitle = "\(culprit.displayName) is using \(culprit.cpuDescription)"
             userInfo.merge([
                 "pid": NSNumber(value: culprit.pid),

@@ -9,40 +9,7 @@ private var dockVisibilityObserverTokens: [NSObjectProtocol] = []
 struct AlertivityApp: App {
     @StateObject private var monitor = ActivityMonitor()
     @StateObject private var notificationManager = NotificationManager()
-
-    @AppStorage("app.hideDockIcon") private var hideDockIcon = false {
-        didSet { applyDockVisibility(for: hideDockIcon) }
-    }
-    @AppStorage("app.launchAtLogin") private var launchAtLogin = false {
-        didSet { applyLaunchAtLogin(for: launchAtLogin) }
-    }
-    @AppStorage("notice.menu.enabled") private var isMenuIconEnabled = true {
-        didSet { updateMenuBarInsertion(for: monitor.status) }
-    }
-    @AppStorage("notice.menu.onlyHigh") private var menuIconOnlyWhenHigh = false {
-        didSet { updateMenuBarInsertion(for: monitor.status) }
-    }
-    @AppStorage("notice.notifications.enabled") private var notificationsEnabled = false {
-        didSet {
-            if notificationsEnabled {
-                notificationManager.requestAuthorizationIfNeeded()
-            }
-        }
-    }
-    @AppStorage("notice.menu.iconType") private var menuIconType = MenuIconType.status
-    @AppStorage("notice.menu.showMetricIcon") private var showMetricIcon = false
-    @AppStorage("notice.menu.autoSwitch") private var isMenuIconAutoSwitchEnabled = false {
-        didSet { enforceAutoSwitchDependencies(isEnabled: isMenuIconAutoSwitchEnabled) }
-    }
-    @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120 {
-        didSet { applyHighActivityDurationUpdate(for: highActivityDurationSeconds) }
-    }
-    @AppStorage("monitor.topProcesses.cpuThresholdPercent") private var highActivityCPUThresholdPercent = 20 {
-        didSet { applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent) }
-    }
-    @AppStorage("monitor.topProcesses.memoryThresholdPercent") private var highActivityMemoryThresholdPercent = 15 {
-        didSet { applyHighActivityMemoryThresholdUpdate(for: highActivityMemoryThresholdPercent) }
-    }
+    @StateObject private var settings = SettingsStore()
 
     @State private var isMenuBarInserted = true
     @State private var hasInitialized = false
@@ -67,20 +34,38 @@ struct AlertivityApp: App {
         } label: {
             MenuBarLabelLifecycleView(
                 monitor: monitor,
-                isMenuIconEnabled: $isMenuIconEnabled,
-                menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
-                menuIconType: $menuIconType,
-                showMetricIcon: $showMetricIcon,
-                autoSwitchEnabled: $isMenuIconAutoSwitchEnabled,
+                isMenuIconEnabled: settingsBinding(\.isMenuIconEnabled),
+                menuIconOnlyWhenHigh: settingsBinding(\.menuIconOnlyWhenHigh),
+                menuIconType: settingsBinding(\.menuIconType),
+                showMetricIcon: settingsBinding(\.showMetricIcon),
+                autoSwitchEnabled: settingsBinding(\.isMenuIconAutoSwitchEnabled),
                 initialize: performInitialSetup,
                 onStatusChange: handleStatusChange,
                 onMetricsChange: handleMetricsChange
             )
+            .onChange(of: settings.highActivityDurationSeconds, perform: applyHighActivityDurationUpdate)
+            .onChange(of: settings.highActivityCPUThresholdPercent, perform: applyHighActivityCPUThresholdUpdate)
+            .onChange(of: settings.highActivityMemoryThresholdPercent, perform: applyHighActivityMemoryThresholdUpdate)
+            .onChange(of: settings.hideDockIcon, perform: applyDockVisibility)
+            .onChange(of: settings.launchAtLogin, perform: applyLaunchAtLogin)
+            .onChange(of: settings.isMenuIconEnabled) { _ in updateMenuBarInsertion(for: monitor.status) }
+            .onChange(of: settings.menuIconOnlyWhenHigh) { _ in updateMenuBarInsertion(for: monitor.status) }
+            .onChange(of: settings.notificationsEnabled) { newValue in
+                if newValue {
+                    notificationManager.requestAuthorizationIfNeeded()
+                }
+            }
+            .onChange(of: settings.isMenuIconAutoSwitchEnabled, perform: enforceAutoSwitchDependencies)
         }
         .menuBarExtraStyle(.window)
 
         Settings {
-            SettingsView().frame(width: 400)
+            SettingsView(settings: settings)
+                .frame(width: 400)
+                .background(SettingsWindowAccessor())
+                .onAppear {
+                    NSApp.activate(ignoringOtherApps: true)
+                }
         }
     }
 
@@ -89,25 +74,28 @@ struct AlertivityApp: App {
         hasInitialized = true
 
         startDockVisibilityObservers()
-        applyDockVisibility(for: hideDockIcon)
-        applyLaunchAtLogin(for: launchAtLogin)
+        applyDockVisibility(for: settings.hideDockIcon)
+        applyLaunchAtLogin(for: settings.launchAtLogin)
         updateMenuBarInsertion(for: monitor.status)
-        applyHighActivityDurationUpdate(for: highActivityDurationSeconds)
-        applyHighActivityCPUThresholdUpdate(for: highActivityCPUThresholdPercent)
-        applyHighActivityMemoryThresholdUpdate(for: highActivityMemoryThresholdPercent)
-        enforceAutoSwitchDependencies(isEnabled: isMenuIconAutoSwitchEnabled)
+        applyHighActivityDurationUpdate(for: settings.highActivityDurationSeconds)
+        applyHighActivityCPUThresholdUpdate(for: settings.highActivityCPUThresholdPercent)
+        applyHighActivityMemoryThresholdUpdate(for: settings.highActivityMemoryThresholdPercent)
+        enforceAutoSwitchDependencies(isEnabled: settings.isMenuIconAutoSwitchEnabled)
         sanitizeMenuIconType()
+        if settings.notificationsEnabled {
+            notificationManager.requestAuthorizationIfNeeded()
+        }
     }
 
     private func handleStatusChange(_ newValue: ActivityStatus) {
         updateMenuBarInsertion(for: newValue)
-        if notificationsEnabled {
+        if settings.notificationsEnabled {
             notificationManager.postNotificationIfNeeded(for: newValue, metrics: monitor.metrics)
         }
     }
 
     private func handleMetricsChange(_ newMetrics: ActivityMetrics) {
-        if notificationsEnabled {
+        if settings.notificationsEnabled {
             notificationManager.postNotificationIfNeeded(for: monitor.status, metrics: newMetrics)
         }
     }
@@ -115,7 +103,7 @@ struct AlertivityApp: App {
     private func applyHighActivityDurationUpdate(for value: Int) {
         let normalized = normalizedHighActivityDurationSeconds(value)
         if normalized != value {
-            highActivityDurationSeconds = normalized
+            settings.highActivityDurationSeconds = normalized
         } else {
             monitor.highActivityDuration = TimeInterval(normalized)
         }
@@ -124,7 +112,7 @@ struct AlertivityApp: App {
     private func applyHighActivityCPUThresholdUpdate(for value: Int) {
         let normalized = normalizedCPUThresholdPercent(value)
         if normalized != value {
-            highActivityCPUThresholdPercent = normalized
+            settings.highActivityCPUThresholdPercent = normalized
         } else {
             monitor.highActivityCPUThreshold = Double(normalized) / 100.0
         }
@@ -133,7 +121,7 @@ struct AlertivityApp: App {
     private func applyHighActivityMemoryThresholdUpdate(for value: Int) {
         let normalized = normalizedMemoryThresholdPercent(value)
         if normalized != value {
-            highActivityMemoryThresholdPercent = normalized
+            settings.highActivityMemoryThresholdPercent = normalized
         } else {
             monitor.highActivityMemoryThreshold = Double(normalized) / 100.0
         }
@@ -144,8 +132,8 @@ struct AlertivityApp: App {
     }
 
     private func shouldShowMenuIcon(for status: ActivityStatus) -> Bool {
-        guard isMenuIconEnabled else { return false }
-        return menuIconOnlyWhenHigh ? status.level == .critical : true
+        guard settings.isMenuIconEnabled else { return false }
+        return settings.menuIconOnlyWhenHigh ? status.level == .critical : true
     }
 
     private func normalizedHighActivityDurationSeconds(_ value: Int) -> Int {
@@ -162,10 +150,7 @@ struct AlertivityApp: App {
 
     private func applyDockVisibility(for isHidden: Bool) {
         DispatchQueue.main.async {
-            let hasVisibleWindow = NSApp.windows.contains { window in
-                window.isVisible && !window.isMiniaturized && window.isOnActiveSpace
-            }
-
+            let hasVisibleWindow = self.hasVisibleUserWindow()
             let shouldHideDockIcon = isHidden && !hasVisibleWindow
             let desiredPolicy: NSApplication.ActivationPolicy = shouldHideDockIcon ? .accessory : .regular
 
@@ -184,8 +169,8 @@ struct AlertivityApp: App {
         guard wasUpdated else {
             DispatchQueue.main.async {
                 let resolvedValue = LaunchAtLoginManager.isEnabled()
-                if launchAtLogin != resolvedValue {
-                    launchAtLogin = resolvedValue
+                if settings.launchAtLogin != resolvedValue {
+                    settings.launchAtLogin = resolvedValue
                 }
             }
             return
@@ -193,15 +178,15 @@ struct AlertivityApp: App {
     }
 
     private func enforceAutoSwitchDependencies(isEnabled: Bool) {
-        if isEnabled && !showMetricIcon {
-            showMetricIcon = true
+        if isEnabled && !settings.showMetricIcon {
+            settings.showMetricIcon = true
         }
     }
 
     private func sanitizeMenuIconType() {
         let stored = UserDefaults.standard.string(forKey: "notice.menu.iconType")
         if let raw = stored, MenuIconType(rawValue: raw) == nil {
-            menuIconType = .status
+            settings.menuIconType = .status
         }
     }
 
@@ -220,11 +205,38 @@ struct AlertivityApp: App {
 
         dockVisibilityObserverTokens = notifications.map { name in
             NotificationCenter.default.addObserver(forName: name, object: nil, queue: .main) { _ in
-                applyDockVisibility(for: hideDockIcon)
+                applyDockVisibility(for: settings.hideDockIcon)
             }
         }
     }
 
+    private func hasVisibleUserWindow() -> Bool {
+        // Limit visibility checks to user-facing window levels so status bar windows from the menu extra don't block Dock hiding on macOS 15.7+.
+        let userFacingLevels: Set<NSWindow.Level> = [.normal, .floating, .modalPanel]
+
+        return NSApp.windows.contains { window in
+            guard
+                window.isVisible,
+                !window.isMiniaturized,
+                window.isOnActiveSpace,
+                userFacingLevels.contains(window.level)
+            else {
+                return false
+            }
+
+            return true
+        }
+    }
+
+}
+
+private extension AlertivityApp {
+    func settingsBinding<Value>(_ keyPath: ReferenceWritableKeyPath<SettingsStore, Value>) -> Binding<Value> {
+        Binding(
+            get: { settings[keyPath: keyPath] },
+            set: { settings[keyPath: keyPath] = $0 }
+        )
+    }
 }
 
 private enum LaunchAtLoginManager {
@@ -346,6 +358,38 @@ private struct MenuBarLabelLifecycleView: View {
     }
 }
 
+private enum SettingsWindowCoordinator {
+    @MainActor
+    static func focusExistingWindow() {
+        guard let window = SettingsWindowTracker.shared.window else { return }
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+}
+
+private final class SettingsWindowTracker {
+    static let shared = SettingsWindowTracker()
+    weak var window: NSWindow?
+}
+
+private struct SettingsWindowAccessor: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        DispatchQueue.main.async { registerWindow(for: view) }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        DispatchQueue.main.async { registerWindow(for: nsView) }
+    }
+
+    private func registerWindow(for view: NSView) {
+        if let window = view.window {
+            SettingsWindowTracker.shared.window = window
+        }
+    }
+}
+
 @available(macOS 14.0, *)
 private struct SettingsMenuLinkRow: View {
     @Environment(\.dismiss) private var dismiss
@@ -369,6 +413,7 @@ private struct SettingsMenuLinkRow: View {
         .onHover { isHovering = $0 }
         .animation(.easeInOut(duration: 0.12), value: isHovering)
         .simultaneousGesture(TapGesture().onEnded {
+            SettingsWindowCoordinator.focusExistingWindow()
             dismiss()
         })
     }

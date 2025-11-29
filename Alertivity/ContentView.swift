@@ -8,23 +8,13 @@ private let highActivityMemoryThresholdOptions: [Int] = Array(stride(from: 5, th
 private let tabPadding: EdgeInsets = EdgeInsets(top: 24, leading: 45, bottom: 28, trailing: 45)
 
 struct SettingsView: View {
-    @AppStorage("app.hideDockIcon") private var hideDockIcon = false
-    @AppStorage("app.launchAtLogin") private var launchAtLogin = false
-    @AppStorage("notice.menu.enabled") private var isMenuIconEnabled = true
-    @AppStorage("notice.menu.onlyHigh") private var menuIconOnlyWhenHigh = false
-    @AppStorage("notice.notifications.enabled") private var notificationsEnabled = false
-    @AppStorage("notice.menu.iconType") private var menuIconType = MenuIconType.status
-    @AppStorage("notice.menu.showMetricIcon") private var showMetricIcon = false
-    @AppStorage("notice.menu.autoSwitch") private var isMenuIconAutoSwitchEnabled = false
-    @AppStorage("monitor.topProcesses.duration") private var highActivityDurationSeconds = 120
-    @AppStorage("monitor.topProcesses.cpuThresholdPercent") private var highActivityCPUThresholdPercent = 20
-    @AppStorage("monitor.topProcesses.memoryThresholdPercent") private var highActivityMemoryThresholdPercent = 15
+    @ObservedObject var settings: SettingsStore
 
     var body: some View {
         TabView {
             VStack(alignment: .leading, spacing: 12) {
-                Toggle("Hide app icon in Dock", isOn: $hideDockIcon)
-                Toggle("Launch at login", isOn: $launchAtLogin)
+                Toggle("Hide app icon in Dock", isOn: $settings.hideDockIcon)
+                Toggle("Launch at login", isOn: $settings.launchAtLogin)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
@@ -32,11 +22,11 @@ struct SettingsView: View {
 
             VStack(alignment: .leading, spacing: 12) {
                 MenuBarSettingsFields(
-                    isMenuIconEnabled: $isMenuIconEnabled,
-                    menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
-                    menuIconType: $menuIconType,
-                    showMetricIcon: $showMetricIcon,
-                    autoSwitchEnabled: $isMenuIconAutoSwitchEnabled
+                    isMenuIconEnabled: $settings.isMenuIconEnabled,
+                    menuIconOnlyWhenHigh: $settings.menuIconOnlyWhenHigh,
+                    menuIconType: $settings.menuIconType,
+                    showMetricIcon: $settings.showMetricIcon,
+                    autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled
                 )
 
                 Text("Choose when the indicator appears and what it shows.")
@@ -49,7 +39,7 @@ struct SettingsView: View {
             .tabItem { Label("Menu Bar", systemImage: "waveform") }
 
             VStack(alignment: .leading, spacing: 12) {
-                NotificationSettingsFields(notificationsEnabled: $notificationsEnabled)
+                NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
 
                 Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
                     .font(.footnote)
@@ -61,12 +51,12 @@ struct SettingsView: View {
 
             VStack(alignment: .leading, spacing: 12) {
                 DetectionSettingsFields(
-                    highActivityDurationSeconds: $highActivityDurationSeconds,
-                    highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent,
-                    highActivityMemoryThresholdPercent: $highActivityMemoryThresholdPercent
+                    highActivityDurationSeconds: $settings.highActivityDurationSeconds,
+                    highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
+                    highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
                 )
 
-                Text("Flags processes over \(highActivityCPUThresholdPercent)% CPU or \(highActivityMemoryThresholdPercent)% memory for \(highActivityDurationSeconds) seconds.")
+                Text("Flags processes over \(settings.highActivityCPUThresholdPercent)% CPU or \(settings.highActivityMemoryThresholdPercent)% memory for \(settings.highActivityDurationSeconds) seconds.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -79,30 +69,22 @@ struct SettingsView: View {
     }
 }
 struct NoticePreferencesView: View {
-    @Binding var isMenuIconEnabled: Bool
-    @Binding var menuIconOnlyWhenHigh: Bool
-    @Binding var notificationsEnabled: Bool
-    @Binding var menuIconType: MenuIconType
-    @Binding var showMetricIcon: Bool
-    @Binding var menuIconAutoSwitchEnabled: Bool
-    @Binding var highActivityDurationSeconds: Int
-    @Binding var highActivityCPUThresholdPercent: Int
-    @Binding var highActivityMemoryThresholdPercent: Int
+    @ObservedObject var settings: SettingsStore
 
     @ViewBuilder
     var body: some View {
         Section("Menu Bar") {
             MenuBarSettingsFields(
-                isMenuIconEnabled: $isMenuIconEnabled,
-                menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
-                menuIconType: $menuIconType,
-                showMetricIcon: $showMetricIcon,
-                autoSwitchEnabled: $menuIconAutoSwitchEnabled
+                isMenuIconEnabled: $settings.isMenuIconEnabled,
+                menuIconOnlyWhenHigh: $settings.menuIconOnlyWhenHigh,
+                menuIconType: $settings.menuIconType,
+                showMetricIcon: $settings.showMetricIcon,
+                autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled
             )
         }
 
         Section("Notifications") {
-            NotificationSettingsFields(notificationsEnabled: $notificationsEnabled)
+            NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
 
             Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
                 .font(.footnote)
@@ -112,12 +94,12 @@ struct NoticePreferencesView: View {
 
         Section("Detection") {
             DetectionSettingsFields(
-                highActivityDurationSeconds: $highActivityDurationSeconds,
-                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent,
-                highActivityMemoryThresholdPercent: $highActivityMemoryThresholdPercent
+                highActivityDurationSeconds: $settings.highActivityDurationSeconds,
+                highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
+                highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
             )
 
-            Text("Flags processes over \(highActivityCPUThresholdPercent)% CPU or \(highActivityMemoryThresholdPercent)% memory for \(highActivityDurationSeconds) seconds.")
+            Text("Flags processes over \(settings.highActivityCPUThresholdPercent)% CPU or \(settings.highActivityMemoryThresholdPercent)% memory for \(settings.highActivityDurationSeconds) seconds.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -293,35 +275,46 @@ private struct MenuProcessRow: View {
 
 #if DEBUG
 private struct NoticePreferencesPreviewContainer: View {
-    @State private var isMenuIconEnabled = true
-    @State private var menuIconOnlyWhenHigh = false
-    @State private var notificationsEnabled = true
-    @State private var menuIconType: MenuIconType = .status
-    @State private var showMetricIcon = true
-    @State private var menuIconAutoSwitchEnabled = false
-    @State private var highActivityDurationSeconds = highActivityDurationOptions[3]
-    @State private var highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[3]
-    @State private var highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[2]
+    @StateObject private var settings: SettingsStore
+
+    init() {
+        let defaults = UserDefaults(suiteName: "NoticePreferencesPreview") ?? .standard
+        defaults.removePersistentDomain(forName: "NoticePreferencesPreview")
+        let store = SettingsStore(userDefaults: defaults)
+        store.isMenuIconEnabled = true
+        store.menuIconOnlyWhenHigh = false
+        store.notificationsEnabled = true
+        store.menuIconType = .status
+        store.showMetricIcon = true
+        store.isMenuIconAutoSwitchEnabled = false
+        store.highActivityDurationSeconds = highActivityDurationOptions[3]
+        store.highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[3]
+        store.highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[2]
+        _settings = StateObject(wrappedValue: store)
+    }
 
     var body: some View {
         Form {
-            NoticePreferencesView(
-                isMenuIconEnabled: $isMenuIconEnabled,
-                menuIconOnlyWhenHigh: $menuIconOnlyWhenHigh,
-                notificationsEnabled: $notificationsEnabled,
-                menuIconType: $menuIconType,
-                showMetricIcon: $showMetricIcon,
-                menuIconAutoSwitchEnabled: $menuIconAutoSwitchEnabled,
-                highActivityDurationSeconds: $highActivityDurationSeconds,
-                highActivityCPUThresholdPercent: $highActivityCPUThresholdPercent,
-                highActivityMemoryThresholdPercent: $highActivityMemoryThresholdPercent
-            )
+            NoticePreferencesView(settings: settings)
         }
     }
 }
 
 #Preview("Settings") {
-    SettingsView()
+    let defaults = UserDefaults(suiteName: "SettingsPreview") ?? .standard
+    defaults.removePersistentDomain(forName: "SettingsPreview")
+    let store = SettingsStore(userDefaults: defaults)
+    store.hideDockIcon = false
+    store.launchAtLogin = false
+    store.isMenuIconEnabled = true
+    store.menuIconOnlyWhenHigh = false
+    store.showMetricIcon = true
+    store.menuIconType = .status
+    store.isMenuIconAutoSwitchEnabled = false
+    store.highActivityDurationSeconds = highActivityDurationOptions[3]
+    store.highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[2]
+    store.highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[2]
+    return SettingsView(settings: store)
         .frame(width: 520)
 }
 

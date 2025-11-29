@@ -322,11 +322,11 @@ private enum MenuBarStackedRenderer {
     static func appearance(for colorScheme: ColorScheme) -> NSAppearance {
         switch colorScheme {
         case .dark:
-            return NSAppearance(named: .darkAqua) ?? NSAppearance.current ?? NSAppearance(named: .aqua)!
+            return NSAppearance(named: .darkAqua) ?? NSApp?.effectiveAppearance ?? NSAppearance(named: .aqua)!
         case .light:
             fallthrough
         @unknown default:
-            return NSAppearance(named: .aqua) ?? NSAppearance.current ?? NSAppearance(named: .darkAqua)!
+            return NSAppearance(named: .aqua) ?? NSApp?.effectiveAppearance ?? NSAppearance(named: .darkAqua)!
         }
     }
 
