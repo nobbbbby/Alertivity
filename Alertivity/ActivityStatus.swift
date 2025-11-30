@@ -1,6 +1,5 @@
 import SwiftUI
 import Foundation
-import AppKit
 
 struct StatusColorPalette {
     static let normal = Color.primary
@@ -27,14 +26,6 @@ struct StatusColorPalette {
         case .critical:
             return critical
         }
-    }
-}
-
-private func symbolOrFallback(_ name: String) -> String {
-    if NSImage(systemSymbolName: name, accessibilityDescription: nil) != nil {
-        return name
-    } else {
-        return "waveform"
     }
 }
 
@@ -108,6 +99,7 @@ struct ActivityStatus: Sendable, Equatable {
         switch level {
         case .normal:
             return nil
+            
         case .elevated, .critical:
             return accentColor
         }
@@ -116,69 +108,81 @@ struct ActivityStatus: Sendable, Equatable {
     var symbolName: String {
         switch level {
         case .normal:
-            return symbolOrFallback("waveform.low")
+            return "waveform.path.ecg"
         case .elevated:
-            return symbolOrFallback("waveform.mid")
+            return "waveform.path.ecg"
         case .critical:
-            return "waveform"
+            return "waveform.path"
         }
     }
 
-    var title: String {
-        switch level {
+    func title(for metrics: ActivityMetrics) -> String {
+        let alignedStatus = statusAligned(to: metrics)
+        let activeMetrics = elevatedOrCriticalMetrics(in: metrics)
+        let criticalMetrics = metricsBySeverity(metrics, target: .critical)
+        let elevatedMetrics = metricsBySeverity(metrics, target: .elevated)
+
+        switch alignedStatus.level {
         case .normal:
             return "System is stable"
         case .elevated:
-            return "Elevated \(triggerLabel)"
+            if activeMetrics.count > 1 {
+                return "Multiple metrics elevated"
+            } else {
+                return "Elevated \(alignedStatus.triggerLabel)"
+            }
         case .critical:
-            return "Critical \(triggerLabel)"
+            if criticalMetrics.count > 1, elevatedMetrics.isEmpty {
+                return "Multiple metrics critical"
+            } else if !criticalMetrics.isEmpty, !elevatedMetrics.isEmpty {
+                let criticalList = listMetrics(criticalMetrics)
+                let elevatedList = listMetrics(elevatedMetrics)
+                return "Critical \(criticalList); \(elevatedList) elevated"
+            } else if criticalMetrics.count > 1 {
+                return "Critical \(listMetrics(criticalMetrics))"
+            } else {
+                return "Critical \(alignedStatus.triggerLabel)"
+            }
         }
     }
 
     func message(for metrics: ActivityMetrics) -> String {
+        let alignedStatus = statusAligned(to: metrics)
         guard metrics.hasLiveData else {
             return "Collecting live metrics…"
         }
 
-        let nonNormalMetrics: [String] = [
-            metrics.cpuSeverity != .normal ? "CPU \(metrics.cpuUsagePercentage.formatted(.percent.precision(.fractionLength(0))))" : nil,
-            metrics.memorySeverity != .normal ? "Mem \(metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0))))" : nil,
-            metrics.diskSeverity != .normal ? "Disk \(metrics.disk.formattedTotalPerSecond)/s" : nil,
-            metrics.networkSeverity != .normal ? "Net \(metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond))/s" : nil
-        ].compactMap { $0 }
+        let metricSummaries = statusMessageDescriptions(for: metrics)
 
-        let summary = nonNormalMetrics.joined(separator: ", ")
-
-        switch level {
-        case .normal:
-            return "Everything looks healthy."
-        case .elevated:
-            let detail = summary.isEmpty ? nil : " \(summary)"
-            return "Elevated activity.\(detail ?? "")"
-        case .critical:
-            var message = "High activity."
-            if !summary.isEmpty {
-                message += " \(summary)"
-            }
-            if let culprit = metrics.highActivityProcesses.first, trigger != .disk {
-                message += " Culprit: \(culprit.displayName) @ \(culprit.cpuDescription)."
-            }
-            return message
+        var message: String
+        if metricSummaries.isEmpty {
+            message = "Everything looks healthy."
+        } else {
+            message = metricSummaries.joined(separator: "; ")
         }
+
+        if let culprit = metrics.highActivityProcesses.first, alignedStatus.trigger != .disk {
+            message += " Culprit: \(culprit.displayName) @ \(culprit.cpuDescription)."
+        }
+
+        return message
     }
 
     func notificationTitle(for metrics: ActivityMetrics) -> String {
-        guard metrics.hasLiveData else { return title }
-        guard let trigger else { return title }
+        title(for: metrics)
+    }
 
-        switch level {
-        case .normal:
-            return "System is stable"
-        case .elevated:
-            return "Elevated \(triggerDisplayName(trigger))"
-        case .critical:
-            return "Critical \(triggerDisplayName(trigger))"
+    func menuSummary(for metrics: ActivityMetrics) -> String {
+        guard metrics.hasLiveData else {
+            return "Collecting live metrics…"
         }
+
+        let metricSummaries = menuThresholdDescriptions(for: metrics)
+        if metricSummaries.isEmpty {
+            return "Everything looks healthy."
+        }
+
+        return metricSummaries.joined(separator: "; ")
     }
 
     func triggerValue(for metrics: ActivityMetrics) -> Double? {
@@ -213,6 +217,10 @@ struct ActivityStatus: Sendable, Equatable {
         }
     }
 
+    private func metricDisplayName(_ metric: TriggerMetric) -> String {
+        triggerDisplayName(metric)
+    }
+
     private func formattedTriggerValue(for trigger: TriggerMetric, metrics: ActivityMetrics) -> String {
         switch trigger {
         case .cpu:
@@ -230,6 +238,43 @@ struct ActivityStatus: Sendable, Equatable {
     static let elevated = ActivityStatus(level: .elevated, trigger: .cpu)
     static let critical = ActivityStatus(level: .critical, trigger: .cpu)
 
+    /// Keeps user-facing copy in sync with the latest metrics even if the stored status lags or differs.
+    private func statusAligned(to metrics: ActivityMetrics) -> ActivityStatus {
+        let metricsStatus = ActivityStatus(metrics: metrics)
+        return metricsStatus
+    }
+
+    private func listMetrics(_ metrics: [TriggerMetric]) -> String {
+        metrics.map { metricDisplayName($0) }.joined(separator: ", ")
+    }
+
+    private func metricsBySeverity(_ metrics: ActivityMetrics, target: ActivityMetrics.MetricSeverity) -> [TriggerMetric] {
+        let pairs: [(TriggerMetric, ActivityMetrics.MetricSeverity)] = [
+            (.cpu, metrics.cpuSeverity),
+            (.memory, metrics.memorySeverity),
+            (.disk, metrics.diskSeverity),
+            (.network, metrics.networkSeverity)
+        ]
+        return pairs.filter { $0.1 == target }.map { $0.0 }
+    }
+
+    private func elevatedOrCriticalMetrics(in metrics: ActivityMetrics) -> [TriggerMetric] {
+        var results: [TriggerMetric] = []
+        if metrics.cpuSeverity != .normal {
+            results.append(.cpu)
+        }
+        if metrics.memorySeverity != .normal {
+            results.append(.memory)
+        }
+        if metrics.diskSeverity != .normal {
+            results.append(.disk)
+        }
+        if metrics.networkSeverity != .normal {
+            results.append(.network)
+        }
+        return results
+    }
+
     private static func priority(for trigger: TriggerMetric) -> Int {
         switch trigger {
         case .cpu:
@@ -240,6 +285,87 @@ struct ActivityStatus: Sendable, Equatable {
             return 2
         case .network:
             return 1
+        }
+    }
+
+    private func statusMessageDescriptions(for metrics: ActivityMetrics) -> [String] {
+        let pairs: [(TriggerMetric, ActivityMetrics.MetricSeverity)] = [
+            (.cpu, metrics.cpuSeverity),
+            (.memory, metrics.memorySeverity),
+            (.disk, metrics.diskSeverity),
+            (.network, metrics.networkSeverity)
+        ]
+
+        return pairs.compactMap { metric, severity in
+            guard severity != .normal else { return nil }
+            let valueText = formattedValue(for: metric, metrics: metrics)
+            let severityText = severityLabel(for: severity)
+            return "\(metricDisplayName(metric)) \(severityText) (\(valueText))"
+        }
+    }
+
+    private func menuThresholdDescriptions(for metrics: ActivityMetrics) -> [String] {
+        let pairs: [(TriggerMetric, ActivityMetrics.MetricSeverity)] = [
+            (.cpu, metrics.cpuSeverity),
+            (.memory, metrics.memorySeverity),
+            (.disk, metrics.diskSeverity),
+            (.network, metrics.networkSeverity)
+        ]
+
+        return pairs.compactMap { metric, severity in
+            guard severity != .normal else { return nil }
+            let valueText = formattedValue(for: metric, metrics: metrics)
+            if let thresholdText = thresholdDescription(for: metric, severity: severity, metrics: metrics) {
+                return "\(metricDisplayName(metric)) \(valueText) (\(thresholdText))"
+            }
+            return "\(metricDisplayName(metric)) \(valueText)"
+        }
+    }
+
+    private func formattedValue(for metric: TriggerMetric, metrics: ActivityMetrics) -> String {
+        switch metric {
+        case .cpu:
+            return metrics.cpuUsagePercentage.formatted(.percent.precision(.fractionLength(0)))
+        case .memory:
+            return metrics.memoryUsage.formatted(.percent.precision(.fractionLength(0)))
+        case .disk:
+            return metrics.disk.formattedTotalPerSecond + "/s"
+        case .network:
+            return metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond) + "/s"
+        }
+    }
+
+    private func thresholdDescription(for metric: TriggerMetric, severity: ActivityMetrics.MetricSeverity, metrics: ActivityMetrics) -> String? {
+        switch (metric, severity) {
+        case (.cpu, .elevated):
+            return "≥50%"
+        case (.cpu, .critical):
+            return "≥80%"
+        case (.memory, .elevated):
+            return "≥70%"
+        case (.memory, .critical):
+            return "≥85%"
+        case (.disk, .elevated):
+            return "≥\(metrics.disk.formattedBytesPerSecond(20_000_000))/s"
+        case (.disk, .critical):
+            return "≥\(metrics.disk.formattedBytesPerSecond(100_000_000))/s"
+        case (.network, .elevated):
+            return "≥\(metrics.network.formattedBytesPerSecond(5_000_000))/s"
+        case (.network, .critical):
+            return "≥\(metrics.network.formattedBytesPerSecond(20_000_000))/s"
+        default:
+            return nil
+        }
+    }
+
+    private func severityLabel(for severity: ActivityMetrics.MetricSeverity) -> String {
+        switch severity {
+        case .normal:
+            return "normal"
+        case .elevated:
+            return "elevated"
+        case .critical:
+            return "critical"
         }
     }
 }

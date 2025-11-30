@@ -6,8 +6,24 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AA000000000000000000010E /* SystemMetricsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000103 /* SystemMetricsProviderTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA0000000000000000000107 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000002;
+			remoteInfo = Alertivity;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		AA0000000000000000000003 /* Alertivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alertivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000101 /* AlertivityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertivityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000103 /* SystemMetricsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetricsProviderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -24,11 +40,22 @@
 		C96C6D5E2E9F8D57006AAF07 /* Alertivity */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C96C6D6B2E9F8D57006AAF07 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Alertivity; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		AA0000000000000000000105 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		AA0000000000000000000004 = {
 			isa = PBXGroup;
 			children = (
 				C96C6D5E2E9F8D57006AAF07 /* Alertivity */,
+				AA0000000000000000000102 /* AlertivityTests */,
 				AA0000000000000000000019,
 			);
 			sourceTree = "<group>";
@@ -37,7 +64,16 @@
 			isa = PBXGroup;
 			children = (
 				AA0000000000000000000003 /* Alertivity.app */,
+				AA0000000000000000000101 /* AlertivityTests.xctest */,
 			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000102 /* AlertivityTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000103 /* SystemMetricsProviderTests.swift */,
+			);
+			path = AlertivityTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -62,6 +98,24 @@
 			productReference = AA0000000000000000000003 /* Alertivity.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AA0000000000000000000100 /* AlertivityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000108 /* Build configuration list for PBXNativeTarget "AlertivityTests" */;
+			buildPhases = (
+				AA0000000000000000000104 /* Sources */,
+				AA0000000000000000000105 /* Frameworks */,
+				AA000000000000000000010B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000106 /* PBXTargetDependency */,
+			);
+			name = AlertivityTests;
+			productName = AlertivityTests;
+			productReference = AA0000000000000000000101 /* AlertivityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -75,6 +129,9 @@
 					AA0000000000000000000002 = {
 						CreatedOnToolsVersion = 15.0;
 						LastSwiftMigration = 1500;
+					};
+					AA0000000000000000000100 = {
+						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
@@ -91,12 +148,20 @@
 			projectRoot = "";
 			targets = (
 				AA0000000000000000000002 /* Alertivity */,
+				AA0000000000000000000100 /* AlertivityTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AA000000000000000000002B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA000000000000000000010B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -113,7 +178,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA0000000000000000000104 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000000000000000000010E /* SystemMetricsProviderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA0000000000000000000106 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000002 /* Alertivity */;
+			targetProxy = AA0000000000000000000107 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA0000000000000000000031 /* Debug */ = {
@@ -312,6 +393,49 @@
 			};
 			name = Release;
 		};
+		AA0000000000000000000109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alertivity.app/Contents/MacOS/Alertivity";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nobby.AlertivityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		AA000000000000000000010A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Alertivity.app/Contents/MacOS/Alertivity";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nobby.AlertivityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +453,15 @@
 			buildConfigurations = (
 				AA0000000000000000000034 /* Debug */,
 				AA0000000000000000000035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AA0000000000000000000108 /* Build configuration list for PBXNativeTarget "AlertivityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000109 /* Debug */,
+				AA000000000000000000010A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

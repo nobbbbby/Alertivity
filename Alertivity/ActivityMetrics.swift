@@ -1,10 +1,16 @@
 import Foundation
 
 struct ProcessUsage: Identifiable, Hashable, Sendable {
+    enum Trigger: String, Sendable {
+        case cpu
+        case memory
+    }
+
     let pid: Int32
     let command: String
     let cpuPercent: Double
     let memoryPercent: Double
+    let triggers: Set<Trigger>
 
     var id: Int32 { pid }
 
@@ -28,10 +34,18 @@ struct ProcessUsage: Identifiable, Hashable, Sendable {
         displayName
     }
 
+    var triggeredByCPU: Bool {
+        triggers.contains(.cpu)
+    }
+
+    var triggeredByMemory: Bool {
+        triggers.contains(.memory)
+    }
+
     static let preview: [ProcessUsage] = [
-        ProcessUsage(pid: 1234, command: "/Applications/Xcode.app/Contents/MacOS/Xcode", cpuPercent: 0.82, memoryPercent: 0.14),
-        ProcessUsage(pid: 5678, command: "/Applications/Safari.app/Contents/MacOS/Safari", cpuPercent: 0.34, memoryPercent: 0.09),
-        ProcessUsage(pid: 9012, command: "/usr/bin/Terminal", cpuPercent: 0.21, memoryPercent: 0.04)
+        ProcessUsage(pid: 1234, command: "/Applications/Xcode.app/Contents/MacOS/Xcode", cpuPercent: 0.82, memoryPercent: 0.14, triggers: [.cpu]),
+        ProcessUsage(pid: 5678, command: "/Applications/Safari.app/Contents/MacOS/Safari", cpuPercent: 0.34, memoryPercent: 0.09, triggers: [.cpu]),
+        ProcessUsage(pid: 9012, command: "/usr/bin/Terminal", cpuPercent: 0.21, memoryPercent: 0.18, triggers: [.memory])
     ]
 }
 
@@ -96,24 +110,76 @@ extension ActivityMetrics {
         memoryTotal: Measurement(value: 16, unit: .gigabytes),
         runningProcesses: 134,
         network: NetworkMetrics(
-            receivedBytesPerSecond: 6_300_000,
-            sentBytesPerSecond: 4_800_000
+            receivedBytesPerSecond: 2_200_000,
+            sentBytesPerSecond: 1_600_000
         ),
-        disk: DiskMetrics(readBytesPerSecond: 12_000_000, writeBytesPerSecond: 9_500_000),
+        disk: DiskMetrics(readBytesPerSecond: 8_000_000, writeBytesPerSecond: 5_500_000),
         highActivityProcesses: ProcessUsage.preview
     )
 
     static let previewCritical = ActivityMetrics(
         cpuUsage: 0.92,
-        memoryUsed: Measurement(value: 14, unit: .gigabytes),
+        memoryUsed: Measurement(value: 10, unit: .gigabytes),
         memoryTotal: Measurement(value: 16, unit: .gigabytes),
         runningProcesses: 162,
         network: NetworkMetrics(
-            receivedBytesPerSecond: 12_400_000,
-            sentBytesPerSecond: 9_600_000
+            receivedBytesPerSecond: 2_400_000,
+            sentBytesPerSecond: 1_800_000
         ),
-        disk: DiskMetrics(readBytesPerSecond: 95_000_000, writeBytesPerSecond: 72_000_000),
+        disk: DiskMetrics(readBytesPerSecond: 9_000_000, writeBytesPerSecond: 7_000_000),
         highActivityProcesses: ProcessUsage.preview
+    )
+
+    static let previewMultiElevated = ActivityMetrics(
+        cpuUsage: 0.64,
+        memoryUsed: Measurement(value: 25, unit: .gigabytes),
+        memoryTotal: Measurement(value: 32, unit: .gigabytes),
+        runningProcesses: 140,
+        network: NetworkMetrics(
+            receivedBytesPerSecond: 7_200_000,
+            sentBytesPerSecond: 5_600_000
+        ),
+        disk: DiskMetrics(readBytesPerSecond: 18_000_000, writeBytesPerSecond: 12_000_000),
+        highActivityProcesses: ProcessUsage.preview
+    )
+
+    static let previewCriticalWithMemoryElevated = ActivityMetrics(
+        cpuUsage: 0.88,
+        memoryUsed: Measurement(value: 25, unit: .gigabytes),
+        memoryTotal: Measurement(value: 32, unit: .gigabytes),
+        runningProcesses: 150,
+        network: NetworkMetrics(
+            receivedBytesPerSecond: 2_000_000,
+            sentBytesPerSecond: 1_500_000
+        ),
+        disk: DiskMetrics(readBytesPerSecond: 8_000_000, writeBytesPerSecond: 6_000_000),
+        highActivityProcesses: ProcessUsage.preview
+    )
+
+    static let previewMultiCritical = ActivityMetrics(
+        cpuUsage: 0.88,
+        memoryUsed: Measurement(value: 27, unit: .gigabytes),
+        memoryTotal: Measurement(value: 32, unit: .gigabytes),
+        runningProcesses: 158,
+        network: NetworkMetrics(
+            receivedBytesPerSecond: 22_000_000,
+            sentBytesPerSecond: 18_000_000
+        ),
+        disk: DiskMetrics(readBytesPerSecond: 110_000_000, writeBytesPerSecond: 86_000_000),
+        highActivityProcesses: ProcessUsage.preview
+    )
+
+    static let previewDiskCritical = ActivityMetrics(
+        cpuUsage: 0.32,
+        memoryUsed: Measurement(value: 10, unit: .gigabytes),
+        memoryTotal: Measurement(value: 32, unit: .gigabytes),
+        runningProcesses: 112,
+        network: NetworkMetrics(
+            receivedBytesPerSecond: 2_400_000,
+            sentBytesPerSecond: 1_900_000
+        ),
+        disk: DiskMetrics(readBytesPerSecond: 120_000_000, writeBytesPerSecond: 104_000_000),
+        highActivityProcesses: []
     )
 }
 

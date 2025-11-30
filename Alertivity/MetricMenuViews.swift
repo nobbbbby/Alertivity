@@ -278,9 +278,9 @@ struct MetricMenuBarLabel: View {
             if isVisible {
                 switch iconType {
                 case .status:
-                    Image(systemName: status.symbolName)
+                    Image(systemName: displayStatus.symbolName)
                         .symbolRenderingMode(.palette)
-                        .foregroundStyle(status.iconTint ?? .primary, .secondary)
+                        .foregroundStyle(displayStatus.iconTint ?? .primary, .secondary)
                 case .cpu, .memory, .disk, .network:
                     if let selection = iconType.metricSelection {
                         MetricMenuLabel(
@@ -308,12 +308,16 @@ struct MetricMenuBarLabel: View {
             return "\(selection.shortLabel) \(selection.formattedValue(for: metrics))"
         }
 
-        return status.title
+        return displayStatus.title(for: metrics)
     }
 
     private func tint(for selection: MetricMenuSelection, metrics: ActivityMetrics) -> Color? {
-        guard status.level != .normal else { return nil }
+        guard displayStatus.level != .normal else { return nil }
         return StatusColorPalette.color(for: metrics.severity(for: selection))
+    }
+
+    private var displayStatus: ActivityStatus {
+        ActivityStatus(metrics: metrics)
     }
 }
 
@@ -421,23 +425,26 @@ private enum MenuBarStackedRenderer {
 #Preview("Metric Menu Components") {
     VStack(alignment: .leading, spacing: 24) {
         HStack(spacing: 16) {
+            let criticalMetrics = ActivityMetrics.previewCritical
             MetricMenuBarLabel(
-                status: .elevated,
-                metrics: .previewCritical,
+                status: ActivityStatus(metrics: criticalMetrics),
+                metrics: criticalMetrics,
                 isVisible: true,
                 iconType: .status,
                 showIcon: false
             )
+            let normalMetrics = ActivityMetrics.previewNormal
             MetricMenuBarLabel(
-                status: .normal,
-                metrics: .previewNormal,
+                status: ActivityStatus(metrics: normalMetrics),
+                metrics: normalMetrics,
                 isVisible: true,
                 iconType: .cpu,
                 showIcon: false
             )
+            let networkMetrics = ActivityMetrics.previewNormal
             MetricMenuBarLabel(
-                status: .normal,
-                metrics: .previewNormal,
+                status: ActivityStatus(metrics: networkMetrics),
+                metrics: networkMetrics,
                 isVisible: true,
                 iconType: .network,
                 showIcon: true

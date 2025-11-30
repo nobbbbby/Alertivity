@@ -45,11 +45,8 @@ struct SettingsView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
-            }
-            .padding(tabPadding)
-            .tabItem { Label("Notifications", systemImage: "bell") }
 
-            VStack(alignment: .leading, spacing: 12) {
+
                 DetectionSettingsFields(
                     highActivityDurationSeconds: $settings.highActivityDurationSeconds,
                     highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
@@ -61,9 +58,8 @@ struct SettingsView: View {
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
-            .tabItem { Label("Detection", systemImage: "gearshape") }
+            .tabItem { Label("Notifications", systemImage: "bell") }
         }
         .frame(minWidth: 420)
     }
@@ -90,9 +86,7 @@ struct NoticePreferencesView: View {
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
-        }
 
-        Section("Detection") {
             DetectionSettingsFields(
                 highActivityDurationSeconds: $settings.highActivityDurationSeconds,
                 highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
@@ -109,23 +103,24 @@ struct NoticePreferencesView: View {
 
 struct MenuStatusView: View {
     let metrics: ActivityMetrics
-    let status: ActivityStatus
 
     var body: some View {
+        let displayStatus = ActivityStatus(metrics: metrics)
+
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .center, spacing: 8) {
-                Image(systemName: status.symbolName)
+                Image(systemName: displayStatus.symbolName)
                     .symbolRenderingMode(.palette)
-                    .foregroundStyle(status.iconTint ?? .primary, .secondary)
+                    .foregroundStyle(displayStatus.iconTint ?? .primary, .secondary)
                     .font(.system(size: 18, weight: .medium))
 
-                Text(status.title)
+                Text(displayStatus.title(for: metrics))
                     .font(.system(size: 15, weight: .semibold))
 
                 Spacer(minLength: 0)
             }
 
-            Text(status.message(for: metrics))
+            Text(displayStatus.menuSummary(for: metrics))
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .lineLimit(nil)
@@ -154,7 +149,7 @@ struct MenuStatusView: View {
                     value: "↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s"
                 )
                 
-                if status.trigger != .disk && !metrics.highActivityProcesses.isEmpty {
+                if displayStatus.trigger != .disk && !metrics.highActivityProcesses.isEmpty {
                     Divider()
                     Text("High-activity processes")
                         .font(.callout.weight(.semibold))
@@ -250,7 +245,12 @@ private struct MenuProcessRow: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             
-            Text("CPU \(process.cpuDescription) • Mem \(process.memoryDescription)")
+            let cpuText = Text("CPU \(process.cpuDescription)")
+                .fontWeight(process.triggeredByCPU ? .semibold : .regular)
+            let memoryText = Text("Mem \(process.memoryDescription)")
+                .fontWeight(process.triggeredByMemory ? .semibold : .regular)
+            
+            (cpuText + Text(" • ") + memoryText)
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .lineLimit(.none)
@@ -325,21 +325,80 @@ private struct NoticePreferencesPreviewContainer: View {
 
 
 #Preview("Menu Status – Normal") {
-    MenuStatusView(metrics: .previewNormal, status: .normal)
+    MenuStatusView(metrics: .previewNormal)
         .frame(width: 240)
         .padding()
 }
 
 #Preview("Menu Status – Elevated") {
-    MenuStatusView(metrics: .previewElevated, status: .elevated)
+    MenuStatusView(metrics: .previewElevated)
         .frame(width: 240)
         .padding()
 }
 
 #Preview("Menu Status – Critical") {
-    MenuStatusView(metrics: .previewCritical, status: .critical)
+    MenuStatusView(metrics: .previewCritical)
         .frame(width: 240)
         .padding()
+}
+
+#Preview("Menu Status – Multi Elevated") {
+    let metrics = ActivityMetrics.previewMultiElevated
+    MenuStatusView(metrics: metrics)
+        .frame(width: 240)
+        .padding()
+}
+
+#Preview("Menu Status – Critical + Elevated") {
+    let metrics = ActivityMetrics.previewCriticalWithMemoryElevated
+    MenuStatusView(metrics: metrics)
+        .frame(width: 240)
+        .padding()
+}
+
+#Preview("Menu Status – Multi Critical") {
+    let metrics = ActivityMetrics.previewMultiCritical
+    MenuStatusView(metrics: metrics)
+        .frame(width: 240)
+        .padding()
+}
+
+#Preview("Menu Status – Disk Critical") {
+    let metrics = ActivityMetrics.previewDiskCritical
+    MenuStatusView(metrics: metrics)
+        .frame(width: 240)
+        .padding()
+}
+
+#Preview("Status Messages") {
+    let samples: [(title: String, metrics: ActivityMetrics)] = [
+        ("Normal", .previewNormal),
+        ("Elevated CPU", .previewElevated),
+        ("Critical CPU", .previewCritical),
+        ("Critical CPU + Memory Elevated", .previewCriticalWithMemoryElevated)
+    ]
+
+    VStack(alignment: .leading, spacing: 12) {
+        ForEach(Array(samples.enumerated()), id: \.0) { _, sample in
+            let status = ActivityStatus(metrics: sample.metrics)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(sample.title)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(status.title(for: sample.metrics))
+                    .font(.headline)
+                Text(status.message(for: sample.metrics))
+                    .font(.subheadline)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(.thinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+    }
+    .padding()
+    .frame(width: 420, alignment: .leading)
 }
 
 
@@ -349,7 +408,8 @@ private struct NoticePreferencesPreviewContainer: View {
         pid: 4242,
         command: "/Applications/Preview.app/Contents/MacOS/Preview",
         cpuPercent: 0.42,
-        memoryPercent: 0.08
+        memoryPercent: 0.08,
+        triggers: [.cpu]
     )
 
     MenuProcessRow(process: sample)

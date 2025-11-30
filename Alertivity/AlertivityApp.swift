@@ -19,7 +19,7 @@ struct AlertivityApp: App {
             isInserted: $isMenuBarInserted
         ) {
             VStack(alignment: .leading, spacing: 5) {
-                MenuStatusView(metrics: monitor.metrics, status: monitor.status).padding(6)
+                MenuStatusView(metrics: monitor.metrics).padding(6)
 
                 Divider()
                 if #available(macOS 14.0, *) {
@@ -48,8 +48,8 @@ struct AlertivityApp: App {
             .onChange(of: settings.highActivityMemoryThresholdPercent, perform: applyHighActivityMemoryThresholdUpdate)
             .onChange(of: settings.hideDockIcon, perform: applyDockVisibility)
             .onChange(of: settings.launchAtLogin, perform: applyLaunchAtLogin)
-            .onChange(of: settings.isMenuIconEnabled) { _ in updateMenuBarInsertion(for: monitor.status) }
-            .onChange(of: settings.menuIconOnlyWhenHigh) { _ in updateMenuBarInsertion(for: monitor.status) }
+            .onChange(of: settings.isMenuIconEnabled) { _ in updateMenuBarInsertion(for: ActivityStatus(metrics: monitor.metrics)) }
+            .onChange(of: settings.menuIconOnlyWhenHigh) { _ in updateMenuBarInsertion(for: ActivityStatus(metrics: monitor.metrics)) }
             .onChange(of: settings.notificationsEnabled) { newValue in
                 if newValue {
                     notificationManager.requestAuthorizationIfNeeded()
@@ -98,6 +98,7 @@ struct AlertivityApp: App {
         if settings.notificationsEnabled {
             notificationManager.postNotificationIfNeeded(for: monitor.status, metrics: newMetrics)
         }
+        updateMenuBarInsertion(for: ActivityStatus(metrics: newMetrics))
     }
 
     private func applyHighActivityDurationUpdate(for value: Int) {
@@ -106,6 +107,7 @@ struct AlertivityApp: App {
             settings.highActivityDurationSeconds = normalized
         } else {
             monitor.highActivityDuration = TimeInterval(normalized)
+            notificationManager.highActivityDuration = TimeInterval(normalized)
         }
     }
 
@@ -283,7 +285,7 @@ private struct MenuBarLabelLifecycleView: View {
 
     var body: some View {
         MetricMenuBarLabel(
-            status: monitor.status,
+            status: displayStatus,
             metrics: monitor.metrics,
             isVisible: isMenuIconVisible,
             iconType: resolvedIconType,
@@ -311,7 +313,7 @@ private struct MenuBarLabelLifecycleView: View {
 
     private var isMenuIconVisible: Bool {
         guard isMenuIconEnabled else { return false }
-        return menuIconOnlyWhenHigh ? monitor.status.level == .critical : true
+        return menuIconOnlyWhenHigh ? displayStatus.level == .critical : true
     }
 
     private var resolvedIconType: MenuIconType {
@@ -355,6 +357,10 @@ private struct MenuBarLabelLifecycleView: View {
             pendingAutoSwitchSelection = nil
             pendingAutoSwitchSamples = 0
         }
+    }
+
+    private var displayStatus: ActivityStatus {
+        ActivityStatus(metrics: monitor.metrics)
     }
 }
 

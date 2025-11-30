@@ -6,6 +6,9 @@ final class NotificationManager: NSObject, ObservableObject {
     private var lastNotificationDate: Date?
     private let throttleInterval: TimeInterval = 60 * 10
     private var authorizationStatus: UNAuthorizationStatus = .notDetermined
+    var highActivityDuration: TimeInterval = 120
+    private var criticalConditionStartDate: Date?
+    private var criticalConditionSignature: CriticalSignature?
 
     private enum Category {
         static let criticalProcess = "enhancedActivityMonitor.criticalProcess"
@@ -14,6 +17,10 @@ final class NotificationManager: NSObject, ObservableObject {
     private enum Action {
         static let focusProcess = "enhancedActivityMonitor.focusProcess"
         static let killProcess = "enhancedActivityMonitor.killProcess"
+    }
+
+    private struct CriticalSignature: Equatable {
+        let trigger: ActivityStatus.TriggerMetric
     }
 
     override init() {
@@ -36,6 +43,10 @@ final class NotificationManager: NSObject, ObservableObject {
     }
 
     func postNotificationIfNeeded(for status: ActivityStatus, metrics: ActivityMetrics) {
+        // Align status/title/content to the metrics snapshot we are notifying about to avoid mismatched summaries.
+        let metricsStatus = ActivityStatus(metrics: metrics)
+        let resolvedStatus = metricsStatus == status ? status : metricsStatus
+
         let isAuthorized: Bool
         switch authorizationStatus {
         case .authorized, .provisional:
@@ -46,15 +57,23 @@ final class NotificationManager: NSObject, ObservableObject {
         guard isAuthorized else { return }
         let hasHighActivityProcess = !metrics.highActivityProcesses.isEmpty
 
+        let hasCriticalDwell: Bool
+        if resolvedStatus.level == .critical {
+            hasCriticalDwell = evaluateCriticalDwell(for: resolvedStatus, metrics: metrics)
+        } else {
+            resetCriticalDwell()
+            hasCriticalDwell = false
+        }
+
         let shouldNotifyForCriticalState: Bool
-        if status.level == .critical, let trigger = status.trigger {
-            shouldNotifyForCriticalState = trigger == .cpu || trigger == .memory
+        if resolvedStatus.level == .critical, let trigger = resolvedStatus.trigger {
+            shouldNotifyForCriticalState = hasCriticalDwell && (trigger == .cpu || trigger == .memory || trigger == .disk)
         } else {
             shouldNotifyForCriticalState = false
         }
 
         guard shouldNotifyForCriticalState || hasHighActivityProcess else { return }
-        let trigger = status.trigger
+        let trigger = resolvedStatus.trigger
 
         let now = Date()
         if let last = lastNotificationDate, now.timeIntervalSince(last) < throttleInterval {
@@ -62,8 +81,8 @@ final class NotificationManager: NSObject, ObservableObject {
         }
 
         let content = UNMutableNotificationContent()
-        content.title = status.notificationTitle(for: metrics)
-        content.body = status.message(for: metrics)
+        content.title = resolvedStatus.notificationTitle(for: metrics)
+        content.body = hasHighActivityProcess ? "" : resolvedStatus.message(for: metrics)
         content.sound = .default
 
         var userInfo: [String: Any] = [:]
@@ -71,17 +90,19 @@ final class NotificationManager: NSObject, ObservableObject {
         if let trigger {
             userInfo["triggerMetric"] = trigger.rawValue
         }
-        if let value = status.triggerValue(for: metrics) {
+        if let value = resolvedStatus.triggerValue(for: metrics) {
             userInfo["triggerValue"] = value
         }
 
-        if let culprit = metrics.highActivityProcesses.first, trigger != .disk {
-            content.subtitle = "\(culprit.displayName) is using \(culprit.cpuDescription)"
+        if let culprit = metrics.highActivityProcesses.first {
+            content.subtitle = culprit.displayName
+            content.body = metricDescription(for: culprit)
             userInfo.merge([
                 "pid": NSNumber(value: culprit.pid),
                 "command": culprit.command,
                 "cpu": culprit.cpuPercent,
-                "memory": culprit.memoryPercent
+                "memory": culprit.memoryPercent,
+                "triggers": Array(culprit.triggers.map(\.rawValue))
             ]) { _, new in new }
             content.categoryIdentifier = Category.criticalProcess
         }
@@ -125,6 +146,51 @@ final class NotificationManager: NSObject, ObservableObject {
 
         notificationCenter.setNotificationCategories([category])
     }
+
+    private func evaluateCriticalDwell(for status: ActivityStatus, metrics: ActivityMetrics) -> Bool {
+        guard metrics.hasLiveData, status.level == .critical, let trigger = status.trigger else {
+            resetCriticalDwell()
+            return false
+        }
+
+        let signature = CriticalSignature(trigger: trigger)
+        if criticalConditionSignature != signature {
+            criticalConditionSignature = signature
+            criticalConditionStartDate = Date()
+            return false
+        }
+
+        guard let start = criticalConditionStartDate else {
+            criticalConditionStartDate = Date()
+            return false
+        }
+
+        return Date().timeIntervalSince(start) >= highActivityDuration
+    }
+
+    private func resetCriticalDwell() {
+        criticalConditionSignature = nil
+        criticalConditionStartDate = nil
+    }
+
+    private func metricDescription(for process: ProcessUsage) -> String {
+        let durationText = "\(Int(highActivityDuration.rounded()))s"
+        let components: [String] = [
+            process.triggeredByCPU ? "\(process.cpuDescription) CPU" : nil,
+            process.triggeredByMemory ? "\(process.memoryDescription) memory" : nil
+        ].compactMap { $0 }
+
+        if components.isEmpty {
+            return "High activity for \(durationText) consecutively."
+        }
+
+        if components.count == 1, let only = components.first {
+            return "Using \(only) for \(durationText) consecutively."
+        }
+
+        let joined = components.joined(separator: " and ")
+        return "Using \(joined) for \(durationText) consecutively."
+    }
 }
 
 extension NotificationManager: UNUserNotificationCenterDelegate {
@@ -151,11 +217,14 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
 
         let cpu = (info["cpu"] as? NSNumber)?.doubleValue ?? 0
         let memory = (info["memory"] as? NSNumber)?.doubleValue ?? 0
+        let triggersRaw = info["triggers"] as? [String] ?? []
+        let triggers = Set(triggersRaw.compactMap(ProcessUsage.Trigger.init(rawValue:)))
         let process = ProcessUsage(
             pid: pidValue,
             command: command,
             cpuPercent: cpu,
-            memoryPercent: memory
+            memoryPercent: memory,
+            triggers: triggers.isEmpty ? [.cpu] : triggers
         )
 
         switch response.actionIdentifier {

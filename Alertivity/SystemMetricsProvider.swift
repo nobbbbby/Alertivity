@@ -394,16 +394,23 @@ final class SystemMetricsProvider {
             }
 
             let command = String(parts[3])
+            let normalizedCPU = max(cpuValue / 100, 0)
+            let normalizedMemory = min(max(memoryValue / 100, 0), 1)
+            let exceedsCPU = normalizedCPU >= highActivityCPUThreshold
+            let exceedsMemory = normalizedMemory >= highActivityMemoryThreshold
+            guard exceedsCPU || exceedsMemory else { continue }
+
+            var triggers: Set<ProcessUsage.Trigger> = []
+            if exceedsCPU { triggers.insert(.cpu) }
+            if exceedsMemory { triggers.insert(.memory) }
+
             let usage = ProcessUsage(
                 pid: pidValue,
                 command: command,
-                cpuPercent: max(cpuValue / 100, 0),
-                memoryPercent: min(max(memoryValue / 100, 0), 1)
+                cpuPercent: normalizedCPU,
+                memoryPercent: normalizedMemory,
+                triggers: triggers
             )
-
-            let exceedsCPU = usage.cpuPercent >= highActivityCPUThreshold
-            let exceedsMemory = usage.memoryPercent >= highActivityMemoryThreshold
-            guard exceedsCPU || exceedsMemory else { continue }
 
             usages.append(usage)
             if usages.count >= highActivityProcessLimit { break }
