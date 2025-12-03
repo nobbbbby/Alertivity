@@ -3,20 +3,27 @@ import Foundation
 import Darwin
 
 enum ProcessActions {
+    // Test hooks
+    static var activityMonitorURLProvider: () -> URL? = {
+        NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.ActivityMonitor")
+    }
+    static var openApplication: (URL, NSWorkspace.OpenConfiguration) -> Void = { url, configuration in
+        NSWorkspace.shared.openApplication(at: url, configuration: configuration, completionHandler: nil)
+    }
+    static var appleScriptRunner: (_ source: String) -> Void = { source in
+        guard let script = NSAppleScript(source: source) else { return }
+        var errorInfo: NSDictionary?
+        script.executeAndReturnError(&errorInfo)
+    }
+    static var killHandler: (_ pid: pid_t, _ signal: Int32) -> Int32 = { pid, signal in
+        kill(pid, signal)
+    }
+
     static func revealInActivityMonitor(_ process: ProcessUsage) {
-        if #available(macOS 11.0, *) {
-            if let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.ActivityMonitor") {
-                let configuration = NSWorkspace.OpenConfiguration()
-                configuration.activates = true
-                NSWorkspace.shared.openApplication(at: url, configuration: configuration, completionHandler: nil)
-            }
-        } else {
-            _ = NSWorkspace.shared.launchApplication(
-                withBundleIdentifier: "com.apple.ActivityMonitor",
-                options: [],
-                additionalEventParamDescriptor: nil,
-                launchIdentifier: nil
-            )
+        if let url = activityMonitorURLProvider() {
+            let configuration = NSWorkspace.OpenConfiguration()
+            configuration.activates = true
+            openApplication(url, configuration)
         }
 
         let searchTerm = process.searchTerm.appleScriptEscaped
@@ -38,28 +45,32 @@ enum ProcessActions {
         end tell
         """
 
-        runAppleScript(script)
+        appleScriptRunner(script)
     }
 
     static func terminate(_ process: ProcessUsage) {
         let pid = process.pid
         guard pid > 0 else { return }
-        let terminateResult = kill(pid, SIGTERM)
+        let terminateResult = killHandler(pid, SIGTERM)
         if terminateResult != 0 {
-            _ = kill(pid, SIGKILL)
+            _ = killHandler(pid, SIGKILL)
         }
-    }
-
-    private static func runAppleScript(_ source: String) {
-        guard let script = NSAppleScript(source: source) else { return }
-        var errorInfo: NSDictionary?
-        script.executeAndReturnError(&errorInfo)
     }
 }
 
-private extension String {
+extension String {
     var appleScriptEscaped: String {
-        replacingOccurrences(of: "\\", with: "\\\\")
-            .replacingOccurrences(of: "\"", with: "\\\"")
+        var result = ""
+        for character in self {
+            switch character {
+            case "\\":
+                result.append("\\\\") // Escape backslash once for AppleScript string literal
+            case "\"":
+                result.append("\\\\\"")
+            default:
+                result.append(character)
+            }
+        }
+        return result
     }
 }

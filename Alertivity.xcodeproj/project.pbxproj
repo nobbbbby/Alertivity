@@ -6,8 +6,67 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AA000000000000000000010E /* SystemMetricsProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000103 /* SystemMetricsProviderTests.swift */; };
+		AA000000000000000000020A /* ActivityStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000200 /* ActivityStatusTests.swift */; };
+		AA000000000000000000020B /* ActivityMonitorIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000201 /* ActivityMonitorIntegrationTests.swift */; };
+		AA000000000000000000020C /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000202 /* NotificationManagerTests.swift */; };
+		AA000000000000000000020D /* SettingsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000203 /* SettingsStoreTests.swift */; };
+		AA000000000000000000020E /* HighActivityProcessFilteringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000204 /* HighActivityProcessFilteringTests.swift */; };
+		AA000000000000000000020F /* TestExpectations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000205 /* TestExpectations.swift */; };
+		AA0000000000000000000211 /* TestDataBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000210 /* TestDataBuilders.swift */; };
+		AA0000000000000000000212 /* ActivityMetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000213 /* ActivityMetricsTests.swift */; };
+		AA0000000000000000000214 /* ProcessUsageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000215 /* ProcessUsageTests.swift */; };
+		AA0000000000000000000216 /* ProcessActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000217 /* ProcessActionsTests.swift */; };
+		AA0000000000000000000402 /* MetricMenuViewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000400 /* MetricMenuViewsTests.swift */; };
+		AA0000000000000000000403 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000401 /* ContentViewTests.swift */; };
+		AA0000000000000000000303 /* AlertivityUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000302 /* AlertivityUITests.swift */; };
+		AA0000000000000000000305 /* Alertivity.app in Embed App */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000003 /* Alertivity.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA0000000000000000000107 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000002;
+			remoteInfo = Alertivity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA000000000000000000030A /* Embed App */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA0000000000000000000305 /* Alertivity.app in Embed App */,
+			);
+			name = "Embed App";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		AA0000000000000000000003 /* Alertivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alertivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000101 /* AlertivityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertivityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000103 /* SystemMetricsProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMetricsProviderTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000200 /* ActivityStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStatusTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000201 /* ActivityMonitorIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMonitorIntegrationTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000202 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000203 /* SettingsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStoreTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000204 /* HighActivityProcessFilteringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighActivityProcessFilteringTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000205 /* TestExpectations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExpectations.swift; sourceTree = "<group>"; };
+		AA0000000000000000000210 /* TestDataBuilders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataBuilders.swift; sourceTree = "<group>"; };
+		AA0000000000000000000213 /* ActivityMetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMetricsTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000215 /* ProcessUsageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessUsageTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000217 /* ProcessActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessActionsTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000400 /* MetricMenuViewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricMenuViewsTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000401 /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
+		AA0000000000000000000301 /* AlertivityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertivityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000302 /* AlertivityUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertivityUITests.swift; sourceTree = "<group>"; };
+		C9055CF22EE03257002E5DF4 /* Alertivity.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Alertivity.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -24,11 +83,31 @@
 		C96C6D5E2E9F8D57006AAF07 /* Alertivity */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C96C6D6B2E9F8D57006AAF07 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Alertivity; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		AA0000000000000000000105 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		AA0000000000000000000004 = {
 			isa = PBXGroup;
 			children = (
+				C9055CF22EE03257002E5DF4 /* Alertivity.xctestplan */,
 				C96C6D5E2E9F8D57006AAF07 /* Alertivity */,
+				AA0000000000000000000102 /* AlertivityTests */,
+				AA0000000000000000000300 /* AlertivityUITests */,
 				AA0000000000000000000019,
 			);
 			sourceTree = "<group>";
@@ -37,7 +116,37 @@
 			isa = PBXGroup;
 			children = (
 				AA0000000000000000000003 /* Alertivity.app */,
+				AA0000000000000000000101 /* AlertivityTests.xctest */,
+				AA0000000000000000000301 /* AlertivityUITests.xctest */,
 			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000102 /* AlertivityTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000200 /* ActivityStatusTests.swift */,
+				AA0000000000000000000201 /* ActivityMonitorIntegrationTests.swift */,
+				AA0000000000000000000202 /* NotificationManagerTests.swift */,
+				AA0000000000000000000203 /* SettingsStoreTests.swift */,
+				AA0000000000000000000204 /* HighActivityProcessFilteringTests.swift */,
+				AA0000000000000000000205 /* TestExpectations.swift */,
+				AA0000000000000000000210 /* TestDataBuilders.swift */,
+				AA0000000000000000000213 /* ActivityMetricsTests.swift */,
+				AA0000000000000000000215 /* ProcessUsageTests.swift */,
+				AA0000000000000000000217 /* ProcessActionsTests.swift */,
+				AA0000000000000000000400 /* MetricMenuViewsTests.swift */,
+				AA0000000000000000000401 /* ContentViewTests.swift */,
+				AA0000000000000000000103 /* SystemMetricsProviderTests.swift */,
+			);
+			path = AlertivityTests;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000300 /* AlertivityUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000302 /* AlertivityUITests.swift */,
+			);
+			path = AlertivityUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -62,6 +171,43 @@
 			productReference = AA0000000000000000000003 /* Alertivity.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AA0000000000000000000100 /* AlertivityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000108 /* Build configuration list for PBXNativeTarget "AlertivityTests" */;
+			buildPhases = (
+				AA0000000000000000000104 /* Sources */,
+				AA0000000000000000000105 /* Frameworks */,
+				AA000000000000000000010B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000106 /* PBXTargetDependency */,
+			);
+			name = AlertivityTests;
+			productName = AlertivityTests;
+			productReference = AA0000000000000000000101 /* AlertivityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AA0000000000000000000304 /* AlertivityUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000309 /* Build configuration list for PBXNativeTarget "AlertivityUITests" */;
+			buildPhases = (
+				AA0000000000000000000306 /* Sources */,
+				AA0000000000000000000307 /* Frameworks */,
+				AA0000000000000000000308 /* Resources */,
+				AA000000000000000000030A /* Embed App */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA000000000000000000030B /* PBXTargetDependency */,
+			);
+			name = AlertivityUITests;
+			productName = AlertivityUITests;
+			productReference = AA0000000000000000000301 /* AlertivityUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -75,6 +221,14 @@
 					AA0000000000000000000002 = {
 						CreatedOnToolsVersion = 15.0;
 						LastSwiftMigration = 1500;
+					};
+					AA0000000000000000000100 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AA0000000000000000000002;
+					};
+					AA0000000000000000000304 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AA0000000000000000000002;
 					};
 				};
 			};
@@ -91,12 +245,28 @@
 			projectRoot = "";
 			targets = (
 				AA0000000000000000000002 /* Alertivity */,
+				AA0000000000000000000100 /* AlertivityTests */,
+				AA0000000000000000000304 /* AlertivityUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AA000000000000000000002B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA000000000000000000010B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000308 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -113,7 +283,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA0000000000000000000104 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000000000000000000020A /* ActivityStatusTests.swift in Sources */,
+				AA000000000000000000020B /* ActivityMonitorIntegrationTests.swift in Sources */,
+				AA000000000000000000020C /* NotificationManagerTests.swift in Sources */,
+				AA000000000000000000020D /* SettingsStoreTests.swift in Sources */,
+				AA000000000000000000020E /* HighActivityProcessFilteringTests.swift in Sources */,
+				AA000000000000000000020F /* TestExpectations.swift in Sources */,
+				AA0000000000000000000211 /* TestDataBuilders.swift in Sources */,
+				AA0000000000000000000212 /* ActivityMetricsTests.swift in Sources */,
+				AA0000000000000000000214 /* ProcessUsageTests.swift in Sources */,
+				AA0000000000000000000216 /* ProcessActionsTests.swift in Sources */,
+				AA0000000000000000000402 /* MetricMenuViewsTests.swift in Sources */,
+				AA0000000000000000000403 /* ContentViewTests.swift in Sources */,
+				AA000000000000000000010E /* SystemMetricsProviderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA0000000000000000000306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000000000000000000303 /* AlertivityUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA0000000000000000000106 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000002 /* Alertivity */;
+			targetProxy = AA0000000000000000000107 /* PBXContainerItemProxy */;
+		};
+		AA000000000000000000030B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000002 /* Alertivity */;
+			targetProxy = AA0000000000000000000107 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA0000000000000000000031 /* Debug */ = {
@@ -175,7 +386,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = AlertivityInfo.plist;
+				INFOPLIST_FILE = Alertivity/Info.plist;
 				INFOPLIST_KEY_NSMainStoryboardFile = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -190,7 +401,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG DISABLE_PREVIEWS";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -249,7 +460,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = AlertivityInfo.plist;
+				INFOPLIST_FILE = Alertivity/Info.plist;
 				INFOPLIST_KEY_NSMainStoryboardFile = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -287,6 +498,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Nobby.Alertivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -312,6 +524,91 @@
 			};
 			name = Release;
 		};
+		AA0000000000000000000109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nobby.AlertivityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG DISABLE_PREVIEWS";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alertivity.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Alertivity";
+			};
+			name = Debug;
+		};
+		AA000000000000000000010A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nobby.AlertivityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alertivity.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Alertivity";
+			};
+			name = Release;
+		};
+		AA000000000000000000030C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nobby.AlertivityUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Alertivity;
+			};
+			name = Debug;
+		};
+		AA000000000000000000030D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6L6TBLCF9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Nobby.AlertivityUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Alertivity;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +626,24 @@
 			buildConfigurations = (
 				AA0000000000000000000034 /* Debug */,
 				AA0000000000000000000035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AA0000000000000000000108 /* Build configuration list for PBXNativeTarget "AlertivityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000109 /* Debug */,
+				AA000000000000000000010A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AA0000000000000000000309 /* Build configuration list for PBXNativeTarget "AlertivityUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA000000000000000000030C /* Debug */,
+				AA000000000000000000030D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

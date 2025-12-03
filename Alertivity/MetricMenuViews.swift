@@ -421,7 +421,7 @@ private enum MenuBarStackedRenderer {
     }
 }
 
-#if DEBUG
+#if DEBUG && !DISABLE_PREVIEWS
 #Preview("Metric Menu Components") {
     VStack(alignment: .leading, spacing: 24) {
         HStack(spacing: 16) {

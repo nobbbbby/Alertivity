@@ -273,7 +273,7 @@ private struct MenuProcessRow: View {
 
 // MARK: - Previews
 
-#if DEBUG
+#if DEBUG && !DISABLE_PREVIEWS
 private struct NoticePreferencesPreviewContainer: View {
     @StateObject private var settings: SettingsStore
 

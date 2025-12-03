@@ -1,11 +1,20 @@
 import Combine
 import Foundation
 
+protocol SystemMetricsProviding {
+    var highActivityDuration: TimeInterval { get set }
+    var highActivityCPUThreshold: Double { get set }
+    var highActivityMemoryThreshold: Double { get set }
+    func fetchMetrics() -> ActivityMetrics
+}
+
+extension SystemMetricsProvider: SystemMetricsProviding {}
+
 final class ActivityMonitor: ObservableObject {
     @Published private(set) var metrics: ActivityMetrics = .placeholder
     @Published private(set) var status: ActivityStatus = .normal
 
-    private let provider: SystemMetricsProvider
+    private var provider: SystemMetricsProviding
     private var timer: Timer?
     private let queue: DispatchQueue = DispatchQueue(label: "activity-monitor.queue")
     private var isMonitoring = false
@@ -17,7 +26,7 @@ final class ActivityMonitor: ObservableObject {
         status: ActivityStatus = .normal,
         autoStart: Bool = true,
         interval: TimeInterval = 5,
-        provider: SystemMetricsProvider = SystemMetricsProvider(),
+        provider: SystemMetricsProviding = SystemMetricsProvider(),
         highActivityDuration: TimeInterval = 120
     ) {
         self.provider = provider
@@ -45,6 +54,11 @@ final class ActivityMonitor: ObservableObject {
         timer?.invalidate()
         timer = nil
         isMonitoring = false
+    }
+
+    /// Test helper to apply a metrics snapshot without scheduling or timers.
+    func ingest(metrics: ActivityMetrics) {
+        update(with: metrics)
     }
 
     private func update(with metrics: ActivityMetrics) {

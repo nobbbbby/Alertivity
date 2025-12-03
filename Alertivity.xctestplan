@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "184C02F5-4747-4AA1-A9BB-D45B6CE71B67",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Alertivity.xcodeproj",
+      "identifier" : "AA0000000000000000000002",
+      "name" : "Alertivity"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Alertivity.xcodeproj",
+        "identifier" : "AA0000000000000000000100",
+        "name" : "AlertivityTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Alertivity.xcodeproj",
+        "identifier" : "AA0000000000000000000304",
+        "name" : "AlertivityUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -1,14 +1,26 @@
 import Foundation
 import UserNotifications
 
+protocol UserNotificationCentering: AnyObject {
+    var delegate: UNUserNotificationCenterDelegate? { get set }
+    func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping @Sendable (Bool, Error?) -> Void)
+    func notificationSettings() async -> UNNotificationSettings
+    func setNotificationCategories(_ categories: Set<UNNotificationCategory>)
+    func add(_ request: UNNotificationRequest, withCompletionHandler: (@Sendable (Error?) -> Void)?)
+}
+
+extension UNUserNotificationCenter: UserNotificationCentering {}
+
 final class NotificationManager: NSObject, ObservableObject {
-    private let notificationCenter = UNUserNotificationCenter.current()
+    private let notificationCenter: UserNotificationCentering
     private var lastNotificationDate: Date?
     private let throttleInterval: TimeInterval = 60 * 10
-    private var authorizationStatus: UNAuthorizationStatus = .notDetermined
+    private var authorizationStatus: UNAuthorizationStatus
     var highActivityDuration: TimeInterval = 120
     private var criticalConditionStartDate: Date?
     private var criticalConditionSignature: CriticalSignature?
+    private let now: () -> Date
+    private let authorizationStatusProvider: (() async -> UNAuthorizationStatus)?
 
     private enum Category {
         static let criticalProcess = "enhancedActivityMonitor.criticalProcess"
@@ -23,13 +35,20 @@ final class NotificationManager: NSObject, ObservableObject {
         let trigger: ActivityStatus.TriggerMetric
     }
 
-    override init() {
+    init(
+        notificationCenter: UserNotificationCentering = UNUserNotificationCenter.current(),
+        now: @escaping () -> Date = Date.init,
+        authorizationStatusProvider: (() async -> UNAuthorizationStatus)? = nil,
+        initialAuthorizationStatus: UNAuthorizationStatus? = nil
+    ) {
+        self.notificationCenter = notificationCenter
+        self.now = now
+        self.authorizationStatusProvider = authorizationStatusProvider
+        self.authorizationStatus = initialAuthorizationStatus ?? .notDetermined
         super.init()
-        notificationCenter.delegate = self
+        self.notificationCenter.delegate = self
         configureCategories()
-        Task {
-            await refreshAuthorizationStatus()
-        }
+        Task { await refreshAuthorizationStatus() }
     }
 
     func requestAuthorizationIfNeeded() {
@@ -75,8 +94,8 @@ final class NotificationManager: NSObject, ObservableObject {
         guard shouldNotifyForCriticalState || hasHighActivityProcess else { return }
         let trigger = resolvedStatus.trigger
 
-        let now = Date()
-        if let last = lastNotificationDate, now.timeIntervalSince(last) < throttleInterval {
+        let currentDate = now()
+        if let last = lastNotificationDate, currentDate.timeIntervalSince(last) < throttleInterval {
             return
         }
 
@@ -115,12 +134,17 @@ final class NotificationManager: NSObject, ObservableObject {
             trigger: nil
         )
 
-        notificationCenter.add(request)
-        lastNotificationDate = now
+        notificationCenter.add(request, withCompletionHandler: nil)
+        lastNotificationDate = currentDate
     }
 
     @MainActor
     private func refreshAuthorizationStatus() async {
+        if let authorizationStatusProvider {
+            authorizationStatus = await authorizationStatusProvider()
+            return
+        }
+
         let settings = await notificationCenter.notificationSettings()
         authorizationStatus = settings.authorizationStatus
     }
@@ -156,16 +180,16 @@ final class NotificationManager: NSObject, ObservableObject {
         let signature = CriticalSignature(trigger: trigger)
         if criticalConditionSignature != signature {
             criticalConditionSignature = signature
-            criticalConditionStartDate = Date()
+            criticalConditionStartDate = now()
             return false
         }
 
         guard let start = criticalConditionStartDate else {
-            criticalConditionStartDate = Date()
+            criticalConditionStartDate = now()
             return false
         }
 
-        return Date().timeIntervalSince(start) >= highActivityDuration
+        return now().timeIntervalSince(start) >= highActivityDuration
     }
 
     private func resetCriticalDwell() {

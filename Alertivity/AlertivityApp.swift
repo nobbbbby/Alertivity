@@ -425,7 +425,7 @@ private struct SettingsMenuLinkRow: View {
     }
 }
 
-#if DEBUG
+#if DEBUG && !DISABLE_PREVIEWS
 @available(macOS 14.0, *)
 #Preview("Settings Link") {
     SettingsMenuLinkRow()
