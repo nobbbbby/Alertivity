@@ -69,7 +69,7 @@ final class SettingsStore: ObservableObject {
         launchAtLogin = defaults.object(forKey: Keys.launchAtLogin) as? Bool ?? false
         isMenuIconEnabled = defaults.object(forKey: Keys.menuIconEnabled) as? Bool ?? true
         menuIconOnlyWhenHigh = defaults.object(forKey: Keys.menuIconOnlyWhenHigh) as? Bool ?? false
-        notificationsEnabled = defaults.object(forKey: Keys.notificationsEnabled) as? Bool ?? false
+        notificationsEnabled = defaults.object(forKey: Keys.notificationsEnabled) as? Bool ?? true
 
         if
             let storedMenuIconType = defaults.string(forKey: Keys.menuIconType),
@@ -80,10 +80,10 @@ final class SettingsStore: ObservableObject {
             menuIconType = .status
         }
 
-        showMetricIcon = defaults.object(forKey: Keys.showMetricIcon) as? Bool ?? false
-        isMenuIconAutoSwitchEnabled = defaults.object(forKey: Keys.autoSwitch) as? Bool ?? false
-        highActivityDurationSeconds = defaults.object(forKey: Keys.highActivityDuration) as? Int ?? 120
-        highActivityCPUThresholdPercent = defaults.object(forKey: Keys.highActivityCPUThreshold) as? Int ?? 20
-        highActivityMemoryThresholdPercent = defaults.object(forKey: Keys.highActivityMemoryThreshold) as? Int ?? 15
+        showMetricIcon = defaults.object(forKey: Keys.showMetricIcon) as? Bool ?? true
+        isMenuIconAutoSwitchEnabled = defaults.object(forKey: Keys.autoSwitch) as? Bool ?? true
+        highActivityDurationSeconds = defaults.object(forKey: Keys.highActivityDuration) as? Int ?? 60
+        highActivityCPUThresholdPercent = defaults.object(forKey: Keys.highActivityCPUThreshold) as? Int ?? 80
+        highActivityMemoryThresholdPercent = defaults.object(forKey: Keys.highActivityMemoryThreshold) as? Int ?? 25
     }
 }

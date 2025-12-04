@@ -214,9 +214,9 @@ extension ActivityMetrics {
 
     var diskSeverity: MetricSeverity {
         switch disk.totalBytesPerSecond {
-        case ..<20_000_000: // ~20 MB/s
+        case ..<30_000_000: // ~30 MB/s
             return .normal
-        case 20_000_000..<100_000_000: // ~20-100 MB/s
+        case 30_000_000..<120_000_000: // ~30-120 MB/s
             return .elevated
         default:
             return .critical

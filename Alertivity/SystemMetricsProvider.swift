@@ -21,7 +21,7 @@ final class SystemMetricsProvider {
     ]
 
     // CPU threshold (0.0 ... 1.0) a process must meet/exceed to be tracked as high activity
-    var highActivityCPUThreshold: Double = 0.2 {
+    var highActivityCPUThreshold: Double = 0.8 {
         didSet {
             let clamped = min(max(highActivityCPUThreshold, 0), 1)
             if clamped != highActivityCPUThreshold {
@@ -34,7 +34,7 @@ final class SystemMetricsProvider {
         }
     }
     // Memory threshold (0.0 ... 1.0) a process must meet/exceed to be tracked as high activity for memory pressure
-    var highActivityMemoryThreshold: Double = 0.15 {
+    var highActivityMemoryThreshold: Double = 0.25 {
         didSet {
             let clamped = min(max(highActivityMemoryThreshold, 0), 1)
             if clamped != highActivityMemoryThreshold {
@@ -47,7 +47,7 @@ final class SystemMetricsProvider {
         }
     }
 
-    var highActivityDuration: TimeInterval = 120 {
+    var highActivityDuration: TimeInterval = 60 {
         didSet {
             if highActivityDuration < 0 {
                 highActivityDuration = 0

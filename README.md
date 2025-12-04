@@ -14,9 +14,9 @@ Alertivity is a macOS menu bar utility that samples CPU, memory, disk, network, 
 - Xcode 15 or later with Swift 5 / SwiftUI
 
 ## Default thresholds
-- Status levels: CPU (<50 / 50–79 / ≥80%), Memory (<70 / 70–84 / ≥85% of total), Disk throughput (<20 MB/s / 20–99 MB/s / ≥100 MB/s aggregated read+write), Network throughput (<5 MB/s / 5–19 MB/s / ≥20 MB/s aggregated send+receive)
+- Status levels: CPU (<50 / 50–79 / ≥80%), Memory (<70 / 70–84 / ≥85% of total), Disk throughput (<30 MB/s / 30–119 MB/s / ≥120 MB/s aggregated read+write), Network throughput (<5 MB/s / 5–19 MB/s / ≥20 MB/s aggregated send+receive)
 - Auto-switch (busiest metric detection): triggers only on Critical severity using the above thresholds, honors priority CPU > Memory > Disk > Network, and requires two consecutive samples before switching
-- High-activity process list: CPU ≥20% sustained for 120s (Memory threshold is 15% but CPU drives the default rule)
+- High-activity process list: CPU ≥80% or Memory ≥25% sustained for 60s
 
 ## Build and Run
 1) Open `Alertivity.xcodeproj` in Xcode, select the `Alertivity` scheme, and press Run to launch the menu bar app.  

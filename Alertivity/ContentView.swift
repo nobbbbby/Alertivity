@@ -286,10 +286,10 @@ private struct NoticePreferencesPreviewContainer: View {
         store.notificationsEnabled = true
         store.menuIconType = .status
         store.showMetricIcon = true
-        store.isMenuIconAutoSwitchEnabled = false
-        store.highActivityDurationSeconds = highActivityDurationOptions[3]
-        store.highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[3]
-        store.highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[2]
+        store.isMenuIconAutoSwitchEnabled = true
+        store.highActivityDurationSeconds = highActivityDurationOptions[1]
+        store.highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[4]
+        store.highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[4]
         _settings = StateObject(wrappedValue: store)
     }
 
@@ -310,10 +310,10 @@ private struct NoticePreferencesPreviewContainer: View {
     store.menuIconOnlyWhenHigh = false
     store.showMetricIcon = true
     store.menuIconType = .status
-    store.isMenuIconAutoSwitchEnabled = false
-    store.highActivityDurationSeconds = highActivityDurationOptions[3]
-    store.highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[2]
-    store.highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[2]
+    store.isMenuIconAutoSwitchEnabled = true
+    store.highActivityDurationSeconds = highActivityDurationOptions[1]
+    store.highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[4]
+    store.highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[4]
     return SettingsView(settings: store)
         .frame(width: 520)
 }

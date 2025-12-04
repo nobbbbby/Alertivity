@@ -27,7 +27,7 @@ final class ActivityMonitor: ObservableObject {
         autoStart: Bool = true,
         interval: TimeInterval = 5,
         provider: SystemMetricsProviding = SystemMetricsProvider(),
-        highActivityDuration: TimeInterval = 120
+        highActivityDuration: TimeInterval = 60
     ) {
         self.provider = provider
         self.provider.highActivityDuration = highActivityDuration

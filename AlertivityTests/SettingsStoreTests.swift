@@ -17,13 +17,13 @@ private func makeIsolatedDefaults(_ name: String = UUID().uuidString) -> UserDef
         expectFalse(store.launchAtLogin)
         expectTrue(store.isMenuIconEnabled)
         expectFalse(store.menuIconOnlyWhenHigh)
-        expectFalse(store.notificationsEnabled)
+        expectTrue(store.notificationsEnabled)
         expectEqual(store.menuIconType, .status)
-        expectFalse(store.showMetricIcon)
-        expectFalse(store.isMenuIconAutoSwitchEnabled)
-        expectEqual(store.highActivityDurationSeconds, 120)
-        expectEqual(store.highActivityCPUThresholdPercent, 20)
-        expectEqual(store.highActivityMemoryThresholdPercent, 15)
+        expectTrue(store.showMetricIcon)
+        expectTrue(store.isMenuIconAutoSwitchEnabled)
+        expectEqual(store.highActivityDurationSeconds, 60)
+        expectEqual(store.highActivityCPUThresholdPercent, 80)
+        expectEqual(store.highActivityMemoryThresholdPercent, 25)
     }
 
     @Test

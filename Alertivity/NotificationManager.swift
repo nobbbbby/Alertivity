@@ -16,7 +16,7 @@ final class NotificationManager: NSObject, ObservableObject {
     private var lastNotificationDate: Date?
     private let throttleInterval: TimeInterval = 60 * 10
     private var authorizationStatus: UNAuthorizationStatus
-    var highActivityDuration: TimeInterval = 120
+    var highActivityDuration: TimeInterval = 60
     private var criticalConditionStartDate: Date?
     private var criticalConditionSignature: CriticalSignature?
     private let now: () -> Date

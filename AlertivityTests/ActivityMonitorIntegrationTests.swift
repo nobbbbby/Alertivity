@@ -3,9 +3,9 @@ import Foundation
 @testable import Alertivity
 
 private final class StubMetricsProvider: SystemMetricsProviding {
-    var highActivityDuration: TimeInterval = 120
-    var highActivityCPUThreshold: Double = 0.2
-    var highActivityMemoryThreshold: Double = 0.15
+    var highActivityDuration: TimeInterval = 60
+    var highActivityCPUThreshold: Double = 0.8
+    var highActivityMemoryThreshold: Double = 0.25
     var queue: [ActivityMetrics] = []
 
     func enqueue(_ metrics: ActivityMetrics) {

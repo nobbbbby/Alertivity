@@ -25,7 +25,7 @@ import Foundation
         let maturedResult = provider.simulateFilterHighActivity(processes: [process], at: maturedTimestamp)
         expectEqual(maturedResult.map { $0.pid }, [process.pid])
 
-        provider.highActivityCPUThreshold = 0.8
+        provider.highActivityCPUThreshold = 0.9
         expectTrue(provider.trackedProcessIDsForTesting.isEmpty, "Threshold change should clear cached tracking")
 
         let afterChangeTimestamp = maturedTimestamp.addingTimeInterval(0.5)
