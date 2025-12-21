@@ -28,7 +28,7 @@ enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
     var symbolName: String {
         switch self {
         case .status:
-            return "waveform"
+            return "waveform.path.ecg"
         case .cpu:
             return "cpu"
         case .memory:
