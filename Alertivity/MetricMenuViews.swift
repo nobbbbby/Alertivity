@@ -308,7 +308,7 @@ struct MetricMenuBarLabel: View {
             return "\(selection.shortLabel) \(selection.formattedValue(for: metrics))"
         }
 
-        return displayStatus.title(for: metrics)
+        return displayStatus.menuTitle(for: metrics)
     }
 
     private func tint(for selection: MetricMenuSelection, metrics: ActivityMetrics) -> Color? {

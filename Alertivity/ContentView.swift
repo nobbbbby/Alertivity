@@ -114,7 +114,7 @@ struct MenuStatusView: View {
                     .foregroundStyle(displayStatus.iconTint ?? .primary, .secondary)
                     .font(.system(size: 18, weight: .medium))
 
-                Text(displayStatus.title(for: metrics))
+                Text(displayStatus.menuTitle(for: metrics))
                     .font(.system(size: 15, weight: .semibold))
 
                 Spacer(minLength: 0)
@@ -385,7 +385,7 @@ private struct NoticePreferencesPreviewContainer: View {
                 Text(sample.title)
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                Text(status.title(for: sample.metrics))
+                Text(status.notificationTitle(for: sample.metrics))
                     .font(.headline)
                 Text(status.message(for: sample.metrics))
                     .font(.subheadline)

@@ -116,17 +116,30 @@ struct ActivityStatus: Sendable, Equatable {
         }
     }
 
-    func title(for metrics: ActivityMetrics) -> String {
+    private enum TitleStyle {
+        case menu
+        case notification
+    }
+
+    func menuTitle(for metrics: ActivityMetrics) -> String {
+        title(for: metrics, style: .menu)
+    }
+
+    func notificationTitle(for metrics: ActivityMetrics) -> String {
+        title(for: metrics, style: .notification)
+    }
+
+    private func title(for metrics: ActivityMetrics, style: TitleStyle) -> String {
         let alignedStatus = statusAligned(to: metrics)
         let criticalMetrics = metricsBySeverity(metrics, target: .critical)
         let elevatedMetrics = metricsBySeverity(metrics, target: .elevated)
 
         switch alignedStatus.level {
         case .normal:
-            return "System is stable"
+            return style == .menu ? "System Is Stable" : "System is stable"
         case .elevated:
             if elevatedMetrics.count > 1 {
-                return "Multiple metrics elevated"
+                return style == .menu ? "Multiple Metrics Elevated" : "Multiple metrics elevated"
             }
             if let elevated = elevatedMetrics.first {
                 return "Elevated \(metricDisplayName(elevated))"
@@ -138,21 +151,23 @@ struct ActivityStatus: Sendable, Equatable {
                 if criticalMetrics.count == 1, let onlyCritical = criticalMetrics.first {
                     criticalText = "Critical \(metricDisplayName(onlyCritical))"
                 } else {
-                    criticalText = "Critical \(listMetrics(criticalMetrics))"
+                    criticalText = style == .menu ? "Multiple Metrics Critical" : "Multiple metrics critical"
                 }
 
                 let elevatedText: String
                 if elevatedMetrics.count == 1, let onlyElevated = elevatedMetrics.first {
-                    elevatedText = "\(metricDisplayName(onlyElevated)) elevated"
+                    elevatedText = style == .menu
+                        ? "\(metricDisplayName(onlyElevated)) Elevated"
+                        : "\(metricDisplayName(onlyElevated)) elevated"
                 } else {
-                    elevatedText = "\(listMetrics(elevatedMetrics)) elevated"
+                    elevatedText = style == .menu ? "Multiple Metrics Elevated" : "Multiple metrics elevated"
                 }
 
                 return "\(criticalText); \(elevatedText)"
             }
 
             if criticalMetrics.count > 1 {
-                return "Multiple metrics critical"
+                return style == .menu ? "Multiple Metrics Critical" : "Multiple metrics critical"
             }
 
             if let onlyCritical = criticalMetrics.first {
@@ -176,32 +191,24 @@ struct ActivityStatus: Sendable, Equatable {
         return metricSummaries.joined(separator: ", ")
     }
 
-    func notificationTitle(for metrics: ActivityMetrics) -> String {
-        title(for: metrics)
-    }
-
     func menuSummary(for metrics: ActivityMetrics) -> String {
         guard metrics.hasLiveData else {
             return "Collecting live metrics…"
         }
 
-        let criticalMetrics = metricsBySeverity(metrics, target: .critical)
-        let elevatedMetrics = metricsBySeverity(metrics, target: .elevated)
-        var metricSummaries: [String] = []
-
-        if !criticalMetrics.isEmpty {
-            metricSummaries.append(menuRationale(for: criticalMetrics, severity: .critical))
-        }
-
-        if !elevatedMetrics.isEmpty {
-            metricSummaries.append(menuRationale(for: elevatedMetrics, severity: .elevated))
-        }
-
-        if metricSummaries.isEmpty {
+        let nonNormal = nonNormalMetrics(metrics)
+        if nonNormal.isEmpty {
             return "Everything looks healthy."
         }
 
-        return metricSummaries.joined(separator: "; ")
+        if nonNormal.count == 1, let only = nonNormal.first {
+            return menuSingleSummary(for: only.0, severity: only.1)
+        }
+
+        let clauses = nonNormal.map { metric, severity in
+            menuMultiSummaryClause(for: metric, severity: severity)
+        }
+        return naturalListWithCommaBeforeAnd(clauses) + "."
     }
 
     func triggerValue(for metrics: ActivityMetrics) -> Double? {
@@ -263,21 +270,16 @@ struct ActivityStatus: Sendable, Equatable {
         return metricsStatus
     }
 
-    private func listMetrics(_ metrics: [TriggerMetric]) -> String {
-        metrics.map { metricDisplayName($0) }.joined(separator: ", ")
-    }
-
-    private func naturalMetricList(_ metrics: [TriggerMetric]) -> String {
-        let names = metrics.map { metricDisplayName($0) }
-        switch names.count {
+    private func naturalListWithCommaBeforeAnd(_ items: [String]) -> String {
+        switch items.count {
         case 0:
             return ""
         case 1:
-            return names[0]
+            return items[0]
         case 2:
-            return names.joined(separator: " and ")
+            return items[0] + ", and " + items[1]
         default:
-            return names.joined(separator: ", ")
+            return items.dropLast().joined(separator: ", ") + ", and " + items.last!
         }
     }
 
@@ -330,15 +332,48 @@ struct ActivityStatus: Sendable, Equatable {
         }
     }
 
-    private func menuRationale(for metrics: [TriggerMetric], severity: ActivityMetrics.MetricSeverity) -> String {
-        let list = naturalMetricList(metrics)
-        let thresholds = metrics.count > 1 ? "thresholds" : "threshold"
-        switch severity {
-        case .critical:
-            return "\(list) exceeded critical \(thresholds)"
-        case .elevated:
-            return "\(list) above elevated \(thresholds)"
-        case .normal:
+    private func menuSingleSummary(for metric: TriggerMetric, severity: ActivityMetrics.MetricSeverity) -> String {
+        switch (metric, severity) {
+        case (.cpu, .elevated):
+            return "CPU activity exceeded the elevated threshold, reaching a usage of more than 50%."
+        case (.cpu, .critical):
+            return "CPU activity exceeded the critical threshold, reaching a usage of more than 80%."
+        case (.memory, .elevated):
+            return "Memory activity exceeded the elevated threshold, reaching a usage of more than 70%."
+        case (.memory, .critical):
+            return "Memory activity exceeded the critical threshold, reaching a usage of more than 85%."
+        case (.disk, .elevated):
+            return "Disk activity exceeded the elevated threshold, reaching an aggregated rate of ≥30 MB/s."
+        case (.disk, .critical):
+            return "Disk activity exceeded the critical threshold, reaching an aggregated rate of ≥120 MB/s."
+        case (.network, .elevated):
+            return "Network activity exceeded the elevated threshold, reaching an aggregated rate of ≥5 MB/s."
+        case (.network, .critical):
+            return "Network activity exceeded the critical threshold, reaching an aggregated rate of ≥20 MB/s."
+        case (_, .normal):
+            return ""
+        }
+    }
+
+    private func menuMultiSummaryClause(for metric: TriggerMetric, severity: ActivityMetrics.MetricSeverity) -> String {
+        switch (metric, severity) {
+        case (.cpu, .elevated):
+            return "CPU usage over 50% (elevated)"
+        case (.cpu, .critical):
+            return "CPU usage over 80% (critical)"
+        case (.memory, .elevated):
+            return "Memory usage over 70% (elevated)"
+        case (.memory, .critical):
+            return "Memory usage over 85% (critical)"
+        case (.disk, .elevated):
+            return "Disk activity over 30 MB/s (elevated)"
+        case (.disk, .critical):
+            return "Disk activity over 120 MB/s (critical)"
+        case (.network, .elevated):
+            return "Network activity over 5 MB/s (elevated)"
+        case (.network, .critical):
+            return "Network activity over 20 MB/s (critical)"
+        case (_, .normal):
             return ""
         }
     }
