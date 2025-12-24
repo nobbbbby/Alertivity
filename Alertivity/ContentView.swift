@@ -28,7 +28,9 @@ struct SettingsView: View {
                     showMetricIcon: $settings.showMetricIcon,
                     autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled
                 )
-
+                
+                Divider()
+                
                 Text("Choose when the indicator appears and what it shows.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
@@ -39,25 +41,29 @@ struct SettingsView: View {
             .tabItem { Label("Menu Bar", systemImage: "waveform") }
 
             VStack(alignment: .leading, spacing: 12) {
-                NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
+                VStack(alignment: .leading, spacing: 4) {
+                    NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
 
-                Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-
+                    Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
 
                 DetectionSettingsFields(
                     highActivityDurationSeconds: $settings.highActivityDurationSeconds,
                     highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
                     highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
                 )
+                
+                Divider()
 
                 Text("Flags processes over \(settings.highActivityCPUThresholdPercent)% CPU or \(settings.highActivityMemoryThresholdPercent)% memory for \(settings.highActivityDurationSeconds) seconds.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
             .tabItem { Label("Notifications", systemImage: "bell") }
         }
@@ -80,18 +86,22 @@ struct NoticePreferencesView: View {
         }
 
         Section("Notifications") {
-            NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
+            VStack(alignment: .leading, spacing: 2) {
+                NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
 
-            Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
+                Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
 
             DetectionSettingsFields(
                 highActivityDurationSeconds: $settings.highActivityDurationSeconds,
                 highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
                 highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
             )
+            
+            Divider()
 
             Text("Flags processes over \(settings.highActivityCPUThresholdPercent)% CPU or \(settings.highActivityMemoryThresholdPercent)% memory for \(settings.highActivityDurationSeconds) seconds.")
                 .font(.footnote)
@@ -124,6 +134,7 @@ struct MenuStatusView: View {
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .lineLimit(nil)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .fixedSize(horizontal: false, vertical: true)
 
             Divider()
@@ -448,15 +459,17 @@ private struct MenuBarSettingsFields: View {
             }
         )
 
-        Toggle("Auto switch to busiest metric", isOn: autoSwitchBinding)
-            .disabled(!isMenuIconEnabled)
+        VStack(alignment: .leading, spacing: 2) {
+            Toggle("Auto switch to busiest metric", isOn: autoSwitchBinding)
+                .disabled(!isMenuIconEnabled)
 
-        Text("Auto switch shows the busiest metric; when activity is normal it uses your Default icon type.")
-            .font(.footnote)
-            .foregroundStyle(.secondary)
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.leading, 18)
-            .padding(.bottom, 2)
+            Text("Auto switch shows the busiest metric; when activity is normal it uses your Default icon type.")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+//                .padding(.leading, 18)
+                .padding(.bottom, 2)
+        }
 
         Toggle("Only show on high activity", isOn: $menuIconOnlyWhenHigh)
             .disabled(!isMenuIconEnabled)
