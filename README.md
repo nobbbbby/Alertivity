@@ -1,6 +1,6 @@
 # Alertivity
 
-![Screenshot ](<img/menupreview.png>)
+![Screenshot ](<img/menubar.png>)
 
 Alertivity is a macOS menu bar utility that samples CPU, memory, disk, network, and process data so you can spot trouble early. It summarizes system health as Normal/Elevated/Critical, highlights the metric that triggered the state, and offers quick actions on culprit processes.
 
@@ -32,6 +32,9 @@ Alertivity is a macOS menu bar utility that samples CPU, memory, disk, network, 
   `xcodebuild -project Alertivity.xcodeproj -scheme Alertivity -testPlan Alertivity -destination 'platform=macOS' -enableCodeCoverage YES test`
 - UI smoke tests drive a harness window (enabled by the `UITests` launch argument) to toggle menu/notification settings and verify status rendering; run just the UI layer with `-only-testing:AlertivityUITests`.
 - Coverage is emitted in the `.xcresult` bundle under DerivedData; unit tests outnumber integration tests (~12:1) and UI tests remain a thin smoke layer to keep the pyramid balanced.
+
+## OpenSpec
+- This project uses OpenSpec for change proposals, specs, and implementation tasks. See `openspec/AGENTS.md` for the workflow and `openspec/` for current specs.
 
 ## Using the App
 - First launch: choose whether to hide the Dock icon, enable launch at login, and allow notifications if desired.
