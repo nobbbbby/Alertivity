@@ -13,22 +13,22 @@ enum MenuIconType: String, CaseIterable, Identifiable, Sendable {
     var title: String {
         switch self {
         case .status:
-            return "Status icon"
+            return L10n.string("menu.icon.type.status")
         case .cpu:
-            return "CPU usage"
+            return L10n.string("menu.icon.type.cpu")
         case .memory:
-            return "Memory usage"
+            return L10n.string("menu.icon.type.memory")
         case .disk:
-            return "Disk throughput"
+            return L10n.string("menu.icon.type.disk")
         case .network:
-            return "Network throughput"
+            return L10n.string("menu.icon.type.network")
         }
     }
 
     var symbolName: String {
         switch self {
         case .status:
-            return "waveform"
+            return "waveform.path.ecg"
         case .cpu:
             return "cpu"
         case .memory:
@@ -92,26 +92,26 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     var shortLabel: String {
         switch self {
         case .cpu:
-            return "CPU"
+            return L10n.string("metric.short.cpu")
         case .memory:
-            return "MEM"
+            return L10n.string("metric.short.memory")
         case .disk:
-            return "DSK"
+            return L10n.string("metric.short.disk")
         case .network:
-            return "NET"
+            return L10n.string("metric.short.network")
         }
     }
 
     var title: String {
         switch self {
         case .cpu:
-            return "CPU Usage"
+            return L10n.string("metric.title.cpu")
         case .memory:
-            return "Memory Usage"
+            return L10n.string("metric.title.memory")
         case .disk:
-            return "Disk Throughput"
+            return L10n.string("metric.title.disk")
         case .network:
-            return "Network Throughput"
+            return L10n.string("metric.title.network")
         }
     }
 
@@ -144,28 +144,55 @@ enum MetricMenuSelection: CaseIterable, Hashable, Sendable {
     func accessibilityValue(for metrics: ActivityMetrics) -> String {
         switch self {
         case .cpu:
-            return "CPU usage \(metrics.cpuUsage.formatted(.percent.precision(.fractionLength(1))))"
+            return L10n.format(
+                "accessibility.metric.cpu",
+                metrics.cpuUsage.formatted(.percent.precision(.fractionLength(1)))
+            )
         case .memory:
-            return "Memory usage \(metrics.memoryUsage.formatted(.percent.precision(.fractionLength(1))))"
+            return L10n.format(
+                "accessibility.metric.memory",
+                metrics.memoryUsage.formatted(.percent.precision(.fractionLength(1)))
+            )
         case .disk:
-            return "Total disk throughput \(metrics.disk.formattedTotalPerSecond) per second"
+            return L10n.format(
+                "accessibility.metric.disk",
+                metrics.disk.formattedTotalPerSecond
+            )
         case .network:
-            return "Total network throughput \(metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond)) per second"
+            return L10n.format(
+                "accessibility.metric.network",
+                metrics.network.formattedBytesPerSecond(metrics.network.totalBytesPerSecond)
+            )
         }
     }
 
     func detailSummary(for metrics: ActivityMetrics) -> String {
         switch self {
         case .cpu:
-            return "Current CPU usage is \(metrics.cpuUsage.formatted(.percent.precision(.fractionLength(1))))"
+            return L10n.format(
+                "detail.cpu",
+                metrics.cpuUsage.formatted(.percent.precision(.fractionLength(1)))
+            )
         case .memory:
             let used = metrics.memoryUsed.converted(to: .gigabytes)
             let total = metrics.memoryTotal.converted(to: .gigabytes)
-            return "Using \(Self.measurementFormatter.string(from: used)) of \(Self.measurementFormatter.string(from: total))"
+            return L10n.format(
+                "detail.memory",
+                Self.measurementFormatter.string(from: used),
+                Self.measurementFormatter.string(from: total)
+            )
         case .disk:
-            return metrics.disk.formattedReadWriteSummary + " (total \(metrics.disk.formattedTotalPerSecond)/s)"
+            return L10n.format(
+                "detail.disk",
+                metrics.disk.formattedReadWriteSummary,
+                metrics.disk.formattedTotalPerSecond
+            )
         case .network:
-            return "↓ \(metrics.network.formattedDownload)/s • ↑ \(metrics.network.formattedUpload)/s"
+            return L10n.format(
+                "detail.network",
+                metrics.network.formattedDownload,
+                metrics.network.formattedUpload
+            )
         }
     }
 
@@ -295,20 +322,24 @@ struct MetricMenuBarLabel: View {
         }
         .padding(.vertical, 2)
         .padding(.horizontal, 4)
-        .accessibilityLabel("System metrics")
+        .accessibilityLabel(L10n.string("accessibility.systemMetrics"))
         .accessibilityValue(accessibilityDescription)
     }
 
     private var accessibilityDescription: String {
         guard isVisible else {
-            return "Menu icon hidden"
+            return L10n.string("accessibility.menuIconHidden")
         }
 
         if let selection = iconType.metricSelection {
-            return "\(selection.shortLabel) \(selection.formattedValue(for: metrics))"
+            return L10n.format(
+                "accessibility.menuSelectionValue",
+                selection.shortLabel,
+                selection.formattedValue(for: metrics)
+            )
         }
 
-        return displayStatus.title(for: metrics)
+        return displayStatus.menuTitle(for: metrics)
     }
 
     private func tint(for selection: MetricMenuSelection, metrics: ActivityMetrics) -> Color? {

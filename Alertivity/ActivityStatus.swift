@@ -116,92 +116,109 @@ struct ActivityStatus: Sendable, Equatable {
         }
     }
 
-    func title(for metrics: ActivityMetrics) -> String {
+    private enum TitleStyle {
+        case menu
+        case notification
+    }
+
+    func menuTitle(for metrics: ActivityMetrics) -> String {
+        title(for: metrics, style: .menu)
+    }
+
+    func notificationTitle(for metrics: ActivityMetrics) -> String {
+        title(for: metrics, style: .notification)
+    }
+
+    private func title(for metrics: ActivityMetrics, style: TitleStyle) -> String {
         let alignedStatus = statusAligned(to: metrics)
         let criticalMetrics = metricsBySeverity(metrics, target: .critical)
         let elevatedMetrics = metricsBySeverity(metrics, target: .elevated)
 
         switch alignedStatus.level {
         case .normal:
-            return "System is stable"
+            return style == .menu
+                ? L10n.string("status.title.menu.normal")
+                : L10n.string("status.title.notification.normal")
         case .elevated:
             if elevatedMetrics.count > 1 {
-                return "Multiple metrics elevated"
+                return style == .menu
+                    ? L10n.string("status.title.menu.multipleElevated")
+                    : L10n.string("status.title.notification.multipleElevated")
             }
             if let elevated = elevatedMetrics.first {
-                return "Elevated \(metricDisplayName(elevated))"
+                return L10n.format("status.title.elevated.single", metricDisplayName(elevated))
             }
-            return "Elevated \(alignedStatus.triggerLabel)"
+            return L10n.format("status.title.elevated.single", alignedStatus.triggerLabel)
         case .critical:
             if !criticalMetrics.isEmpty, !elevatedMetrics.isEmpty {
                 let criticalText: String
                 if criticalMetrics.count == 1, let onlyCritical = criticalMetrics.first {
-                    criticalText = "Critical \(metricDisplayName(onlyCritical))"
+                    criticalText = L10n.format("status.title.critical.single", metricDisplayName(onlyCritical))
                 } else {
-                    criticalText = "Critical \(listMetrics(criticalMetrics))"
+                    criticalText = style == .menu
+                        ? L10n.string("status.title.menu.multipleCritical")
+                        : L10n.string("status.title.notification.multipleCritical")
                 }
 
                 let elevatedText: String
                 if elevatedMetrics.count == 1, let onlyElevated = elevatedMetrics.first {
-                    elevatedText = "\(metricDisplayName(onlyElevated)) elevated"
+                    elevatedText = style == .menu
+                        ? L10n.format("status.title.elevated.metric.menu", metricDisplayName(onlyElevated))
+                        : L10n.format("status.title.elevated.metric.notification", metricDisplayName(onlyElevated))
                 } else {
-                    elevatedText = "\(listMetrics(elevatedMetrics)) elevated"
+                    elevatedText = style == .menu
+                        ? L10n.string("status.title.menu.multipleElevated")
+                        : L10n.string("status.title.notification.multipleElevated")
                 }
 
-                return "\(criticalText); \(elevatedText)"
+                return L10n.format("status.title.combined", criticalText, elevatedText)
             }
 
             if criticalMetrics.count > 1 {
-                return "Multiple metrics critical"
+                return style == .menu
+                    ? L10n.string("status.title.menu.multipleCritical")
+                    : L10n.string("status.title.notification.multipleCritical")
             }
 
             if let onlyCritical = criticalMetrics.first {
-                return "Critical \(metricDisplayName(onlyCritical))"
+                return L10n.format("status.title.critical.single", metricDisplayName(onlyCritical))
             }
 
-            return "Critical \(alignedStatus.triggerLabel)"
+            return L10n.format("status.title.critical.single", alignedStatus.triggerLabel)
         }
     }
 
     func message(for metrics: ActivityMetrics) -> String {
         guard metrics.hasLiveData else {
-            return "Collecting live metrics…"
+            return L10n.string("status.message.collecting")
         }
 
         let metricSummaries = notificationDescriptions(for: metrics)
         if metricSummaries.isEmpty {
-            return "Everything looks healthy."
+            return L10n.string("status.message.healthy")
         }
 
         return metricSummaries.joined(separator: ", ")
     }
 
-    func notificationTitle(for metrics: ActivityMetrics) -> String {
-        title(for: metrics)
-    }
-
     func menuSummary(for metrics: ActivityMetrics) -> String {
         guard metrics.hasLiveData else {
-            return "Collecting live metrics…"
+            return L10n.string("status.message.collecting")
         }
 
-        let criticalMetrics = metricsBySeverity(metrics, target: .critical)
-        let elevatedMetrics = metricsBySeverity(metrics, target: .elevated)
-        var metricSummaries: [String] = []
-
-        if !criticalMetrics.isEmpty {
-            metricSummaries.append(menuRationale(for: criticalMetrics, severity: .critical))
+        let nonNormal = nonNormalMetrics(metrics)
+        if nonNormal.isEmpty {
+            return L10n.string("status.message.healthy")
         }
 
-        if !elevatedMetrics.isEmpty {
-            metricSummaries.append(menuRationale(for: elevatedMetrics, severity: .elevated))
+        if nonNormal.count == 1, let only = nonNormal.first {
+            return menuSingleSummary(for: only.0, severity: only.1)
         }
 
-        if metricSummaries.isEmpty {
-            return "Everything looks healthy."
+        let clauses = nonNormal.map { metric, severity in
+            menuMultiSummaryClause(for: metric, severity: severity)
         }
-
-        return metricSummaries.joined(separator: "; ")
+        return naturalListWithCommaBeforeAnd(clauses) + "."
     }
 
     func triggerValue(for metrics: ActivityMetrics) -> Double? {
@@ -219,20 +236,20 @@ struct ActivityStatus: Sendable, Equatable {
     }
 
     private var triggerLabel: String {
-        guard let trigger else { return "activity" }
+        guard let trigger else { return L10n.string("status.trigger.activity") }
         return triggerDisplayName(trigger)
     }
 
     private func triggerDisplayName(_ trigger: TriggerMetric) -> String {
         switch trigger {
         case .cpu:
-            return "CPU"
+            return L10n.string("status.metric.cpu")
         case .memory:
-            return "Memory"
+            return L10n.string("status.metric.memory")
         case .disk:
-            return "Disk"
+            return L10n.string("status.metric.disk")
         case .network:
-            return "Network"
+            return L10n.string("status.metric.network")
         }
     }
 
@@ -263,22 +280,8 @@ struct ActivityStatus: Sendable, Equatable {
         return metricsStatus
     }
 
-    private func listMetrics(_ metrics: [TriggerMetric]) -> String {
-        metrics.map { metricDisplayName($0) }.joined(separator: ", ")
-    }
-
-    private func naturalMetricList(_ metrics: [TriggerMetric]) -> String {
-        let names = metrics.map { metricDisplayName($0) }
-        switch names.count {
-        case 0:
-            return ""
-        case 1:
-            return names[0]
-        case 2:
-            return names.joined(separator: " and ")
-        default:
-            return names.joined(separator: ", ")
-        }
+    private func naturalListWithCommaBeforeAnd(_ items: [String]) -> String {
+        L10n.list(items)
     }
 
     private func metricsBySeverity(_ metrics: ActivityMetrics, target: ActivityMetrics.MetricSeverity) -> [TriggerMetric] {
@@ -326,19 +329,57 @@ struct ActivityStatus: Sendable, Equatable {
         nonNormalMetrics(metrics).map { metric, severity in
             let valueText = formattedValue(for: metric, metrics: metrics)
             let severityText = severityTag(for: severity)
-            return "\(metricDisplayName(metric)) \(valueText) (\(severityText))"
+            return L10n.format(
+                "status.message.metricSummary",
+                metricDisplayName(metric),
+                valueText,
+                severityText
+            )
         }
     }
 
-    private func menuRationale(for metrics: [TriggerMetric], severity: ActivityMetrics.MetricSeverity) -> String {
-        let list = naturalMetricList(metrics)
-        let thresholds = metrics.count > 1 ? "thresholds" : "threshold"
-        switch severity {
-        case .critical:
-            return "\(list) exceeded critical \(thresholds)"
-        case .elevated:
-            return "\(list) above elevated \(thresholds)"
-        case .normal:
+    private func menuSingleSummary(for metric: TriggerMetric, severity: ActivityMetrics.MetricSeverity) -> String {
+        switch (metric, severity) {
+        case (.cpu, .elevated):
+            return L10n.string("status.menu.single.cpu.elevated")
+        case (.cpu, .critical):
+            return L10n.string("status.menu.single.cpu.critical")
+        case (.memory, .elevated):
+            return L10n.string("status.menu.single.memory.elevated")
+        case (.memory, .critical):
+            return L10n.string("status.menu.single.memory.critical")
+        case (.disk, .elevated):
+            return L10n.string("status.menu.single.disk.elevated")
+        case (.disk, .critical):
+            return L10n.string("status.menu.single.disk.critical")
+        case (.network, .elevated):
+            return L10n.string("status.menu.single.network.elevated")
+        case (.network, .critical):
+            return L10n.string("status.menu.single.network.critical")
+        case (_, .normal):
+            return ""
+        }
+    }
+
+    private func menuMultiSummaryClause(for metric: TriggerMetric, severity: ActivityMetrics.MetricSeverity) -> String {
+        switch (metric, severity) {
+        case (.cpu, .elevated):
+            return L10n.string("status.menu.multi.cpu.elevated")
+        case (.cpu, .critical):
+            return L10n.string("status.menu.multi.cpu.critical")
+        case (.memory, .elevated):
+            return L10n.string("status.menu.multi.memory.elevated")
+        case (.memory, .critical):
+            return L10n.string("status.menu.multi.memory.critical")
+        case (.disk, .elevated):
+            return L10n.string("status.menu.multi.disk.elevated")
+        case (.disk, .critical):
+            return L10n.string("status.menu.multi.disk.critical")
+        case (.network, .elevated):
+            return L10n.string("status.menu.multi.network.elevated")
+        case (.network, .critical):
+            return L10n.string("status.menu.multi.network.critical")
+        case (_, .normal):
             return ""
         }
     }
@@ -359,11 +400,11 @@ struct ActivityStatus: Sendable, Equatable {
     private func severityTag(for severity: ActivityMetrics.MetricSeverity) -> String {
         switch severity {
         case .normal:
-            return "normal"
+            return L10n.string("status.severity.normal")
         case .elevated:
-            return "elev"
+            return L10n.string("status.severity.elevated.abbrev")
         case .critical:
-            return "crit"
+            return L10n.string("status.severity.critical.abbrev")
         }
     }
 }

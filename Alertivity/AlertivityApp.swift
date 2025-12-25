@@ -75,7 +75,7 @@ struct AlertivityApp: App {
         }
 
 #if DEBUG
-        WindowGroup("Alertivity UI Tests") {
+        WindowGroup("uiTests.window.title") {
             if isUITest {
                 UITestHarnessView(settings: settings)
             } else {
@@ -429,7 +429,7 @@ private struct SettingsMenuLinkRow: View {
 
     var body: some View {
         SettingsLink {
-            Text("Open Settings…")
+            Text("menu.openSettings")
                 .font(.system(size: 12, weight: .medium))
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -493,7 +493,7 @@ private struct UITestHarnessView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text("UITest Harness")
+            Text("uiTests.harness.title")
                 .font(.title2.weight(.semibold))
 
             MenuStatusView(metrics: sampleMetrics)

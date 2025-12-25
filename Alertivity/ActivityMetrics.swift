@@ -16,7 +16,7 @@ struct ProcessUsage: Identifiable, Hashable, Sendable {
 
     var displayName: String {
         let trimmed = command.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return "Unknown Process" }
+        guard !trimmed.isEmpty else { return L10n.string("process.unknown") }
         let url = URL(fileURLWithPath: trimmed)
         let last = url.lastPathComponent
         return last.isEmpty ? trimmed : last
@@ -190,11 +190,20 @@ extension ActivityMetrics {
         case critical = 2
     }
 
+    static let cpuElevatedThreshold = 0.5
+    static let cpuCriticalThreshold = 0.8
+    static let memoryElevatedThreshold = 0.7
+    static let memoryCriticalThreshold = 0.85
+    static let diskElevatedThreshold = 30_000_000.0
+    static let diskCriticalThreshold = 120_000_000.0
+    static let networkElevatedThreshold = 5_000_000.0
+    static let networkCriticalThreshold = 20_000_000.0
+
     var cpuSeverity: MetricSeverity {
         switch cpuUsagePercentage {
-        case ..<0.5:
+        case ..<Self.cpuElevatedThreshold:
             return .normal
-        case 0.5..<0.8:
+        case Self.cpuElevatedThreshold..<Self.cpuCriticalThreshold:
             return .elevated
         default:
             return .critical
@@ -203,9 +212,9 @@ extension ActivityMetrics {
 
     var memorySeverity: MetricSeverity {
         switch memoryUsage {
-        case ..<0.7:
+        case ..<Self.memoryElevatedThreshold:
             return .normal
-        case 0.7..<0.85:
+        case Self.memoryElevatedThreshold..<Self.memoryCriticalThreshold:
             return .elevated
         default:
             return .critical
@@ -214,9 +223,9 @@ extension ActivityMetrics {
 
     var diskSeverity: MetricSeverity {
         switch disk.totalBytesPerSecond {
-        case ..<30_000_000: // ~30 MB/s
+        case ..<Self.diskElevatedThreshold: // ~30 MB/s
             return .normal
-        case 30_000_000..<120_000_000: // ~30-120 MB/s
+        case Self.diskElevatedThreshold..<Self.diskCriticalThreshold: // ~30-120 MB/s
             return .elevated
         default:
             return .critical
@@ -225,9 +234,9 @@ extension ActivityMetrics {
 
     var networkSeverity: MetricSeverity {
         switch network.totalBytesPerSecond {
-        case ..<5_000_000: // ~5 MB/s
+        case ..<Self.networkElevatedThreshold: // ~5 MB/s
             return .normal
-        case 5_000_000..<20_000_000: // ~5-20 MB/s
+        case Self.networkElevatedThreshold..<Self.networkCriticalThreshold: // ~5-20 MB/s
             return .elevated
         default:
             return .critical
