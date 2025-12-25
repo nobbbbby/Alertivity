@@ -16,7 +16,7 @@ struct ProcessUsage: Identifiable, Hashable, Sendable {
 
     var displayName: String {
         let trimmed = command.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return "Unknown Process" }
+        guard !trimmed.isEmpty else { return L10n.string("process.unknown") }
         let url = URL(fileURLWithPath: trimmed)
         let last = url.lastPathComponent
         return last.isEmpty ? trimmed : last

@@ -152,12 +152,12 @@ final class NotificationManager: NSObject, ObservableObject {
     private func configureCategories() {
         let focus = UNNotificationAction(
             identifier: Action.focusProcess,
-            title: "Show in Activity Monitor",
+            title: L10n.string("notifications.action.showInActivityMonitor"),
             options: [.foreground]
         )
         let kill = UNNotificationAction(
             identifier: Action.killProcess,
-            title: "Force Quit Process",
+            title: L10n.string("notifications.action.forceQuitProcess"),
             options: [.destructive]
         )
 
@@ -198,22 +198,18 @@ final class NotificationManager: NSObject, ObservableObject {
     }
 
     private func metricDescription(for process: ProcessUsage) -> String {
-        let durationText = "\(Int(highActivityDuration.rounded()))s"
+        let durationText = L10n.format("notifications.duration.seconds", Int(highActivityDuration.rounded()))
         let components: [String] = [
-            process.triggeredByCPU ? "\(process.cpuDescription) CPU" : nil,
-            process.triggeredByMemory ? "\(process.memoryDescription) memory" : nil
+            process.triggeredByCPU ? L10n.format("notifications.metric.cpu.format", process.cpuDescription) : nil,
+            process.triggeredByMemory ? L10n.format("notifications.metric.memory.format", process.memoryDescription) : nil
         ].compactMap { $0 }
 
         if components.isEmpty {
-            return "High activity for \(durationText) consecutively."
+            return L10n.format("notifications.highActivity.none", durationText)
         }
 
-        if components.count == 1, let only = components.first {
-            return "Using \(only) for \(durationText) consecutively."
-        }
-
-        let joined = components.joined(separator: " and ")
-        return "Using \(joined) for \(durationText) consecutively."
+        let joined = L10n.list(components)
+        return L10n.format("notifications.highActivity.using", joined, durationText)
     }
 }
 
