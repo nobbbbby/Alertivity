@@ -13,12 +13,12 @@ struct SettingsView: View {
     var body: some View {
         TabView {
             VStack(alignment: .leading, spacing: 12) {
-                Toggle("Hide app icon in Dock", isOn: $settings.hideDockIcon)
-                Toggle("Launch at login", isOn: $settings.launchAtLogin)
+                Toggle("settings.toggle.hideDockIcon", isOn: $settings.hideDockIcon)
+                Toggle("settings.toggle.launchAtLogin", isOn: $settings.launchAtLogin)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
-            .tabItem { Label("General", systemImage: "switch.2") }
+            .tabItem { Label("settings.tab.general", systemImage: "switch.2") }
 
             VStack(alignment: .leading, spacing: 12) {
                 MenuBarSettingsFields(
@@ -31,20 +31,20 @@ struct SettingsView: View {
                 
                 Divider()
                 
-                Text("Choose when the indicator appears and what it shows.")
+                Text("settings.menuBar.help")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
-            .tabItem { Label("Menu Bar", systemImage: "waveform") }
+            .tabItem { Label("settings.tab.menuBar", systemImage: "waveform") }
 
             VStack(alignment: .leading, spacing: 12) {
                 VStack(alignment: .leading, spacing: 4) {
                     NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
 
-                    Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
+                    Text("settings.notifications.help")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -58,14 +58,19 @@ struct SettingsView: View {
                 
                 Divider()
 
-                Text("Flags processes over \(settings.highActivityCPUThresholdPercent)% CPU or \(settings.highActivityMemoryThresholdPercent)% memory for \(settings.highActivityDurationSeconds) seconds.")
+                Text(L10n.format(
+                    "settings.detection.flags",
+                    settings.highActivityCPUThresholdPercent,
+                    settings.highActivityMemoryThresholdPercent,
+                    settings.highActivityDurationSeconds
+                ))
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
-            .tabItem { Label("Notifications", systemImage: "bell") }
+            .tabItem { Label("settings.tab.notifications", systemImage: "bell") }
         }
         .frame(minWidth: 420)
     }
@@ -75,7 +80,7 @@ struct NoticePreferencesView: View {
 
     @ViewBuilder
     var body: some View {
-        Section("Menu Bar") {
+        Section("settings.tab.menuBar") {
             MenuBarSettingsFields(
                 isMenuIconEnabled: $settings.isMenuIconEnabled,
                 menuIconOnlyWhenHigh: $settings.menuIconOnlyWhenHigh,
@@ -85,11 +90,11 @@ struct NoticePreferencesView: View {
             )
         }
 
-        Section("Notifications") {
+        Section("settings.tab.notifications") {
             VStack(alignment: .leading, spacing: 2) {
                 NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
 
-                Text("Notifications fire when status is critical or a process crosses the high-activity rule.")
+                Text("settings.notifications.help")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -103,7 +108,12 @@ struct NoticePreferencesView: View {
             
             Divider()
 
-            Text("Flags processes over \(settings.highActivityCPUThresholdPercent)% CPU or \(settings.highActivityMemoryThresholdPercent)% memory for \(settings.highActivityDurationSeconds) seconds.")
+            Text(L10n.format(
+                "settings.detection.flags",
+                settings.highActivityCPUThresholdPercent,
+                settings.highActivityMemoryThresholdPercent,
+                settings.highActivityDurationSeconds
+            ))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -162,7 +172,7 @@ struct MenuStatusView: View {
                 
                 if displayStatus.trigger != .disk && !metrics.highActivityProcesses.isEmpty {
                     Divider()
-                    Text("High-activity processes")
+                    Text("menu.highActivityProcesses")
                         .font(.callout.weight(.semibold))
                         .foregroundStyle(.primary)
                     ForEach(Array(metrics.highActivityProcesses)) { process in
@@ -187,7 +197,7 @@ struct MenuStatusView: View {
             } else {
                 VStack(alignment: .leading, spacing: 12) {
                     ProgressView()
-                    Text("Metrics will appear once the first sample is available.")
+                    Text("menu.metricsPending")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -256,9 +266,9 @@ private struct MenuProcessRow: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             
-            let cpuText = Text("CPU \(process.cpuDescription)")
+            let cpuText = Text(L10n.format("process.row.cpu.format", process.cpuDescription))
                 .fontWeight(process.triggeredByCPU ? .semibold : .regular)
-            let memoryText = Text("Mem \(process.memoryDescription)")
+            let memoryText = Text(L10n.format("process.row.memory.format", process.memoryDescription))
                 .fontWeight(process.triggeredByMemory ? .semibold : .regular)
             
             (cpuText + Text(" • ") + memoryText)
@@ -439,8 +449,8 @@ private struct MenuBarSettingsFields: View {
     @Binding var autoSwitchEnabled: Bool
 
     var body: some View {
-        Toggle("Show indicator", isOn: $isMenuIconEnabled)
-        Picker("Default icon type:", selection: $menuIconType) {
+        Toggle("settings.menuBar.showIndicator", isOn: $isMenuIconEnabled)
+        Picker("settings.menuBar.defaultIconType", selection: $menuIconType) {
             ForEach(MenuIconType.allCases) { iconType in
                 Label(iconType.title, systemImage: iconType.symbolName)
                     .tag(iconType)
@@ -460,10 +470,10 @@ private struct MenuBarSettingsFields: View {
         )
 
         VStack(alignment: .leading, spacing: 2) {
-            Toggle("Auto switch to busiest metric", isOn: autoSwitchBinding)
+            Toggle("settings.menuBar.autoSwitch", isOn: autoSwitchBinding)
                 .disabled(!isMenuIconEnabled)
 
-            Text("Auto switch shows the busiest metric; when activity is normal it uses your Default icon type.")
+            Text("settings.menuBar.autoSwitch.help")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -471,11 +481,11 @@ private struct MenuBarSettingsFields: View {
                 .padding(.bottom, 2)
         }
 
-        Toggle("Only show on high activity", isOn: $menuIconOnlyWhenHigh)
+        Toggle("settings.menuBar.onlyShowHigh", isOn: $menuIconOnlyWhenHigh)
             .disabled(!isMenuIconEnabled)
 
         if menuIconType.metricSelection != nil || autoSwitchEnabled {
-            Toggle("Show metric icon", isOn: $showMetricIcon)
+            Toggle("settings.menuBar.showMetricIcon", isOn: $showMetricIcon)
                 .disabled(!isMenuIconEnabled || autoSwitchEnabled)
         }
     }
@@ -485,7 +495,7 @@ private struct NotificationSettingsFields: View {
     @Binding var notificationsEnabled: Bool
 
     var body: some View {
-        Toggle("Enable system notifications", isOn: $notificationsEnabled)
+        Toggle("settings.notifications.enable", isOn: $notificationsEnabled)
     }
 }
 
@@ -495,23 +505,23 @@ private struct DetectionSettingsFields: View {
     @Binding var highActivityMemoryThresholdPercent: Int
 
     var body: some View {
-        Picker("High activity duration:", selection: $highActivityDurationSeconds) {
+        Picker("settings.detection.duration", selection: $highActivityDurationSeconds) {
             ForEach(highActivityDurationOptions, id: \.self) { value in
-                Text("\(value) seconds").tag(value)
+                Text(L10n.format("settings.detection.durationValue", value)).tag(value)
             }
         }
         .pickerStyle(.menu)
 
-        Picker("CPU threshold:", selection: $highActivityCPUThresholdPercent) {
+        Picker("settings.detection.cpuThreshold", selection: $highActivityCPUThresholdPercent) {
             ForEach(highActivityCPUThresholdOptions, id: \.self) { value in
-                Text("\(value)%").tag(value)
+                Text(L10n.format("settings.detection.percentValue", value)).tag(value)
             }
         }
         .pickerStyle(.menu)
 
-        Picker("Memory threshold:", selection: $highActivityMemoryThresholdPercent) {
+        Picker("settings.detection.memoryThreshold", selection: $highActivityMemoryThresholdPercent) {
             ForEach(highActivityMemoryThresholdOptions, id: \.self) { value in
-                Text("\(value)%").tag(value)
+                Text(L10n.format("settings.detection.percentValue", value)).tag(value)
             }
         }
         .pickerStyle(.menu)
