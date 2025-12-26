@@ -338,39 +338,58 @@ final class SystemMetricsProvider {
         process.executableURL = URL(fileURLWithPath: "/bin/ps")
         process.arguments = ["-axo", "pid=,pcpu=,pmem=,comm=", "-r"]
 
-        let pipe = Pipe()
-        process.standardOutput = pipe
-        process.standardError = Pipe()
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+        process.standardOutput = outputPipe
+        process.standardError = errorPipe
 
         let outputData = NSMutableData()
-        let semaphore = DispatchSemaphore(value: 0)
-        
-        // Read data on background queue to prevent blocking
+        let errorData = NSMutableData()
+        let group = DispatchGroup()
+
+        // Read data on background queue to prevent blocking.
+        group.enter()
         DispatchQueue.global(qos: .userInitiated).async {
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            let data = outputPipe.fileHandleForReading.readDataToEndOfFile()
             outputData.append(data)
-            semaphore.signal()
+            group.leave()
+        }
+
+        group.enter()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let data = errorPipe.fileHandleForReading.readDataToEndOfFile()
+            errorData.append(data)
+            group.leave()
         }
 
         do {
             try process.run()
         } catch {
+            NSLog("SystemMetricsProvider: failed to run ps: \(error.localizedDescription)")
             return nil
         }
 
-        // Wait for process with timeout (2 seconds)
-        let waitResult = semaphore.wait(timeout: .now() + 2.0)
-        
-        if waitResult == .timedOut {
+        // Wait for process with timeout (2 seconds).
+        if group.wait(timeout: .now() + 2.0) == .timedOut {
             process.terminate()
+            NSLog("SystemMetricsProvider: ps timed out")
             return nil
         }
 
         process.waitUntilExit()
 
-        guard process.terminationStatus == 0 else { return nil }
+        guard process.terminationStatus == 0 else {
+            if let errorText = String(data: errorData as Data, encoding: .utf8),
+               !errorText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                NSLog("SystemMetricsProvider: ps failed: \(errorText)")
+            } else {
+                NSLog("SystemMetricsProvider: ps failed with status \(process.terminationStatus)")
+            }
+            return nil
+        }
 
         guard let output = String(data: outputData as Data, encoding: .utf8) else {
+            NSLog("SystemMetricsProvider: ps output not UTF-8")
             return nil
         }
 
