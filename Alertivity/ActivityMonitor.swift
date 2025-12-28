@@ -5,6 +5,7 @@ protocol SystemMetricsProviding {
     var highActivityDuration: TimeInterval { get set }
     var highActivityCPUThreshold: Double { get set }
     var highActivityMemoryThreshold: Double { get set }
+    var processSamplingAvailable: Bool { get }
     func fetchMetrics() -> ActivityMetrics
 }
 
@@ -13,6 +14,7 @@ extension SystemMetricsProvider: SystemMetricsProviding {}
 final class ActivityMonitor: ObservableObject {
     @Published private(set) var metrics: ActivityMetrics = .placeholder
     @Published private(set) var status: ActivityStatus = .normal
+    @Published private(set) var processSamplingAvailable: Bool = true
 
     private var provider: SystemMetricsProviding
     private var timer: Timer?
@@ -65,6 +67,7 @@ final class ActivityMonitor: ObservableObject {
         self.metrics = metrics
         let candidateStatus = ActivityStatus(metrics: metrics)
         self.status = resolveStatusTransition(to: candidateStatus)
+        processSamplingAvailable = provider.processSamplingAvailable
     }
 
     private func fetchMetricsOnce() {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "2610"
+   LastUpgradeVersion = "2620"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA0000000000000000000002"
-               BuildableName = "Alertivity.app"
-               BlueprintName = "Alertivity"
+               BlueprintIdentifier = "AA0000000000000000000501"
+               BuildableName = "AlertivityNonSandboxed.app"
+               BlueprintName = "Alertivity (Non-sandboxed)"
                ReferencedContainer = "container:Alertivity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,20 +27,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AA0000000000000000000100"
-               BuildableName = "AlertivityTests.xctest"
-               BlueprintName = "AlertivityTests"
-               ReferencedContainer = "container:Alertivity.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:Alertivity.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -56,9 +49,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AA0000000000000000000002"
-            BuildableName = "Alertivity.app"
-            BlueprintName = "Alertivity"
+            BlueprintIdentifier = "AA0000000000000000000501"
+            BuildableName = "AlertivityNonSandboxed.app"
+            BlueprintName = "Alertivity (Non-sandboxed)"
             ReferencedContainer = "container:Alertivity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -73,9 +66,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AA0000000000000000000002"
-            BuildableName = "Alertivity.app"
-            BlueprintName = "Alertivity"
+            BlueprintIdentifier = "AA0000000000000000000501"
+            BuildableName = "AlertivityNonSandboxed.app"
+            BlueprintName = "Alertivity (Non-sandboxed)"
             ReferencedContainer = "container:Alertivity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

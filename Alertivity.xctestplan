@@ -13,16 +13,16 @@
       "targets" : [
         {
           "containerPath" : "container:Alertivity.xcodeproj",
-          "identifier" : "AA0000000000000000000002",
-          "name" : "Alertivity"
+          "identifier" : "AA0000000000000000000501",
+          "name" : "Alertivity (Non-sandboxed)"
         }
       ]
     },
     "performanceAntipatternCheckerEnabled" : true,
     "targetForVariableExpansion" : {
       "containerPath" : "container:Alertivity.xcodeproj",
-      "identifier" : "AA0000000000000000000002",
-      "name" : "Alertivity"
+      "identifier" : "AA0000000000000000000501",
+      "name" : "Alertivity (Non-sandboxed)"
     }
   },
   "testTargets" : [

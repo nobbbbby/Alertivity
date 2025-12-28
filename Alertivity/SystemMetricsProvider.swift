@@ -14,6 +14,7 @@ final class SystemMetricsProvider {
     private var lastHighActivityProcesses: [ProcessUsage] = []
     private var lastMetrics: ActivityMetrics = .placeholder
     private var processActivityStartTimes: [Int32: Date] = [:]
+    private(set) var processSamplingAvailable: Bool = true
     private let highActivityProcessLimit = 12
     // Interface prefixes that are ignored to prevent counting loopback, virtual, or tunnel traffic twice.
     private let excludedInterfacePrefixes = [
@@ -102,8 +103,12 @@ final class SystemMetricsProvider {
 
         if let processes = readTopProcesses() {
             lastHighActivityProcesses = filterHighActivityProcesses(processes, at: timestamp)
-        } else if !lastMetrics.highActivityProcesses.isEmpty {
-            lastHighActivityProcesses = lastMetrics.highActivityProcesses
+        } else if processSamplingAvailable {
+            if !lastMetrics.highActivityProcesses.isEmpty {
+                lastHighActivityProcesses = lastMetrics.highActivityProcesses
+            }
+        } else {
+            resetHighActivityTracking()
         }
 
         let metrics = ActivityMetrics(
@@ -334,44 +339,80 @@ final class SystemMetricsProvider {
     }
 
     private func readTopProcesses() -> [ProcessUsage]? {
+        guard processSamplingAvailable else { return nil }
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/ps")
         process.arguments = ["-axo", "pid=,pcpu=,pmem=,comm=", "-r"]
+        var environment = ProcessInfo.processInfo.environment
+        environment["LANG"] = "C"
+        environment["LC_ALL"] = "C"
+        process.environment = environment
 
-        let pipe = Pipe()
-        process.standardOutput = pipe
-        process.standardError = Pipe()
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+        process.standardOutput = outputPipe
+        process.standardError = errorPipe
 
         let outputData = NSMutableData()
-        let semaphore = DispatchSemaphore(value: 0)
-        
-        // Read data on background queue to prevent blocking
+        let errorData = NSMutableData()
+        let group = DispatchGroup()
+
+        // Read data on background queue to prevent blocking.
+        group.enter()
         DispatchQueue.global(qos: .userInitiated).async {
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            let data = outputPipe.fileHandleForReading.readDataToEndOfFile()
             outputData.append(data)
-            semaphore.signal()
+            group.leave()
+        }
+
+        group.enter()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let data = errorPipe.fileHandleForReading.readDataToEndOfFile()
+            errorData.append(data)
+            group.leave()
         }
 
         do {
             try process.run()
         } catch {
+            if indicatesPermissionFailure(error) {
+                noteProcessSamplingUnavailable(error.localizedDescription)
+            } else {
+                NSLog("SystemMetricsProvider: failed to run ps: \(error.localizedDescription)")
+            }
             return nil
         }
 
-        // Wait for process with timeout (2 seconds)
-        let waitResult = semaphore.wait(timeout: .now() + 2.0)
-        
-        if waitResult == .timedOut {
+        // Wait for process with timeout (2 seconds).
+        if group.wait(timeout: .now() + 2.0) == .timedOut {
             process.terminate()
+            NSLog("SystemMetricsProvider: ps timed out")
             return nil
         }
 
         process.waitUntilExit()
 
-        guard process.terminationStatus == 0 else { return nil }
+        guard process.terminationStatus == 0 else {
+            if let errorText = String(data: errorData as Data, encoding: .utf8),
+               !errorText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                if indicatesPermissionFailure(errorText) {
+                    noteProcessSamplingUnavailable(errorText)
+                } else {
+                    NSLog("SystemMetricsProvider: ps failed: \(errorText)")
+                }
+            } else {
+                NSLog("SystemMetricsProvider: ps failed with status \(process.terminationStatus)")
+            }
+            return nil
+        }
 
         guard let output = String(data: outputData as Data, encoding: .utf8) else {
+            NSLog("SystemMetricsProvider: ps output not UTF-8")
             return nil
+        }
+
+        if !processSamplingAvailable {
+            processSamplingAvailable = true
         }
 
         let lines = output.split(separator: "\n")
@@ -441,6 +482,44 @@ final class SystemMetricsProvider {
             guard let start = processActivityStartTimes[process.pid] else { return false }
             return timestamp.timeIntervalSince(start) >= highActivityDuration
         }
+    }
+
+    private func noteProcessSamplingUnavailable(_ details: String) {
+        guard processSamplingAvailable else { return }
+        processSamplingAvailable = false
+        resetHighActivityTracking()
+        NSLog("SystemMetricsProvider: process sampling unavailable: \(details)")
+    }
+
+    private func indicatesPermissionFailure(_ error: Error) -> Bool {
+        if matchesPermissionError(error as NSError) {
+            return true
+        }
+        return indicatesPermissionFailure(error.localizedDescription)
+    }
+
+    private func matchesPermissionError(_ error: NSError) -> Bool {
+        if error.domain == NSPOSIXErrorDomain {
+            return error.code == EPERM || error.code == EACCES
+        }
+
+        if error.domain == NSCocoaErrorDomain && error.code == NSFileReadNoPermissionError {
+            return true
+        }
+
+        if let underlying = error.userInfo[NSUnderlyingErrorKey] as? NSError {
+            return matchesPermissionError(underlying)
+        }
+
+        return false
+    }
+
+    private func indicatesPermissionFailure(_ message: String) -> Bool {
+        let lowercased = message.lowercased()
+        return lowercased.contains("operation not permitted")
+            || lowercased.contains("not permitted")
+            || lowercased.contains("permission")
+            || lowercased.contains("sandbox")
     }
 }
 

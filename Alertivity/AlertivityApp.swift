@@ -66,7 +66,7 @@ struct AlertivityApp: App {
         .menuBarExtraStyle(.window)
 
         Settings {
-            SettingsView(settings: settings)
+            SettingsView(settings: settings, processSamplingAvailable: monitor.processSamplingAvailable)
                 .frame(width: 400)
                 .background(SettingsWindowAccessor())
                 .onAppear {
@@ -106,6 +106,7 @@ struct AlertivityApp: App {
         applyHighActivityDurationUpdate(for: settings.highActivityDurationSeconds)
         applyHighActivityCPUThresholdUpdate(for: settings.highActivityCPUThresholdPercent)
         applyHighActivityMemoryThresholdUpdate(for: settings.highActivityMemoryThresholdPercent)
+        notificationManager.processSamplingAvailable = monitor.processSamplingAvailable
         enforceAutoSwitchDependencies(isEnabled: settings.isMenuIconAutoSwitchEnabled)
         sanitizeMenuIconType()
         if settings.notificationsEnabled {
@@ -121,6 +122,7 @@ struct AlertivityApp: App {
     }
 
     private func handleMetricsChange(_ newMetrics: ActivityMetrics) {
+        notificationManager.processSamplingAvailable = monitor.processSamplingAvailable
         if settings.notificationsEnabled {
             notificationManager.postNotificationIfNeeded(for: monitor.status, metrics: newMetrics)
         }
@@ -503,7 +505,7 @@ private struct UITestHarnessView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
 
             Form {
-                NoticePreferencesView(settings: settings)
+                NoticePreferencesView(settings: settings, processSamplingAvailable: true)
             }
             .frame(maxHeight: .infinity, alignment: .topLeading)
         }
