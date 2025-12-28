@@ -24,18 +24,20 @@ struct AlertivityApp: App {
         MenuBarExtra(
             isInserted: $isMenuBarInserted
         ) {
-            VStack(alignment: .leading, spacing: 5) {
-                MenuStatusView(metrics: monitor.metrics).padding(6)
+            MenuExtraContainer {
+                VStack(alignment: .leading, spacing: 5) {
+                    MenuStatusView(metrics: monitor.metrics).padding(6)
 
-                Divider()
-                if #available(macOS 14.0, *) {
-                    SettingsMenuLinkRow()
-                } else {
-                    // Fallback on earlier versions
+                    Divider()
+                    if #available(macOS 14.0, *) {
+                        SettingsMenuLinkRow()
+                    } else {
+                        // Fallback on earlier versions
+                    }
                 }
+                .frame(minWidth: 220, alignment: .leading)
+                .padding(6)
             }
-            .frame(minWidth: 220, alignment: .leading)
-            .padding(6)
             
         } label: {
             MenuBarLabelLifecycleView(
@@ -398,6 +400,41 @@ private enum SettingsWindowCoordinator {
         guard let window = SettingsWindowTracker.shared.window else { return }
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
+    }
+}
+
+private struct MenuExtraContainer<Content: View>: View {
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        if #available(macOS 26.0, *) {
+            content
+        } else {
+            ZStack {
+                MenuWindowBackground()
+                    .ignoresSafeArea()
+                content
+            }
+        }
+    }
+}
+
+private struct MenuWindowBackground: NSViewRepresentable {
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+        view.material = .menu
+        view.blendingMode = .withinWindow
+        view.state = .active
+        view.alphaValue = 0.7
+        return view
+    }
+
+    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+        // No-op: background view is static.
     }
 }
 
