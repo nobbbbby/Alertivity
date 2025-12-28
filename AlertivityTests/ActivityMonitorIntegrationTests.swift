@@ -6,6 +6,7 @@ private final class StubMetricsProvider: SystemMetricsProviding {
     var highActivityDuration: TimeInterval = 60
     var highActivityCPUThreshold: Double = 0.8
     var highActivityMemoryThreshold: Double = 0.25
+    var processSamplingAvailable: Bool = true
     var queue: [ActivityMetrics] = []
 
     func enqueue(_ metrics: ActivityMetrics) {

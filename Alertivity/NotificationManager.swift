@@ -17,6 +17,7 @@ final class NotificationManager: NSObject, ObservableObject {
     private let throttleInterval: TimeInterval = 60 * 10
     private var authorizationStatus: UNAuthorizationStatus
     var highActivityDuration: TimeInterval = 60
+    var processSamplingAvailable: Bool = true
     private var criticalConditionStartDate: Date?
     private var criticalConditionSignature: CriticalSignature?
     private let now: () -> Date
@@ -61,11 +62,7 @@ final class NotificationManager: NSObject, ObservableObject {
         }
     }
 
-    func postNotificationIfNeeded(for status: ActivityStatus, metrics: ActivityMetrics) {
-        // Align status/title/content to the metrics snapshot we are notifying about to avoid mismatched summaries.
-        let metricsStatus = ActivityStatus(metrics: metrics)
-        let resolvedStatus = metricsStatus == status ? status : metricsStatus
-
+    func postNotificationIfNeeded(for _: ActivityStatus, metrics: ActivityMetrics) {
         let isAuthorized: Bool
         switch authorizationStatus {
         case .authorized, .provisional:
@@ -74,25 +71,13 @@ final class NotificationManager: NSObject, ObservableObject {
             isAuthorized = false
         }
         guard isAuthorized else { return }
-        let hasHighActivityProcess = !metrics.highActivityProcesses.isEmpty
+        let hasHighActivityProcess = processSamplingAvailable && !metrics.highActivityProcesses.isEmpty
 
-        let hasCriticalDwell: Bool
-        if resolvedStatus.level == .critical {
-            hasCriticalDwell = evaluateCriticalDwell(for: resolvedStatus, metrics: metrics)
-        } else {
-            resetCriticalDwell()
-            hasCriticalDwell = false
-        }
+        let criticalTrigger = notificationTrigger(for: metrics)
+        let hasCriticalDwell = evaluateCriticalDwell(trigger: criticalTrigger, metrics: metrics)
+        let shouldNotifyForCritical = criticalTrigger != nil && hasCriticalDwell
 
-        let shouldNotifyForCriticalState: Bool
-        if resolvedStatus.level == .critical, let trigger = resolvedStatus.trigger {
-            shouldNotifyForCriticalState = hasCriticalDwell && (trigger == .cpu || trigger == .memory || trigger == .disk)
-        } else {
-            shouldNotifyForCriticalState = false
-        }
-
-        guard shouldNotifyForCriticalState || hasHighActivityProcess else { return }
-        let trigger = resolvedStatus.trigger
+        guard shouldNotifyForCritical || hasHighActivityProcess else { return }
 
         let currentDate = now()
         if let last = lastNotificationDate, currentDate.timeIntervalSince(last) < throttleInterval {
@@ -100,20 +85,22 @@ final class NotificationManager: NSObject, ObservableObject {
         }
 
         let content = UNMutableNotificationContent()
-        content.title = resolvedStatus.notificationTitle(for: metrics)
-        content.body = hasHighActivityProcess ? "" : resolvedStatus.message(for: metrics)
+        if let criticalTrigger {
+            content.title = L10n.format("status.title.critical.single", metricDisplayName(for: criticalTrigger))
+        } else {
+            content.title = L10n.string("notifications.process.title")
+        }
+        content.body = hasHighActivityProcess ? "" : ActivityStatus(metrics: metrics).message(for: metrics)
         content.sound = .default
 
         var userInfo: [String: Any] = [:]
 
-        if let trigger {
+        if let trigger = criticalTrigger {
             userInfo["triggerMetric"] = trigger.rawValue
-        }
-        if let value = resolvedStatus.triggerValue(for: metrics) {
-            userInfo["triggerValue"] = value
+            userInfo["triggerValue"] = triggerValue(for: trigger, metrics: metrics)
         }
 
-        if let culprit = metrics.highActivityProcesses.first {
+        if hasHighActivityProcess, let culprit = metrics.highActivityProcesses.first {
             content.subtitle = culprit.displayName
             content.body = metricDescription(for: culprit)
             userInfo.merge([
@@ -171,10 +158,14 @@ final class NotificationManager: NSObject, ObservableObject {
         notificationCenter.setNotificationCategories([category])
     }
 
-    private func evaluateCriticalDwell(for status: ActivityStatus, metrics: ActivityMetrics) -> Bool {
-        guard metrics.hasLiveData, status.level == .critical, let trigger = status.trigger else {
+    private func evaluateCriticalDwell(trigger: ActivityStatus.TriggerMetric?, metrics: ActivityMetrics) -> Bool {
+        guard metrics.hasLiveData, let trigger else {
             resetCriticalDwell()
             return false
+        }
+
+        if highActivityDuration <= 0 {
+            return true
         }
 
         let signature = CriticalSignature(trigger: trigger)
@@ -211,6 +202,63 @@ final class NotificationManager: NSObject, ObservableObject {
         let joined = L10n.list(components)
         return L10n.format("notifications.highActivity.using", joined, durationText)
     }
+
+    private func notificationTrigger(for metrics: ActivityMetrics) -> ActivityStatus.TriggerMetric? {
+        let criticalMetrics = criticalTriggerCandidates(for: metrics)
+        guard !criticalMetrics.isEmpty else { return nil }
+        return criticalMetrics.max { lhs, rhs in
+            priority(for: lhs) < priority(for: rhs)
+        }
+    }
+
+    private func criticalTriggerCandidates(for metrics: ActivityMetrics) -> [ActivityStatus.TriggerMetric] {
+        var candidates: [ActivityStatus.TriggerMetric] = []
+        if metrics.cpuSeverity == .critical { candidates.append(.cpu) }
+        if metrics.memorySeverity == .critical { candidates.append(.memory) }
+        if metrics.diskSeverity == .critical { candidates.append(.disk) }
+        if metrics.networkSeverity == .critical { candidates.append(.network) }
+        return candidates
+    }
+
+    private func priority(for metric: ActivityStatus.TriggerMetric) -> Int {
+        switch metric {
+        case .cpu:
+            return 4
+        case .memory:
+            return 3
+        case .disk:
+            return 2
+        case .network:
+            return 1
+        }
+    }
+
+    private func metricDisplayName(for trigger: ActivityStatus.TriggerMetric) -> String {
+        switch trigger {
+        case .cpu:
+            return L10n.string("status.metric.cpu")
+        case .memory:
+            return L10n.string("status.metric.memory")
+        case .disk:
+            return L10n.string("status.metric.disk")
+        case .network:
+            return L10n.string("status.metric.network")
+        }
+    }
+
+    private func triggerValue(for trigger: ActivityStatus.TriggerMetric, metrics: ActivityMetrics) -> Double {
+        switch trigger {
+        case .cpu:
+            return metrics.cpuUsagePercentage
+        case .memory:
+            return metrics.memoryUsage
+        case .disk:
+            return metrics.disk.totalBytesPerSecond
+        case .network:
+            return metrics.network.totalBytesPerSecond
+        }
+    }
+
 }
 
 extension NotificationManager: UNUserNotificationCenterDelegate {

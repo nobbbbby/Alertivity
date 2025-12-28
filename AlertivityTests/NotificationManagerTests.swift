@@ -57,6 +57,30 @@ private final class CapturingNotificationCenter: UserNotificationCentering {
     }
 
     @Test
+    func diskCriticalNotificationsRespectDwell() {
+        let center = CapturingNotificationCenter()
+        var now = Date()
+        let manager = NotificationManager(
+            notificationCenter: center,
+            now: { now },
+            authorizationStatusProvider: { .authorized },
+            initialAuthorizationStatus: .authorized
+        )
+        manager.highActivityDuration = 2
+
+        let metrics = makeMetrics(cpu: 0.1, memory: 0.1, diskBytesPerSecond: 150_000_000)
+        let status = ActivityStatus(metrics: metrics)
+
+        manager.postNotificationIfNeeded(for: status, metrics: metrics)
+        expectTrue(center.requests.isEmpty)
+
+        now = now.addingTimeInterval(2.1)
+        manager.postNotificationIfNeeded(for: status, metrics: metrics)
+        expectEqual(center.requests.count, 1)
+        expectEqual(center.requests.first?.content.userInfo["triggerMetric"] as? String, "disk")
+    }
+
+    @Test
     func highActivityProcessNotificationsIncludeMetadata() {
         let center = CapturingNotificationCenter()
         let now = Date()

@@ -1194,6 +1194,41 @@
         }
       }
     },
+    "notifications.process.title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prozess mit hoher Aktivität erkannt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High-activity process detected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processus à forte activité détecté"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高負荷プロセスを検出しました"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "检测到高活动进程"
+          }
+        }
+      }
+    },
     "process.row.cpu.format" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1778,36 +1813,106 @@
         }
       }
     },
-    "settings.notifications.help" : {
+    "settings.notifications.note.direct" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Benachrichtigungen werden angezeigt, wenn der Status kritisch ist oder ein Prozess die Regel für hohe Aktivität überschreitet."
+            "value" : "Benachrichtigungen werden ausgelöst, wenn eine Metrik %d Sekunden lang kritisch ist. Prozesse mit hoher Aktivität können Benachrichtigungen auslösen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notifications fire when status is critical or a process crosses the high-activity rule."
+            "value" : "Notifications fire when any metric stays critical for %d seconds. High-activity processes can also trigger alerts."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les notifications s'affichent lorsque l'état est critique ou qu'un processus dépasse la règle d'activité élevée."
+            "value" : "Les notifications s'affichent lorsqu'une mesure reste critique pendant %d secondes. Les processus à forte activité peuvent aussi déclencher des alertes."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ステータスが重大、またはプロセスが高負荷ルールを超えたときに通知します。"
+            "value" : "いずれかの指標が %d 秒間重大な状態の場合に通知します。高負荷プロセスでも通知されます。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当状态为严重或进程超过高活动规则时发送通知。"
+            "value" : "当任一指标连续 %d 秒处于严重状态时发送通知。高活动进程也可能触发提醒。"
+          }
+        }
+      }
+    },
+    "settings.notifications.note.sandbox" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benachrichtigungen werden ausgelöst, wenn eine Metrik %d Sekunden lang kritisch ist. Prozesswarnungen erfordern den non-sandboxed Build."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications fire when any metric stays critical for %d seconds. Process alerts require the non-sandboxed build."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les notifications s'affichent lorsqu'une mesure reste critique pendant %d secondes. Les alertes de processus nécessitent la version non-sandboxed."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "いずれかの指標が %d 秒間重大な状態の場合に通知します。プロセス通知には non-sandboxed ビルドが必要です。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当任一指标连续 %d 秒处于严重状态时发送通知。进程提醒需要 non-sandboxed 版本。"
+          }
+        }
+      }
+    },
+    "settings.tab.detection" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erkennung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detection"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "検出"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "检测"
           }
         }
       }

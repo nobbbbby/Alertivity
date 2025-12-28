@@ -9,6 +9,7 @@ private let tabPadding: EdgeInsets = EdgeInsets(top: 24, leading: 45, bottom: 28
 
 struct SettingsView: View {
     @ObservedObject var settings: SettingsStore
+    let processSamplingAvailable: Bool
 
     var body: some View {
         TabView {
@@ -41,42 +42,50 @@ struct SettingsView: View {
             .tabItem { Label("settings.tab.menuBar", systemImage: "waveform") }
 
             VStack(alignment: .leading, spacing: 12) {
-                VStack(alignment: .leading, spacing: 4) {
-                    NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
-
-                    Text("settings.notifications.help")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-
-                DetectionSettingsFields(
-                    highActivityDurationSeconds: $settings.highActivityDurationSeconds,
-                    highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
-                    highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
-                )
                 
-                Divider()
+                    NotificationSettingsFields(
+                        notificationsEnabled: $settings.notificationsEnabled,
+                        highActivityDurationSeconds: $settings.highActivityDurationSeconds,
+                        processSamplingAvailable: processSamplingAvailable,
+                        durationSeconds: settings.highActivityDurationSeconds
+                    )
+                
 
-                Text(L10n.format(
-                    "settings.detection.flags",
-                    settings.highActivityCPUThresholdPercent,
-                    settings.highActivityMemoryThresholdPercent,
-                    settings.highActivityDurationSeconds
-                ))
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
             .tabItem { Label("settings.tab.notifications", systemImage: "bell") }
+
+            if processSamplingAvailable {
+                VStack(alignment: .leading, spacing: 12) {
+                    DetectionSettingsFields(
+                        highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
+                        highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
+                    )
+
+                    Divider()
+
+                    Text(L10n.format(
+                        "settings.detection.flags",
+                        settings.highActivityCPUThresholdPercent,
+                        settings.highActivityMemoryThresholdPercent,
+                        settings.highActivityDurationSeconds
+                    ))
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(tabPadding)
+                .tabItem { Label("settings.tab.detection", systemImage: "scope") }
+            }
         }
         .frame(minWidth: 420)
     }
 }
 struct NoticePreferencesView: View {
     @ObservedObject var settings: SettingsStore
+    let processSamplingAvailable: Bool
 
     @ViewBuilder
     var body: some View {
@@ -91,32 +100,35 @@ struct NoticePreferencesView: View {
         }
 
         Section("settings.tab.notifications") {
-            VStack(alignment: .leading, spacing: 2) {
-                NotificationSettingsFields(notificationsEnabled: $settings.notificationsEnabled)
+            
+                NotificationSettingsFields(
+                    notificationsEnabled: $settings.notificationsEnabled,
+                    highActivityDurationSeconds: $settings.highActivityDurationSeconds,
+                    processSamplingAvailable: processSamplingAvailable,
+                    durationSeconds: settings.highActivityDurationSeconds
+                )
+          
+        }
 
-                Text("settings.notifications.help")
+        if processSamplingAvailable {
+            Section("settings.tab.detection") {
+                DetectionSettingsFields(
+                    highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
+                    highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
+                )
+
+                Divider()
+
+                Text(L10n.format(
+                    "settings.detection.flags",
+                    settings.highActivityCPUThresholdPercent,
+                    settings.highActivityMemoryThresholdPercent,
+                    settings.highActivityDurationSeconds
+                ))
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
-
-            DetectionSettingsFields(
-                highActivityDurationSeconds: $settings.highActivityDurationSeconds,
-                highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
-                highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
-            )
-            
-            Divider()
-
-            Text(L10n.format(
-                "settings.detection.flags",
-                settings.highActivityCPUThresholdPercent,
-                settings.highActivityMemoryThresholdPercent,
-                settings.highActivityDurationSeconds
-            ))
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
@@ -316,7 +328,7 @@ private struct NoticePreferencesPreviewContainer: View {
 
     var body: some View {
         Form {
-            NoticePreferencesView(settings: settings)
+            NoticePreferencesView(settings: settings, processSamplingAvailable: true)
         }
     }
 }
@@ -335,7 +347,7 @@ private struct NoticePreferencesPreviewContainer: View {
     store.highActivityDurationSeconds = highActivityDurationOptions[1]
     store.highActivityCPUThresholdPercent = highActivityCPUThresholdOptions[4]
     store.highActivityMemoryThresholdPercent = highActivityMemoryThresholdOptions[4]
-    return SettingsView(settings: store)
+    return SettingsView(settings: store, processSamplingAvailable: true)
         .frame(width: 520)
 }
 
@@ -493,25 +505,39 @@ private struct MenuBarSettingsFields: View {
 
 private struct NotificationSettingsFields: View {
     @Binding var notificationsEnabled: Bool
+    @Binding var highActivityDurationSeconds: Int
+    let processSamplingAvailable: Bool
+    let durationSeconds: Int
 
     var body: some View {
-        Toggle("settings.notifications.enable", isOn: $notificationsEnabled)
+ 
+            Toggle("settings.notifications.enable", isOn: $notificationsEnabled)
+
+            Picker("settings.detection.duration", selection: $highActivityDurationSeconds) {
+                ForEach(highActivityDurationOptions, id: \.self) { value in
+                    Text(L10n.format("settings.detection.durationValue", value)).tag(value)
+                }
+            }
+            .pickerStyle(.menu)
+        
+            Divider()
+
+            let noteKey = processSamplingAvailable
+                ? "settings.notifications.note.direct"
+                : "settings.notifications.note.sandbox"
+            Text(L10n.format(noteKey, durationSeconds))
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+       
     }
 }
 
 private struct DetectionSettingsFields: View {
-    @Binding var highActivityDurationSeconds: Int
     @Binding var highActivityCPUThresholdPercent: Int
     @Binding var highActivityMemoryThresholdPercent: Int
 
     var body: some View {
-        Picker("settings.detection.duration", selection: $highActivityDurationSeconds) {
-            ForEach(highActivityDurationOptions, id: \.self) { value in
-                Text(L10n.format("settings.detection.durationValue", value)).tag(value)
-            }
-        }
-        .pickerStyle(.menu)
-
         Picker("settings.detection.cpuThreshold", selection: $highActivityCPUThresholdPercent) {
             ForEach(highActivityCPUThresholdOptions, id: \.self) { value in
                 Text(L10n.format("settings.detection.percentValue", value)).tag(value)
