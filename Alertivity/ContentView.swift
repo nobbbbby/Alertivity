@@ -39,7 +39,7 @@ struct SettingsView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(tabPadding)
-            .tabItem { Label("settings.tab.menuBar", systemImage: "waveform") }
+            .tabItem { Label("settings.tab.menuBar", systemImage: "waveform.path.ecg") }
 
             VStack(alignment: .leading, spacing: 12) {
                 
