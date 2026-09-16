@@ -43,4 +43,14 @@ private func makeIsolatedDefaults(_ name: String = UUID().uuidString) -> UserDef
         expectEqual(reloaded.menuIconType, .network)
         expectEqual(reloaded.highActivityDurationSeconds, 90)
     }
+
+    @Test
+    func monitoringPreferencesClampValuesToRuntimeLimits() {
+        expectEqual(MonitoringPreferences.normalizedDuration(0), 10)
+        expectEqual(MonitoringPreferences.normalizedDuration(900), 600)
+        expectEqual(MonitoringPreferences.normalizedCPUThreshold(0), 1)
+        expectEqual(MonitoringPreferences.normalizedCPUThreshold(101), 100)
+        expectEqual(MonitoringPreferences.normalizedMemoryThreshold(0), 5)
+        expectEqual(MonitoringPreferences.normalizedMemoryThreshold(51), 50)
+    }
 }

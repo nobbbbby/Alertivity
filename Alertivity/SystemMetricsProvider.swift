@@ -3,6 +3,7 @@ import Darwin
 import Foundation
 import IOKit
 import IOKit.storage
+import OSLog
 
 final class SystemMetricsProvider {
     private var lastSnapshot: CPUSnapshot?
@@ -378,7 +379,7 @@ final class SystemMetricsProvider {
             if indicatesPermissionFailure(error) {
                 noteProcessSamplingUnavailable(error.localizedDescription)
             } else {
-                NSLog("SystemMetricsProvider: failed to run ps: \(error.localizedDescription)")
+                AppLogger.metrics.error("Failed to launch process sampling: \(error.localizedDescription, privacy: .public)")
             }
             return nil
         }
@@ -386,7 +387,7 @@ final class SystemMetricsProvider {
         // Wait for process with timeout (2 seconds).
         if group.wait(timeout: .now() + 2.0) == .timedOut {
             process.terminate()
-            NSLog("SystemMetricsProvider: ps timed out")
+            AppLogger.metrics.error("Process sampling timed out")
             return nil
         }
 
@@ -398,16 +399,16 @@ final class SystemMetricsProvider {
                 if indicatesPermissionFailure(errorText) {
                     noteProcessSamplingUnavailable(errorText)
                 } else {
-                    NSLog("SystemMetricsProvider: ps failed: \(errorText)")
+                    AppLogger.metrics.error("Process sampling failed: \(errorText, privacy: .private)")
                 }
             } else {
-                NSLog("SystemMetricsProvider: ps failed with status \(process.terminationStatus)")
+                AppLogger.metrics.error("Process sampling exited with status \(process.terminationStatus)")
             }
             return nil
         }
 
         guard let output = String(data: outputData as Data, encoding: .utf8) else {
-            NSLog("SystemMetricsProvider: ps output not UTF-8")
+            AppLogger.metrics.error("Process sampling returned non-UTF-8 output")
             return nil
         }
 
@@ -488,7 +489,7 @@ final class SystemMetricsProvider {
         guard processSamplingAvailable else { return }
         processSamplingAvailable = false
         resetHighActivityTracking()
-        NSLog("SystemMetricsProvider: process sampling unavailable: \(details)")
+        AppLogger.metrics.error("Process sampling unavailable: \(details, privacy: .public)")
     }
 
     private func indicatesPermissionFailure(_ error: Error) -> Bool {

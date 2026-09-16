@@ -1,5 +1,6 @@
 import SwiftUI
 import AppKit
+import OSLog
 import ServiceManagement
 import UserNotifications
 
@@ -132,7 +133,7 @@ struct AlertivityApp: App {
     }
 
     private func applyHighActivityDurationUpdate(for value: Int) {
-        let normalized = normalizedHighActivityDurationSeconds(value)
+        let normalized = MonitoringPreferences.normalizedDuration(value)
         if normalized != value {
             settings.highActivityDurationSeconds = normalized
         } else {
@@ -142,7 +143,7 @@ struct AlertivityApp: App {
     }
 
     private func applyHighActivityCPUThresholdUpdate(for value: Int) {
-        let normalized = normalizedCPUThresholdPercent(value)
+        let normalized = MonitoringPreferences.normalizedCPUThreshold(value)
         if normalized != value {
             settings.highActivityCPUThresholdPercent = normalized
         } else {
@@ -151,7 +152,7 @@ struct AlertivityApp: App {
     }
 
     private func applyHighActivityMemoryThresholdUpdate(for value: Int) {
-        let normalized = normalizedMemoryThresholdPercent(value)
+        let normalized = MonitoringPreferences.normalizedMemoryThreshold(value)
         if normalized != value {
             settings.highActivityMemoryThresholdPercent = normalized
         } else {
@@ -166,18 +167,6 @@ struct AlertivityApp: App {
     private func shouldShowMenuIcon(for status: ActivityStatus) -> Bool {
         guard settings.isMenuIconEnabled else { return false }
         return settings.menuIconOnlyWhenHigh ? status.level == .critical : true
-    }
-
-    private func normalizedHighActivityDurationSeconds(_ value: Int) -> Int {
-        min(max(value, 10), 600)
-    }
-
-    private func normalizedCPUThresholdPercent(_ value: Int) -> Int {
-        min(max(value, 1), 100)
-    }
-
-    private func normalizedMemoryThresholdPercent(_ value: Int) -> Int {
-        min(max(value, 5), 50)
     }
 
     private func applyDockVisibility(for isHidden: Bool) {
@@ -293,7 +282,9 @@ private enum LaunchAtLoginManager {
             }
             return true
         } catch {
-            NSLog("LaunchAtLoginManager error: \(error.localizedDescription)")
+            AppLogger.lifecycle.error(
+                "Failed to update launch-at-login registration: \(error.localizedDescription, privacy: .public)"
+            )
             return false
         }
     }
@@ -474,7 +465,6 @@ private struct SettingsMenuLinkRow: View {
         }
         .buttonStyle(.plain)
         .contentShape(Rectangle())
-//        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical, 6)
         .padding(.horizontal, 8)
         .background(
