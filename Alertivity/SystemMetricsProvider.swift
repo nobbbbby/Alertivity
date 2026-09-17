@@ -61,6 +61,19 @@ final class SystemMetricsProvider {
         }
     }
 
+    var ignoredProcessPaths: Set<String> = [] {
+        didSet {
+            let normalizedPaths = Set(ignoredProcessPaths.map(SettingsStore.normalizedProcessPath))
+            if normalizedPaths != ignoredProcessPaths {
+                ignoredProcessPaths = normalizedPaths
+                return
+            }
+            if ignoredProcessPaths != oldValue {
+                resetHighActivityTracking()
+            }
+        }
+    }
+
     private func resetHighActivityTracking() {
         processActivityStartTimes.removeAll()
         lastHighActivityProcesses = []
@@ -436,6 +449,7 @@ final class SystemMetricsProvider {
             }
 
             let command = String(parts[3])
+            guard !ignoredProcessPaths.contains(SettingsStore.normalizedProcessPath(command)) else { continue }
             let normalizedCPU = max(cpuValue / 100, 0)
             let normalizedMemory = min(max(memoryValue / 100, 0), 1)
             let exceedsCPU = normalizedCPU >= highActivityCPUThreshold
@@ -462,7 +476,10 @@ final class SystemMetricsProvider {
     }
 
     private func filterHighActivityProcesses(_ processes: [ProcessUsage], at timestamp: Date) -> [ProcessUsage] {
-        let activePIDs = Set(processes.map(\.pid))
+        let monitoredProcesses = processes.filter {
+            !ignoredProcessPaths.contains(SettingsStore.normalizedProcessPath($0.command))
+        }
+        let activePIDs = Set(monitoredProcesses.map(\.pid))
 
         for pid in activePIDs {
             if processActivityStartTimes[pid] == nil {
@@ -476,10 +493,10 @@ final class SystemMetricsProvider {
         }
 
         guard highActivityDuration > 0 else {
-            return processes
+            return monitoredProcesses
         }
 
-        return processes.filter { process in
+        return monitoredProcesses.filter { process in
             guard let start = processActivityStartTimes[process.pid] else { return false }
             return timestamp.timeIntervalSince(start) >= highActivityDuration
         }

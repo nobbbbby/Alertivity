@@ -3,6 +3,15 @@ import SwiftUI
 
 struct MenuStatusView: View {
     let metrics: ActivityMetrics
+    let onAddToWhitelist: (String) -> Void
+
+    init(
+        metrics: ActivityMetrics,
+        onAddToWhitelist: @escaping (String) -> Void = { _ in }
+    ) {
+        self.metrics = metrics
+        self.onAddToWhitelist = onAddToWhitelist
+    }
 
     var body: some View {
         let displayStatus = ActivityStatus(metrics: metrics)
@@ -66,6 +75,14 @@ struct MenuStatusView: View {
 
                             Spacer()
 
+                            Button("", systemImage: "checkmark.shield") {
+                                onAddToWhitelist(process.command)
+                            }
+                            .labelStyle(.iconOnly)
+                            .buttonStyle(.plain)
+                            .help(Text("notifications.action.ignoreProcess"))
+                            .accessibilityLabel(Text("notifications.action.ignoreProcess"))
+
                             Button("", systemImage: "xmark.circle") {
                                 ProcessActions.terminate(process)
                             }
@@ -124,29 +141,31 @@ private struct MenuProcessRow: View {
     @State private var isHovering = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            HStack(alignment: .center, spacing: 12) {
-                Image(nsImage: processIcon)
-                    .resizable()
-                    .frame(width: 16, height: 16)
+        HStack(alignment: .center, spacing: 10) {
+            Image(nsImage: processIcon)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .accessibilityHidden(true)
 
+            VStack(alignment: .leading, spacing: 2) {
                 Text(process.displayName)
                     .font(.callout)
                     .fontWeight(.semibold)
                     .lineLimit(.none)
                     .fixedSize(horizontal: false, vertical: true)
+
+                let cpuText = Text(L10n.format("process.row.cpu.format", process.cpuDescription))
+                    .fontWeight(process.triggeredByCPU ? .semibold : .regular)
+                let memoryText = Text(L10n.format("process.row.memory.format", process.memoryDescription))
+                    .fontWeight(process.triggeredByMemory ? .semibold : .regular)
+
+                (cpuText + Text(" • ") + memoryText)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(.none)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-
-            let cpuText = Text(L10n.format("process.row.cpu.format", process.cpuDescription))
-                .fontWeight(process.triggeredByCPU ? .semibold : .regular)
-            let memoryText = Text(L10n.format("process.row.memory.format", process.memoryDescription))
-                .fontWeight(process.triggeredByMemory ? .semibold : .regular)
-
-            (cpuText + Text(" • ") + memoryText)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .lineLimit(.none)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
@@ -190,6 +209,15 @@ private struct MenuProcessRow: View {
     MenuStatusView(metrics: .previewCritical)
         .frame(width: 240)
         .padding()
+}
+
+#Preview("High Activity Process Actions") {
+    MenuStatusView(
+        metrics: .previewCritical,
+        onAddToWhitelist: { _ in }
+    )
+    .frame(width: 280)
+    .padding()
 }
 
 #Preview("Menu Status – Multi Elevated") {

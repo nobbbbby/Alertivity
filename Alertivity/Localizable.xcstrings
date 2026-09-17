@@ -3486,6 +3486,116 @@
           }
         }
       }
+    },
+    "general.ok" : {
+      "comment" : "Button that dismisses an informational alert.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "notifications.action.ignoreProcess" : {
+      "comment" : "Notification action that permanently excludes the reported process from high-activity process monitoring.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to Whitelist"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.add" : {
+      "comment" : "Button and file-picker confirmation label for adding an ignored process.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.empty" : {
+      "comment" : "Empty state shown when no processes are ignored.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No ignored processes"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.help" : {
+      "comment" : "Explains the effect and limits of ignoring a process.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignored processes are hidden from high-activity process monitoring and alerts. Their usage is still included in overall system metrics."
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.invalid.message" : {
+      "comment" : "Message shown when the selected item cannot identify an executable process.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an application or an executable file."
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.invalid.title" : {
+      "comment" : "Title of the invalid ignored-process selection alert.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Process Couldn’t Be Added"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.picker.message" : {
+      "comment" : "Instruction displayed in the process selection panel.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an application or executable to exclude from high-activity process monitoring."
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.remove" : {
+      "comment" : "Accessibility label for the button that removes a process from the ignored list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove ignored process"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.title" : {
+      "comment" : "Heading for the list of processes excluded from high-activity monitoring.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whitelist"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

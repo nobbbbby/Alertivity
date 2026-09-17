@@ -14,6 +14,7 @@ final class SettingsStore: ObservableObject {
         static let highActivityDuration = "monitor.topProcesses.duration"
         static let highActivityCPUThreshold = "monitor.topProcesses.cpuThresholdPercent"
         static let highActivityMemoryThreshold = "monitor.topProcesses.memoryThresholdPercent"
+        static let ignoredProcessPaths = "monitor.topProcesses.ignoredExecutablePaths"
     }
 
     private let defaults: UserDefaults
@@ -62,6 +63,10 @@ final class SettingsStore: ObservableObject {
         didSet { defaults.set(highActivityMemoryThresholdPercent, forKey: Keys.highActivityMemoryThreshold) }
     }
 
+    @Published private(set) var ignoredProcessPaths: [String] {
+        didSet { defaults.set(ignoredProcessPaths, forKey: Keys.ignoredProcessPaths) }
+    }
+
     init(userDefaults: UserDefaults = .standard) {
         self.defaults = userDefaults
 
@@ -85,5 +90,30 @@ final class SettingsStore: ObservableObject {
         highActivityDurationSeconds = defaults.object(forKey: Keys.highActivityDuration) as? Int ?? 60
         highActivityCPUThresholdPercent = defaults.object(forKey: Keys.highActivityCPUThreshold) as? Int ?? 80
         highActivityMemoryThresholdPercent = defaults.object(forKey: Keys.highActivityMemoryThreshold) as? Int ?? 25
+        ignoredProcessPaths = Array(Set(
+            (defaults.stringArray(forKey: Keys.ignoredProcessPaths) ?? [])
+                .map(Self.normalizedProcessPath)
+                .filter { !$0.isEmpty }
+        )).sorted()
+    }
+
+    func ignoreProcess(at path: String) {
+        let normalizedPath = Self.normalizedProcessPath(path)
+        guard !normalizedPath.isEmpty, !ignoredProcessPaths.contains(normalizedPath) else { return }
+        ignoredProcessPaths.append(normalizedPath)
+        ignoredProcessPaths.sort()
+    }
+
+    func removeIgnoredProcess(at path: String) {
+        let normalizedPath = Self.normalizedProcessPath(path)
+        ignoredProcessPaths.removeAll { $0 == normalizedPath }
+    }
+
+    func isProcessIgnored(at path: String) -> Bool {
+        ignoredProcessPaths.contains(Self.normalizedProcessPath(path))
+    }
+
+    static func normalizedProcessPath(_ path: String) -> String {
+        NSString(string: path.trimmingCharacters(in: .whitespacesAndNewlines)).standardizingPath
     }
 }

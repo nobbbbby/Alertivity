@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 private let settingsTabPadding = EdgeInsets(top: 24, leading: 45, bottom: 28, trailing: 45)
@@ -22,7 +23,7 @@ struct SettingsView: View {
                     autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled
                 )
 
-                Divider()
+                FooterDivider()
 
                 SettingsFootnote(key: "settings.menuBar.help")
             }
@@ -39,7 +40,18 @@ struct SettingsView: View {
                 SettingsTab(title: "settings.tab.detection", systemImage: "scope") {
                     DetectionSettingsFields(
                         highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
-                        highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent,
+                        highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
+                    )
+
+                    Divider()
+
+                    IgnoredProcessSettingsView(settings: settings)
+
+                    FooterDivider()
+
+                    DetectionSettingsFooter(
+                        highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
+                        highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
                         highActivityDurationSeconds: settings.highActivityDurationSeconds
                     )
                 }
@@ -77,7 +89,16 @@ struct NoticePreferencesView: View {
             Section("settings.tab.detection") {
                 DetectionSettingsFields(
                     highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
-                    highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent,
+                    highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
+                )
+
+                IgnoredProcessSettingsView(settings: settings)
+
+                FooterDivider()
+
+                DetectionSettingsFooter(
+                    highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
+                    highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
                     highActivityDurationSeconds: settings.highActivityDurationSeconds
                 )
             }
@@ -118,6 +139,13 @@ private struct SettingsFootnote: View {
             .font(.footnote)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+private struct FooterDivider: View {
+    var body: some View {
+        Divider()
+            .padding(.horizontal, -12)
     }
 }
 
@@ -185,7 +213,7 @@ private struct NotificationSettingsFields: View {
         }
         .pickerStyle(.menu)
 
-        Divider()
+        FooterDivider()
 
         Text(L10n.format(notificationNoteKey, highActivityDurationSeconds))
             .font(.footnote)
@@ -203,7 +231,6 @@ private struct NotificationSettingsFields: View {
 private struct DetectionSettingsFields: View {
     @Binding var highActivityCPUThresholdPercent: Int
     @Binding var highActivityMemoryThresholdPercent: Int
-    let highActivityDurationSeconds: Int
 
     var body: some View {
         Picker("settings.detection.cpuThreshold", selection: $highActivityCPUThresholdPercent) {
@@ -219,9 +246,15 @@ private struct DetectionSettingsFields: View {
             }
         }
         .pickerStyle(.menu)
+    }
+}
 
-        Divider()
+private struct DetectionSettingsFooter: View {
+    let highActivityCPUThresholdPercent: Int
+    let highActivityMemoryThresholdPercent: Int
+    let highActivityDurationSeconds: Int
 
+    var body: some View {
         Text(L10n.format(
             "settings.detection.flags",
             highActivityCPUThresholdPercent,
@@ -231,6 +264,141 @@ private struct DetectionSettingsFields: View {
             .font(.footnote)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+private struct IgnoredProcessSettingsView: View {
+    @ObservedObject var settings: SettingsStore
+    @State private var isShowingInvalidSelectionAlert = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text("settings.ignoredProcesses.title")
+                    .font(.headline)
+
+                Spacer()
+
+                Button {
+                    chooseProcess()
+                } label: {
+                    Label("settings.ignoredProcesses.add", systemImage: "plus")
+                }
+            }
+
+            Text("settings.ignoredProcesses.help")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            if settings.ignoredProcessPaths.isEmpty {
+                Text("settings.ignoredProcesses.empty")
+                    .foregroundStyle(.secondary)
+            } else {
+                VStack(spacing: 0) {
+                    ForEach(settings.ignoredProcessPaths, id: \.self) { path in
+                        IgnoredProcessRow(path: path) {
+                            settings.removeIgnoredProcess(at: path)
+                        }
+
+                        if path != settings.ignoredProcessPaths.last {
+                            Divider()
+                        }
+                    }
+                }
+                .background(.quaternary.opacity(0.35), in: RoundedRectangle(cornerRadius: 8))
+            }
+        }
+        .alert("settings.ignoredProcesses.invalid.title", isPresented: $isShowingInvalidSelectionAlert) {
+            Button("general.ok", role: .cancel) {}
+        } message: {
+            Text("settings.ignoredProcesses.invalid.message")
+        }
+    }
+
+    @MainActor
+    private func chooseProcess() {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.resolvesAliases = true
+        panel.prompt = L10n.string("settings.ignoredProcesses.add")
+        panel.message = L10n.string("settings.ignoredProcesses.picker.message")
+
+        guard panel.runModal() == .OK, let selectedURL = panel.url else { return }
+
+        let executableURL: URL?
+        if selectedURL.pathExtension.caseInsensitiveCompare("app") == .orderedSame {
+            executableURL = Bundle(url: selectedURL)?.executableURL
+        } else if FileManager.default.isExecutableFile(atPath: selectedURL.path) {
+            executableURL = selectedURL
+        } else {
+            executableURL = nil
+        }
+
+        guard let executableURL else {
+            isShowingInvalidSelectionAlert = true
+            return
+        }
+
+        settings.ignoreProcess(at: executableURL.path)
+    }
+}
+
+private struct IgnoredProcessRow: View {
+    let path: String
+    let onRemove: () -> Void
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(nsImage: processIcon)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 32, height: 32)
+                .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(URL(fileURLWithPath: path).lastPathComponent)
+                    .lineLimit(1)
+                Text(path)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+                    .help(path)
+            }
+
+            Spacer()
+
+            Button {
+                onRemove()
+            } label: {
+                Image(systemName: "minus.circle.fill")
+                    .symbolRenderingMode(.hierarchical)
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(Text("settings.ignoredProcesses.remove"))
+        }
+        .padding(8)
+    }
+
+    private var processIcon: NSImage {
+        NSWorkspace.shared.icon(forFile: iconFilePath)
+    }
+
+    private var iconFilePath: String {
+        var url = URL(fileURLWithPath: path)
+
+        while url.path != "/" {
+            if url.pathExtension.caseInsensitiveCompare("app") == .orderedSame {
+                return url.path
+            }
+
+            url.deleteLastPathComponent()
+        }
+
+        return path
     }
 }
 
@@ -245,8 +413,29 @@ private struct NoticePreferencesPreviewContainer: View {
     }
 }
 
+private struct IgnoredProcessesPreviewContainer: View {
+    @StateObject private var settings: SettingsStore
+
+    init(suiteName: String, paths: [String]) {
+        _settings = StateObject(
+            wrappedValue: PreviewSettingsStore.make(
+                suiteName: suiteName,
+                ignoredProcessPaths: paths
+            )
+        )
+    }
+
+    var body: some View {
+        IgnoredProcessSettingsView(settings: settings)
+            .padding(settingsTabPadding)
+    }
+}
+
 private enum PreviewSettingsStore {
-    static func make(suiteName: String) -> SettingsStore {
+    static func make(
+        suiteName: String,
+        ignoredProcessPaths: [String] = []
+    ) -> SettingsStore {
         let defaults = UserDefaults(suiteName: suiteName) ?? .standard
         defaults.removePersistentDomain(forName: suiteName)
         let store = SettingsStore(userDefaults: defaults)
@@ -256,6 +445,9 @@ private enum PreviewSettingsStore {
         store.highActivityDurationSeconds = MonitoringPreferences.durationOptions[1]
         store.highActivityCPUThresholdPercent = MonitoringPreferences.cpuThresholdOptions[4]
         store.highActivityMemoryThresholdPercent = MonitoringPreferences.memoryThresholdOptions[4]
+        for path in ignoredProcessPaths {
+            store.ignoreProcess(at: path)
+        }
         return store
     }
 }
@@ -272,4 +464,25 @@ private enum PreviewSettingsStore {
     NoticePreferencesPreviewContainer()
         .frame(width: 420)
 }
+
+#Preview("Ignored Processes — Empty") {
+    IgnoredProcessesPreviewContainer(
+        suiteName: "IgnoredProcessesEmptyPreview",
+        paths: []
+    )
+    .frame(width: 520)
+}
+
+#Preview("Ignored Processes — Populated") {
+    IgnoredProcessesPreviewContainer(
+        suiteName: "IgnoredProcessesPopulatedPreview",
+        paths: [
+            "/Applications/Xcode.app/Contents/MacOS/Xcode",
+            "/Applications/Safari.app/Contents/MacOS/Safari",
+            "/usr/local/bin/render-worker"
+        ]
+    )
+    .frame(width: 520)
+}
+
 #endif

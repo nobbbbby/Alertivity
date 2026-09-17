@@ -5,6 +5,7 @@ protocol SystemMetricsProviding {
     var highActivityDuration: TimeInterval { get set }
     var highActivityCPUThreshold: Double { get set }
     var highActivityMemoryThreshold: Double { get set }
+    var ignoredProcessPaths: Set<String> { get set }
     var processSamplingAvailable: Bool { get }
     func fetchMetrics() -> ActivityMetrics
 }
@@ -93,6 +94,11 @@ final class ActivityMonitor: ObservableObject {
     var highActivityMemoryThreshold: Double {
         get { provider.highActivityMemoryThreshold }
         set { provider.highActivityMemoryThreshold = max(0, min(1, newValue)) }
+    }
+
+    var ignoredProcessPaths: Set<String> {
+        get { provider.ignoredProcessPaths }
+        set { provider.ignoredProcessPaths = newValue }
     }
 
     private func resolveStatusTransition(to candidate: ActivityStatus) -> ActivityStatus {

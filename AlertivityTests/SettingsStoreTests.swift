@@ -24,6 +24,7 @@ private func makeIsolatedDefaults(_ name: String = UUID().uuidString) -> UserDef
         expectEqual(store.highActivityDurationSeconds, 60)
         expectEqual(store.highActivityCPUThresholdPercent, 80)
         expectEqual(store.highActivityMemoryThresholdPercent, 25)
+        expectTrue(store.ignoredProcessPaths.isEmpty)
     }
 
     @Test
@@ -36,12 +37,19 @@ private func makeIsolatedDefaults(_ name: String = UUID().uuidString) -> UserDef
         store.notificationsEnabled = true
         store.menuIconType = .network
         store.highActivityDurationSeconds = 90
+        store.ignoreProcess(at: " /Applications/Safari.app/Contents/MacOS/Safari ")
+        store.ignoreProcess(at: "/Applications/Safari.app/Contents/MacOS/Safari")
 
         let reloaded = SettingsStore(userDefaults: UserDefaults(suiteName: "alertivity-settings-tests-\(suiteName)")!)
         expectTrue(reloaded.hideDockIcon)
         expectTrue(reloaded.notificationsEnabled)
         expectEqual(reloaded.menuIconType, .network)
         expectEqual(reloaded.highActivityDurationSeconds, 90)
+        expectEqual(reloaded.ignoredProcessPaths, ["/Applications/Safari.app/Contents/MacOS/Safari"])
+        expectTrue(reloaded.isProcessIgnored(at: "/Applications/Safari.app/Contents/MacOS/Safari"))
+
+        reloaded.removeIgnoredProcess(at: "/Applications/Safari.app/Contents/MacOS/Safari")
+        expectTrue(reloaded.ignoredProcessPaths.isEmpty)
     }
 
     @Test

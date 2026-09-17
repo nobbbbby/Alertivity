@@ -18,6 +18,7 @@ final class NotificationManager: NSObject, ObservableObject {
     private var authorizationStatus: UNAuthorizationStatus
     var highActivityDuration: TimeInterval = 60
     var processSamplingAvailable: Bool = true
+    var onIgnoreProcess: ((String) -> Void)?
     private var criticalConditionStartDate: Date?
     private var criticalConditionSignature: CriticalSignature?
     private let now: () -> Date
@@ -30,6 +31,7 @@ final class NotificationManager: NSObject, ObservableObject {
     private enum Action {
         static let focusProcess = "enhancedActivityMonitor.focusProcess"
         static let killProcess = "enhancedActivityMonitor.killProcess"
+        static let ignoreProcess = "enhancedActivityMonitor.ignoreProcess"
     }
 
     private struct CriticalSignature: Equatable {
@@ -147,10 +149,15 @@ final class NotificationManager: NSObject, ObservableObject {
             title: L10n.string("notifications.action.forceQuitProcess"),
             options: [.destructive]
         )
+        let ignore = UNNotificationAction(
+            identifier: Action.ignoreProcess,
+            title: L10n.string("notifications.action.ignoreProcess"),
+            options: []
+        )
 
         let category = UNNotificationCategory(
             identifier: Category.criticalProcess,
-            actions: [focus, kill],
+            actions: [focus, ignore, kill],
             intentIdentifiers: [],
             options: []
         )
@@ -302,6 +309,10 @@ extension NotificationManager: UNUserNotificationCenterDelegate {
             }
         case Action.killProcess:
             ProcessActions.terminate(process)
+        case Action.ignoreProcess:
+            DispatchQueue.main.async { [weak self] in
+                self?.onIgnoreProcess?(process.command)
+            }
         default:
             break
         }

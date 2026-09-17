@@ -30,6 +30,19 @@ private final class CapturingNotificationCenter: UserNotificationCentering {
 
 @Suite struct NotificationManagerTests {
     @Test
+    func processNotificationCategoryIncludesIgnoreAction() {
+        let center = CapturingNotificationCenter()
+        _ = NotificationManager(
+            notificationCenter: center,
+            authorizationStatusProvider: { .authorized },
+            initialAuthorizationStatus: .authorized
+        )
+
+        let actionIdentifiers = center.categories.flatMap(\.actions).map(\.identifier)
+        expectTrue(actionIdentifiers.contains("enhancedActivityMonitor.ignoreProcess"))
+    }
+
+    @Test
     func criticalNotificationsRespectDwell() {
         let center = CapturingNotificationCenter()
         var now = Date()

@@ -35,4 +35,17 @@ import Testing
         _ = placeholderView.body
         expectFalse(ActivityMetrics.placeholder.hasLiveData)
     }
+
+    @Test
+    func menuStatusViewProvidesWhitelistAction() {
+        let processPath = "/Applications/Safari.app/Contents/MacOS/Safari"
+        var whitelistedPath: String?
+        let view = MenuStatusView(metrics: .previewCritical) { path in
+            whitelistedPath = path
+        }
+
+        view.onAddToWhitelist(processPath)
+
+        expectEqual(whitelistedPath, processPath)
+    }
 }

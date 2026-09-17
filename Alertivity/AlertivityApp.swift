@@ -27,7 +27,13 @@ struct AlertivityApp: App {
         ) {
             MenuExtraContainer {
                 VStack(alignment: .leading, spacing: 5) {
-                    MenuStatusView(metrics: monitor.metrics).padding(6)
+                    MenuStatusView(
+                        metrics: monitor.metrics,
+                        onAddToWhitelist: { path in
+                            settings.ignoreProcess(at: path)
+                        }
+                    )
+                    .padding(6)
 
                     Divider()
                     if #available(macOS 14.0, *) {
@@ -55,6 +61,9 @@ struct AlertivityApp: App {
             .onChange(of: settings.highActivityDurationSeconds, perform: applyHighActivityDurationUpdate)
             .onChange(of: settings.highActivityCPUThresholdPercent, perform: applyHighActivityCPUThresholdUpdate)
             .onChange(of: settings.highActivityMemoryThresholdPercent, perform: applyHighActivityMemoryThresholdUpdate)
+            .onChange(of: settings.ignoredProcessPaths) { _, paths in
+                applyIgnoredProcessPathsUpdate(for: paths)
+            }
             .onChange(of: settings.hideDockIcon, perform: applyDockVisibility)
             .onChange(of: settings.launchAtLogin, perform: applyLaunchAtLogin)
             .onChange(of: settings.isMenuIconEnabled) { _ in updateMenuBarInsertion(for: ActivityStatus(metrics: monitor.metrics)) }
@@ -109,6 +118,10 @@ struct AlertivityApp: App {
         applyHighActivityDurationUpdate(for: settings.highActivityDurationSeconds)
         applyHighActivityCPUThresholdUpdate(for: settings.highActivityCPUThresholdPercent)
         applyHighActivityMemoryThresholdUpdate(for: settings.highActivityMemoryThresholdPercent)
+        applyIgnoredProcessPathsUpdate(for: settings.ignoredProcessPaths)
+        notificationManager.onIgnoreProcess = { path in
+            settings.ignoreProcess(at: path)
+        }
         notificationManager.processSamplingAvailable = monitor.processSamplingAvailable
         enforceAutoSwitchDependencies(isEnabled: settings.isMenuIconAutoSwitchEnabled)
         sanitizeMenuIconType()
@@ -158,6 +171,10 @@ struct AlertivityApp: App {
         } else {
             monitor.highActivityMemoryThreshold = Double(normalized) / 100.0
         }
+    }
+
+    private func applyIgnoredProcessPathsUpdate(for paths: [String]) {
+        monitor.ignoredProcessPaths = Set(paths)
     }
 
     private func updateMenuBarInsertion(for status: ActivityStatus) {

@@ -42,4 +42,43 @@ import Foundation
         expectEqual(provider.highActivityCPUThreshold, 0)
         expectEqual(provider.highActivityMemoryThreshold, 1)
     }
+
+    @Test
+    func ignoredProcessesNeverEnterDwellTracking() {
+        let provider = SystemMetricsProvider()
+        provider.highActivityDuration = 1
+        provider.ignoredProcessPaths = ["/Applications/Safari.app/Contents/MacOS/Safari"]
+
+        let ignoredProcess = ProcessUsage(
+            pid: 4242,
+            command: "/Applications/Safari.app/Contents/MacOS/Safari",
+            cpuPercent: 0.9,
+            memoryPercent: 0.3,
+            triggers: [.cpu, .memory]
+        )
+        let monitoredProcess = ProcessUsage(
+            pid: 5252,
+            command: "/Applications/Xcode.app/Contents/MacOS/Xcode",
+            cpuPercent: 0.9,
+            memoryPercent: 0.1,
+            triggers: [.cpu]
+        )
+
+        let start = Date()
+        let initial = provider.simulateFilterHighActivity(
+            processes: [ignoredProcess, monitoredProcess],
+            at: start
+        )
+        expectTrue(initial.isEmpty)
+        expectEqual(provider.trackedProcessIDsForTesting, Set([monitoredProcess.pid]))
+
+        let matured = provider.simulateFilterHighActivity(
+            processes: [ignoredProcess, monitoredProcess],
+            at: start.addingTimeInterval(1.1)
+        )
+        expectEqual(matured.map(\.pid), [monitoredProcess.pid])
+
+        provider.ignoredProcessPaths = []
+        expectTrue(provider.trackedProcessIDsForTesting.isEmpty)
+    }
 }
