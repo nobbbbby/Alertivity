@@ -56,7 +56,12 @@ final class NotificationManager: NSObject, ObservableObject {
 
     func requestAuthorizationIfNeeded() {
         guard authorizationStatus == .notDetermined else { return }
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
+            if let error {
+                AppLogger.notifications.error("Notification authorization failed: \(error.localizedDescription, privacy: .public)")
+            } else {
+                AppLogger.notifications.info("Notification authorization completed; granted: \(granted, privacy: .public)")
+            }
             Task { await self?.refreshAuthorizationStatus() }
             if !granted {
                 self?.lastNotificationDate = nil
@@ -117,13 +122,20 @@ final class NotificationManager: NSObject, ObservableObject {
 
         content.userInfo = userInfo
 
+        let requestIdentifier = UUID().uuidString
         let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
+            identifier: requestIdentifier,
             content: content,
             trigger: nil
         )
 
-        notificationCenter.add(request, withCompletionHandler: nil)
+        notificationCenter.add(request) { error in
+            if let error {
+                AppLogger.notifications.error("Notification request failed: \(error.localizedDescription, privacy: .public)")
+            } else {
+                AppLogger.notifications.info("Notification request accepted: \(requestIdentifier, privacy: .public)")
+            }
+        }
         lastNotificationDate = currentDate
     }
 
@@ -131,11 +143,13 @@ final class NotificationManager: NSObject, ObservableObject {
     private func refreshAuthorizationStatus() async {
         if let authorizationStatusProvider {
             authorizationStatus = await authorizationStatusProvider()
+            AppLogger.notifications.info("Notification authorization status: \(self.authorizationStatus.rawValue, privacy: .public)")
             return
         }
 
         let settings = await notificationCenter.notificationSettings()
         authorizationStatus = settings.authorizationStatus
+        AppLogger.notifications.info("Notification authorization status: \(self.authorizationStatus.rawValue, privacy: .public)")
     }
 
     private func configureCategories() {
