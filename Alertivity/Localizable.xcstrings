@@ -3520,17 +3520,6 @@
         }
       }
     },
-    "settings.ignoredProcesses.empty" : {
-      "comment" : "Empty state shown when no processes are ignored.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No ignored processes"
-          }
-        }
-      }
-    },
     "settings.ignoredProcesses.help" : {
       "comment" : "Explains the effect and limits of ignoring a process.",
       "localizations" : {

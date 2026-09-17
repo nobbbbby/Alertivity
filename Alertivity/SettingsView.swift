@@ -298,10 +298,7 @@ private struct IgnoredProcessSettingsView: View {
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
 
-            if settings.ignoredProcessPaths.isEmpty {
-                Text("settings.ignoredProcesses.empty")
-                    .foregroundStyle(.secondary)
-            } else {
+            if !settings.ignoredProcessPaths.isEmpty {
                 VStack(spacing: 0) {
                     ForEach(settings.ignoredProcessPaths, id: \.self) { path in
                         IgnoredProcessRow(path: path) {
