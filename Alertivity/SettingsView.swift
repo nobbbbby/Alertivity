@@ -241,14 +241,14 @@ private struct DetectionSettingsFields: View {
     var body: some View {
         Picker("settings.detection.cpuThreshold", selection: $highActivityCPUThresholdPercent) {
             ForEach(MonitoringPreferences.cpuThresholdOptions, id: \.self) { value in
-                Text(L10n.format("settings.detection.percentValue", value)).tag(value)
+                Text(formattedPercent(value)).tag(value)
             }
         }
         .pickerStyle(.menu)
 
         Picker("settings.detection.memoryThreshold", selection: $highActivityMemoryThresholdPercent) {
             ForEach(MonitoringPreferences.memoryThresholdOptions, id: \.self) { value in
-                Text(L10n.format("settings.detection.percentValue", value)).tag(value)
+                Text(formattedPercent(value)).tag(value)
             }
         }
         .pickerStyle(.menu)
@@ -264,14 +264,20 @@ private struct DetectionSettingsFooter: View {
     var body: some View {
         Text(L10n.format(
             "settings.detection.flags",
-            highActivityCPUThresholdPercent,
-            highActivityMemoryThresholdPercent,
+            formattedPercent(highActivityCPUThresholdPercent),
+            formattedPercent(highActivityMemoryThresholdPercent),
             highActivityDurationSeconds
         ))
             .font(.footnote.weight(emphasizesFooter ? .semibold : .regular))
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
+}
+
+private func formattedPercent(_ wholePercent: Int) -> String {
+    (Double(wholePercent) / 100).formatted(
+        .percent.precision(.fractionLength(0))
+    )
 }
 
 private struct IgnoredProcessSettingsView: View {

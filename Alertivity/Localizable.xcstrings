@@ -8,7 +8,7 @@
 
     },
     "accessibility.menuIconHidden" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -43,7 +43,7 @@
       }
     },
     "accessibility.menuSelectionValue" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -78,7 +78,7 @@
       }
     },
     "accessibility.metric.cpu" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -113,7 +113,7 @@
       }
     },
     "accessibility.metric.disk" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -148,7 +148,7 @@
       }
     },
     "accessibility.metric.memory" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -183,7 +183,7 @@
       }
     },
     "accessibility.metric.network" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -218,7 +218,7 @@
       }
     },
     "accessibility.systemMetrics" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -253,7 +253,7 @@
       }
     },
     "detail.cpu" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -288,7 +288,7 @@
       }
     },
     "detail.disk" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -323,7 +323,7 @@
       }
     },
     "detail.memory" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -358,7 +358,7 @@
       }
     },
     "detail.network" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -427,7 +427,7 @@
       }
     },
     "menu.icon.type.cpu" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -462,7 +462,7 @@
       }
     },
     "menu.icon.type.disk" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -497,7 +497,7 @@
       }
     },
     "menu.icon.type.memory" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -532,7 +532,7 @@
       }
     },
     "menu.icon.type.network" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -567,7 +567,7 @@
       }
     },
     "menu.icon.type.status" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -670,7 +670,7 @@
       }
     },
     "metric.short.cpu" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -705,7 +705,7 @@
       }
     },
     "metric.short.disk" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -740,7 +740,7 @@
       }
     },
     "metric.short.memory" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -775,7 +775,7 @@
       }
     },
     "metric.short.network" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -810,7 +810,7 @@
       }
     },
     "metric.title.cpu" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -845,7 +845,7 @@
       }
     },
     "metric.title.disk" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -880,7 +880,7 @@
       }
     },
     "metric.title.memory" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -915,7 +915,7 @@
       }
     },
     "metric.title.network" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -950,7 +950,7 @@
       }
     },
     "notifications.action.forceQuitProcess" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -985,7 +985,7 @@
       }
     },
     "notifications.action.showInActivityMonitor" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1020,7 +1020,7 @@
       }
     },
     "notifications.duration.seconds" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1055,7 +1055,7 @@
       }
     },
     "notifications.highActivity.none" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1090,7 +1090,7 @@
       }
     },
     "notifications.highActivity.using" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1125,7 +1125,7 @@
       }
     },
     "notifications.metric.cpu.format" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1160,7 +1160,7 @@
       }
     },
     "notifications.metric.memory.format" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1195,7 +1195,7 @@
       }
     },
     "notifications.process.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1230,7 +1230,7 @@
       }
     },
     "process.row.cpu.format" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1265,7 +1265,7 @@
       }
     },
     "process.row.memory.format" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1300,7 +1300,7 @@
       }
     },
     "process.unknown" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1403,7 +1403,7 @@
       }
     },
     "settings.detection.durationValue" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1438,36 +1438,36 @@
       }
     },
     "settings.detection.flags" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kennzeichnet Prozesse über %d%% CPU oder %d%% Speicher für %d Sekunden."
+            "value" : "Kennzeichnet Prozesse über %@ CPU oder %@ Speicher für %d Sekunden."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Flags processes over %d%% CPU or %d%% memory for %d seconds."
+            "value" : "Flags processes over %@ CPU or %@ memory for %d seconds."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Signale les processus au-dessus de %d%% CPU ou %d%% de mémoire pendant %d secondes."
+            "value" : "Signale les processus au-dessus de %@ CPU ou %@ de mémoire pendant %d secondes."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU が %d%%、またはメモリが %d%% を %d 秒間超えたプロセスをフラグします。"
+            "value" : "CPU が %@、またはメモリが %@ を %d 秒間超えたプロセスをフラグします。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当进程在 %3$d 秒内 CPU 超过 %1$d%% 或内存超过 %2$d%% 时标记。"
+            "value" : "当进程在 %3$d 秒内 CPU 超过 %1$@ 或内存超过 %2$@ 时标记。"
           }
         }
       }
@@ -1507,36 +1507,36 @@
       }
     },
     "settings.detection.percentValue" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d%%"
+            "value" : "%@"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d%%"
+            "value" : "%@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d%%"
+            "value" : "%@"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d%%"
+            "value" : "%@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d%%"
+            "value" : "%@"
           }
         }
       }
@@ -1814,7 +1814,7 @@
       }
     },
     "settings.notifications.note.direct" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1849,7 +1849,7 @@
       }
     },
     "settings.notifications.note.sandbox" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2088,77 +2088,77 @@
       }
     },
     "status.menu.multi.cpu.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU-Auslastung über 80 % (kritisch)"
+            "value" : "CPU-Auslastung über 80 Prozent (kritisch)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU usage over 80% (critical)"
+            "value" : "CPU usage over 80 percent (critical)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utilisation CPU au-dessus de 80 % (critique)"
+            "value" : "Utilisation CPU au-dessus de 80 pour cent (critique)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU 使用率 80% 超（重大）"
+            "value" : "CPU 使用率 80パーセント 超（重大）"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU 使用率超过 80%（严重）"
+            "value" : "CPU 使用率超过 百分之 80（严重）"
           }
         }
       }
     },
     "status.menu.multi.cpu.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU-Auslastung über 50 % (erhöht)"
+            "value" : "CPU-Auslastung über 50 Prozent (erhöht)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU usage over 50% (elevated)"
+            "value" : "CPU usage over 50 percent (elevated)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utilisation CPU au-dessus de 50 % (élevée)"
+            "value" : "Utilisation CPU au-dessus de 50 pour cent (élevée)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU 使用率 50% 超（上昇）"
+            "value" : "CPU 使用率 50パーセント 超（上昇）"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU 使用率超过 50%（升高）"
+            "value" : "CPU 使用率超过 百分之 50（升高）"
           }
         }
       }
     },
     "status.menu.multi.disk.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2193,7 +2193,7 @@
       }
     },
     "status.menu.multi.disk.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2228,77 +2228,77 @@
       }
     },
     "status.menu.multi.memory.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speicherauslastung über 85 % (kritisch)"
+            "value" : "Speicherauslastung über 85 Prozent (kritisch)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Memory usage over 85% (critical)"
+            "value" : "Memory usage over 85 percent (critical)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utilisation mémoire au-dessus de 85 % (critique)"
+            "value" : "Utilisation mémoire au-dessus de 85 pour cent (critique)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "メモリ使用率 85% 超（重大）"
+            "value" : "メモリ使用率 85パーセント 超（重大）"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内存使用率超过 85%（严重）"
+            "value" : "内存使用率超过 百分之 85（严重）"
           }
         }
       }
     },
     "status.menu.multi.memory.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speicherauslastung über 70 % (erhöht)"
+            "value" : "Speicherauslastung über 70 Prozent (erhöht)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Memory usage over 70% (elevated)"
+            "value" : "Memory usage over 70 percent (elevated)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utilisation mémoire au-dessus de 70 % (élevée)"
+            "value" : "Utilisation mémoire au-dessus de 70 pour cent (élevée)"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "メモリ使用率 70% 超（上昇）"
+            "value" : "メモリ使用率 70パーセント 超（上昇）"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内存使用率超过 70%（升高）"
+            "value" : "内存使用率超过 百分之 70（升高）"
           }
         }
       }
     },
     "status.menu.multi.network.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2333,7 +2333,7 @@
       }
     },
     "status.menu.multi.network.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2368,77 +2368,77 @@
       }
     },
     "status.menu.single.cpu.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU-Aktivität hat den kritischen Schwellenwert überschritten und eine Auslastung von mehr als 80 % erreicht."
+            "value" : "CPU-Aktivität hat den kritischen Schwellenwert überschritten und eine Auslastung von mehr als 80 Prozent erreicht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU activity exceeded the critical threshold, reaching a usage of more than 80%."
+            "value" : "CPU activity exceeded the critical threshold, reaching a usage of more than 80 percent."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'activité CPU a dépassé le seuil critique, atteignant plus de 80%."
+            "value" : "L'activité CPU a dépassé le seuil critique, atteignant plus de 80 pour cent."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU の活動が重大となり、使用率が 80% を超えました。"
+            "value" : "CPU の活動が重大となり、使用率が 80パーセント を超えました。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU 活动超过严重阈值，使用率高于 80%。"
+            "value" : "CPU 活动超过严重阈值，使用率高于 百分之 80。"
           }
         }
       }
     },
     "status.menu.single.cpu.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU-Aktivität hat den erhöhten Schwellenwert überschritten und eine Auslastung von mehr als 50 % erreicht."
+            "value" : "CPU-Aktivität hat den erhöhten Schwellenwert überschritten und eine Auslastung von mehr als 50 Prozent erreicht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU activity exceeded the elevated threshold, reaching a usage of more than 50%."
+            "value" : "CPU activity exceeded the elevated threshold, reaching a usage of more than 50 percent."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'activité CPU a dépassé le seuil élevé, atteignant plus de 50%."
+            "value" : "L'activité CPU a dépassé le seuil élevé, atteignant plus de 50 pour cent."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU の活動が上昇し、使用率が 50% を超えました。"
+            "value" : "CPU の活動が上昇し、使用率が 50パーセント を超えました。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CPU 活动超过升高阈值，使用率高于 50%。"
+            "value" : "CPU 活动超过升高阈值，使用率高于 百分之 50。"
           }
         }
       }
     },
     "status.menu.single.disk.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2473,7 +2473,7 @@
       }
     },
     "status.menu.single.disk.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2508,77 +2508,77 @@
       }
     },
     "status.menu.single.memory.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speicheraktivität hat den kritischen Schwellenwert überschritten und eine Auslastung von mehr als 85 % erreicht."
+            "value" : "Speicheraktivität hat den kritischen Schwellenwert überschritten und eine Auslastung von mehr als 85 Prozent erreicht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Memory activity exceeded the critical threshold, reaching a usage of more than 85%."
+            "value" : "Memory activity exceeded the critical threshold, reaching a usage of more than 85 percent."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'activité mémoire a dépassé le seuil critique, atteignant plus de 85%."
+            "value" : "L'activité mémoire a dépassé le seuil critique, atteignant plus de 85 pour cent."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "メモリの活動が重大となり、使用率が 85% を超えました。"
+            "value" : "メモリの活動が重大となり、使用率が 85パーセント を超えました。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内存活动超过严重阈值，使用率高于 85%。"
+            "value" : "内存活动超过严重阈值，使用率高于 百分之 85。"
           }
         }
       }
     },
     "status.menu.single.memory.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speicheraktivität hat den erhöhten Schwellenwert überschritten und eine Auslastung von mehr als 70 % erreicht."
+            "value" : "Speicheraktivität hat den erhöhten Schwellenwert überschritten und eine Auslastung von mehr als 70 Prozent erreicht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Memory activity exceeded the elevated threshold, reaching a usage of more than 70%."
+            "value" : "Memory activity exceeded the elevated threshold, reaching a usage of more than 70 percent."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'activité mémoire a dépassé le seuil élevé, atteignant plus de 70%."
+            "value" : "L'activité mémoire a dépassé le seuil élevé, atteignant plus de 70 pour cent."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "メモリの活動が上昇し、使用率が 70% を超えました。"
+            "value" : "メモリの活動が上昇し、使用率が 70パーセント を超えました。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "内存活动超过升高阈值，使用率高于 70%。"
+            "value" : "内存活动超过升高阈值，使用率高于 百分之 70。"
           }
         }
       }
     },
     "status.menu.single.network.critical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2613,7 +2613,7 @@
       }
     },
     "status.menu.single.network.elevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2648,7 +2648,7 @@
       }
     },
     "status.message.collecting" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2683,7 +2683,7 @@
       }
     },
     "status.message.healthy" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2718,7 +2718,7 @@
       }
     },
     "status.message.metricSummary" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2753,7 +2753,7 @@
       }
     },
     "status.metric.cpu" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2788,7 +2788,7 @@
       }
     },
     "status.metric.disk" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2823,7 +2823,7 @@
       }
     },
     "status.metric.memory" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2858,7 +2858,7 @@
       }
     },
     "status.metric.network" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2893,7 +2893,7 @@
       }
     },
     "status.severity.critical.abbrev" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2928,7 +2928,7 @@
       }
     },
     "status.severity.elevated.abbrev" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2963,7 +2963,7 @@
       }
     },
     "status.severity.normal" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2998,7 +2998,7 @@
       }
     },
     "status.title.combined" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3033,7 +3033,7 @@
       }
     },
     "status.title.critical.single" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3068,7 +3068,7 @@
       }
     },
     "status.title.elevated.metric.menu" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3103,7 +3103,7 @@
       }
     },
     "status.title.elevated.metric.notification" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3138,7 +3138,7 @@
       }
     },
     "status.title.elevated.single" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3173,7 +3173,7 @@
       }
     },
     "status.title.menu.multipleCritical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3208,7 +3208,7 @@
       }
     },
     "status.title.menu.multipleElevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3243,7 +3243,7 @@
       }
     },
     "status.title.menu.normal" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3278,7 +3278,7 @@
       }
     },
     "status.title.notification.multipleCritical" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3313,7 +3313,7 @@
       }
     },
     "status.title.notification.multipleElevated" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3348,7 +3348,7 @@
       }
     },
     "status.title.notification.normal" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3383,7 +3383,7 @@
       }
     },
     "status.trigger.activity" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3418,7 +3418,7 @@
       }
     },
     "uiTests.harness.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3453,7 +3453,7 @@
       }
     },
     "uiTests.window.title" : {
-      "extractionState" : "stale",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {

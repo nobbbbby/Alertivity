@@ -58,22 +58,38 @@ struct AlertivityApp: App {
                 onStatusChange: handleStatusChange,
                 onMetricsChange: handleMetricsChange
             )
-            .onChange(of: settings.highActivityDurationSeconds, perform: applyHighActivityDurationUpdate)
-            .onChange(of: settings.highActivityCPUThresholdPercent, perform: applyHighActivityCPUThresholdUpdate)
-            .onChange(of: settings.highActivityMemoryThresholdPercent, perform: applyHighActivityMemoryThresholdUpdate)
+            .onChange(of: settings.highActivityDurationSeconds) { _, value in
+                applyHighActivityDurationUpdate(for: value)
+            }
+            .onChange(of: settings.highActivityCPUThresholdPercent) { _, value in
+                applyHighActivityCPUThresholdUpdate(for: value)
+            }
+            .onChange(of: settings.highActivityMemoryThresholdPercent) { _, value in
+                applyHighActivityMemoryThresholdUpdate(for: value)
+            }
             .onChange(of: settings.ignoredProcessPaths) { _, paths in
                 applyIgnoredProcessPathsUpdate(for: paths)
             }
-            .onChange(of: settings.hideDockIcon, perform: applyDockVisibility)
-            .onChange(of: settings.launchAtLogin, perform: applyLaunchAtLogin)
-            .onChange(of: settings.isMenuIconEnabled) { _ in updateMenuBarInsertion(for: ActivityStatus(metrics: monitor.metrics)) }
-            .onChange(of: settings.menuIconOnlyWhenHigh) { _ in updateMenuBarInsertion(for: ActivityStatus(metrics: monitor.metrics)) }
-            .onChange(of: settings.notificationsEnabled) { newValue in
+            .onChange(of: settings.hideDockIcon) { _, value in
+                applyDockVisibility(for: value)
+            }
+            .onChange(of: settings.launchAtLogin) { _, value in
+                applyLaunchAtLogin(for: value)
+            }
+            .onChange(of: settings.isMenuIconEnabled) {
+                updateMenuBarInsertion(for: ActivityStatus(metrics: monitor.metrics))
+            }
+            .onChange(of: settings.menuIconOnlyWhenHigh) {
+                updateMenuBarInsertion(for: ActivityStatus(metrics: monitor.metrics))
+            }
+            .onChange(of: settings.notificationsEnabled) { _, newValue in
                 if newValue {
                     notificationManager.requestAuthorizationIfNeeded()
                 }
             }
-            .onChange(of: settings.isMenuIconAutoSwitchEnabled, perform: enforceAutoSwitchDependencies)
+            .onChange(of: settings.isMenuIconAutoSwitchEnabled) { _, value in
+                enforceAutoSwitchDependencies(isEnabled: value)
+            }
         }
         .menuBarExtraStyle(.window)
 
@@ -333,18 +349,22 @@ private struct MenuBarLabelLifecycleView: View {
             initialize()
             updateAutoSwitchSelection(for: monitor.metrics)
         }
-        .onChange(of: monitor.status, perform: onStatusChange)
-        .onChange(of: monitor.metrics, perform: onMetricsChange)
-        .onChange(of: monitor.metrics) { metrics in
+        .onChange(of: monitor.status) { _, status in
+            onStatusChange(status)
+        }
+        .onChange(of: monitor.metrics) { _, metrics in
+            onMetricsChange(metrics)
+        }
+        .onChange(of: monitor.metrics) { _, metrics in
             updateAutoSwitchSelection(for: metrics)
         }
-        .onChange(of: isMenuIconEnabled) { _ in
+        .onChange(of: isMenuIconEnabled) {
             onStatusChange(monitor.status)
         }
-        .onChange(of: menuIconOnlyWhenHigh) { _ in
+        .onChange(of: menuIconOnlyWhenHigh) {
             onStatusChange(monitor.status)
         }
-        .onChange(of: autoSwitchEnabled) { _ in
+        .onChange(of: autoSwitchEnabled) {
             updateAutoSwitchSelection(for: monitor.metrics)
         }
     }
