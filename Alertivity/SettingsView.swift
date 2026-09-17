@@ -25,14 +25,15 @@ struct SettingsView: View {
 
                 FooterDivider()
 
-                SettingsFootnote(key: "settings.menuBar.help")
+                SettingsFootnote(key: "settings.menuBar.help", weight: .semibold)
             }
 
             SettingsTab(title: "settings.tab.notifications", systemImage: "bell") {
                 NotificationSettingsFields(
                     notificationsEnabled: $settings.notificationsEnabled,
                     highActivityDurationSeconds: $settings.highActivityDurationSeconds,
-                    processSamplingAvailable: processSamplingAvailable
+                    processSamplingAvailable: processSamplingAvailable,
+                    emphasizesFooter: true
                 )
             }
 
@@ -52,7 +53,8 @@ struct SettingsView: View {
                     DetectionSettingsFooter(
                         highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
                         highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
-                        highActivityDurationSeconds: settings.highActivityDurationSeconds
+                        highActivityDurationSeconds: settings.highActivityDurationSeconds,
+                        emphasizesFooter: true
                     )
                 }
             }
@@ -81,7 +83,8 @@ struct NoticePreferencesView: View {
             NotificationSettingsFields(
                 notificationsEnabled: $settings.notificationsEnabled,
                 highActivityDurationSeconds: $settings.highActivityDurationSeconds,
-                processSamplingAvailable: processSamplingAvailable
+                processSamplingAvailable: processSamplingAvailable,
+                emphasizesFooter: false
             )
         }
 
@@ -99,7 +102,8 @@ struct NoticePreferencesView: View {
                 DetectionSettingsFooter(
                     highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
                     highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
-                    highActivityDurationSeconds: settings.highActivityDurationSeconds
+                    highActivityDurationSeconds: settings.highActivityDurationSeconds,
+                    emphasizesFooter: false
                 )
             }
         }
@@ -133,10 +137,11 @@ private struct SettingsTab<Content: View>: View {
 
 private struct SettingsFootnote: View {
     let key: LocalizedStringKey
+    var weight: Font.Weight = .regular
 
     var body: some View {
         Text(key)
-            .font(.footnote)
+            .font(.footnote.weight(weight))
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -202,6 +207,7 @@ private struct NotificationSettingsFields: View {
     @Binding var notificationsEnabled: Bool
     @Binding var highActivityDurationSeconds: Int
     let processSamplingAvailable: Bool
+    let emphasizesFooter: Bool
 
     var body: some View {
         Toggle("settings.notifications.enable", isOn: $notificationsEnabled)
@@ -216,7 +222,7 @@ private struct NotificationSettingsFields: View {
         FooterDivider()
 
         Text(L10n.format(notificationNoteKey, highActivityDurationSeconds))
-            .font(.footnote)
+            .font(.footnote.weight(emphasizesFooter ? .semibold : .regular))
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -253,6 +259,7 @@ private struct DetectionSettingsFooter: View {
     let highActivityCPUThresholdPercent: Int
     let highActivityMemoryThresholdPercent: Int
     let highActivityDurationSeconds: Int
+    let emphasizesFooter: Bool
 
     var body: some View {
         Text(L10n.format(
@@ -261,7 +268,7 @@ private struct DetectionSettingsFooter: View {
             highActivityMemoryThresholdPercent,
             highActivityDurationSeconds
         ))
-            .font(.footnote)
+            .font(.footnote.weight(emphasizesFooter ? .semibold : .regular))
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -403,6 +410,28 @@ private struct IgnoredProcessRow: View {
 }
 
 #if DEBUG && !DISABLE_PREVIEWS
+private struct SettingsPreviewContainer: View {
+    @StateObject private var settings: SettingsStore
+    let processSamplingAvailable: Bool
+
+    init(suiteName: String, paths: [String] = [], processSamplingAvailable: Bool = true) {
+        _settings = StateObject(
+            wrappedValue: PreviewSettingsStore.make(
+                suiteName: suiteName,
+                ignoredProcessPaths: paths
+            )
+        )
+        self.processSamplingAvailable = processSamplingAvailable
+    }
+
+    var body: some View {
+        SettingsView(
+            settings: settings,
+            processSamplingAvailable: processSamplingAvailable
+        )
+    }
+}
+
 private struct NoticePreferencesPreviewContainer: View {
     @StateObject private var settings = PreviewSettingsStore.make(suiteName: "NoticePreferencesPreview")
 
@@ -452,10 +481,26 @@ private enum PreviewSettingsStore {
     }
 }
 
-#Preview("Settings") {
-    SettingsView(
-        settings: PreviewSettingsStore.make(suiteName: "SettingsPreview"),
-        processSamplingAvailable: true
+#Preview("Settings — Empty Whitelist") {
+    SettingsPreviewContainer(suiteName: "SettingsEmptyWhitelistPreview")
+        .frame(width: 520)
+}
+
+#Preview("Settings — Populated Whitelist") {
+    SettingsPreviewContainer(
+        suiteName: "SettingsPopulatedWhitelistPreview",
+        paths: [
+            "/Applications/Xcode.app/Contents/MacOS/Xcode",
+            "/Applications/Safari.app/Contents/MacOS/Safari"
+        ]
+    )
+    .frame(width: 520)
+}
+
+#Preview("Settings — Limited Monitoring") {
+    SettingsPreviewContainer(
+        suiteName: "SettingsLimitedMonitoringPreview",
+        processSamplingAvailable: false
     )
     .frame(width: 520)
 }
