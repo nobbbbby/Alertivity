@@ -3526,7 +3526,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignored processes are hidden from high-activity process monitoring and alerts. Their usage is still included in overall system metrics."
+            "value" : "Whitelisted processes won’t appear in high-activity alerts, but their usage still counts toward overall system metrics."
           }
         }
       }
