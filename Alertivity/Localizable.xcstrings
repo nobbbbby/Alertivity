@@ -2,10 +2,60 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : ""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : ""
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : ""
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : ""
+          }
+        }
+      }
     },
     " • " : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : " • "
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : " • "
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : " • "
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : " • "
+          }
+        }
+      }
     },
     "accessibility.menuIconHidden" : {
       "extractionState" : "manual",
@@ -388,6 +438,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "↓ %@/秒 • ↑ %@/秒"
+          }
+        }
+      }
+    },
+    "general.ok" : {
+      "comment" : "Button that dismisses an informational alert.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "OK"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "OK"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "OK"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "好"
           }
         }
       }
@@ -984,6 +1069,41 @@
         }
       }
     },
+    "notifications.action.ignoreProcess" : {
+      "comment" : "Notification action that permanently excludes the reported process from high-activity process monitoring.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Zur Ausnahmeliste hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to Whitelist"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ajouter aux processus ignorés"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無視するプロセスに追加"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加到忽略列表"
+          }
+        }
+      }
+    },
     "notifications.action.showInActivityMonitor" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1537,6 +1657,251 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.add" : {
+      "comment" : "Button and file-picker confirmation label for adding an ignored process.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ajouter"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "追加"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "添加"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.help" : {
+      "comment" : "Explains the effect and limits of ignoring a process.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Prozesse auf der Ausnahmeliste werden nicht in Warnungen zu hoher Aktivität angezeigt, ihre Nutzung wird jedoch weiterhin in die allgemeinen Systemmetriken einbezogen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whitelisted processes won’t appear in high-activity alerts, but their usage still counts toward overall system metrics."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Les processus ignorés n’apparaîtront pas dans les alertes de forte activité, mais leur utilisation sera toujours prise en compte dans les métriques système globales."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無視するプロセスは高負荷の通知には表示されませんが、その使用量は引き続きシステム全体の指標に含まれます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "忽略列表中的进程不会出现在高活动提醒中，但其资源使用情况仍会计入整体系统指标。"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.invalid.message" : {
+      "comment" : "Message shown when the selected item cannot identify an executable process.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Wähle eine App oder eine ausführbare Datei aus."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an application or an executable file."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Choisissez une application ou un fichier exécutable."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "アプリケーションまたは実行可能ファイルを選択してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "请选择应用或可执行文件。"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.invalid.title" : {
+      "comment" : "Title of the invalid ignored-process selection alert.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Prozess konnte nicht hinzugefügt werden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Process Couldn’t Be Added"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Impossible d’ajouter le processus"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "プロセスを追加できませんでした"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "无法添加进程"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.picker.message" : {
+      "comment" : "Instruction displayed in the process selection panel.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Wähle eine App oder eine ausführbare Datei aus, die von der Überwachung auf hohe Prozessaktivität ausgeschlossen werden soll."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose an application or executable to exclude from high-activity process monitoring."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Choisissez une application ou un fichier exécutable à exclure de la surveillance des processus à forte activité."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "高負荷プロセスの監視から除外するアプリケーションまたは実行可能ファイルを選択してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "选择要从高活动进程监控中排除的应用或可执行文件。"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.remove" : {
+      "comment" : "Accessibility label for the button that removes a process from the ignored list.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Prozess aus Ausnahmeliste entfernen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove ignored process"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Retirer des processus ignorés"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無視するプロセスから削除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "从忽略列表中移除进程"
+          }
+        }
+      }
+    },
+    "settings.ignoredProcesses.title" : {
+      "comment" : "Heading for the list of processes excluded from high-activity monitoring.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Ausnahmeliste"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whitelist"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "Processus ignorés"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "無視するプロセス"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "machine_translated",
+            "value" : "忽略列表"
           }
         }
       }
@@ -3486,106 +3851,7 @@
           }
         }
       }
-    },
-    "general.ok" : {
-      "comment" : "Button that dismisses an informational alert.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        }
-      }
-    },
-    "notifications.action.ignoreProcess" : {
-      "comment" : "Notification action that permanently excludes the reported process from high-activity process monitoring.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add to Whitelist"
-          }
-        }
-      }
-    },
-    "settings.ignoredProcesses.add" : {
-      "comment" : "Button and file-picker confirmation label for adding an ignored process.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add"
-          }
-        }
-      }
-    },
-    "settings.ignoredProcesses.help" : {
-      "comment" : "Explains the effect and limits of ignoring a process.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Whitelisted processes won’t appear in high-activity alerts, but their usage still counts toward overall system metrics."
-          }
-        }
-      }
-    },
-    "settings.ignoredProcesses.invalid.message" : {
-      "comment" : "Message shown when the selected item cannot identify an executable process.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose an application or an executable file."
-          }
-        }
-      }
-    },
-    "settings.ignoredProcesses.invalid.title" : {
-      "comment" : "Title of the invalid ignored-process selection alert.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Process Couldn’t Be Added"
-          }
-        }
-      }
-    },
-    "settings.ignoredProcesses.picker.message" : {
-      "comment" : "Instruction displayed in the process selection panel.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose an application or executable to exclude from high-activity process monitoring."
-          }
-        }
-      }
-    },
-    "settings.ignoredProcesses.remove" : {
-      "comment" : "Accessibility label for the button that removes a process from the ignored list.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remove ignored process"
-          }
-        }
-      }
-    },
-    "settings.ignoredProcesses.title" : {
-      "comment" : "Heading for the list of processes excluded from high-activity monitoring.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Whitelist"
-          }
-        }
-      }
     }
   },
-  "version" : "1.0"
+  "version" : "1.3"
 }
