@@ -58,7 +58,7 @@ The project navigator follows the folders on disk using Xcode synchronized folde
 | `Configuration/` | Shared Info.plist and each app target's signing entitlements |
 | `StoreKit/` | Local purchase fixture |
 
-`Configuration/` and `StoreKit/` are visible in Xcode but have no target membership. Build settings reference the plist and entitlements explicitly; schemes and purchase tests reference the StoreKit fixture. Keep development fixtures outside `Alertivity/` so folder synchronization does not add them to shipped resources. Target names, bundle identifiers, and the root `Alertivity.xctestplan` remain stable.
+`Configuration/` and `StoreKit/` are visible in Xcode. Build settings reference the plist and entitlements explicitly. The StoreKit fixture is copied only into the unit-test bundle; schemes also reference it for local debugging. Keep development fixtures outside `Alertivity/` so folder synchronization does not add them to shipped resources. Target names, bundle identifiers, and the root `Alertivity.xctestplan` remain stable.
 
 ## Window and permission handling
 
@@ -121,6 +121,8 @@ Run `AlertivityTests` with the **Alertivity (Non-sandboxed)** scheme and normal 
 (the tests explicitly inject the App Store distribution where required). For just the real
 StoreKit adapter, select `NativeProPurchaseTests`. All native cases use the local fixture and
 `SKTestSession`; they do not require an App Store Connect product or charge real money.
+Tests load the fixture from their own bundle, so Xcode Cloud can run the built tests without
+access to the original source checkout.
 
 | Scenario | Local coverage |
 | --- | --- |

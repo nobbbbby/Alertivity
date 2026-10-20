@@ -243,18 +243,13 @@ private final class FakeProClient: ProPurchasing {
     }
 }
 
+private final class StoreKitTestBundle: NSObject {}
+
 /// Uses Apple's local StoreKit environment, without App Store Connect products or real charges.
 @Suite(.serialized, .timeLimit(.minutes(1))) @MainActor struct NativeProPurchaseTests {
     @Test
     func purchaseRestoreAndRefundUseVerifiedStoreKitTransactions() async throws {
-        let root = URL(fileURLWithPath: #filePath)
-            .deletingLastPathComponent() // Pro
-            .deletingLastPathComponent() // AlertivityTests
-            .deletingLastPathComponent() // Repository root
-        let session = try SKTestSession(contentsOf: root.appendingPathComponent("StoreKit/Alertivity.storekit"))
-        session.resetToDefaultState()
-        session.disableDialogs = true
-        session.clearTransactions()
+        let session = try makeSession()
         defer { session.clearTransactions() }
 
         let store = ProStore(distribution: .appStore)
@@ -287,11 +282,12 @@ private final class FakeProClient: ProPurchasing {
     }
 
     private func makeSession() throws -> SKTestSession {
-        let root = URL(fileURLWithPath: #filePath)
-            .deletingLastPathComponent() // Pro
-            .deletingLastPathComponent() // AlertivityTests
-            .deletingLastPathComponent() // Repository root
-        let session = try SKTestSession(contentsOf: root.appendingPathComponent("StoreKit/Alertivity.storekit"))
+        // Cloud runners receive built products separately from the source checkout.
+        let configuration = try #require(
+            Bundle(for: StoreKitTestBundle.self).url(forResource: "Alertivity", withExtension: "storekit"),
+            "The unit-test bundle must contain Alertivity.storekit."
+        )
+        let session = try SKTestSession(contentsOf: configuration)
         session.resetToDefaultState()
         session.disableDialogs = true
         session.clearTransactions()
