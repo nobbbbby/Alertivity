@@ -1,0 +1,1 @@
+[Privacy Policy](https://github.com/nobbbbby/Alertivity/wiki/Privacy-Policy) · [Home](https://github.com/nobbbbby/Alertivity/wiki/Home) · [Report an issue](https://github.com/nobbbbby/Alertivity/issues) · [Editing the wiki](https://github.com/nobbbbby/Alertivity/wiki/Maintaining-the-Wiki)

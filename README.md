@@ -1,54 +1,85 @@
 # Alertivity
 
-![Screenshot ](<img/menubar.png>)
+**Your Mac’s vital signs, always visible.**
 
-Alertivity is a macOS menu bar utility that samples CPU, memory, disk, network, and process data so you can spot trouble early. It summarizes system health as Normal/Elevated/Critical, highlights the metric that triggered the state, and offers quick actions on culprit processes.
+Alertivity monitors CPU, memory, disk, network, and process activity. It turns those signals into a simple **Normal**, **Elevated**, or **Critical** status so you can spot problems before they interrupt your work.
 
-[![Install directly from the Mac App Store](img/appstore.svg)](https://apps.apple.com/app/alertivity/id6756399719)
+![Alertivity menu bar](img/menubar.png)
 
-## Features
-- Live system sampling every few seconds with status driven by the highest-severity metric across CPU, memory, disk, and network (with light hysteresis to avoid flapping).
-- Menu bar indicator that can show overall status or a specific metric (CPU, memory, disk, network); optional auto-switch swaps on critical severity only using priority CPU > Memory > Disk > Network and a short dwell, and you can hide the indicator unless status is critical.
-- Compact menu showing per-metric summaries, network throughput, and high-activity processes for CPU/memory/network with quick actions to reveal the process in Activity Monitor or terminate it (disk is excluded to avoid slow sampling).
-- Notifications for critical status (after a configured duration) or high-activity processes, including the triggering metric/value and culprit metadata; delivery is throttled to avoid spam.
-- Settings tabs for Dock visibility, launch at login, menu icon behavior (default icon type, auto-switch, show-only-on-high-activity, show metric icon), notification opt-in + duration, and detection thresholds (CPU and memory percentages).
+[![Download on the Mac App Store](img/appstore.svg)](https://apps.apple.com/app/alertivity/id6756399719)
 
-## Requirements
-- macOS 13.0 or later (uses `SMAppService` for launch at login)
-- Xcode 15 or later with Swift 5 / SwiftUI
+## Highlights
 
-## Default thresholds
-- Status levels: CPU (<50 / 50–79 / ≥80%), Memory (<70 / 70–84 / ≥85% of total), Disk throughput (<30 MB/s / 30–119 MB/s / ≥120 MB/s aggregated read+write), Network throughput (<5 MB/s / 5–19 MB/s / ≥20 MB/s aggregated send+receive)
-- Auto-switch (busiest metric detection): triggers only on Critical severity using the above thresholds, honors priority CPU > Memory > Disk > Network, and requires two consecutive samples before switching
-- High-activity process list: CPU ≥80% or Memory ≥25% sustained for 60s (duration configurable)
+- **At-a-glance health** — one clear status for your Mac
+- **Live metrics** — CPU, memory, disk, and network activity
+- **Smart menu bar icon** — show a chosen metric or automatically follow Critical activity in your preferred metric order
+- **Useful alerts** — get notified when critical activity persists
+- **Process insights** — identify, inspect, ignore, or terminate resource-heavy processes¹
+- **Made for macOS** — launch at login, optional Dock icon, and a localized SwiftUI interface
 
-## Build variants
-- App Store (sandboxed) build: process sampling is unavailable, the Detection tab is hidden, and notifications trigger only when any metric stays critical for the configured duration.
-- Non-sandboxed build: process sampling is available, the Detection tab is shown (CPU and memory thresholds for process flagging), and notifications can also include high-activity process alerts.
+¹ Process monitoring is available in the non-sandboxed build.
 
-## Build and Run
-1) Open `Alertivity.xcodeproj` in Xcode, select the `Alertivity (Non-sandboxed)` scheme, and press Run to launch the menu bar app.  
-2) From the command line:  
-   `xcodebuild -scheme 'Alertivity (Non-sandboxed)' -configuration Release -destination 'platform=macOS' build`
+## Getting Started
 
-## Testing and Coverage
-- Full suite with coverage (Swift Testing unit/integration + XCUITest UI smoke):  
-  `xcodebuild -project Alertivity.xcodeproj -scheme 'Alertivity (Non-sandboxed)' -testPlan Alertivity -destination 'platform=macOS' -enableCodeCoverage YES test`
-- UI smoke tests drive a harness window (enabled by the `UITests` launch argument) to toggle menu/notification settings and verify status rendering; run just the UI layer with `-only-testing:AlertivityUITests`.
-- Coverage is emitted in the `.xcresult` bundle under DerivedData; unit tests outnumber integration tests (~12:1) and UI tests remain a thin smoke layer to keep the pyramid balanced.
+1. Open Alertivity and follow the optional welcome guide.
+2. Click the menu bar icon to view your Mac’s status and live metrics.
+3. Open **Settings** to choose your menu bar display, adjust activity thresholds, and enable notifications. Allow notification permission when prompted to receive alerts.
 
-## OpenSpec
-- This project uses OpenSpec for change proposals, specs, and implementation tasks. See `openspec/AGENTS.md` for the workflow and `openspec/` for current specs.
+In **Settings → Notifications**, choose a notification cooldown of 1, 5, 10, 15, 30, or 60 minutes (default: 10). This minimum interval is shared by all system and process alerts. Changes apply immediately using the last notification attempt; the preference is saved, while the cooldown timer resets when the app restarts. The high-activity duration separately controls how long a critical condition must persist before an alert qualifies.
 
-## Using the App
-- First launch: choose whether to hide the Dock icon, enable launch at login, and allow notifications if desired.
-- Menu bar: pick a default icon (status or a metric) or turn on Auto switch so the indicator follows the busiest metric; optionally show the indicator only when status is critical.
-- Status: the menu status row explains which metric triggered the elevated/critical state and lists CPU, memory, disk percentages plus network throughput.
-- Processes (non-sandboxed build): high-activity items require sustained load before appearing; buttons let you open Activity Monitor focused on the process or force quit it.
-- Detection (non-sandboxed build): adjust CPU and memory thresholds that flag high-activity processes.
-- Notifications: fire when any metric (CPU, memory, disk, or network) stays critical for the configured duration; process alerts follow the detection thresholds when available.
+### Menu bar summaries
 
-## Privacy and Permissions
-- Activity Monitor reveal uses AppleScript through System Events; grant Accessibility permission to Alertivity if prompted so the search shortcut works.
-- Notifications require user authorization; enable them in Settings > Notifications.
-- Launch at login depends on macOS 13+; if registration fails, the app re-reads the system status to keep the toggle accurate.
+The summary identifies configured **alert thresholds** that current activity has reached,
+for example, “Alert thresholds reached: CPU 80% and Memory 70%.” These numbers are
+thresholds, not live readings; the metric rows below show current values. “Reached”
+includes equality and values above the threshold. A threshold triggers a notice rather
+than imposing a resource limit.
+
+See [Metrics and status](wiki/Metrics-and-Status.md) for examples and [the developer guide](wiki/Developer-Guide.md#menu-summaries) for formatting details.
+
+## Documentation
+
+Read the [GitHub wiki](https://github.com/nobbbbby/Alertivity/wiki) for settings, notifications, troubleshooting, and development. Page sources are in [wiki/](wiki/Home.md); see [Editing the wiki](wiki/Maintaining-the-Wiki.md) to publish updates.
+
+## Choose a Version
+
+### Mac App Store
+
+The sandboxed version provides system-wide health monitoring and critical-status notifications. Process-level monitoring is unavailable because of App Store sandbox restrictions.
+
+Alertivity Pro is a one-time in-app purchase for custom system thresholds, notification cooldown, and high-activity duration. Free monitoring uses the default thresholds, a 10-minute cooldown, and a 60-second duration. All other current App Store features remain free. Saved custom settings are preserved and restored when Pro access is verified. See [Free and Pro settings](wiki/Settings.md#free-and-pro-in-the-mac-app-store-build).
+
+[Download Alertivity from the Mac App Store](https://apps.apple.com/app/alertivity/id6756399719)
+
+### Non-sandboxed
+
+Build from source to unlock process-level activity, process CPU and memory detection thresholds, ignored-process rules, and quick actions for Activity Monitor or force quit. The open-source build remains fully unlocked, including all monitoring customization; no Pro purchase is required.
+
+## Build from Source
+
+Requirements: **macOS 14 (Sonoma) or later** and a compatible stable Xcode. See the [developer guide](wiki/Developer-Guide.md) for tooling details.
+
+1. Open `Alertivity.xcodeproj` in Xcode.
+2. Select the **Alertivity (Non-sandboxed)** scheme.
+3. In **Signing & Capabilities**, select your available Apple development team for signing. Add your Apple account in **Xcode → Settings → Accounts** if needed.
+4. Press **Run**.
+
+Or build from Terminal:
+
+```sh
+xcodebuild \
+  -scheme 'Alertivity (Non-sandboxed)' \
+  -configuration Release \
+  -destination 'platform=macOS' \
+  build
+```
+
+For Terminal builds, add `DEVELOPMENT_TEAM=YOUR_TEAM_ID` to use your available development team.
+
+## Privacy & Permissions
+
+Read the [Privacy Policy](https://github.com/nobbbbby/Alertivity/wiki/Privacy-Policy) for data use and storage. Alertivity monitors activity locally. Notifications require macOS authorization. Revealing a process in Activity Monitor may require Accessibility permission for System Events.
+
+## Languages
+
+English, German, French, Japanese, and Simplified Chinese. See the [localization guide](wiki/Localization.md) to maintain translations.

@@ -1,0 +1,28 @@
+{
+  "identifier" : "4B658243-4593-4162-A6A4-C17171913A79",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "2D59BE18-3284-4336-9D47-5C027752B0C5",
+      "localizations" : [
+        {
+          "description" : "Customize system thresholds, notification cooldown, and high-activity duration.",
+          "displayName" : "Alertivity Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.Nobby.Alertivity.pro",
+      "referenceName" : "Alertivity Pro (local testing)",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA"
+  },
+  "subscriptionGroups" : [],
+  "version" : { "major" : 3, "minor" : 0 }
+}
