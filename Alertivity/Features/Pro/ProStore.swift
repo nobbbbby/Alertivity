@@ -1,4 +1,5 @@
 import Combine
+import AppKit
 import Foundation
 import StoreKit
 
@@ -20,7 +21,7 @@ enum ProPurchaseResult {
 protocol ProPurchasing {
     func loadProduct() async throws -> ProProduct?
     func currentAccess() async -> Bool
-    func purchase() async throws -> ProPurchaseResult
+    func purchase(confirmIn window: NSWindow?) async throws -> ProPurchaseResult
     func restore() async throws
     func updates() -> AsyncStream<ProDelivery>
 }
@@ -89,14 +90,15 @@ final class ProStore: ObservableObject {
         }
     }
 
-    func purchase() async {
+    /// A caller can anchor StoreKit confirmation to its own window on supported macOS versions.
+    func purchase(confirmIn window: NSWindow? = nil) async {
         guard distribution == .appStore, !isBusy, !hasProAccess, product != nil else { return }
         isBusy = true
         messageKey = nil
         defer { isBusy = false }
         AppLogger.purchases.info("Pro purchase started")
         do {
-            switch try await client.purchase() {
+            switch try await client.purchase(confirmIn: window) {
             case .purchased(let delivery):
                 refreshGeneration += 1 // Invalidate any older entitlement query still in flight.
                 applyAccess(delivery.isGranted)
@@ -193,7 +195,7 @@ private final class StoreKitProClient: ProPurchasing {
             && transaction.revocationDate == nil
     }
 
-    func purchase() async throws -> ProPurchaseResult {
+    func purchase(confirmIn window: NSWindow?) async throws -> ProPurchaseResult {
         guard let product else { throw PurchaseError.unavailable }
         // Separate the SDK wait from verification and delivery when diagnosing stalled purchases.
         let clock = ContinuousClock()
@@ -201,7 +203,12 @@ private final class StoreKitProClient: ProPurchasing {
         AppLogger.purchases.info("StoreKit Product.purchase request started")
         let result: Product.PurchaseResult
         do {
-            result = try await product.purchase()
+            if #available(macOS 15.2, *), let window {
+                AppLogger.purchases.info("StoreKit purchase confirmation uses an explicit window; key: \(window.isKeyWindow, privacy: .public)")
+                result = try await product.purchase(confirmIn: window)
+            } else {
+                result = try await product.purchase()
+            }
         } catch {
             let elapsed = String(describing: started.duration(to: clock.now))
             AppLogger.purchases.info("StoreKit Product.purchase request threw; elapsed: \(elapsed, privacy: .public)")
