@@ -258,6 +258,10 @@ private final class StoreKitTestBundle: NSObject {}
         await traceStoreKitStep("initial store start") { await store.start() }
         #expect(!store.hasProAccess)
         try #require(store.product != nil)
+        let dialogsDisabled = session.disableDialogs
+        let host = Bundle.main.bundleIdentifier ?? "unknown"
+        Self.diagnostics.notice("StoreKit lifecycle purchase environment; host: \(host, privacy: .public); dialogsDisabled: \(dialogsDisabled, privacy: .public)")
+        try #require(dialogsDisabled, "Automated purchases must suppress StoreKit dialogs.")
         await traceStoreKitStep("purchase") { await store.purchase() }
         try #require(store.hasProAccess)
         let transactions = session.allTransactions()

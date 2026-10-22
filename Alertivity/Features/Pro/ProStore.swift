@@ -195,7 +195,21 @@ private final class StoreKitProClient: ProPurchasing {
 
     func purchase() async throws -> ProPurchaseResult {
         guard let product else { throw PurchaseError.unavailable }
-        switch try await product.purchase() {
+        // Separate the SDK wait from verification and delivery when diagnosing stalled purchases.
+        let clock = ContinuousClock()
+        let started = clock.now
+        AppLogger.purchases.info("StoreKit Product.purchase request started")
+        let result: Product.PurchaseResult
+        do {
+            result = try await product.purchase()
+        } catch {
+            let elapsed = String(describing: started.duration(to: clock.now))
+            AppLogger.purchases.info("StoreKit Product.purchase request threw; elapsed: \(elapsed, privacy: .public)")
+            throw error
+        }
+        let elapsed = String(describing: started.duration(to: clock.now))
+        AppLogger.purchases.info("StoreKit Product.purchase request returned; elapsed: \(elapsed, privacy: .public)")
+        switch result {
         case .success(let result):
             if case .unverified(_, let error) = result {
                 let failure = error as NSError
