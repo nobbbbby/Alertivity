@@ -1,0 +1,30 @@
+{
+  "configurations": [
+    {
+      "id": "DBE1F22A-748F-4780-9143-C92E6044B96C",
+      "name": "Isolated StoreKit purchase",
+      "options": {}
+    }
+  ],
+  "defaultOptions": {
+    "environmentVariableEntries": [
+      {
+        "key": "ALERTIVITY_STOREKIT_PROBE",
+        "value": "1"
+      }
+    ],
+    "testTimeoutsEnabled": true
+  },
+  "testTargets": [
+    {
+      "parallelizable": false,
+      "selectedTests": ["StoreKitCloudProbe/testDirectProductPurchase"],
+      "target": {
+        "containerPath": "container:Alertivity.xcodeproj",
+        "identifier": "AA0000000000000000000100",
+        "name": "AlertivityTests"
+      }
+    }
+  ],
+  "version": 1
+}
