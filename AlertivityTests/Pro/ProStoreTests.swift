@@ -2,6 +2,7 @@ import Testing
 import Foundation
 import StoreKitTest
 import StoreKit
+import OSLog
 @testable import Alertivity
 
 @MainActor
@@ -249,36 +250,51 @@ private final class StoreKitTestBundle: NSObject {}
 @Suite(.serialized, .timeLimit(.minutes(1))) @MainActor struct NativeProPurchaseTests {
     @Test
     func purchaseRestoreAndRefundUseVerifiedStoreKitTransactions() async throws {
+        Self.diagnostics.notice("StoreKit lifecycle test: creating local session")
         let session = try makeSession()
         defer { session.clearTransactions() }
 
         let store = ProStore(distribution: .appStore)
-        await store.start()
+        await traceStoreKitStep("initial store start") { await store.start() }
         #expect(!store.hasProAccess)
         try #require(store.product != nil)
-        await store.purchase()
+        await traceStoreKitStep("purchase") { await store.purchase() }
         try #require(store.hasProAccess)
         let transactions = session.allTransactions()
         #expect(transactions.count == 1)
         let reloaded = ProStore(distribution: .appStore)
-        await reloaded.start()
-        for _ in 0..<100 {
-            await reloaded.refreshAccess()
+        await traceStoreKitStep("reloaded store start") { await reloaded.start() }
+        for attempt in 0..<100 {
+            await traceStoreKitStep("reload access refresh \(attempt)") { await reloaded.refreshAccess() }
             if reloaded.hasProAccess { break }
             try await Task.sleep(for: .milliseconds(50))
         }
         try #require(reloaded.hasProAccess)
-        await reloaded.restore()
+        await traceStoreKitStep("restore") { await reloaded.restore() }
         #expect(reloaded.hasProAccess)
         let transaction = try #require(transactions.first)
+        Self.diagnostics.notice("StoreKit lifecycle test: refund requested")
         try session.refundTransaction(identifier: transaction.identifier)
+        Self.diagnostics.notice("StoreKit lifecycle test: refund request returned")
         // Refund updates are asynchronous; bound the wait and explicitly refresh from StoreKit.
-        for _ in 0..<100 {
-            await reloaded.refreshAccess()
+        for attempt in 0..<100 {
+            await traceStoreKitStep("refund access refresh \(attempt)") { await reloaded.refreshAccess() }
             if !reloaded.hasProAccess { break }
             try await Task.sleep(for: .milliseconds(50))
         }
         #expect(!reloaded.hasProAccess)
+    }
+
+    private static let diagnostics = Logger(subsystem: "com.Nobby.Alertivity.tests", category: "storekit-lifecycle")
+
+    /// Paired markers identify a suspended StoreKit operation when the runner terminates the test.
+    private func traceStoreKitStep(_ step: String, operation: () async -> Void) async {
+        let clock = ContinuousClock()
+        let started = clock.now
+        Self.diagnostics.notice("StoreKit lifecycle step started: \(step, privacy: .public)")
+        await operation()
+        let elapsed = String(describing: started.duration(to: clock.now))
+        Self.diagnostics.notice("StoreKit lifecycle step completed: \(step, privacy: .public); elapsed: \(elapsed, privacy: .public)")
     }
 
     private func makeSession() throws -> SKTestSession {
