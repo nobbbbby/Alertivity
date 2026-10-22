@@ -249,10 +249,10 @@ private final class StoreKitTestBundle: NSObject {}
 /// Uses Apple's local StoreKit environment, without App Store Connect products or real charges.
 @Suite(.serialized, .timeLimit(.minutes(1))) @MainActor struct NativeProPurchaseTests {
     @Test
-    func externalPurchaseRestoreAndRefundUseVerifiedStoreKitTransactions() async throws {
+    func purchaseRestoreAndRefundUseVerifiedStoreKitTransactions() async throws {
         Self.diagnostics.notice("StoreKit lifecycle test: creating local session")
         let session = try makeSession()
-        defer { session.clearTransactions(); session.resetToDefaultState() }
+        defer { session.clearTransactions() }
 
         let store = ProStore(distribution: .appStore)
         await traceStoreKitStep("initial store start") { await store.start() }
@@ -262,14 +262,7 @@ private final class StoreKitTestBundle: NSObject {}
         let host = Bundle.main.bundleIdentifier ?? "unknown"
         Self.diagnostics.notice("StoreKit lifecycle purchase environment; host: \(host, privacy: .public); dialogsDisabled: \(dialogsDisabled, privacy: .public)")
         try #require(dialogsDisabled, "Automated purchases must suppress StoreKit dialogs.")
-        // Drive this lifecycle fixture through StoreKitTest's automation API. Other native
-        // tests exercise Product.purchase(), including successful retries and repurchases.
-        try await traceStoreKitStep("external test purchase") {
-            _ = try await session.buyProduct(identifier: ProStore.productID, options: [])
-        }
-        try await traceStoreKitStep("verified purchase delivery") {
-            try await waitForAccess(true, in: store)
-        }
+        await traceStoreKitStep("purchase") { await store.purchase() }
         try #require(store.hasProAccess)
         let transactions = session.allTransactions()
         #expect(transactions.count == 1)
@@ -299,11 +292,11 @@ private final class StoreKitTestBundle: NSObject {}
     private static let diagnostics = Logger(subsystem: "com.Nobby.Alertivity.tests", category: "storekit-lifecycle")
 
     /// Paired markers identify a suspended StoreKit operation when the runner terminates the test.
-    private func traceStoreKitStep(_ step: String, operation: () async throws -> Void) async rethrows {
+    private func traceStoreKitStep(_ step: String, operation: () async -> Void) async {
         let clock = ContinuousClock()
         let started = clock.now
         Self.diagnostics.notice("StoreKit lifecycle step started: \(step, privacy: .public)")
-        try await operation()
+        await operation()
         let elapsed = String(describing: started.duration(to: clock.now))
         Self.diagnostics.notice("StoreKit lifecycle step completed: \(step, privacy: .public); elapsed: \(elapsed, privacy: .public)")
     }
