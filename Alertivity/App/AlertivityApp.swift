@@ -63,6 +63,8 @@ struct AlertivityApp: App {
         .commands {
             CommandGroup(replacing: .help) {
                 OnboardingLink(settings: settings)
+                Divider()
+                FeedbackLink()
             }
         }
         .onChange(of: proStore.hasProAccess, initial: true) { _, granted in

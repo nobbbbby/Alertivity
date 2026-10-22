@@ -64,6 +64,8 @@ struct SettingsView: View {
         SettingsPane {
             Toggle("settings.toggle.hideDockIcon", isOn: $settings.hideDockIcon)
             Toggle("settings.toggle.launchAtLogin", isOn: $settings.launchAtLogin)
+            Divider()
+            FeedbackLink()
         }
         .modifier(AutomaticReviewRequest(
             store: reviewStore,

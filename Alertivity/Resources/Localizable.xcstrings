@@ -1,6 +1,111 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+  "feedback.send": {
+    "extractionState": "manual",
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Send Feedback…"
+        }
+      },
+      "de": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Feedback senden…"
+        }
+      },
+      "fr": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Envoyer des commentaires…"
+        }
+      },
+      "ja": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "フィードバックを送信…"
+        }
+      },
+      "zh-Hans": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "发送反馈…"
+        }
+      }
+    }
+  },
+  "feedback.help": {
+    "extractionState": "manual",
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Report a bug or suggest an improvement on GitHub."
+        }
+      },
+      "de": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Einen Fehler melden oder eine Verbesserung auf GitHub vorschlagen."
+        }
+      },
+      "fr": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Signalez un problème ou proposez une amélioration sur GitHub."
+        }
+      },
+      "ja": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "GitHub で不具合の報告や改善の提案を行います。"
+        }
+      },
+      "zh-Hans": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "在 GitHub 上报告问题或提出改进建议。"
+        }
+      }
+    }
+  },
+  "feedback.openError": {
+    "extractionState": "manual",
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Unable to open GitHub. Please try again."
+        }
+      },
+      "de": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "GitHub konnte nicht geöffnet werden. Bitte versuche es erneut."
+        }
+      },
+      "fr": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Impossible d’ouvrir GitHub. Veuillez réessayer."
+        }
+      },
+      "ja": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "GitHub を開けませんでした。もう一度お試しください。"
+        }
+      },
+      "zh-Hans": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "无法打开 GitHub，请重试。"
+        }
+      }
+    }
+  },
   "pro.requiresPro": {
     "comment": "AL-79: Pro lock hover help or optional onboarding introduction.",
     "extractionState": "manual",
