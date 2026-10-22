@@ -3,7 +3,6 @@ import Foundation
 import StoreKitTest
 import StoreKit
 import OSLog
-import AppKit
 @testable import Alertivity
 
 @MainActor
@@ -32,7 +31,7 @@ private final class FakeProClient: ProPurchasing {
         if suspendAccess { return await withCheckedContinuation { accessContinuation = $0 } }
         return access
     }
-    func purchase(confirmIn window: NSWindow?) async throws -> ProPurchaseResult {
+    func purchase() async throws -> ProPurchaseResult {
         calls += 1
         if let purchaseError { throw purchaseError }
         if failure { throw Failure.expected }
@@ -263,18 +262,7 @@ private final class StoreKitTestBundle: NSObject {}
         let host = Bundle.main.bundleIdentifier ?? "unknown"
         Self.diagnostics.notice("StoreKit lifecycle purchase environment; host: \(host, privacy: .public); dialogsDisabled: \(dialogsDisabled, privacy: .public)")
         try #require(dialogsDisabled, "Automated purchases must suppress StoreKit dialogs.")
-        // Supply a real presentation anchor while retaining StoreKitTest's automated dialogs.
-        let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 400, height: 240),
-            styleMask: [.titled, .closable], backing: .buffered, defer: false
-        )
-        window.isReleasedWhenClosed = false
-        window.title = "StoreKit purchase test"
-        window.makeKeyAndOrderFront(nil)
-        defer { window.close() }
-        Self.diagnostics.notice("StoreKit lifecycle confirmation window; visible: \(window.isVisible, privacy: .public); key: \(window.isKeyWindow, privacy: .public)")
-        try #require(window.isVisible, "The purchase confirmation window must be visible.")
-        await traceStoreKitStep("purchase with confirmation window") { await store.purchase(confirmIn: window) }
+        await traceStoreKitStep("purchase") { await store.purchase() }
         try #require(store.hasProAccess)
         let transactions = session.allTransactions()
         #expect(transactions.count == 1)
