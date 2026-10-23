@@ -124,6 +124,15 @@ StoreKit adapter, select `NativeProPurchaseTests`. All native cases use the loca
 Tests load the fixture from their own bundle, so Xcode Cloud can run the built tests without
 access to the original source checkout.
 
+`NativeProPurchaseTests` is temporarily skipped only when the test runner receives
+`CI_XCODE_CLOUD=TRUE`. Xcode Cloud forwards its system environment variables to test runners;
+both schemes use the same suite-level Swift Testing condition. Required Cloud checks continue
+to run the other suites, including fake-client Pro coverage. Local native tests remain enabled
+by default. Cloud purchases have hung inside `Product.purchase()` despite suppressed dialogs;
+the Store UI/AuthKit cause remains unverified. [AL-82](https://nobbby.atlassian.net/browse/AL-82)
+tracks diagnosis and removal of this exclusion after reliable Cloud runs. To verify the skip
+locally, pass `TEST_RUNNER_CI_XCODE_CLOUD=TRUE` to a focused `xcodebuild test` invocation.
+
 | Scenario | Local coverage |
 | --- | --- |
 | Purchase, transaction completion, relaunch, restore | Native StoreKit and app-level tests |

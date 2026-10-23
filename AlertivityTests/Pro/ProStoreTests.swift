@@ -247,7 +247,17 @@ private final class FakeProClient: ProPurchasing {
 private final class StoreKitTestBundle: NSObject {}
 
 /// Uses Apple's local StoreKit environment, without App Store Connect products or real charges.
-@Suite(.serialized, .timeLimit(.minutes(1))) @MainActor struct NativeProPurchaseTests {
+// AL-82: Cloud purchases can hang in Store UI/AuthKit despite suppressed dialogs.
+// Xcode Cloud forwards this system variable to test runners; local native coverage stays enabled.
+@Suite(
+    .disabled(
+        if: ProcessInfo.processInfo.environment["CI_XCODE_CLOUD"] == "TRUE",
+        "AL-82: Native StoreKit purchases hang in Xcode Cloud; retain local coverage."
+    ),
+    .serialized,
+    .timeLimit(.minutes(1))
+)
+@MainActor struct NativeProPurchaseTests {
     @Test
     func purchaseRestoreAndRefundUseVerifiedStoreKitTransactions() async throws {
         Self.diagnostics.notice("StoreKit lifecycle test: creating local session")
