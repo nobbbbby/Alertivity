@@ -8,6 +8,7 @@ private var dockVisibilityObserverTokens: [NSObjectProtocol] = []
 
 @main
 struct AlertivityApp: App {
+    @NSApplicationDelegateAdaptor(AlertivityAppDelegate.self) private var appDelegate
     @StateObject private var monitor = ActivityMonitor()
     @StateObject private var notificationManager = NotificationManager()
     @StateObject private var settings = AlertivityApp.makeSettingsStore()
