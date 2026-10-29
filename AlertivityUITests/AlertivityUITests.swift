@@ -5,6 +5,46 @@ final class AlertivityUITests: XCTestCase {
         continueAfterFailure = false
     }
 
+    func testActivitySimulatorWindowAndCustomCommandGroups() {
+        let app = launchApp()
+        app.launch()
+        let skip = app.buttons["onboarding.skip"]
+        XCTAssertTrue(skip.waitForExistence(timeout: 8))
+        skip.click()
+        app.activate()
+        XCTAssertFalse(app.windows["Activity Simulator"].exists)
+
+        app.menuBars.menuBarItems["Help"].click()
+        for title in ["Getting Started…", "Write Review…", "Send Feedback…"] {
+            XCTAssertTrue(app.menuItems[title].exists, "Missing Help command: \(title)")
+        }
+        app.typeKey(.escape, modifierFlags: [])
+        app.menuBars.menuBarItems["Debug"].click()
+        app.menuItems["Activity Simulator…"].click()
+
+        let window = app.windows["Activity Simulator"]
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        let picker = window.popUpButtons["capture.preset"]
+        XCTAssertTrue(picker.exists)
+        XCTAssertEqual(picker.value as? String, "Live readings")
+        XCTAssertFalse(window.buttons["capture.sendNotification"].isEnabled)
+        picker.click()
+        app.menuItems["CPU · Critical"].click()
+        XCTAssertEqual(picker.value as? String, "CPU · Critical")
+        XCTAssertTrue(window.buttons["capture.sendNotification"].isEnabled)
+
+        // Closing the utility leaves the snapshot available for a clean screenshot.
+        window.buttons[XCUIIdentifierCloseWindow].click()
+        app.menuBars.menuBarItems["Debug"].click()
+        app.menuItems["Activity Simulator…"].click()
+        XCTAssertTrue(window.waitForExistence(timeout: 5))
+        XCTAssertEqual(picker.value as? String, "CPU · Critical")
+        XCTAssertEqual(app.windows.matching(identifier: "Activity Simulator").count, 1)
+        window.buttons["capture.returnToLive"].click()
+        XCTAssertEqual(picker.value as? String, "Live readings")
+        XCTAssertFalse(window.buttons["capture.sendNotification"].isEnabled)
+    }
+
     func testFreeCustomizationControlsAreLocked() {
         verifyCustomizationControls(appStoreFree: true)
     }

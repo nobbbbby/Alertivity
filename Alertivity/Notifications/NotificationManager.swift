@@ -174,6 +174,52 @@ final class NotificationManager: NSObject, ObservableObject {
         AppLogger.notifications.info("Notification authorization status: \(self.authorizationStatus.rawValue, privacy: .public)")
     }
 
+#if DEBUG
+    /// Explicit capture requests bypass dwell/cooldown without reading or changing their state.
+    /// A short delay lets the user close the menu before the real macOS banner appears.
+    @MainActor
+    func sendCaptureNotification(metrics: ActivityMetrics, process: ProcessUsage? = nil) async throws {
+        await requestAuthorization()
+        guard authorizationStatus == .authorized || authorizationStatus == .provisional else {
+            throw CaptureNotificationError.permissionRequired
+        }
+        let status = ActivityStatus(metrics: metrics)
+        let content = UNMutableNotificationContent()
+        content.title = status.notificationTitle(for: metrics)
+        content.body = status.message(for: metrics)
+        content.sound = .default
+        if let process {
+            content.title = L10n.string("notifications.process.title")
+            content.subtitle = process.displayName
+            content.body = metricDescription(for: process)
+            content.categoryIdentifier = Category.criticalProcess
+        }
+        // Show native process action buttons without sending a PID/command. The response handler
+        // requires both, so preview actions cannot affect processes, even after a Release relaunch.
+        content.userInfo = ["capturePreview": true]
+        let request = UNNotificationRequest(
+            identifier: "capture-preview-\(UUID().uuidString)",
+            content: content,
+            trigger: UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        )
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            notificationCenter.add(request) { error in
+                if let error { continuation.resume(throwing: error) }
+                else { continuation.resume() }
+            }
+        }
+        AppLogger.notifications.info("Capture notification scheduled; level: \(status.level.rawValue, privacy: .public), process preview: \(process != nil, privacy: .public)")
+    }
+
+    private enum CaptureNotificationError: LocalizedError {
+        case permissionRequired
+
+        var errorDescription: String? {
+            "Allow Alertivity notifications in System Settings → Notifications, then try again."
+        }
+    }
+#endif
+
     private func configureCategories() {
         let focus = UNNotificationAction(
             identifier: Action.focusProcess,

@@ -31,6 +31,99 @@ private final class CapturingNotificationCenter: UserNotificationCentering {
 }
 
 @Suite struct NotificationManagerTests {
+#if DEBUG
+    @Test(arguments: [CaptureNotificationKind.processCPU, .processMemory, .processCPUAndMemory]) @MainActor
+    func processCaptureNotificationsUseDetectionCopyWithoutActionableProcessMetadata(kind: CaptureNotificationKind) async throws {
+        let center = CapturingNotificationCenter()
+        let manager = NotificationManager(
+            notificationCenter: center, authorizationStatusProvider: { .authorized },
+            initialAuthorizationStatus: .authorized
+        )
+        manager.highActivityDuration = 120
+        let process = try #require(kind.process)
+        let metrics = try #require(CapturePreset.normal.metrics(thresholds: .default))
+        try await manager.sendCaptureNotification(metrics: metrics, process: process)
+        let request = try #require(center.requests.first)
+        #expect(request.content.title == L10n.string("notifications.process.title"))
+        #expect(request.content.subtitle == "Xcode")
+        #expect(request.content.body.contains("CPU") == process.triggeredByCPU)
+        #expect(request.content.body.lowercased().contains("memory") == process.triggeredByMemory)
+        #expect(request.content.body.contains("120"))
+        #expect(request.content.userInfo["capturePreview"] as? Bool == true)
+        #expect(request.content.userInfo["pid"] == nil)
+        #expect(request.content.userInfo["command"] == nil)
+        #expect(center.categories.contains { $0.identifier == request.content.categoryIdentifier })
+        #expect((request.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval == 3)
+        // Preview delivery must not consume the next real alert's cooldown.
+        manager.highActivityDuration = 0
+        let critical = try #require(CapturePreset.cpuCritical.metrics(thresholds: .default))
+        manager.postNotificationIfNeeded(for: ActivityStatus(metrics: critical), metrics: critical)
+        #expect(center.requests.count == 2)
+    }
+
+    @Test @MainActor
+    func captureNotificationsDoNotResetOrConsumeTheLiveCooldown() async throws {
+        let center = CapturingNotificationCenter()
+        var now = Date()
+        let manager = NotificationManager(
+            notificationCenter: center, now: { now },
+            authorizationStatusProvider: { .authorized }, initialAuthorizationStatus: .authorized
+        )
+        manager.highActivityDuration = 0
+        let snapshot = try #require(CapturePreset.cpuCritical.metrics(thresholds: .default))
+        try await manager.sendCaptureNotification(metrics: snapshot)
+        manager.postNotificationIfNeeded(for: ActivityStatus(metrics: snapshot), metrics: snapshot)
+        #expect(center.requests.count == 2)
+        now = now.addingTimeInterval(590)
+        try await manager.sendCaptureNotification(metrics: snapshot)
+        manager.postNotificationIfNeeded(for: ActivityStatus(metrics: snapshot), metrics: snapshot)
+        #expect(center.requests.count == 3)
+        now = now.addingTimeInterval(11)
+        manager.postNotificationIfNeeded(for: ActivityStatus(metrics: snapshot), metrics: snapshot)
+        #expect(center.requests.count == 4)
+        let preview = try #require(center.requests.first)
+        #expect(preview.content.title == "Critical CPU")
+        #expect(preview.content.categoryIdentifier.isEmpty)
+        #expect(preview.content.userInfo["pid"] == nil)
+        #expect((preview.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval == 3)
+    }
+
+    @Test @MainActor
+    func captureNotificationsPreserveAnInProgressLiveDwell() async throws {
+        let center = CapturingNotificationCenter()
+        var now = Date()
+        let manager = NotificationManager(
+            notificationCenter: center, now: { now },
+            authorizationStatusProvider: { .authorized }, initialAuthorizationStatus: .authorized
+        )
+        let snapshot = try #require(CapturePreset.diskCritical.metrics(thresholds: .default))
+        manager.postNotificationIfNeeded(for: ActivityStatus(metrics: snapshot), metrics: snapshot)
+        #expect(center.requests.isEmpty)
+        now = now.addingTimeInterval(30)
+        try await manager.sendCaptureNotification(metrics: snapshot)
+        now = now.addingTimeInterval(31)
+        manager.postNotificationIfNeeded(for: ActivityStatus(metrics: snapshot), metrics: snapshot)
+        #expect(center.requests.count == 2)
+    }
+
+    @Test @MainActor
+    func captureNotificationRequiresPermission() async {
+        let center = CapturingNotificationCenter()
+        let manager = NotificationManager(
+            notificationCenter: center, authorizationStatusProvider: { .denied },
+            initialAuthorizationStatus: .denied
+        )
+        do {
+            try await manager.sendCaptureNotification(metrics: .previewCritical)
+            Issue.record("A denied capture notification must report a permission error")
+        } catch {
+            #expect(error.localizedDescription.contains("System Settings"))
+        }
+        #expect(center.requests.isEmpty)
+        #expect(!center.authorizationRequested)
+    }
+#endif
+
     @Test @MainActor
     func authorizationIsExplicitAndUsesFreshStatus() async {
         let center = CapturingNotificationCenter()
