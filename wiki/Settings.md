@@ -87,7 +87,7 @@ for customization or any process feature and does not contact the Pro purchase s
 
 ## App Store reviews
 
-Choose **Alertivity → Write Review…** to open the App Store review page at any time. If the App Store cannot open, Alertivity shows an error and you can try again later.
+Choose **Help → Write Review…** to open the App Store review page at any time. If the App Store cannot open, Alertivity shows an error and you can try again later.
 
 A verified production App Store installation may also request a review automatically in **Settings → General**, after at least seven days since first monitoring and activity on three distinct days. Requests wait for 30 seconds without interaction, live data, a non-Critical status, and an active Settings window without a sheet or modal dialog. Onboarding blocks the request. Debug, TestFlight, and source builds do not request reviews automatically.
 

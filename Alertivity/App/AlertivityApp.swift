@@ -20,6 +20,8 @@ struct AlertivityApp: App {
     @State private var hasInitialized = false
 
 #if DEBUG
+    @State private var capturePreset: CapturePreset = .live
+
     private var isUITest: Bool {
         ProcessInfo.processInfo.arguments.contains("UITests")
     }
@@ -32,7 +34,7 @@ struct AlertivityApp: App {
             MenuExtraContainer {
                 VStack(alignment: .leading, spacing: 5) {
                     MenuStatusView(
-                        metrics: monitor.metrics,
+                        metrics: menuMetrics,
                         onAddToWhitelist: { path in
                             settings.ignoreProcess(at: path)
                         }
@@ -48,7 +50,8 @@ struct AlertivityApp: App {
             
         } label: {
             MenuBarLabelLifecycleView(
-                monitor: monitor,
+                metrics: menuMetrics,
+                isCapturePreview: isCapturePreview,
                 isMenuIconEnabled: settingsBinding(\.isMenuIconEnabled),
                 menuIconOnlyWhenHigh: settingsBinding(\.menuIconOnlyWhenHigh),
                 menuIconType: settingsBinding(\.menuIconType),
@@ -62,11 +65,7 @@ struct AlertivityApp: App {
         }
         .menuBarExtraStyle(.window)
         .commands {
-            CommandGroup(replacing: .help) {
-                OnboardingLink(settings: settings)
-                Divider()
-                FeedbackLink()
-            }
+            AlertivityCommands(settings: settings, reviewStore: reviewStore)
         }
         .onChange(of: proStore.hasProAccess, initial: true) { _, granted in
             settings.setProAccess(granted)
@@ -109,6 +108,13 @@ struct AlertivityApp: App {
         .onChange(of: monitor.status) { _, status in handleStatusChange(status) }
         .onChange(of: monitor.metrics) { _, metrics in handleMetricsChange(metrics) }
 
+#if DEBUG
+        .onChange(of: capturePreset) { _, preset in
+            AppLogger.metrics.info("Capture preset changed: \(preset.rawValue, privacy: .public)")
+            updateMenuBarInsertion(for: monitor.status)
+        }
+#endif
+
         onboardingWindow
 
         Settings {
@@ -130,13 +136,18 @@ struct AlertivityApp: App {
                     }
                 }
         }
-        .commands {
-            CommandGroup(after: .appSettings) {
-                WriteReviewButton(store: reviewStore)
-            }
-        }
 
 #if DEBUG
+        Window(Text(verbatim: "Activity Simulator"), id: "activity-simulator") {
+            ActivitySimulatorView(
+                preset: $capturePreset,
+                metrics: menuMetrics,
+                notificationManager: notificationManager
+            )
+        }
+        .windowResizability(.contentSize)
+        .defaultPosition(.topLeading)
+
         WindowGroup("uiTests.window.title") {
             if isUITest {
                 UITestHarnessView(settings: settings)
@@ -144,6 +155,23 @@ struct AlertivityApp: App {
                 EmptyView()
             }
         }
+        // Tests launch this harness directly; it should not contribute a user-facing New command.
+        .commandsRemoved()
+#endif
+    }
+
+    private var menuMetrics: ActivityMetrics {
+#if DEBUG
+        if let snapshot = capturePreset.metrics(thresholds: monitor.metrics.thresholds) { return snapshot }
+#endif
+        return monitor.metrics
+    }
+
+    private var isCapturePreview: Bool {
+#if DEBUG
+        return capturePreset != .live
+#else
+        return false
 #endif
     }
 
@@ -248,6 +276,7 @@ struct AlertivityApp: App {
     }
 
     private func shouldShowMenuIcon(for status: ActivityStatus) -> Bool {
+        if isCapturePreview { return true }
         guard settings.isMenuIconEnabled else { return false }
         return settings.menuIconOnlyWhenHigh ? status.level == .critical : true
     }
@@ -371,7 +400,8 @@ private enum LaunchAtLoginManager {
 }
 
 private struct MenuBarLabelLifecycleView: View {
-    @ObservedObject var monitor: ActivityMonitor
+    let metrics: ActivityMetrics
+    let isCapturePreview: Bool
     @Binding var isMenuIconEnabled: Bool
     @Binding var menuIconOnlyWhenHigh: Bool
     @Binding var menuIconType: MenuIconType
@@ -386,39 +416,50 @@ private struct MenuBarLabelLifecycleView: View {
     var body: some View {
         MetricMenuBarLabel(
             status: displayStatus,
-            metrics: monitor.metrics,
+            metrics: metrics,
             isVisible: isMenuIconVisible,
             iconType: resolvedIconType,
             showIcon: shouldShowMetricIcon
         )
         .onAppear {
             initialize()
-            updateAutoSwitchSelection(for: monitor.metrics)
+            updateAutoSwitchSelection(for: metrics)
         }
-        .onChange(of: monitor.metrics) { _, metrics in
+        .onChange(of: metrics) { _, metrics in
+            updateAutoSwitchSelection(for: metrics)
+        }
+        .onChange(of: isCapturePreview) {
+            autoSwitchSelection = nil
+            pendingAutoSwitchSelection = nil
+            pendingAutoSwitchSamples = 0
             updateAutoSwitchSelection(for: metrics)
         }
         .onChange(of: autoSwitchEnabled) {
-            updateAutoSwitchSelection(for: monitor.metrics)
+            updateAutoSwitchSelection(for: metrics)
         }
         .onChange(of: autoSwitchPriority) {
             // A new order must earn two fresh matching samples.
             pendingAutoSwitchSelection = nil
             pendingAutoSwitchSamples = 0
-            updateAutoSwitchSelection(for: monitor.metrics)
+            updateAutoSwitchSelection(for: metrics)
         }
     }
 
     private var isMenuIconVisible: Bool {
+        if isCapturePreview { return true }
         guard isMenuIconEnabled else { return false }
         return menuIconOnlyWhenHigh ? displayStatus.level == .critical : true
     }
 
     private var resolvedIconType: MenuIconType {
-        resolveMenuIconType(
+        // A frozen snapshot has no second sample to satisfy live Auto Switch hysteresis.
+        let selection = isCapturePreview
+            ? metrics.highestSeverityMetric(allowedSeverities: [.critical], priority: autoSwitchPriority)?.0
+            : autoSwitchSelection
+        return resolveMenuIconType(
             autoSwitchEnabled: autoSwitchEnabled,
             defaultIconType: menuIconType,
-            autoSwitchSelection: autoSwitchSelection
+            autoSwitchSelection: selection
         )
     }
 
@@ -428,7 +469,7 @@ private struct MenuBarLabelLifecycleView: View {
     }
 
     private func updateAutoSwitchSelection(for metrics: ActivityMetrics) {
-        guard autoSwitchEnabled else {
+        guard autoSwitchEnabled && !isCapturePreview else {
             autoSwitchSelection = nil
             pendingAutoSwitchSelection = nil
             pendingAutoSwitchSamples = 0
@@ -458,7 +499,7 @@ private struct MenuBarLabelLifecycleView: View {
     }
 
     private var displayStatus: ActivityStatus {
-        ActivityStatus(metrics: monitor.metrics)
+        ActivityStatus(metrics: metrics)
     }
 }
 

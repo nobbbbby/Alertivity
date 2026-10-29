@@ -78,9 +78,60 @@ See [Localization](https://github.com/nobbbbby/Alertivity/wiki/Localization) for
 
 The menu bar controller selects the first Critical metric in that order after two matching samples. Reordering affects only Auto Switch, not the overall status, summary ordering, or notification trigger priority. Priority and metric-icon help remain available in the free App Store build.
 
+## Application commands
+
+`App/AlertivityCommands.swift` owns custom application menu commands. Native app
+preferences remain under Alertivity → Settings; the metrics panel retains its
+Open Settings shortcut. Help groups Getting Started separately from Write Review
+and Send Feedback. Debug → Activity Simulator is compiled only in Debug. Existing
+localized review, onboarding, and feedback actions are shared with their other
+entry points.
+
+The Debug UI-test harness removes its scene commands, so SwiftUI does not expose
+New Alertivity UI test window in the File menu. Test launches still use the harness.
+
 ## Menu summaries
 
 `ActivityStatus.menuSummary(for:)` formats the thresholds reached by the current readings. Notification wording uses separate strings. Localized list formatting and line wrapping handle multiple affected metrics. Formatting runs on every refresh and emits no logs; sampling and alert delivery use their existing log categories.
+
+## Debug screenshot capture
+
+Run either app scheme in **Debug** and choose **Debug → Activity Simulator…** from
+Alertivity's application menu bar. If the app is running without a Dock icon,
+open Settings from its metrics panel first to bring Alertivity's menus forward.
+The separate utility window offers Normal and Elevated/Critical presets for CPU,
+memory, disk, and network; the metrics panel contains no capture controls.
+The selected snapshot freezes the panel and menu bar display using the effective
+thresholds. Auto Switch resolves a Critical snapshot immediately. The indicator
+stays visible during capture even when the saved visibility settings would hide
+it. Live monitoring continues independently; presets never enter automatic alert
+delivery or change saved settings. **Return to Live** (or the Live readings preset)
+restores the usual display, and restarting the app also resets the selection.
+Closing the Activity Simulator window keeps the preset active for clean captures;
+reopening the command returns to the same singleton window and selection.
+
+**Send preview notification** sends a real macOS banner for the selected simulated
+preset after three seconds. Grant notification permission when asked; if permission
+was denied, enable it in System Settings → Notifications. Focus and macOS banner
+settings still govern presentation. Preview requests bypass the normal duration
+and cooldown without changing either one's state. System previews have no process actions.
+Move or close the Activity Simulator window after scheduling to capture the banner.
+The notification controls stay in that window, so no timed hiding is needed.
+
+In the Debug non-sandboxed build, **Alert type** also offers Process CPU, Process
+memory, and Process CPU + memory. These use a sample Xcode process and the same
+localized process message formatter and native notification actions as live
+detection. Process previews can be sent while the display remains on live readings.
+Their payload deliberately omits the PID and command required by the response
+handler, so Show in Activity Monitor, Ignore, and Force Quit do nothing for preview
+banners, including if the app is later relaunched in Release. Process fixtures never
+enter the metrics panel or monitoring pipeline. The App Store build keeps system
+notification previews only, matching its supported feature set.
+
+These English-only development controls, snapshot fixtures, and preview notification
+API are compiled only under `#if DEBUG` and are absent from Release builds. Preset
+changes and notification scheduling/errors use the existing metrics/notifications
+log categories.
 
 ## App Store Pro configuration (AL-79)
 
