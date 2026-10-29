@@ -20,7 +20,7 @@ Choose **Help → Send Feedback…** to open a new GitHub issue in your default 
 | Indicator visibility | Settings → Menu Bar → Show indicator | Turning this off hides the indicator even during Critical activity. |
 | Default reading | Settings → Menu Bar → Default icon type | Choose Status, CPU, memory, disk, or network. |
 | Automatic metric selection | Settings → Menu Bar → Auto switch to busiest metric | Follows a Critical metric, then returns to the default. |
-| Auto-switch priority | Settings → Menu Bar → Metric priority | Expand Metric priority, then use the up/down arrows to order CPU, memory, disk, and network. The highest listed Critical metric wins. Reset Priority restores CPU → Memory → Disk → Network. |
+| Auto-switch priority | Settings → Menu Bar → Metric priority | Requires Pro in the App Store build. Expand Metric priority, then use the up/down arrows to order CPU, memory, disk, and network. The highest listed Critical metric wins. Reset Priority restores CPU → Memory → Disk → Network. |
 | Show only during Critical activity | Settings → Menu Bar → Only show on high activity | Hides the indicator at Normal and Elevated status. |
 | Metric symbols | Settings → Menu Bar → Show metric icon | Available when the default icon type is a metric. Shows a symbol beside the value. Auto switch keeps this on and disables editing; the explanation appears directly below the control. |
 
@@ -69,11 +69,11 @@ See [Process insights](https://github.com/nobbbbby/Alertivity/wiki/Process-Insig
 ## Free and Pro in the Mac App Store build
 
 Alertivity Pro unlocks customization of system CPU, memory, disk, and network thresholds,
-notification cooldown, and high-activity duration. Other current monitoring, notification,
+notification cooldown, high-activity duration, and Auto-switch metric priority. Other current monitoring, notification,
 menu bar, and general features remain free.
 
 Without Pro, monitoring uses the default thresholds listed in [Metrics and status](https://github.com/nobbbbby/Alertivity/wiki/Metrics-and-Status),
-a 10-minute notification cooldown, and a 60-second high-activity duration. The corresponding
+a 10-minute notification cooldown, a 60-second high-activity duration, and CPU → Memory → Disk → Network priority. The corresponding
 controls show these effective defaults and are disabled. Hover over the lock beside a restricted
 setting for an explanation. Saved custom values are preserved,
 including values from an earlier version, and become active again when Pro access is verified.

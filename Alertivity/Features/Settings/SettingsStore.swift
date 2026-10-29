@@ -32,6 +32,13 @@ final class SettingsStore: ObservableObject {
 
     var canCustomizeMonitoring: Bool { distribution == .openSource || hasProAccess }
 
+    var canCustomizeMetricPriority: Bool { distribution == .openSource || hasProAccess }
+
+    /// Free uses the default order without overwriting a previously saved Pro order.
+    var effectiveMenuIconAutoSwitchPriority: [MetricMenuSelection] {
+        canCustomizeMetricPriority ? menuIconAutoSwitchPriority : MetricMenuSelection.autoSwitchPriority
+    }
+
     /// Only this configuration may drive monitoring and alerts; saved custom values remain untouched.
     var monitoringConfiguration: MonitoringConfiguration {
         MonitoringConfiguration(
@@ -44,7 +51,7 @@ final class SettingsStore: ObservableObject {
     func setProAccess(_ granted: Bool) {
         guard distribution == .appStore, hasProAccess != granted else { return }
         hasProAccess = granted
-        AppLogger.purchases.info("Monitoring customization access changed; granted: \(granted, privacy: .public)")
+        AppLogger.purchases.info("Pro customization access changed; granted: \(granted, privacy: .public)")
     }
 
     /// An explicit replay request is transient; it must never reopen guidance after relaunch.

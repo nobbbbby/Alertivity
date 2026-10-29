@@ -47,7 +47,7 @@ Read the [GitHub wiki](https://github.com/nobbbbby/Alertivity/wiki) for settings
 
 The sandboxed version provides system-wide health monitoring and critical-status notifications. Process-level monitoring is unavailable because of App Store sandbox restrictions.
 
-Alertivity Pro is a one-time in-app purchase for custom system thresholds, notification cooldown, and high-activity duration. Free monitoring uses the default thresholds, a 10-minute cooldown, and a 60-second duration. All other current App Store features remain free. Saved custom settings are preserved and restored when Pro access is verified. See [Free and Pro settings](wiki/Settings.md#free-and-pro-in-the-mac-app-store-build).
+Alertivity Pro is a one-time in-app purchase for custom system thresholds, notification cooldown, high-activity duration, and Auto-switch metric priority. Free monitoring uses the default thresholds, a 10-minute cooldown, a 60-second duration, and CPU → Memory → Disk → Network priority. All other current App Store features remain free. Saved custom settings are preserved and restored when Pro access is verified. See [Free and Pro settings](wiki/Settings.md#free-and-pro-in-the-mac-app-store-build).
 
 [Download Alertivity from the Mac App Store](https://apps.apple.com/app/alertivity/id6756399719)
 

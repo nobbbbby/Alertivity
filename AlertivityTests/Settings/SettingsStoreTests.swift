@@ -192,6 +192,30 @@ private func makeIsolatedDefaults(_ name: String = UUID().uuidString) -> UserDef
     }
 
     @Test
+    func metricPriorityUsesVerifiedAccessAndPreservesSavedOrder() {
+        let defaults = makeIsolatedDefaults()
+        let custom: [MetricMenuSelection] = [.network, .disk, .memory, .cpu]
+        let store = SettingsStore(userDefaults: defaults, distribution: .appStore)
+        store.menuIconAutoSwitchPriority = custom
+        #expect(!store.canCustomizeMetricPriority)
+        #expect(store.effectiveMenuIconAutoSwitchPriority == MetricMenuSelection.autoSwitchPriority)
+        store.setProAccess(true)
+        #expect(store.canCustomizeMetricPriority)
+        #expect(store.effectiveMenuIconAutoSwitchPriority == custom)
+        store.setProAccess(false)
+        #expect(store.effectiveMenuIconAutoSwitchPriority == MetricMenuSelection.autoSwitchPriority)
+        #expect(store.menuIconAutoSwitchPriority == custom)
+        let reloaded = SettingsStore(userDefaults: defaults, distribution: .appStore)
+        #expect(reloaded.effectiveMenuIconAutoSwitchPriority == MetricMenuSelection.autoSwitchPriority)
+        reloaded.setProAccess(true)
+        #expect(reloaded.effectiveMenuIconAutoSwitchPriority == custom)
+        let source = SettingsStore(userDefaults: defaults, distribution: .openSource)
+        source.setProAccess(false)
+        #expect(source.canCustomizeMetricPriority)
+        #expect(source.effectiveMenuIconAutoSwitchPriority == custom)
+    }
+
+    @Test
     func freeRuntimeCannotBeBypassedByWritingPreferences() {
         let store = SettingsStore(userDefaults: makeIsolatedDefaults(), distribution: .appStore)
         store.notificationCooldownMinutes = 1

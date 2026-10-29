@@ -82,7 +82,11 @@ struct SettingsView: View {
                 menuIconType: $settings.menuIconType,
                 showMetricIcon: $settings.showMetricIcon,
                 autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled,
-                autoSwitchPriority: $settings.menuIconAutoSwitchPriority
+                autoSwitchPriority: Binding(
+                    get: { settings.effectiveMenuIconAutoSwitchPriority },
+                    set: { if settings.canCustomizeMetricPriority { settings.menuIconAutoSwitchPriority = $0 } }
+                ),
+                canCustomizeMetricPriority: settings.canCustomizeMetricPriority
             )
         }
     }
@@ -189,7 +193,11 @@ struct NoticePreferencesView: View {
                 menuIconType: $settings.menuIconType,
                 showMetricIcon: $settings.showMetricIcon,
                 autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled,
-                autoSwitchPriority: $settings.menuIconAutoSwitchPriority
+                autoSwitchPriority: Binding(
+                    get: { settings.effectiveMenuIconAutoSwitchPriority },
+                    set: { if settings.canCustomizeMetricPriority { settings.menuIconAutoSwitchPriority = $0 } }
+                ),
+                canCustomizeMetricPriority: settings.canCustomizeMetricPriority
             )
         }
 
@@ -265,6 +273,7 @@ private struct MenuBarSettingsFields: View {
     @Binding var showMetricIcon: Bool
     @Binding var autoSwitchEnabled: Bool
     @Binding var autoSwitchPriority: [MetricMenuSelection]
+    let canCustomizeMetricPriority: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -309,7 +318,7 @@ private struct MenuBarSettingsFields: View {
     }
 
     private var priorityEditor: some View {
-        DisclosureGroup("settings.menuBar.autoSwitch.priority") {
+        DisclosureGroup {
             VStack(alignment: .leading, spacing: 6) {
                 SettingsFootnote(key: "settings.menuBar.autoSwitch.priority.help")
                 ForEach(autoSwitchPriority, id: \.self) { metric in
@@ -342,8 +351,15 @@ private struct MenuBarSettingsFields: View {
             }
             .padding(.top, 4)
             .padding(.leading, 16)
+            .disabled(!isMenuIconEnabled || !autoSwitchEnabled || !canCustomizeMetricPriority)
+        } label: {
+            HStack(spacing: 6) {
+                Text("settings.menuBar.autoSwitch.priority")
+                if !canCustomizeMetricPriority {
+                    ProLockHint(help: "pro.lock.metricPriority", identifier: "pro.lock.metricPriority")
+                }
+            }
         }
-        .disabled(!isMenuIconEnabled || !autoSwitchEnabled)
     }
 
     private func move(_ metric: MetricMenuSelection, by offset: Int) {
