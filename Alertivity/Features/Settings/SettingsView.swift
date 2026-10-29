@@ -81,6 +81,7 @@ struct SettingsView: View {
                 menuIconOnlyWhenHigh: $settings.menuIconOnlyWhenHigh,
                 menuIconType: $settings.menuIconType,
                 showMetricIcon: $settings.showMetricIcon,
+                isMenuIconTinted: $settings.isMenuIconTinted,
                 autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled,
                 autoSwitchPriority: $settings.menuIconAutoSwitchPriority
             )
@@ -188,6 +189,7 @@ struct NoticePreferencesView: View {
                 menuIconOnlyWhenHigh: $settings.menuIconOnlyWhenHigh,
                 menuIconType: $settings.menuIconType,
                 showMetricIcon: $settings.showMetricIcon,
+                isMenuIconTinted: $settings.isMenuIconTinted,
                 autoSwitchEnabled: $settings.isMenuIconAutoSwitchEnabled,
                 autoSwitchPriority: $settings.menuIconAutoSwitchPriority
             )
@@ -263,6 +265,7 @@ private struct MenuBarSettingsFields: View {
     @Binding var menuIconOnlyWhenHigh: Bool
     @Binding var menuIconType: MenuIconType
     @Binding var showMetricIcon: Bool
+    @Binding var isMenuIconTinted: Bool
     @Binding var autoSwitchEnabled: Bool
     @Binding var autoSwitchPriority: [MetricMenuSelection]
 
@@ -273,6 +276,10 @@ private struct MenuBarSettingsFields: View {
 
                 Toggle("settings.menuBar.onlyShowHigh", isOn: $menuIconOnlyWhenHigh)
                     .disabled(!isMenuIconEnabled)
+
+                Toggle("settings.menuBar.tintedIcon", isOn: $isMenuIconTinted)
+                    .disabled(!isMenuIconEnabled)
+                    .help("settings.menuBar.tintedIcon.help")
 
                 Picker("settings.menuBar.defaultIconType", selection: $menuIconType) {
                     ForEach(MenuIconType.allCases) { iconType in

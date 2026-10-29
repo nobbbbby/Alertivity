@@ -304,6 +304,7 @@ struct MetricMenuBarLabel: View {
     let isVisible: Bool
     let iconType: MenuIconType
     let showIcon: Bool
+    var isTinted: Bool = true
 
     var body: some View {
         HStack(spacing: 6) {
@@ -312,7 +313,7 @@ struct MetricMenuBarLabel: View {
                 case .status:
                     Image(systemName: displayStatus.symbolName)
                         .symbolRenderingMode(.palette)
-                        .foregroundStyle(displayStatus.iconTint ?? .primary, .secondary)
+                        .foregroundStyle((isTinted ? displayStatus.iconTint : nil) ?? .primary, .secondary)
                 case .cpu, .memory, .disk, .network:
                     if let selection = iconType.metricSelection {
                         MetricMenuLabel(
@@ -348,7 +349,7 @@ struct MetricMenuBarLabel: View {
     }
 
     private func tint(for selection: MetricMenuSelection, metrics: ActivityMetrics) -> Color? {
-        guard displayStatus.level != .normal else { return nil }
+        guard isTinted, displayStatus.level != .normal else { return nil }
         return StatusColorPalette.color(for: metrics.severity(for: selection))
     }
 

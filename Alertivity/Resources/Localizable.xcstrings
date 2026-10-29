@@ -1,6 +1,76 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+  "settings.menuBar.tintedIcon.help": {
+    "extractionState": "manual",
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Use activity colors for the menu bar icon. Turn off for a monochrome appearance."
+        }
+      },
+      "de": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Aktivitätsfarben für das Menüleistensymbol verwenden. Für eine einfarbige Darstellung ausschalten."
+        }
+      },
+      "fr": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Utiliser les couleurs d’activité pour l’icône de la barre des menus. Désactivez cette option pour une apparence monochrome."
+        }
+      },
+      "ja": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "メニューバーのアイコンにアクティビティの色を使用します。オフにするとモノクロで表示されます。"
+        }
+      },
+      "zh-Hans": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "使用活动状态颜色显示菜单栏图标。关闭后使用单色外观。"
+        }
+      }
+    }
+  },
+  "settings.menuBar.tintedIcon": {
+    "extractionState": "manual",
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Tinted icon"
+        }
+      },
+      "de": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Farbiges Symbol"
+        }
+      },
+      "fr": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Icône teintée"
+        }
+      },
+      "ja": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "アイコンに色を付ける"
+        }
+      },
+      "zh-Hans": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "彩色图标"
+        }
+      }
+    }
+  },
   "feedback.send": {
     "extractionState": "manual",
     "localizations": {

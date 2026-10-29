@@ -18,6 +18,7 @@ Choose **Help → Send Feedback…** to open a new GitHub issue in your default 
 | Setting | Path | Notes |
 | --- | --- | --- |
 | Indicator visibility | Settings → Menu Bar → Show indicator | Turning this off hides the indicator even during Critical activity. |
+| Icon color | Settings → Menu Bar → Tinted icon | Enabled by default. Turn off to use a monochrome status or metric icon; activity levels and automatic metric selection are unchanged. |
 | Default reading | Settings → Menu Bar → Default icon type | Choose Status, CPU, memory, disk, or network. |
 | Automatic metric selection | Settings → Menu Bar → Auto switch to busiest metric | Follows a Critical metric, then returns to the default. |
 | Auto-switch priority | Settings → Menu Bar → Metric priority | Expand Metric priority, then use the up/down arrows to order CPU, memory, disk, and network. The highest listed Critical metric wins. Reset Priority restores CPU → Memory → Disk → Network. |
