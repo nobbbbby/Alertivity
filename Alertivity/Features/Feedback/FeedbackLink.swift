@@ -2,7 +2,7 @@ import AppKit
 import OSLog
 import SwiftUI
 
-/// Shared feedback action for Settings and Help; opens GitHub's issue form in the default browser.
+/// Help menu action that opens GitHub's issue form in the default browser.
 struct FeedbackLink: View {
     @Environment(\.openURL) private var openURL
     private static let issueURL = URL(string: "https://github.com/nobbbbby/Alertivity/issues/new")!

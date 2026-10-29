@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA0000000000000000000794 /* Alertivity.storekit in Resources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000793 /* Alertivity.storekit */; };
 		AA0000000000000000000508 /* AlertivityNonSandboxed.app in Embed App */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000500 /* AlertivityNonSandboxed.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA0000000000000000000793 /* Alertivity.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Alertivity.storekit; sourceTree = "<group>"; };
 		AA0000000000000000000003 /* Alertivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alertivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000000000000000000101 /* AlertivityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertivityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000000000000000000301 /* AlertivityUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertivityUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +45,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AA0000000000000000000102 /* AlertivityTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AlertivityTests; sourceTree = "<group>"; };
 		AA0000000000000000000300 /* AlertivityUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AlertivityUITests; sourceTree = "<group>"; };
+		AA0000000000000000000792 /* StoreKit */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {Alertivity.storekit = text; }; explicitFolders = (); path = StoreKit; sourceTree = "<group>"; };
 		AB0000000000000000000001 /* Configuration */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Configuration; sourceTree = "<group>"; };
 		C96C6D5E2E9F8D57006AAF07 /* Alertivity */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Alertivity; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -69,14 +68,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA0000000000000000000792 /* StoreKit */ = {
-			isa = PBXGroup;
-			children = (
-				AA0000000000000000000793 /* Alertivity.storekit */,
-			);
-			path = StoreKit;
-			sourceTree = "<group>";
-		};
 		AA0000000000000000000004 = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +77,6 @@
 				AB0000000000000000000001 /* Configuration */,
 				C9055CF22EE03257002E5DF4 /* Alertivity.xctestplan */,
 				AA0000000000000000000792 /* StoreKit */,
-				AA0000000000000000000019 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +128,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				AA0000000000000000000102 /* AlertivityTests */,
+				AA0000000000000000000792 /* StoreKit */,
 			);
 			name = AlertivityTests;
 			productName = AlertivityTests;
@@ -250,7 +241,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA0000000000000000000794 /* Alertivity.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
