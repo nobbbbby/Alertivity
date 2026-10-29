@@ -74,7 +74,7 @@ See [Localization](https://github.com/nobbbbby/Alertivity/wiki/Localization) for
 
 ## Auto Switch priorities
 
-`SettingsStore.menuIconAutoSwitchPriority` persists the metric order. `MetricMenuSelection.normalizedAutoSwitchPriority` removes duplicates and appends missing metrics in the default CPU → Memory → Disk → Network order. The priority editor preserves each metric once and provides localized raise/lower accessibility labels. Reset Priority restores the default order.
+`SettingsStore.menuIconAutoSwitchPriority` persists the metric order. Menu bar selection and the editor use `effectiveMenuIconAutoSwitchPriority`: App Store Free uses the default order; verified Pro and open-source builds use the saved order. Losing access preserves the saved order. `MetricMenuSelection.normalizedAutoSwitchPriority` removes duplicates and appends missing metrics in the default CPU → Memory → Disk → Network order. The priority editor preserves each metric once and provides localized raise/lower accessibility labels. Reset Priority restores the default order.
 
 The menu bar controller selects the first Critical metric in that order after two matching samples. Reordering affects only Auto Switch, not the overall status, summary ordering, or notification trigger priority. Priority and metric-icon help remain available in the free App Store build.
 

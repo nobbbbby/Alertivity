@@ -54,7 +54,10 @@ struct AlertivityApp: App {
                 menuIconType: settingsBinding(\.menuIconType),
                 showMetricIcon: settingsBinding(\.showMetricIcon),
                 autoSwitchEnabled: settingsBinding(\.isMenuIconAutoSwitchEnabled),
-                autoSwitchPriority: settingsBinding(\.menuIconAutoSwitchPriority),
+                autoSwitchPriority: Binding(
+                    get: { settings.effectiveMenuIconAutoSwitchPriority },
+                    set: { if settings.canCustomizeMetricPriority { settings.menuIconAutoSwitchPriority = $0 } }
+                ),
                 initialize: performInitialSetup
             )
             .background(OnboardingLauncher(settings: settings))

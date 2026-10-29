@@ -430,6 +430,78 @@
       }
     }
   },
+  "pro.feature.metricPriority": {
+    "comment": "Pro metric priority customization.",
+    "extractionState": "manual",
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Custom metric priority for Auto switch"
+        }
+      },
+      "de": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Anpassbare Metrikpriorität für den automatischen Wechsel"
+        }
+      },
+      "fr": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Priorité personnalisée des mesures pour le basculement automatique"
+        }
+      },
+      "ja": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "自動切り替えのメトリクス優先順位のカスタマイズ"
+        }
+      },
+      "zh-Hans": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "自定义自动切换的指标优先级"
+        }
+      }
+    }
+  },
+  "pro.lock.metricPriority": {
+    "comment": "Pro metric priority customization.",
+    "extractionState": "manual",
+    "localizations": {
+      "en": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Requires Pro. Free uses CPU → Memory → Disk → Network. Unlock in Settings → Pro."
+        }
+      },
+      "de": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Erfordert Pro. Kostenlos gilt CPU → Arbeitsspeicher → Festplatte → Netzwerk. Freischalten unter Einstellungen → Pro."
+        }
+      },
+      "fr": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Nécessite Pro. La version gratuite utilise Processeur → Mémoire → Disque → Réseau. Déverrouillez dans Réglages → Pro."
+        }
+      },
+      "ja": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "Pro が必要です。無料版では CPU → メモリ → ディスク → ネットワークの順序を使用します。設定 → Pro で購入できます。"
+        }
+      },
+      "zh-Hans": {
+        "stringUnit": {
+          "state": "translated",
+          "value": "需要 Pro。免费版使用 CPU → 内存 → 磁盘 → 网络顺序。在设置 → Pro 中解锁。"
+        }
+      }
+    }
+  },
   "pro.feature.thresholds": {
     "comment": "AL-79: Individual paid feature in the Pro feature list.",
     "extractionState": "manual",
