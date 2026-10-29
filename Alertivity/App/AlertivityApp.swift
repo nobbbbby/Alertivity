@@ -53,6 +53,7 @@ struct AlertivityApp: App {
                 menuIconOnlyWhenHigh: settingsBinding(\.menuIconOnlyWhenHigh),
                 menuIconType: settingsBinding(\.menuIconType),
                 showMetricIcon: settingsBinding(\.showMetricIcon),
+                isMenuIconTinted: settingsBinding(\.isMenuIconTinted),
                 autoSwitchEnabled: settingsBinding(\.isMenuIconAutoSwitchEnabled),
                 autoSwitchPriority: Binding(
                     get: { settings.effectiveMenuIconAutoSwitchPriority },
@@ -379,6 +380,7 @@ private struct MenuBarLabelLifecycleView: View {
     @Binding var menuIconOnlyWhenHigh: Bool
     @Binding var menuIconType: MenuIconType
     @Binding var showMetricIcon: Bool
+    @Binding var isMenuIconTinted: Bool
     @Binding var autoSwitchEnabled: Bool
     @Binding var autoSwitchPriority: [MetricMenuSelection]
     let initialize: () -> Void
@@ -392,7 +394,8 @@ private struct MenuBarLabelLifecycleView: View {
             metrics: monitor.metrics,
             isVisible: isMenuIconVisible,
             iconType: resolvedIconType,
-            showIcon: shouldShowMetricIcon
+            showIcon: shouldShowMetricIcon,
+            isTinted: isMenuIconTinted
         )
         .onAppear {
             initialize()

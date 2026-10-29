@@ -16,6 +16,7 @@ final class SettingsStore: ObservableObject {
         static let notificationCooldown = "notice.notifications.cooldownMinutes"
         static let notificationsEnabled = "notice.notifications.enabled"
         static let menuIconType = "notice.menu.iconType"
+        static let tintedMenuIcon = "notice.menu.tintedIcon"
         static let showMetricIcon = "notice.menu.showMetricIcon"
         static let autoSwitchPriority = "notice.menu.autoSwitchPriority"
         static let autoSwitch = "notice.menu.autoSwitch"
@@ -106,6 +107,15 @@ final class SettingsStore: ObservableObject {
         didSet { defaults.set(menuIconType.rawValue, forKey: Keys.menuIconType) }
     }
 
+    @Published var isMenuIconTinted: Bool {
+        didSet {
+            defaults.set(isMenuIconTinted, forKey: Keys.tintedMenuIcon)
+            if isMenuIconTinted != oldValue {
+                AppLogger.lifecycle.info("Menu bar icon tint updated; enabled: \(self.isMenuIconTinted, privacy: .public)")
+            }
+        }
+    }
+
     @Published var showMetricIcon: Bool {
         didSet { defaults.set(showMetricIcon, forKey: Keys.showMetricIcon) }
     }
@@ -180,6 +190,7 @@ final class SettingsStore: ObservableObject {
             menuIconType = .status
         }
 
+        isMenuIconTinted = defaults.object(forKey: Keys.tintedMenuIcon) as? Bool ?? true
         showMetricIcon = defaults.object(forKey: Keys.showMetricIcon) as? Bool ?? true
         isMenuIconAutoSwitchEnabled = defaults.object(forKey: Keys.autoSwitch) as? Bool ?? true
         menuIconAutoSwitchPriority = MetricMenuSelection.normalizedAutoSwitchPriority(
