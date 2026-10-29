@@ -8,9 +8,10 @@ Open **Alertivity’s menu bar indicator → Open Settings…**. Paths below use
 | --- | --- | --- |
 | Dock visibility | Settings → General → Hide app icon in Dock | Hides the Dock icon while monitoring continues. |
 | Automatic startup | Settings → General → Launch at login | Starts Alertivity when you log in. |
-| Feedback | Settings → General → Send Feedback… or Help → Send Feedback… | Opens a new GitHub issue in your default browser to report a bug or suggest an improvement. A GitHub account is required to submit an issue. |
 
 If macOS requires login-item approval, open **Apple menu → System Settings → General → Login Items** and approve Alertivity. macOS section names can vary by version.
+
+Choose **Help → Send Feedback…** to open a new GitHub issue in your default browser to report a bug or suggest an improvement. A GitHub account is required to submit an issue.
 
 ## Menu bar
 
