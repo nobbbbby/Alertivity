@@ -4,7 +4,7 @@
 
 Alertivity monitors CPU, memory, disk, network, and process activity. It turns those signals into a simple **Normal**, **Elevated**, or **Critical** status so you can spot problems before they interrupt your work.
 
-![Alertivity menu bar](AppStore/Screenshots/Source/public/screenshots/apple/mac/en/09-critical-cpu-menu-panel-desktop.png)
+![Alertivity: your Mac at a glance, with CPU, memory, disk, and network activity in the menu bar](img/app-store-overview.png)
 
 [![Download on the Mac App Store](img/appstore.svg)](https://apps.apple.com/app/alertivity/id6756399719)
 
