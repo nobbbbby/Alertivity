@@ -133,6 +133,21 @@ API are compiled only under `#if DEBUG` and are absent from Release builds. Pres
 changes and notification scheduling/errors use the existing metrics/notifications
 log categories.
 
+## App Store release preparation (AL-80)
+
+Keep App Store Connect metadata, product configuration, review instructions, upload receipts,
+and release checklists local under `AppStore/`; Git ignores them. Only the selected screenshot
+sources, artwork, and editable deck are tracked. IAP review images, generated editor files,
+exports, alternate captures, and working copies remain local too.
+
+Use Xcode Cloud as the primary release pipeline: PR Checks tests both schemes, Beta produces
+an internal-only archive, and Release tests both schemes and archives an App Store-eligible
+build from a `v`-prefixed tag. The post-clone hook validates project plists without requiring
+local store metadata. The implementation lives directly in `ci_scripts/ci_post_clone.sh`,
+the entry point Xcode Cloud discovers automatically. Cloud owns signing and build numbering.
+Keep workflow IDs and processed build selection in the local release runbook. Native StoreKit tests remain subject to the
+AL-82 Cloud-only exclusion documented below.
+
 ## App Store Pro configuration (AL-79)
 
 The sandboxed app target defines `APP_STORE` in both Debug and Release. The non-sandboxed
