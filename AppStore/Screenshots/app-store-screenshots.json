@@ -1,0 +1,505 @@
+{
+  "schemaVersion": 3,
+  "appName": "Alertivity",
+  "themeId": "quiet-japandi",
+  "fontId": "palatino",
+  "connectedCanvas": false,
+  "locales": [
+    "en",
+    "de",
+    "fr",
+    "ja",
+    "zh-Hans"
+  ],
+  "locale": "en",
+  "device": "mac",
+  "orientation": "portrait",
+  "appIcon": "/app-icon.png",
+  "slidesByDevice": {
+    "mac": [
+      {
+        "id": "mac-health",
+        "layout": "split-landscape",
+        "label": {
+          "en": "LIVE MAC HEALTH",
+          "de": "MAC-STATUS",
+          "fr": "ÉTAT DU MAC",
+          "ja": "MACの状態",
+          "zh-Hans": "MAC 状态速览"
+        },
+        "headline": {
+          "en": "Your Mac.\nAt a glance.",
+          "de": "Dein Mac.\nIm Blick.",
+          "fr": "Votre Mac.\nEn bref.",
+          "ja": "Macを\nひと目で。",
+          "zh-Hans": "你的 Mac。\n一目了然。"
+        },
+        "screenshot": "/screenshots/apple/mac/en/09-critical-cpu-menu-panel-desktop.png",
+        "transforms": {
+          "caption": {
+            "x": 160,
+            "y": 480,
+            "width": 940,
+            "height": 650,
+            "zIndex": 6
+          },
+          "device": {
+            "x": -1740,
+            "y": 0,
+            "width": 4800,
+            "height": 3120,
+            "rotation": 0,
+            "zIndex": 2
+          }
+        },
+        "imageElements": [
+          {
+            "id": "caption-panel",
+            "src": "/caption-panel-light.svg",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "width": 1180,
+              "height": 1800,
+              "zIndex": 4
+            },
+            "fit": "contain"
+          }
+        ],
+        "textElements": [
+          {
+            "id": "detail",
+            "text": {
+              "en": "CPU, memory, disk, and network.\nOne clear view in your menu bar.",
+              "de": "CPU, Arbeitsspeicher, Laufwerk und Netzwerk.\nAlles im Blick – direkt in der Menüleiste.",
+              "fr": "Processeur, mémoire, disque et réseau.\nTout est visible dans la barre des menus.",
+              "ja": "CPU・メモリ・ディスク・通信。\nメニューバーで、まとめて確認。",
+              "zh-Hans": "CPU、内存、磁盘和网络。\n在菜单栏中，轻松掌握系统状态。"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1130,
+              "width": 930,
+              "height": 250,
+              "zIndex": 5
+            },
+            "fontSize": 49,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          },
+          {
+            "id": "page",
+            "text": {
+              "en": "01 / 05",
+              "de": "01 / 05",
+              "fr": "01 / 05",
+              "ja": "01 / 05",
+              "zh-Hans": "01 / 05"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1610,
+              "width": 400,
+              "height": 80,
+              "zIndex": 5
+            },
+            "fontSize": 40,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          }
+        ]
+      },
+      {
+        "id": "activity-alerts",
+        "layout": "split-landscape",
+        "label": {
+          "en": "ACTIVITY ALERTS",
+          "de": "AKTIVITÄTSWARNUNGEN",
+          "fr": "ALERTES D’ACTIVITÉ",
+          "ja": "アクティビティ通知",
+          "zh-Hans": "活动提醒"
+        },
+        "headline": {
+          "en": "Know when\nit matters.",
+          "de": "Wichtiges\nim Blick.",
+          "fr": "Au bon\nmoment.",
+          "ja": "必要な時に\nお知らせ。",
+          "zh-Hans": "关键时刻，\n及时提醒。"
+        },
+        "screenshot": "/screenshots/apple/mac/en/08-critical-network-notification-desktop.png",
+        "transforms": {
+          "caption": {
+            "x": 160,
+            "y": 480,
+            "width": 940,
+            "height": 650,
+            "zIndex": 6
+          },
+          "device": {
+            "x": -1740,
+            "y": 0,
+            "width": 4800,
+            "height": 3120,
+            "rotation": 0,
+            "zIndex": 2
+          }
+        },
+        "imageElements": [
+          {
+            "id": "caption-panel",
+            "src": "/caption-panel-light.svg",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "width": 1180,
+              "height": 1800,
+              "rotation": 0,
+              "zIndex": 4
+            },
+            "fit": "contain"
+          }
+        ],
+        "textElements": [
+          {
+            "id": "detail",
+            "text": {
+              "en": "Native notifications for\npersistent Critical activity.",
+              "de": "macOS-Mitteilungen bei anhaltend\nkritischer Systemaktivität.",
+              "fr": "Des notifications macOS lorsque\nl’activité critique se prolonge.",
+              "ja": "深刻な高負荷が続いたら、\nmacOSの通知でお知らせします。",
+              "zh-Hans": "严重高负载持续时，\n通过 macOS 原生通知提醒你。"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1130,
+              "width": 930,
+              "height": 250,
+              "zIndex": 5
+            },
+            "fontSize": 49,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          },
+          {
+            "id": "page",
+            "text": {
+              "en": "02 / 05",
+              "de": "02 / 05",
+              "fr": "02 / 05",
+              "ja": "02 / 05",
+              "zh-Hans": "02 / 05"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1610,
+              "width": 400,
+              "height": 80,
+              "zIndex": 5
+            },
+            "fontSize": 40,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          }
+        ]
+      },
+      {
+        "id": "auto-switch",
+        "layout": "split-landscape",
+        "label": {
+          "en": "AUTO SWITCH",
+          "de": "AUTOMATISCHER WECHSEL",
+          "fr": "BASCULE AUTOMATIQUE",
+          "ja": "自動切り替え",
+          "zh-Hans": "自动切换"
+        },
+        "headline": {
+          "en": "Follow the\nbusy metric.",
+          "de": "Hohe Last.\nIm Blick.",
+          "fr": "L’activité\nà l’œil.",
+          "ja": "高負荷を\n自動表示。",
+          "zh-Hans": "高负载，\n随时掌握。"
+        },
+        "screenshot": "/screenshots/apple/mac/en/14-menu-bar-settings-desktop.png",
+        "transforms": {
+          "caption": {
+            "x": 160,
+            "y": 480,
+            "width": 940,
+            "height": 650,
+            "zIndex": 6
+          },
+          "device": {
+            "x": -1740,
+            "y": 0,
+            "width": 4800,
+            "height": 3120,
+            "rotation": 0,
+            "zIndex": 2
+          }
+        },
+        "imageElements": [
+          {
+            "id": "caption-panel",
+            "src": "/caption-panel-light.svg",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "width": 1180,
+              "height": 1800,
+              "zIndex": 4
+            },
+            "fit": "contain"
+          }
+        ],
+        "textElements": [
+          {
+            "id": "detail",
+            "text": {
+              "en": "Let your menu bar follow\nCritical activity.",
+              "de": "Die Menüleiste folgt automatisch\nder kritischen Systemaktivität.",
+              "fr": "La barre des menus suit\nl’activité critique de votre Mac.",
+              "ja": "深刻な高負荷の指標に合わせて、\nメニューバーの表示を自動切り替え。",
+              "zh-Hans": "菜单栏自动切换，\n显示处于严重高负载的指标。"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1130,
+              "width": 930,
+              "height": 250,
+              "zIndex": 5
+            },
+            "fontSize": 49,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          },
+          {
+            "id": "page",
+            "text": {
+              "en": "03 / 05",
+              "de": "03 / 05",
+              "fr": "03 / 05",
+              "ja": "03 / 05",
+              "zh-Hans": "03 / 05"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1610,
+              "width": 400,
+              "height": 80,
+              "zIndex": 5
+            },
+            "fontSize": 40,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          }
+        ]
+      },
+      {
+        "id": "notification-controls",
+        "layout": "split-landscape",
+        "label": {
+          "en": "NOTIFICATION CONTROLS",
+          "de": "MITTEILUNGEN",
+          "fr": "NOTIFICATIONS",
+          "ja": "通知の設定",
+          "zh-Hans": "通知设置"
+        },
+        "headline": {
+          "en": "Alerts on\nyour terms.",
+          "de": "Meldungen\nnach Maß.",
+          "fr": "Vos alertes.\nVos choix.",
+          "ja": "通知を\n自由に。",
+          "zh-Hans": "何时提醒，\n由你决定。"
+        },
+        "screenshot": "/screenshots/apple/mac/en/15-notification-settings-desktop.png",
+        "transforms": {
+          "caption": {
+            "x": 160,
+            "y": 480,
+            "width": 940,
+            "height": 650,
+            "zIndex": 6
+          },
+          "device": {
+            "x": -1740,
+            "y": 0,
+            "width": 4800,
+            "height": 3120,
+            "rotation": 0,
+            "zIndex": 2
+          }
+        },
+        "imageElements": [
+          {
+            "id": "caption-panel",
+            "src": "/caption-panel-light.svg",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "width": 1180,
+              "height": 1800,
+              "zIndex": 4
+            },
+            "fit": "contain"
+          }
+        ],
+        "textElements": [
+          {
+            "id": "detail",
+            "text": {
+              "en": "Set your high-activity duration\nand notification cooldown with Pro.",
+              "de": "Mit Pro: Dauer hoher Aktivität\nund Mitteilungsabstand festlegen.",
+              "fr": "Avec Pro, réglez la durée d’activité\nélevée et l’intervalle entre les alertes.",
+              "ja": "Proで高負荷の継続時間と\n通知の間隔を設定できます。",
+              "zh-Hans": "使用 Pro 设置高负载持续时间\n和通知间隔。"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1130,
+              "width": 930,
+              "height": 250,
+              "zIndex": 5
+            },
+            "fontSize": 49,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          },
+          {
+            "id": "page",
+            "text": {
+              "en": "04 / 05",
+              "de": "04 / 05",
+              "fr": "04 / 05",
+              "ja": "04 / 05",
+              "zh-Hans": "04 / 05"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1610,
+              "width": 400,
+              "height": 80,
+              "zIndex": 5
+            },
+            "fontSize": 40,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          }
+        ]
+      },
+      {
+        "id": "pro-customization",
+        "layout": "split-landscape",
+        "label": {
+          "en": "ALERTIVITY PRO",
+          "de": "ALERTIVITY PRO",
+          "fr": "ALERTIVITY PRO",
+          "ja": "ALERTIVITY PRO",
+          "zh-Hans": "ALERTIVITY PRO"
+        },
+        "headline": {
+          "en": "Your limits.\nYour rules.",
+          "de": "Dein Mac.\nDein Stil.",
+          "fr": "Vos seuils.\nVos règles.",
+          "ja": "自分だけの\n設定に。",
+          "zh-Hans": "你的阈值，\n你的规则。"
+        },
+        "screenshot": "/screenshots/apple/mac/en/19-pro-unlocked-metric-priority-desktop.png",
+        "transforms": {
+          "caption": {
+            "x": 160,
+            "y": 480,
+            "width": 940,
+            "height": 650,
+            "zIndex": 6
+          },
+          "device": {
+            "x": -1740,
+            "y": 0,
+            "width": 4800,
+            "height": 3120,
+            "rotation": 0,
+            "zIndex": 2
+          }
+        },
+        "imageElements": [
+          {
+            "id": "caption-panel",
+            "src": "/caption-panel-light.svg",
+            "transform": {
+              "x": 0,
+              "y": 0,
+              "width": 1180,
+              "height": 1800,
+              "zIndex": 4
+            },
+            "fit": "contain"
+          }
+        ],
+        "textElements": [
+          {
+            "id": "detail",
+            "text": {
+              "en": "Custom thresholds, cooldown,\nand high-activity duration.",
+              "de": "Eigene Schwellenwerte, Mitteilungsabstände\nund Dauer hoher Aktivität.",
+              "fr": "Personnalisez les seuils, les intervalles\net la durée d’activité élevée.",
+              "ja": "しきい値、通知の間隔、\n高負荷の継続時間をカスタマイズ。",
+              "zh-Hans": "自定义阈值、通知间隔\n和高负载持续时间。"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1130,
+              "width": 930,
+              "height": 250,
+              "zIndex": 5
+            },
+            "fontSize": 49,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          },
+          {
+            "id": "page",
+            "text": {
+              "en": "05 / 05",
+              "de": "05 / 05",
+              "fr": "05 / 05",
+              "ja": "05 / 05",
+              "zh-Hans": "05 / 05"
+            },
+            "transform": {
+              "x": 138.4,
+              "y": 1610,
+              "width": 400,
+              "height": 80,
+              "zIndex": 5
+            },
+            "fontSize": 40,
+            "fontWeight": 400,
+            "color": "#6F675F",
+            "align": "left"
+          }
+        ]
+      }
+    ]
+  },
+  "scene": {
+    "backdrop": "solid",
+    "span": false,
+    "decoration": "none",
+    "shadow": 20,
+    "glow": 0,
+    "tilt": 0,
+    "headlineWeight": 600,
+    "headlineScale": 1,
+    "headlineCase": "as-typed",
+    "captionAlign": "left"
+  }
+}
