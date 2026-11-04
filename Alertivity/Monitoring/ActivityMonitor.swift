@@ -20,7 +20,11 @@ final class ActivityMonitor: ObservableObject {
     private var provider: SystemMetricsProviding
     private var timer: Timer?
     private let queue: DispatchQueue = DispatchQueue(label: "activity-monitor.queue")
-    private var isMonitoring = false
+    private(set) var isMonitoring = false
+    private(set) var samplingInterval = MonitoringPreferences.defaultSamplingInterval
+    private let scheduleTimer: (TimeInterval, @escaping () -> Void) -> Timer
+    private var isFetching = false
+    private var monitoringGeneration = 0
     private var pendingStatus: ActivityStatus?
     private var pendingStatusSamples: Int = 0
     var activityThresholds: ActivityThresholds = .default {
@@ -33,8 +37,15 @@ final class ActivityMonitor: ObservableObject {
         autoStart: Bool = true,
         interval: TimeInterval = 5,
         provider: SystemMetricsProviding = SystemMetricsProvider(),
-        highActivityDuration: TimeInterval = 60
+        highActivityDuration: TimeInterval = 60,
+        scheduleTimer: @escaping (TimeInterval, @escaping () -> Void) -> Timer = { interval, action in
+            let timer = Timer(timeInterval: interval, repeats: true) { _ in action() }
+            RunLoop.main.add(timer, forMode: .common)
+            return timer
+        }
     ) {
+        self.scheduleTimer = scheduleTimer
+        self.samplingInterval = MonitoringPreferences.normalizedSamplingInterval(interval)
         self.provider = provider
         self.provider.highActivityDuration = highActivityDuration
         _metrics = Published(initialValue: metrics)
@@ -44,22 +55,36 @@ final class ActivityMonitor: ObservableObject {
 
     func startMonitoring(interval: TimeInterval = 5) {
         stopMonitoring()
-        guard interval > 0 else { return }
+        samplingInterval = MonitoringPreferences.normalizedSamplingInterval(interval)
         isMonitoring = true
-
         fetchMetricsOnce()
+        installTimer()
+    }
 
-        let timer = Timer(timeInterval: interval, repeats: true) { [weak self] _ in
-            self?.fetchMetricsOnce()
+    /// Replace only the schedule: retained provider snapshots keep rates based on actual elapsed time.
+    func setSamplingInterval(_ interval: TimeInterval) {
+        let normalized = MonitoringPreferences.normalizedSamplingInterval(interval)
+        guard samplingInterval != normalized else { return }
+        samplingInterval = normalized
+        pendingStatus = nil
+        pendingStatusSamples = 0
+        if isMonitoring { installTimer() }
+        AppLogger.metrics.info("Monitor sampling interval applied; seconds: \(normalized, privacy: .public)")
+    }
+
+    private func installTimer() {
+        timer?.invalidate()
+        timer = scheduleTimer(samplingInterval) { [weak self] in
+            guard let self, self.isMonitoring else { return }
+            self.fetchMetricsOnce()
         }
-        self.timer = timer
-        RunLoop.main.add(timer, forMode: .common)
     }
 
     func stopMonitoring() {
         timer?.invalidate()
         timer = nil
         isMonitoring = false
+        monitoringGeneration += 1
     }
 
     /// Test helper to apply a metrics snapshot without scheduling or timers.
@@ -77,10 +102,16 @@ final class ActivityMonitor: ObservableObject {
     }
 
     private func fetchMetricsOnce() {
+        // Slow samples cannot accumulate a backlog when a shorter interval is selected.
+        guard isMonitoring, !isFetching else { return }
+        isFetching = true
+        let generation = monitoringGeneration
         queue.async { [weak self] in
             guard let self else { return }
             let metrics = self.provider.fetchMetrics()
             DispatchQueue.main.async {
+                self.isFetching = false
+                guard self.isMonitoring, self.monitoringGeneration == generation else { return }
                 self.update(with: metrics)
             }
         }

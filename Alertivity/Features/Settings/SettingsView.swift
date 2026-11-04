@@ -66,6 +66,8 @@ struct SettingsView: View {
         SettingsPane(width: tabWidth) {
             Toggle("settings.toggle.hideDockIcon", isOn: $settings.hideDockIcon)
             Toggle("settings.toggle.launchAtLogin", isOn: $settings.launchAtLogin)
+            Divider()
+            SamplingIntervalSettingsView(settings: settings)
         }
         .modifier(AutomaticReviewRequest(
             store: reviewStore,
@@ -89,6 +91,11 @@ struct SettingsView: View {
                     get: { settings.effectiveMenuIconAutoSwitchPriority },
                     set: { if settings.canCustomizeMetricPriority { settings.menuIconAutoSwitchPriority = $0 } }
                 ),
+                activationLevel: Binding(
+                    get: { settings.effectiveAutoSwitchActivationLevel },
+                    set: { if settings.canCustomizeMonitoring { settings.autoSwitchActivationLevel = $0 } }
+                ),
+                canCustomizeActivation: settings.canCustomizeMonitoring,
                 canCustomizeMetricPriority: settings.canCustomizeMetricPriority
             )
         }
@@ -189,6 +196,9 @@ struct NoticePreferencesView: View {
 
     @ViewBuilder
     var body: some View {
+        Section("settings.tab.general") {
+            SamplingIntervalSettingsView(settings: settings)
+        }
         Section("settings.tab.menuBar") {
             MenuBarSettingsFields(
                 isMenuIconEnabled: $settings.isMenuIconEnabled,
@@ -201,6 +211,11 @@ struct NoticePreferencesView: View {
                     get: { settings.effectiveMenuIconAutoSwitchPriority },
                     set: { if settings.canCustomizeMetricPriority { settings.menuIconAutoSwitchPriority = $0 } }
                 ),
+                activationLevel: Binding(
+                    get: { settings.effectiveAutoSwitchActivationLevel },
+                    set: { if settings.canCustomizeMonitoring { settings.autoSwitchActivationLevel = $0 } }
+                ),
+                canCustomizeActivation: settings.canCustomizeMonitoring,
                 canCustomizeMetricPriority: settings.canCustomizeMetricPriority
             )
         }
@@ -273,6 +288,35 @@ struct FooterDivider: View {
     }
 }
 
+private struct SamplingIntervalSettingsView: View {
+    @ObservedObject var settings: SettingsStore
+
+    var body: some View {
+        LabeledContent {
+            Picker("settings.sampling.interval", selection: Binding(
+                get: { settings.monitoringConfiguration.samplingInterval },
+                set: { if settings.canCustomizeMonitoring { settings.updateSamplingInterval($0) } }
+            )) {
+                ForEach(MonitoringPreferences.samplingIntervalOptions, id: \.self) { seconds in
+                    Text(L10n.format("settings.sampling.value", Int(seconds))).tag(seconds)
+                }
+            }
+            .labelsHidden()
+            .pickerStyle(.menu)
+            .disabled(!settings.canCustomizeMonitoring)
+            .accessibilityIdentifier("settings.samplingInterval")
+            .help("settings.sampling.help")
+        } label: {
+            HStack(spacing: 6) {
+                Text("settings.sampling.interval")
+                if !settings.canCustomizeMonitoring {
+                    ProLockHint(help: "pro.lock.sampling", identifier: "pro.lock.sampling")
+                }
+            }
+        }
+    }
+}
+
 private struct MenuBarSettingsFields: View {
     @Binding var isMenuIconEnabled: Bool
     @Binding var menuIconOnlyWhenHigh: Bool
@@ -281,6 +325,8 @@ private struct MenuBarSettingsFields: View {
     @Binding var isMenuIconTinted: Bool
     @Binding var autoSwitchEnabled: Bool
     @Binding var autoSwitchPriority: [MetricMenuSelection]
+    @Binding var activationLevel: AutoSwitchActivationLevel
+    let canCustomizeActivation: Bool
     let canCustomizeMetricPriority: Bool
 
     var body: some View {
@@ -321,18 +367,38 @@ private struct MenuBarSettingsFields: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Toggle("settings.menuBar.autoSwitch", isOn: autoSwitchBinding)
-                    .help("settings.menuBar.autoSwitch.help")
+                    .help(activationHelp)
                     .disabled(!isMenuIconEnabled)
 
+                LabeledContent {
+                    Picker("settings.autoSwitch.activation", selection: $activationLevel) {
+                        ForEach(AutoSwitchActivationLevel.allCases, id: \.self) { level in
+                            Text(level.title).tag(level)
+                        }
+                    }
+                    .labelsHidden()
+                    .disabled(!isMenuIconEnabled || !autoSwitchEnabled || !canCustomizeActivation)
+                    .accessibilityIdentifier("settings.autoSwitchActivation")
+                } label: {
+                    HStack(spacing: 6) {
+                        Text("settings.autoSwitch.activation")
+                        if !canCustomizeActivation {
+                            ProLockHint(help: "pro.lock.activation", identifier: "pro.lock.activation")
+                        }
+                    }
+                }
                 priorityEditor
             }
         }
     }
 
+    private var activationHelp: String {
+        L10n.format("settings.autoSwitch.activation.help", activationLevel.title)
+    }
+
     private var priorityEditor: some View {
         DisclosureGroup {
             VStack(alignment: .leading, spacing: 6) {
-                SettingsFootnote(key: "settings.menuBar.autoSwitch.priority.help")
                 ForEach(autoSwitchPriority, id: \.self) { metric in
                     HStack {
                         Label(metric.menuIconType.title, systemImage: metric.menuIconType.symbolName)
@@ -372,6 +438,7 @@ private struct MenuBarSettingsFields: View {
                 }
             }
         }
+        .help("settings.menuBar.autoSwitch.priority.help")
     }
 
     private func move(_ metric: MetricMenuSelection, by offset: Int) {

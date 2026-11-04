@@ -39026,304 +39026,304 @@
     },
     "settings.menuBar.autoSwitch.help" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisch zur meistbeschäftigten Metrik wechseln schaltet nur um, wenn eine Metrik kritisch wird; andernfalls wird Ihr Standard-Symboltyp verwendet."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto switch follows the selected activation level and metric priority, then returns to the default icon."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auto switch to busiest metric only switches when a metric reaches critical; otherwise it uses your Default icon type."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisches Umschalten folgt der gewählten Aktivierungsstufe und Metrikpriorität und kehrt dann zum Standardsymbol zurück."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Le basculement automatique vers la métrique la plus chargée ne s'active que lorsqu'une métrique atteint le niveau critique ; sinon, il utilise votre type d'icône par défaut."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le basculement suit le niveau d’activation et la priorité choisis, puis revient à l’icône par défaut."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最も負荷の高い指標に自動切替は、指標が重大レベルに達したときのみ切り替え、通常時は既定のアイコンタイプを使用します。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択した開始レベルと指標の優先順位に従って切り替え、その後既定のアイコンに戻ります。"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自动切换到最繁忙指标仅在其达到严重级别时切换；否则使用你的默认图标类型。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动切换遵循所选激活级别和指标优先级，随后返回默认图标。"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "لا يحدث التبديل التلقائي إلا عند وصول مقياس إلى المستوى الحرج؛ وإلا فيُستخدم نوع الأيقونة الافتراضي."
+            "value": "يتبع التبديل التلقائي مستوى التنشيط وأولوية المقاييس المحددين، ثم يعود إلى الأيقونة الافتراضية."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "কোনও মেট্রিক সংকটজনক হলেই অটো সুইচ হবে; অন্যথায় ডিফল্ট আইকনের ধরন ব্যবহৃত হবে।"
+            "value": "অটো সুইচ বাছাই করা সক্রিয়করণ স্তর ও মেট্রিকের অগ্রাধিকার মেনে চলে, তারপর ডিফল্ট আইকনে ফিরে আসে।"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "El canvi automàtic només canvia quan una mètrica és crítica; altrament, fa servir el tipus d’icona predeterminat."
+            "value": "El canvi automàtic segueix el nivell d’activació i la prioritat de les mètriques seleccionats, i després torna a la icona predeterminada."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatické přepínání se aktivuje pouze při kritické metrice. Jinak používá výchozí typ ikony."
+            "value": "Automatické přepínání se řídí vybranou úrovní aktivace a prioritou metrik, poté se vrátí k výchozí ikoně."
           }
         },
         "da": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatisk skift sker kun, når en metrik bliver kritisk. Ellers bruges standardtypen for symbolet."
+            "value": "Automatisk skift følger det valgte aktiveringsniveau og metrikprioriteten og vender derefter tilbage til standardsymbolet."
           }
         },
         "el": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Η αυτόματη εναλλαγή γίνεται μόνο όταν μια μέτρηση γίνει κρίσιμη. Διαφορετικά χρησιμοποιείται ο προεπιλεγμένος τύπος εικονιδίου."
+            "value": "Η αυτόματη εναλλαγή ακολουθεί το επιλεγμένο επίπεδο ενεργοποίησης και την προτεραιότητα μετρήσεων και επιστρέφει στο προεπιλεγμένο εικονίδιο."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Auto switch to busiest metric only switches when a metric reaches critical; otherwise it uses your Default icon type."
+            "value": "Auto switch follows the selected activation level and metric priority, then returns to the default icon."
           }
         },
         "en-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Auto switch to busiest metric only switches when a metric reaches critical; otherwise it uses your Default icon type."
+            "value": "Auto switch follows the selected activation level and metric priority, then returns to the default icon."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Auto switch to busiest metric only switches when a metric reaches critical; otherwise it uses your Default icon type."
+            "value": "Auto switch follows the selected activation level and metric priority, then returns to the default icon."
           }
         },
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "El cambio automático solo se produce cuando una métrica alcanza el nivel crítico; en otro caso se usa el tipo de icono predeterminado."
+            "value": "El cambio automático sigue el nivel de activación y la prioridad de métricas seleccionados, y después vuelve al icono predeterminado."
           }
         },
         "es-MX": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "El cambio automático solo se produce cuando una métrica alcanza el nivel crítico; en otro caso se usa el tipo de icono predeterminado."
+            "value": "El cambio automático sigue el nivel de activación y la prioridad de métricas seleccionados, y después vuelve al icono predeterminado."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automaattinen vaihto tapahtuu vain mittarin saavuttaessa kriittisen tason. Muulloin käytetään oletuskuvaketyyppiä."
+            "value": "Automaattinen vaihto seuraa valittua aktivointitasoa ja mittareiden tärkeysjärjestystä ja palaa sitten oletuskuvakkeeseen."
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Le basculement automatique vers la métrique la plus chargée ne s’active que lorsqu’une métrique atteint le niveau critique ; sinon, il utilise votre type d’icône par défaut."
+            "value": "Le basculement automatique suit le niveau d’activation et la priorité des métriques sélectionnés, puis revient à l’icône par défaut."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "માપદંડ ગંભીર સ્તરે પહોંચે ત્યારે જ આપમેળે બદલાય છે; અન્યથા ડિફૉલ્ટ આઇકન પ્રકાર વપરાય છે."
+            "value": "આપમેળે બદલવું પસંદ કરેલા સક્રિયકરણ સ્તર અને માપદંડની પ્રાથમિકતા અનુસરે છે, પછી ડિફૉલ્ટ આઇકન પર પાછું ફરે છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "המעבר האוטומטי מתבצע רק כשמדד מגיע לרמה קריטית; אחרת נעשה שימוש בסוג האייקון המוגדר כברירת מחדל."
+            "value": "המעבר האוטומטי פועל לפי רמת ההפעלה ועדיפות המדדים שנבחרו, ואז חוזר לאייקון ברירת המחדל."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ऑटो स्विच तभी होता है जब कोई मेट्रिक गंभीर स्तर पर पहुँचता है; वरना डिफ़ॉल्ट आइकॉन इस्तेमाल होता है।"
+            "value": "ऑटो स्विच चुने गए सक्रियण स्तर और मेट्रिक प्राथमिकता के अनुसार चलता है, फिर डिफ़ॉल्ट आइकॉन पर लौटता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatsko prebacivanje događa se samo kad mjerni podatak postane kritičan. Inače se koristi zadana vrsta ikone."
+            "value": "Automatsko prebacivanje slijedi odabranu razinu aktivacije i prioritet mjernih podataka, a zatim se vraća na zadanu ikonu."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Az automatikus váltás csak kritikus mérőszám esetén vált. Egyébként az alapértelmezett ikontípust használja."
+            "value": "Az automatikus váltás a kiválasztott aktiválási szintet és a mérőszámok prioritását követi, majd visszatér az alapértelmezett ikonhoz."
           }
         },
         "id": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Pengalihan otomatis hanya terjadi saat metrik mencapai tingkat kritis; selain itu, jenis ikon default digunakan."
+            "value": "Pengalihan otomatis mengikuti tingkat aktivasi dan prioritas metrik yang dipilih, lalu kembali ke ikon default."
           }
         },
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Il cambio automatico avviene solo quando una metrica raggiunge il livello critico. Altrimenti viene usato il tipo di icona predefinito."
+            "value": "Il cambio automatico segue il livello di attivazione e la priorità delle metriche selezionati, poi torna all’icona predefinita."
           }
         },
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ಮಾಪನವು ಗಂಭೀರ ಮಟ್ಟ ತಲುಪಿದಾಗ ಮಾತ್ರ ಸ್ವಯಂ ಬದಲಾಯಿಸುತ್ತದೆ; ಇಲ್ಲದಿದ್ದರೆ ಡೀಫಾಲ್ಟ್ ಐಕಾನ್ ಪ್ರಕಾರ ಬಳಸುತ್ತದೆ."
+            "value": "ಸ್ವಯಂ ಬದಲಾವಣೆಯು ಆಯ್ದ ಸಕ್ರಿಯಗೊಳಿಸುವ ಮಟ್ಟ ಮತ್ತು ಮಾಪನ ಆದ್ಯತೆಯನ್ನು ಅನುಸರಿಸಿ, ನಂತರ ಡೀಫಾಲ್ಟ್ ಐಕಾನ್‌ಗೆ ಮರಳುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "지표가 심각 단계에 도달할 때만 자동 전환하며 그 외에는 기본 아이콘 유형을 사용합니다."
+            "value": "자동 전환은 선택한 활성화 수준과 지표 우선순위를 따르며 이후 기본 아이콘으로 돌아갑니다."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "മെട്രിക്ക് ഗുരുതര നിലയിലെത്തുമ്പോൾ മാത്രമാണ് സ്വയം മാറുന്നത്. അല്ലാത്തപ്പോൾ ഡിഫോൾട്ട് ഐക്കൺ തരം ഉപയോഗിക്കുന്നു."
+            "value": "ഓട്ടോ സ്വിച്ച് തിരഞ്ഞെടുത്ത സജീവമാക്കൽ നിലയും മെട്രിക്ക് മുൻഗണനയും പിന്തുടർന്ന് ഡിഫോൾട്ട് ഐക്കണിലേക്ക് മടങ്ങുന്നു."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "मेट्रिक गंभीर स्तरावर पोहोचल्यावरच आपोआप बदलते; अन्यथा डीफॉल्ट चिन्ह प्रकार वापरला जातो."
+            "value": "आपोआप बदल निवडलेल्या सक्रियता पातळीनुसार आणि मेट्रिक प्राधान्यक्रमानुसार होतो, नंतर डीफॉल्ट चिन्हावर परततो."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Pertukaran automatik hanya berlaku apabila metrik mencapai tahap kritikal; jika tidak, jenis ikon lalai digunakan."
+            "value": "Pertukaran automatik mengikut tahap pengaktifan dan keutamaan metrik yang dipilih, kemudian kembali kepada ikon lalai."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatisk bytte skjer bare når en måling blir kritisk. Ellers brukes standardtypen for symbolet."
+            "value": "Automatisk bytte følger valgt aktiveringsnivå og måleprioritet, og går deretter tilbake til standardsymbolet."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatisch schakelen gebeurt alleen als een metriek kritiek wordt. Anders wordt het standaardsymbooltype gebruikt."
+            "value": "Automatisch schakelen volgt het gekozen activeringsniveau en de metriekprioriteit en keert daarna terug naar het standaardsymbool."
           }
         },
         "or": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ମାପକ ଗୁରୁତର ହେଲେ ହିଁ ସ୍ୱୟଂଚାଳିତ ବଦଳେ; ନଚେତ୍ ଡିଫଲ୍ଟ ଆଇକନ୍ ପ୍ରକାର ବ୍ୟବହାର ହୁଏ।"
+            "value": "ସ୍ୱୟଂଚାଳିତ ବଦଳ ବଛା ସକ୍ରିୟକରଣ ସ୍ତର ଓ ମାପକ ପ୍ରାଥମିକତା ଅନୁସରଣ କରି ପରେ ଡିଫଲ୍ଟ ଆଇକନ୍‌କୁ ଫେରେ।"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਆਟੋ ਸਵਿੱਚ ਸਿਰਫ਼ ਮੈਟ੍ਰਿਕ ਦੇ ਗੰਭੀਰ ਪੱਧਰ ਉੱਤੇ ਪਹੁੰਚਣ ਵੇਲੇ ਹੁੰਦਾ ਹੈ; ਨਹੀਂ ਤਾਂ ਡਿਫ਼ੌਲਟ ਆਈਕਨ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।"
+            "value": "ਆਟੋ ਸਵਿੱਚ ਚੁਣੇ ਸਰਗਰਮੀ ਪੱਧਰ ਅਤੇ ਮੈਟ੍ਰਿਕ ਤਰਜੀਹ ਅਨੁਸਾਰ ਚੱਲਦਾ ਹੈ, ਫਿਰ ਡਿਫ਼ੌਲਟ ਆਈਕਨ ’ਤੇ ਵਾਪਸ ਆਉਂਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatyczne przełączanie zachodzi tylko, gdy wskaźnik osiąga poziom krytyczny. W innym przypadku używa domyślnego typu ikony."
+            "value": "Automatyczne przełączanie uwzględnia wybrany poziom aktywacji i priorytet wskaźników, a następnie wraca do domyślnej ikony."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "A alternância automática só ocorre quando uma métrica atinge o nível crítico; caso contrário, usa o tipo de ícone padrão."
+            "value": "A alternância automática segue o nível de ativação e a prioridade de métricas selecionados e depois volta ao ícone padrão."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "A alternância automática só ocorre quando uma métrica atinge o nível crítico; caso contrário, usa o tipo de ícone predefinido."
+            "value": "A alternância automática segue o nível de ativação e a prioridade de métricas selecionados e depois volta ao ícone predefinido."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Comutarea automată are loc doar când un indicator devine critic. Altfel se folosește tipul implicit de pictogramă."
+            "value": "Comutarea automată urmează nivelul de activare și prioritatea indicatorilor selectate, apoi revine la pictograma implicită."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Автопереключение происходит только при достижении критического уровня; иначе используется стандартный тип значка."
+            "value": "Автопереключение учитывает выбранный уровень активации и приоритет показателей, затем возвращается к стандартному значку."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatické prepínanie sa aktivuje len pri kritickej metrike. Inak používa predvolený typ ikony."
+            "value": "Automatické prepínanie sa riadi vybranou úrovňou aktivácie a prioritou metrík, potom sa vráti k predvolenej ikone."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Samodejno preklapljanje se zgodi le, ko meritev doseže kritično raven. Sicer se uporablja privzeta vrsta ikone."
+            "value": "Samodejno preklapljanje sledi izbrani ravni aktivacije in prednosti meritev, nato pa se vrne na privzeto ikono."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatiskt byte sker bara när ett mätvärde blir kritiskt. Annars används standardsymboltypen."
+            "value": "Automatiskt byte följer vald aktiveringsnivå och mätvärdesprioritet och återgår sedan till standardsymbolen."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "அளவீடு தீவிர நிலையை அடையும்போது மட்டுமே தானாக மாறும். இல்லையெனில் இயல்புநிலை ஐகான் வகை பயன்படுத்தப்படும்."
+            "value": "தானியங்கி மாற்றம் தேர்ந்தெடுத்த செயல்படுத்தும் நிலையையும் அளவீட்டு முன்னுரிமையையும் பின்பற்றி, பின்னர் இயல்புநிலை ஐகானுக்குத் திரும்பும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "కొలమానం తీవ్ర స్థాయికి చేరినప్పుడే ఆటో స్విచ్ జరుగుతుంది; లేకపోతే డిఫాల్ట్ ఐకాన్ రకం వాడుతుంది."
+            "value": "ఆటో స్విచ్ ఎంచుకున్న ప్రారంభ స్థాయి, కొలమానం ప్రాధాన్యతను అనుసరించి, తర్వాత డిఫాల్ట్ ఐకాన్‌కు తిరిగి వస్తుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "การสลับอัตโนมัติจะทำงานเมื่อตัววัดถึงระดับวิกฤตเท่านั้น มิฉะนั้นจะใช้ประเภทไอคอนเริ่มต้น"
+            "value": "การสลับอัตโนมัติจะใช้ระดับการเริ่มทำงานและลำดับความสำคัญของตัววัดที่เลือก แล้วกลับไปใช้ไอคอนเริ่มต้น"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Otomatik geçiş yalnızca bir ölçüm kritik düzeye ulaştığında gerçekleşir; aksi halde saptanmış simge türü kullanılır."
+            "value": "Otomatik geçiş, seçilen etkinleştirme düzeyini ve ölçüm önceliğini izler, ardından saptanmış simgeye döner."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Автоперемикання відбувається лише при досягненні критичного рівня; інакше використовується типовий вид іконки."
+            "value": "Автоперемикання враховує вибраний рівень активації та пріоритет показників, а потім повертається до типової іконки."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "خودکار تبدیلی تبھی ہوتی ہے جب پیمانہ نازک حد کو پہنچے؛ ورنہ پہلے سے طے شدہ آئیکن استعمال ہوتا ہے۔"
+            "value": "خودکار تبدیلی منتخب فعالی سطح اور پیمانوں کی ترجیح کے مطابق ہوتی ہے، پھر پہلے سے طے شدہ آئیکن پر لوٹتی ہے۔"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Chỉ tự chuyển khi chỉ số đạt mức tới hạn; nếu không, dùng loại biểu tượng mặc định."
+            "value": "Chuyển tự động tuân theo mức kích hoạt và ưu tiên chỉ số đã chọn, rồi trở về biểu tượng mặc định."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "只有在指標達到嚴重等級時才會自動切換，否則使用預設圖像類型。"
+            "value": "自動切換會依照所選的啟用等級和指標優先順序運作，然後回到預設圖像。"
           }
         }
       }
@@ -39634,304 +39634,304 @@
     },
     "settings.menuBar.autoSwitch.priority.help" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weiter oben stehende Messwerte haben Vorrang, wenn mehrere kritisch sind. Ändern Sie die Reihenfolge mit den Pfeilen."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "At equal severity, the first eligible metric wins."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Higher metrics take priority when several metrics are Critical. Use the arrows to change the order."
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei gleichem Schweregrad gewinnt die erste passende Metrik."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les métriques en haut sont prioritaires lorsque plusieurs sont critiques. Utilisez les flèches pour modifier l’ordre."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À gravité égale, la première métrique admissible est choisie."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "複数の指標が重大レベルの場合、上の指標を優先します。矢印で順序を変更できます。"
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同じ重要度では、最初の対象指標が優先されます。"
           }
         },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "多个指标达到严重级别时，优先显示靠上的指标。使用箭头调整顺序。"
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "严重程度相同时，优先选择排序靠前的符合条件的指标。"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "تحظى المقاييس الأعلى بالأولوية عند وصول عدة مقاييس إلى المستوى الحرج. يمكن استخدام الأسهم لتغيير الترتيب."
+            "value": "عند تساوي مستوى الخطورة، تكون الأولوية لأول مقياس مؤهل."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "একাধিক মেট্রিক সংকটজনক হলে উপরের মেট্রিকগুলি অগ্রাধিকার পায়। ক্রম বদলাতে তির ব্যবহার করুন।"
+            "value": "তীব্রতা সমান হলে প্রথম যোগ্য মেট্রিকটি বেছে নেওয়া হয়।"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Les mètriques de més amunt tenen prioritat si n’hi ha diverses de crítiques. Canvia l’ordre amb les fletxes."
+            "value": "Amb la mateixa gravetat, té prioritat la primera mètrica que compleix els requisits."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Výše uvedené metriky mají přednost, je-li více metrik kritických. Pořadí změníte šipkami."
+            "value": "Při stejné závažnosti má přednost první vyhovující metrika."
           }
         },
         "da": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Metrikker øverst har prioritet, når flere er kritiske. Brug pilene til at ændre rækkefølgen."
+            "value": "Ved samme alvorlighed vinder den første kvalificerede metrik."
           }
         },
         "el": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Οι μετρήσεις ψηλότερα στη λίστα προηγούνται όταν πολλές είναι κρίσιμες. Αλλάξτε τη σειρά με τα βέλη."
+            "value": "Σε ίδια σοβαρότητα, επιλέγεται η πρώτη κατάλληλη μέτρηση."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Higher metrics take priority when several metrics are Critical. Use the arrows to change the order."
+            "value": "At equal severity, the first eligible metric wins."
           }
         },
         "en-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Higher metrics take priority when several metrics are Critical. Use the arrows to change the order."
+            "value": "At equal severity, the first eligible metric wins."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Higher metrics take priority when several metrics are Critical. Use the arrows to change the order."
+            "value": "At equal severity, the first eligible metric wins."
           }
         },
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Las métricas superiores tienen prioridad cuando varias están en nivel crítico. Usa las flechas para cambiar el orden."
+            "value": "Con la misma gravedad, tiene prioridad la primera métrica que cumpla los requisitos."
           }
         },
         "es-MX": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Las métricas superiores tienen prioridad cuando varias están en nivel crítico. Usa las flechas para cambiar el orden."
+            "value": "Con la misma gravedad, tiene prioridad la primera métrica que cumpla los requisitos."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ylempänä olevat mittarit ovat etusijalla, kun useampi mittari on kriittinen. Muuta järjestystä nuolilla."
+            "value": "Samalla vakavuustasolla ensimmäinen ehdot täyttävä mittari on etusijalla."
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Les métriques en haut sont prioritaires lorsque plusieurs sont critiques. Utilisez les flèches pour modifier l’ordre."
+            "value": "À gravité égale, la première métrique admissible a la priorité."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "એકથી વધુ માપદંડ ગંભીર હોય ત્યારે ઉપરના માપદંડને પ્રાથમિકતા મળે છે. ક્રમ બદલવા તીર વાપરો."
+            "value": "ગંભીરતા સમાન હોય ત્યારે પહેલો લાયક માપદંડ પસંદ થાય છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "המדדים שבראש הרשימה מקבלים עדיפות כשכמה מדדים קריטיים. ניתן לשנות את הסדר באמצעות החצים."
+            "value": "ברמת חומרה שווה, המדד הראשון שעומד בתנאים מקבל עדיפות."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "कई मेट्रिक गंभीर होने पर ऊपर वाले मेट्रिक को प्राथमिकता मिलती है। क्रम बदलने के लिए तीर इस्तेमाल करें।"
+            "value": "समान गंभीरता पर, शर्तें पूरी करने वाले पहले मेट्रिक को प्राथमिकता मिलती है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Viši mjerni podaci imaju prednost kad je više njih kritično. Strelicama promijeni redoslijed."
+            "value": "Pri jednakoj ozbiljnosti prednost ima prvi mjerni podatak koji ispunjava uvjete."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Több kritikus mérőszám esetén a feljebb lévők élveznek elsőbbséget. A sorrend a nyilakkal módosítható."
+            "value": "Azonos súlyosság esetén az első megfelelő mérőszám élvez elsőbbséget."
           }
         },
         "id": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Metrik di atas diprioritaskan saat beberapa metrik Kritis. Gunakan panah untuk mengubah urutan."
+            "value": "Pada tingkat keparahan yang sama, metrik pertama yang memenuhi syarat diprioritaskan."
           }
         },
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Le metriche più in alto hanno la precedenza quando più metriche sono critiche. Usa le frecce per modificare l’ordine."
+            "value": "A parità di gravità, ha la precedenza la prima metrica idonea."
           }
         },
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ಹಲವು ಮಾಪನಗಳು ಗಂಭೀರವಾಗಿದ್ದರೆ ಮೇಲಿನ ಮಾಪನಗಳಿಗೆ ಆದ್ಯತೆ. ಕ್ರಮ ಬದಲಿಸಲು ಬಾಣಗಳನ್ನು ಬಳಸಿ."
+            "value": "ತೀವ್ರತೆ ಸಮಾನವಾದಾಗ ಮೊದಲ ಅರ್ಹ ಮಾಪನವನ್ನು ಆಯ್ಕೆಮಾಡಲಾಗುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "여러 지표가 심각 단계일 때 위쪽 지표가 우선합니다. 화살표로 순서를 변경하십시오."
+            "value": "심각도가 같으면 조건에 맞는 첫 번째 지표가 우선합니다."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "പല മെട്രിക്കുകളും ഗുരുതരമെങ്കിൽ മുകളിലുള്ളവയ്ക്ക് മുൻഗണന. ക്രമം മാറ്റാൻ അമ്പുകൾ ഉപയോഗിക്കൂ."
+            "value": "തീവ്രത തുല്യമെങ്കിൽ ആദ്യ യോഗ്യമായ മെട്രിക്ക് തിരഞ്ഞെടുക്കുന്നു."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "अनेक मेट्रिक गंभीर असताना यादीतील वरच्या मेट्रिकला प्राधान्य मिळते. क्रम बदलण्यासाठी बाण वापरा."
+            "value": "तीव्रता समान असल्यास पहिला पात्र मेट्रिक निवडला जातो."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Metrik di atas diutamakan apabila beberapa metrik berada pada tahap Kritikal. Gunakan anak panah untuk menukar susunan."
+            "value": "Pada tahap keterukan yang sama, metrik pertama yang layak diutamakan."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Målinger høyere oppe prioriteres når flere er kritiske. Bruk pilene for å endre rekkefølgen."
+            "value": "Ved lik alvorlighetsgrad prioriteres den første kvalifiserte målingen."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Hoger geplaatste metrieken krijgen voorrang als meerdere metrieken kritiek zijn. Wijzig de volgorde met de pijlen."
+            "value": "Bij gelijke ernst krijgt de eerste geschikte metriek voorrang."
           }
         },
         "or": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ଅନେକ ମାପକ ଗୁରୁତର ହେଲେ ଉପରର ମାପକକୁ ପ୍ରାଥମିକତା ମିଳେ। କ୍ରମ ବଦଳାଇବାକୁ ତୀର ବ୍ୟବହାର କରନ୍ତୁ।"
+            "value": "ଗୁରୁତ୍ୱ ସମାନ ହେଲେ ପ୍ରଥମ ଯୋଗ୍ୟ ମାପକ ବଛାଯାଏ।"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਕਈ ਮੈਟ੍ਰਿਕ ਗੰਭੀਰ ਹੋਣ ਉੱਤੇ ਉੱਪਰਲੇ ਮੈਟ੍ਰਿਕ ਨੂੰ ਤਰਜੀਹ ਮਿਲਦੀ ਹੈ। ਕ੍ਰਮ ਬਦਲਣ ਲਈ ਤੀਰ ਵਰਤੋ।"
+            "value": "ਤੀਬਰਤਾ ਇੱਕੋ ਹੋਣ ’ਤੇ ਪਹਿਲਾ ਯੋਗ ਮੈਟ੍ਰਿਕ ਚੁਣਿਆ ਜਾਂਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Wyższe wskaźniki mają pierwszeństwo, gdy kilka jest krytycznych. Zmień kolejność strzałkami."
+            "value": "Przy jednakowym poziomie alarmowym pierwszeństwo ma pierwszy kwalifikujący się wskaźnik."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "As métricas mais acima têm prioridade quando várias estão no nível Crítico. Use as setas para alterar a ordem."
+            "value": "Com a mesma gravidade, a primeira métrica elegível tem prioridade."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "As métricas mais acima têm prioridade quando várias estão no nível Crítico. Use as setas para alterar a ordem."
+            "value": "Com a mesma gravidade, a primeira métrica elegível tem prioridade."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Indicatorii de mai sus au prioritate când mai mulți sunt critici. Schimbă ordinea cu săgețile."
+            "value": "La aceeași gravitate, are prioritate primul indicator eligibil."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Когда несколько показателей критические, приоритет у расположенных выше. Измените порядок стрелками."
+            "value": "При одинаковой степени важности приоритет у первого подходящего показателя."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Vyššie uvedené metriky majú prednosť, ak je viac metrík kritických. Poradie zmeníte šípkami."
+            "value": "Pri rovnakej závažnosti má prednosť prvá vyhovujúca metrika."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Višje meritve imajo prednost, ko je več meritev kritičnih. Vrstni red spremeni s puščicami."
+            "value": "Pri enaki resnosti ima prednost prva meritev, ki izpolnjuje pogoje."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Mätvärden högre upp prioriteras när flera är kritiska. Ändra ordningen med pilarna."
+            "value": "Vid samma allvarlighetsgrad prioriteras det första kvalificerade mätvärdet."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "பல அளவீடுகள் தீவிர நிலையில் இருந்தால் மேலுள்ளவற்றுக்கு முன்னுரிமை. வரிசையை மாற்ற அம்புகளைப் பயன்படுத்தவும்."
+            "value": "தீவிர நிலை ஒரே அளவில் இருந்தால் முதல் தகுதியான அளவீடு தேர்ந்தெடுக்கப்படும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "పలు కొలమానాలు తీవ్ర స్థాయిలో ఉంటే పైన ఉన్నవాటికి ప్రాధాన్యత. క్రమం మార్చడానికి బాణాలు వాడండి."
+            "value": "తీవ్రత సమానంగా ఉంటే మొదటి అర్హమైన కొలమానం ఎంపికవుతుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ตัววัดที่อยู่สูงกว่าจะมีความสำคัญก่อนเมื่อตัววัดหลายตัวอยู่ในระดับวิกฤต ใช้ลูกศรเพื่อเปลี่ยนลำดับ"
+            "value": "เมื่อความรุนแรงเท่ากัน จะเลือกตัววัดแรกที่เข้าเกณฑ์"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Birden fazla ölçüm Kritik olduğunda üsttekiler önceliklidir. Sırayı oklarla değiştirin."
+            "value": "Önem düzeyi eşitse ilk uygun ölçüm önceliklidir."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Коли кілька показників критичні, вищі в списку мають пріоритет. Змініть порядок стрілками."
+            "value": "За однакової серйозності пріоритет має перший відповідний показник."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "کئی پیمانے نازک ہوں تو اوپر والے کو ترجیح ملتی ہے۔ ترتیب بدلنے کے لیے تیر استعمال کریں۔"
+            "value": "شدت برابر ہو تو پہلا اہل پیمانہ منتخب ہوتا ہے۔"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Chỉ số ở trên được ưu tiên khi nhiều chỉ số ở mức Tới hạn. Dùng mũi tên để đổi thứ tự."
+            "value": "Ở cùng mức nghiêm trọng, chỉ số đủ điều kiện đầu tiên được ưu tiên."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "多個指標達到嚴重等級時，較上方的指標優先。使用箭頭調整順序。"
+            "value": "嚴重程度相同時，優先選擇第一個符合條件的指標。"
           }
         }
       }
@@ -64005,6 +64005,3056 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Alertivity UI 測試"
+          }
+        }
+      }
+    },
+    "pro.feature.samplingActivation" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom sampling interval and auto-switch activation"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messintervall und automatische Aktivierung anpassen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervalle de mesure et activation personnalisables"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サンプリング間隔と自動切替の開始レベルを変更"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定义采样间隔和自动切换激活级别"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tùy chỉnh khoảng lấy mẫu và kích hoạt chuyển tự động"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "નમૂના લેવાનો કસ્ટમ અંતરાલ અને આપમેળે બદલવાનું સક્રિયકરણ"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vlastný interval vzorkovania a aktivácia automatického prepínania"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervallo di campionamento e attivazione del cambio automatico personalizzati"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सानुकूल नमुना अंतर आणि आपोआप बदलाची सक्रियता"
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Custom sampling interval and auto-switch activation"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सैंपलिंग का अंतराल और ऑटो स्विच सक्रियण बदलें"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalle d’échantillonnage et activation du basculement automatique personnalisés"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "מרווח דגימה והפעלה של מעבר אוטומטי בהתאמה אישית"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval de eșantionare și activare a comutării automate personalizate"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "فاصل مخصص لأخذ العينات وتنشيط مخصص للتبديل التلقائي"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de amostragem e ativação da alternância automática personalizados"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Власний інтервал вимірювань і активація автоперемикання"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mukautettu näytteenottoväli ja automaattisen vaihdon aktivointi"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de muestreo y activación del cambio automático personalizados"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தனிப்பயன் மாதிரி இடைவெளியும் தானியங்கி மாற்றச் செயல்படுத்தலும்"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tilpasset måleinterval og aktivering af automatisk skift"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਨਮੂਨੇ ਲੈਣ ਦਾ ਕਸਟਮ ਅੰਤਰਾਲ ਅਤੇ ਆਟੋ ਸਵਿੱਚ ਸਰਗਰਮੀ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Προσαρμοσμένο διάστημα δειγματοληψίας και ενεργοποίηση αυτόματης εναλλαγής"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "అనుకూల నమూనా సేకరణ విరామం, ఆటో స్విచ్ ప్రారంభం"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de amostragem e ativação da alternância automática personalizados"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de muestreo y activación del cambio automático personalizados"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Özel örnekleme aralığı ve otomatik geçiş etkinleştirmesi"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vlastní interval vzorkování a aktivace automatického přepínání"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval pengambilan sampel dan aktivasi pengalihan otomatis khusus"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Egendefinert måleintervall og aktivering av automatisk bytte"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Свой интервал измерений и уровень активации автопереключения"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prilagođeni interval uzorkovanja i aktivacija automatskog prebacivanja"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aangepast meetinterval en activering van automatisch schakelen"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಕಸ್ಟಮ್ ಮಾದರಿ ಸಂಗ್ರಹ ಅಂತರ ಮತ್ತು ಸ್ವಯಂ ಬದಲಾವಣೆ ಸಕ್ರಿಯಗೊಳಿಸುವಿಕೆ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ഇഷ്ടാനുസൃത സാമ്പിൾ ഇടവേളയും ഓട്ടോ സ്വിച്ച് സജീവമാക്കലും"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sela pensampelan dan pengaktifan pertukaran automatik tersuai"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "কাস্টম নমুনা সংগ্রহের বিরতি ও অটো সুইচ সক্রিয়করণ"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval de mostreig i activació del canvi automàtic personalitzats"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Egyéni mintavételi időköz és automatikusváltás-aktiválás"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Anpassat mätintervall och aktivering av automatiskt byte"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval vzorčenja in aktivacija samodejnega preklapljanja po meri"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ช่วงเวลาเก็บตัวอย่างและการเริ่มสลับอัตโนมัติที่ปรับแต่งได้"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Własny interwał próbkowania i aktywacja automatycznego przełączania"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Custom sampling interval and auto-switch activation"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "샘플링 간격 및 자동 전환 활성화 사용자화"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Custom sampling interval and auto-switch activation"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نمونے لینے کا حسب ضرورت وقفہ اور خودکار تبدیلی کی فعالیت"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "自訂取樣間隔與自動切換啟用條件"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ନମୁନା ସଂଗ୍ରହର କଷ୍ଟମ୍ ବ୍ୟବଧାନ ଓ ସ୍ୱୟଂଚାଳିତ ବଦଳ ସକ୍ରିୟକରଣ"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "pro.lock.activation" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro unlocks custom auto-switch activation."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro schaltet die Anpassung der automatischen Aktivierung frei."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro permet de personnaliser le niveau d’activation."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proで自動切替の開始レベルを変更できます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 可自定义自动切换激活级别。"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro cho phép tùy chỉnh kích hoạt chuyển tự động."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro આપમેળે બદલવાનું સક્રિયકરણ કસ્ટમાઇઝ કરવાની સુવિધા આપે છે."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odomkne vlastnú aktiváciu automatického prepínania."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro sblocca l’attivazione personalizzata del cambio automatico."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro मुळे आपोआप बदलाची सक्रियता सानुकूल करता येते."
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro unlocks custom auto-switch activation."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro से ऑटो स्विच सक्रियण बदल सकते हैं।"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro permet de personnaliser l’activation du basculement automatique."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro מאפשר התאמה של הפעלת המעבר האוטומטי."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro deblochează activarea personalizată a comutării automate."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يتيح Pro تخصيص تنشيط التبديل التلقائي."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O Pro permite personalizar a ativação da alternância automática."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro дозволяє налаштувати активацію автоперемикання."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro avaa automaattisen vaihdon mukautetun aktivoinnin."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro permite personalizar la activación del cambio automático."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro மூலம் தானியங்கி மாற்றச் செயல்படுத்தலைத் தனிப்பயனாக்கலாம்."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro låser op for tilpasset aktivering af automatisk skift."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ਨਾਲ ਆਟੋ ਸਵਿੱਚ ਦੀ ਸਰਗਰਮੀ ਕਸਟਮਾਈਜ਼ ਕਰ ਸਕਦੇ ਹੋ।"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Το Pro επιτρέπει προσαρμογή της ενεργοποίησης αυτόματης εναλλαγής."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro తో ఆటో స్విచ్ ప్రారంభాన్ని అనుకూలీకరించవచ్చు."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O Pro permite personalizar a ativação da alternância automática."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro permite personalizar la activación del cambio automático."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ile otomatik geçiş etkinleştirmesini özelleştirebilirsiniz."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odemkne vlastní aktivaci automatického přepínání."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro membuka penyesuaian aktivasi pengalihan otomatis."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro låser opp egendefinert aktivering av automatisk bytte."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro позволяет настроить активацию автопереключения."
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro otključava prilagođenu aktivaciju automatskog prebacivanja."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ontgrendelt aangepaste activering van automatisch schakelen."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ಸ್ವಯಂ ಬದಲಾವಣೆ ಸಕ್ರಿಯಗೊಳಿಸುವಿಕೆಯನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ഉപയോഗിച്ച് ഓട്ടോ സ്വിച്ച് സജീവമാക്കൽ ഇഷ്ടാനുസൃതമാക്കാം."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro membolehkan penyesuaian pengaktifan pertukaran automatik."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro দিয়ে অটো সুইচের সক্রিয়করণ কাস্টমাইজ করা যায়।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "El Pro permet personalitzar l’activació del canvi automàtic."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A Pro feloldja az automatikus váltás egyéni aktiválását."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro låser upp anpassad aktivering av automatiskt byte."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odklene aktivacijo samodejnega preklapljanja po meri."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ให้ปรับแต่งการเริ่มสลับอัตโนมัติได้"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odblokowuje własną aktywację automatycznego przełączania."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro unlocks custom auto-switch activation."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro에서 자동 전환 활성화를 사용자화할 수 있습니다."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro unlocks custom auto-switch activation."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro سے خودکار تبدیلی کی فعالیت حسب ضرورت مقرر کر سکتے ہیں۔"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro 可解鎖自訂自動切換啟用條件。"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ରେ ସ୍ୱୟଂଚାଳିତ ବଦଳ ସକ୍ରିୟକରଣ କଷ୍ଟମାଇଜ୍ କରିପାରିବେ।"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "pro.lock.sampling" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro unlocks a custom sampling interval."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro schaltet ein eigenes Messintervall frei."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro permet de personnaliser l’intervalle de mesure."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proでサンプリング間隔を変更できます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro 可自定义采样间隔。"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro cho phép tùy chỉnh khoảng lấy mẫu."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro નમૂના લેવાનો અંતરાલ કસ્ટમાઇઝ કરવાની સુવિધા આપે છે."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odomkne vlastný interval vzorkovania."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro sblocca un intervallo di campionamento personalizzato."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro मुळे नमुना अंतर सानुकूल करता येते."
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro unlocks a custom sampling interval."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro से सैंपलिंग का अंतराल बदल सकते हैं।"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro permet de personnaliser l’intervalle d’échantillonnage."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro מאפשר התאמה של מרווח הדגימה."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro deblochează un interval de eșantionare personalizat."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يتيح Pro تخصيص الفاصل بين العينات."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O Pro permite personalizar o intervalo de amostragem."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro дозволяє налаштувати інтервал вимірювань."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro avaa mukautetun näytteenottovälin."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro permite personalizar el intervalo de muestreo."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro மூலம் மாதிரி இடைவெளியைத் தனிப்பயனாக்கலாம்."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro låser op for et tilpasset måleinterval."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ਨਾਲ ਨਮੂਨੇ ਲੈਣ ਦਾ ਅੰਤਰਾਲ ਕਸਟਮਾਈਜ਼ ਕਰ ਸਕਦੇ ਹੋ।"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Το Pro επιτρέπει προσαρμογή του διαστήματος δειγματοληψίας."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro తో నమూనా సేకరణ విరామాన్ని అనుకూలీకరించవచ్చు."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O Pro permite personalizar o intervalo de amostragem."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro permite personalizar el intervalo de muestreo."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ile örnekleme aralığını özelleştirebilirsiniz."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odemkne vlastní interval vzorkování."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro membuka penyesuaian interval pengambilan sampel."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro låser opp et egendefinert måleintervall."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro позволяет настроить интервал измерений."
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro otključava prilagođeni interval uzorkovanja."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ontgrendelt een aangepast meetinterval."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ಮಾದರಿ ಸಂಗ್ರಹ ಅಂತರವನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ഉപയോഗിച്ച് സാമ്പിൾ ഇടവേള ഇഷ്ടാനുസൃതമാക്കാം."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro membolehkan penyesuaian sela pensampelan."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro দিয়ে নমুনা সংগ্রহের বিরতি কাস্টমাইজ করা যায়।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "El Pro permet personalitzar l’interval de mostreig."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A Pro feloldja az egyéni mintavételi időközt."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro låser upp ett anpassat mätintervall."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odklene interval vzorčenja po meri."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ให้ปรับแต่งช่วงเวลาเก็บตัวอย่างได้"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro odblokowuje własny interwał próbkowania."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro unlocks a custom sampling interval."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro에서 샘플링 간격을 사용자화할 수 있습니다."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro unlocks a custom sampling interval."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro سے نمونے لینے کا وقفہ حسب ضرورت مقرر کر سکتے ہیں۔"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro 可解鎖自訂取樣間隔。"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pro ରେ ନମୁନା ସଂଗ୍ରହର ବ୍ୟବଧାନ କଷ୍ଟମାଇଜ୍ କରିପାରିବେ।"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.activation" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activation level"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktivierungsstufe"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niveau d’activation"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始レベル"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "激活级别"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mức kích hoạt"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "સક્રિયકરણ સ્તર"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Úroveň aktivácie"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Livello di attivazione"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सक्रियता पातळी"
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Activation level"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सक्रियण स्तर"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Niveau d’activation"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "רמת הפעלה"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nivel de activare"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مستوى التنشيط"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nível de ativação"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Рівень активації"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aktivointitaso"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nivel de activación"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "செயல்படுத்தும் நிலை"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aktiveringsniveau"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਸਰਗਰਮੀ ਪੱਧਰ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Επίπεδο ενεργοποίησης"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ప్రారంభ స్థాయి"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nível de ativação"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nivel de activación"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Etkinleştirme düzeyi"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Úroveň aktivace"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tingkat aktivasi"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aktiveringsnivå"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Уровень активации"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Razina aktivacije"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Activeringsniveau"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಸಕ್ರಿಯಗೊಳಿಸುವ ಮಟ್ಟ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "സജീവമാക്കൽ നില"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tahap pengaktifan"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "সক্রিয়করণ স্তর"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nivell d’activació"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aktiválási szint"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aktiveringsnivå"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Raven aktivacije"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ระดับการเริ่มทำงาน"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Poziom aktywacji"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Activation level"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "활성화 수준"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Activation level"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "فعالی سطح"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "啟用等級"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ସକ୍ରିୟକରଣ ସ୍ତର"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.activation.help" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch at %@; otherwise use the default icon."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei %@ umschalten; sonst das Standardsymbol verwenden."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basculer au niveau %@ ; sinon utiliser l’icône par défaut."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@で切り替え、それ以外は既定のアイコンを使います。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在%@时切换；否则使用默认图标。"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chuyển ở mức %@; nếu không, dùng biểu tượng mặc định."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "બદલવાનું સ્તર: %@; અન્યથા ડિફૉલ્ટ આઇકન વાપરો."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prepínať pri úrovni %@; inak použiť predvolenú ikonu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambia al livello %@; altrimenti usa l’icona predefinita."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "बदलाची पातळी: %@; अन्यथा डीफॉल्ट चिन्ह वापरा."
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Switch at %@; otherwise use the default icon."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "“%@” पर स्विच करें; वरना डिफ़ॉल्ट आइकॉन इस्तेमाल करें।"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Basculer au niveau « %@ »; sinon, utiliser l’icône par défaut."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "מעבר לפי ״%@״; אחרת נעשה שימוש באייקון ברירת המחדל."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Comută la nivelul %@; altfel folosește pictograma implicită."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "التبديل عند %@؛ وإلا فتُستخدم الأيقونة الافتراضية."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alternar em %@; caso contrário, usar o ícone predefinido."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Перемикатися на рівні «%@»; інакше використовувати типову іконку."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vaihda tasolla %@; käytä muulloin oletuskuvaketta."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambiar en %@; en otro caso, usar el icono predeterminado."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மாறும் நிலை: %@; இல்லையெனில் இயல்புநிலை ஐகானைப் பயன்படுத்தும்."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Skift ved niveauet %@; brug ellers standardsymbolet."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਬਦਲਣ ਦਾ ਪੱਧਰ: %@; ਨਹੀਂ ਤਾਂ ਡਿਫ਼ੌਲਟ ਆਈਕਨ ਵਰਤੋ।"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Εναλλαγή σε %@, διαφορετικά χρήση του προεπιλεγμένου εικονιδίου."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "మారే స్థాయి: %@; లేకపోతే డిఫాల్ట్ ఐకాన్ వాడండి."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alternar em %@; caso contrário, usar o ícone padrão."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambiar en %@; en otro caso, usar el icono predeterminado."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%@ düzeyinde geçiş yap; aksi halde saptanmış simgeyi kullan."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Přepínat při úrovni %@; jinak použít výchozí ikonu."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Beralih pada %@; selain itu, gunakan ikon default."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bytt ved nivået %@; bruk ellers standardsymbolet."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Переключаться при уровне «%@»; иначе использовать стандартный значок."
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prebaci pri razini %@; inače koristi zadanu ikonu."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Schakel bij niveau %@; gebruik anders het standaardsymbool."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಬದಲಾವಣೆಯ ಮಟ್ಟ: %@; ಇಲ್ಲದಿದ್ದರೆ ಡೀಫಾಲ್ಟ್ ಐಕಾನ್ ಬಳಸಿ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "മാറേണ്ട നില: %@; അല്ലാത്തപ്പോൾ ഡിഫോൾട്ട് ഐക്കൺ ഉപയോഗിക്കൂ."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bertukar pada %@; jika tidak, gunakan ikon lalai."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "বদলানোর স্তর: %@; অন্যথায় ডিফল্ট আইকন ব্যবহার করা হবে।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Canvia amb el nivell %@; altrament, fes servir la icona predeterminada."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Váltás ennél a szintnél: %@; egyébként az alapértelmezett ikon használata."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Byt vid nivån %@; använd annars standardsymbolen."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preklopi pri ravni %@; sicer uporabi privzeto ikono."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "สลับที่ระดับ %@ มิฉะนั้นใช้ไอคอนเริ่มต้น"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Przełączaj przy poziomie %@; w innym przypadku używaj domyślnej ikony."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Switch at %@; otherwise use the default icon."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "‘%@’에서 전환하고 그 외에는 기본 아이콘을 사용합니다."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Switch at %@; otherwise use the default icon."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تبدیلی کی سطح: %@؛ ورنہ پہلے سے طے شدہ آئیکن استعمال کریں۔"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "在%@時切換，否則使用預設圖像。"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ବଦଳ ସ୍ତର: %@; ନଚେତ୍ ଡିଫଲ୍ଟ ଆଇକନ୍ ବ୍ୟବହାର କରନ୍ତୁ।"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.level.critical" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Critical only"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nur kritisch"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Critique uniquement"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重大のみ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅严重"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chỉ Tới hạn"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ફક્ત ગંભીર"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Len kritická"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Solo critico"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "फक्त गंभीर"
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Critical only"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "केवल गंभीर"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Critique seulement"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "קריטי בלבד"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Doar critic"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "حرج فقط"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apenas Crítico"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Лише критичний"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vain kriittinen"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Solo crítico"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "தீவிரம் மட்டும்"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kun kritisk"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਸਿਰਫ਼ ਗੰਭੀਰ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Μόνο κρίσιμο"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "తీవ్రం మాత్రమే"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Apenas Crítico"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Solo crítico"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yalnızca Kritik"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pouze kritická"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hanya Kritis"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bare kritisk"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Только критический"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Samo kritično"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alleen kritiek"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಗಂಭೀರ ಮಾತ್ರ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ഗുരുതരം മാത്രം"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kritikal sahaja"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "শুধু সংকটজনক"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Només crític"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Csak kritikus"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Endast kritisk"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Samo kritično"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "วิกฤตเท่านั้น"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tylko krytyczny"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Critical only"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "심각만"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Critical only"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "صرف نازک"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "僅嚴重"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "କେବଳ ଗୁରୁତର"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.level.elevated" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elevated or higher"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erhöht oder höher"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Élevé ou supérieur"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上昇以上"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "升高及以上"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tăng cao trở lên"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "વધેલું અથવા વધુ"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zvýšená alebo vyššia"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevato o superiore"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "वाढलेला किंवा त्यापेक्षा जास्त"
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevated or higher"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "बढ़ा हुआ या उससे अधिक"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Élevé ou supérieur"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "מוגבר ומעלה"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ridicat sau mai mare"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مرتفع أو أعلى"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevado ou superior"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Підвищений і вище"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kohonnut tai korkeampi"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevado o superior"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "உயர்வு அல்லது அதற்கு மேல்"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Forhøjet eller højere"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਵਧਿਆ ਹੋਇਆ ਜਾਂ ਇਸ ਤੋਂ ਉੱਪਰ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Αυξημένο ή υψηλότερο"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "పెరిగినది లేదా అంతకంటే ఎక్కువ"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevado ou superior"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevado o superior"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Yükselmiş veya üzeri"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zvýšená nebo vyšší"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Meningkat atau lebih tinggi"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Forhøyet eller høyere"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Повышенный и выше"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Povišeno ili više"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Verhoogd of hoger"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಏರಿದ ಅಥವಾ ಹೆಚ್ಚಿನದು"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ഉയർന്നതോ അതിലധികമോ"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Meningkat atau lebih tinggi"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "বর্ধিত বা তার বেশি"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevat o superior"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Emelkedett vagy magasabb"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Förhöjd eller högre"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Povišano ali višje"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "สูงขึ้นไป"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Podwyższony lub wyższy"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevated or higher"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "높음 이상"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elevated or higher"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "بلند یا اس سے زیادہ"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "偏高或更高"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ବର୍ଦ୍ଧିତ କିମ୍ବା ଅଧିକ"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.sampling.help" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shorter intervals respond sooner and use more resources."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kürzere Intervalle reagieren schneller und benötigen mehr Ressourcen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un intervalle court améliore la réactivité et consomme plus de ressources."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "間隔を短くすると応答が速くなり、リソース使用量が増えます。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "较短间隔响应更快，也会使用更多资源。"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Khoảng ngắn hơn phản hồi sớm hơn và dùng nhiều tài nguyên hơn."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ટૂંકા અંતરાલ ઝડપી પ્રતિસાદ આપે છે અને વધુ સંસાધન વાપરે છે."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kratšie intervaly reagujú skôr a využívajú viac prostriedkov."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gli intervalli più brevi rispondono prima e usano più risorse."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कमी अंतराने लवकर प्रतिसाद मिळतो आणि जास्त संसाधने वापरली जातात."
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Shorter intervals respond sooner and use more resources."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "कम अंतराल पर प्रतिक्रिया जल्दी मिलती है और ज़्यादा संसाधन इस्तेमाल होते हैं।"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Des intervalles plus courts permettent de réagir plus vite et utilisent plus de ressources."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "מרווחים קצרים יותר מאפשרים תגובה מהירה יותר וצורכים יותר משאבים."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalele mai scurte răspund mai repede și consumă mai multe resurse."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "تستجيب الفواصل الأقصر بسرعة أكبر وتستهلك موارد أكثر."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalos mais curtos respondem mais depressa e usam mais recursos."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Коротші інтервали дають змогу швидше реагувати й споживають більше ресурсів."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lyhyemmät välit reagoivat nopeammin ja käyttävät enemmän resursseja."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Los intervalos más cortos responden antes y usan más recursos."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "குறைந்த இடைவெளிகள் விரைவாகப் பதிலளிக்கும், அதிக வளங்களைப் பயன்படுத்தும்."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kortere intervaller reagerer hurtigere og bruger flere ressourcer."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਛੋਟੇ ਅੰਤਰਾਲ ਜਲਦੀ ਪ੍ਰਤੀਕਿਰਿਆ ਦਿੰਦੇ ਹਨ ਅਤੇ ਵੱਧ ਸਰੋਤ ਵਰਤਦੇ ਹਨ।"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Τα μικρότερα διαστήματα προσφέρουν ταχύτερη απόκριση και χρησιμοποιούν περισσότερους πόρους."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "తక్కువ విరామాలు త్వరగా స్పందిస్తాయి, మరిన్ని వనరులు వాడతాయి."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalos menores respondem mais rápido e usam mais recursos."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Los intervalos más cortos responden antes y usan más recursos."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Daha kısa aralıklar daha hızlı yanıt verir ve daha fazla kaynak kullanır."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kratší intervaly reagují dříve a využívají více prostředků."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval lebih pendek merespons lebih cepat dan menggunakan lebih banyak sumber daya."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kortere intervaller reagerer raskere og bruker flere ressurser."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Короткие интервалы позволяют быстрее реагировать и потребляют больше ресурсов."
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kraći intervali reagiraju brže i troše više resursa."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kortere intervallen reageren sneller en gebruiken meer bronnen."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಕಡಿಮೆ ಅಂತರವು ಬೇಗ ಪ್ರತಿಕ್ರಿಯಿಸುತ್ತದೆ ಮತ್ತು ಹೆಚ್ಚು ಸಂಪನ್ಮೂಲ ಬಳಸುತ್ತದೆ."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "കുറഞ്ഞ ഇടവേളകൾ വേഗത്തിൽ പ്രതികരിക്കുകയും കൂടുതൽ വിഭവങ്ങൾ ഉപയോഗിക്കുകയും ചെയ്യും."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sela lebih pendek bertindak balas lebih cepat dan menggunakan lebih banyak sumber."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "বিরতি কম হলে দ্রুত সাড়া দেয় এবং বেশি রিসোর্স ব্যবহার করে।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Els intervals més curts responen abans i consumeixen més recursos."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "A rövidebb időközök gyorsabban reagálnak és több erőforrást használnak."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kortare intervall reagerar snabbare och använder fler resurser."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Krajši intervali se odzovejo prej in porabijo več virov."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ช่วงเวลาที่สั้นลงจะตอบสนองเร็วขึ้นและใช้ทรัพยากรมากขึ้น"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Krótsze interwały reagują szybciej i zużywają więcej zasobów."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Shorter intervals respond sooner and use more resources."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "간격이 짧을수록 더 빨리 반응하고 더 많은 리소스를 사용합니다."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Shorter intervals respond sooner and use more resources."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "چھوٹے وقفے جلد جواب دیتے ہیں اور زیادہ وسائل استعمال کرتے ہیں۔"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "較短的間隔能更快回應，但會使用更多資源。"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "କମ୍ ବ୍ୟବଧାନ ଶୀଘ୍ର ପ୍ରତିକ୍ରିୟା ଦିଏ ଓ ଅଧିକ ସମ୍ବଳ ବ୍ୟବହାର କରେ।"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.sampling.interval" : {
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sampling interval"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messintervall"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervalle de mesure"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サンプリング間隔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "采样间隔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Khoảng lấy mẫu"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "નમૂના લેવાનો અંતરાલ"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval vzorkovania"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervallo di campionamento"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "नमुना अंतर"
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sampling interval"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सैंपलिंग अंतराल"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalle d’échantillonnage"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "מרווח דגימה"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval de eșantionare"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "الفاصل بين العينات"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de amostragem"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Інтервал вимірювань"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Näytteenottoväli"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de muestreo"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "மாதிரி இடைவெளி"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Måleinterval"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਨਮੂਨੇ ਲੈਣ ਦਾ ਅੰਤਰਾਲ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Διάστημα δειγματοληψίας"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "నమూనా సేకరణ విరామం"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de amostragem"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intervalo de muestreo"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Örnekleme aralığı"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval vzorkování"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval pengambilan sampel"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Måleintervall"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Интервал измерений"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval uzorkovanja"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Meetinterval"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಮಾದರಿ ಸಂಗ್ರಹ ಅಂತರ"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "സാമ്പിൾ ഇടവേള"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sela pensampelan"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "নমুনা সংগ্রহের বিরতি"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval de mostreig"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mintavételi időköz"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mätintervall"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interval vzorčenja"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ช่วงเวลาเก็บตัวอย่าง"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Interwał próbkowania"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sampling interval"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "샘플링 간격"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sampling interval"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "نمونے لینے کا وقفہ"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "取樣間隔"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ନମୁନା ସଂଗ୍ରହ ବ୍ୟବଧାନ"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.sampling.value" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d seconds"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d Sekunden"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d secondes"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d秒"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 秒"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d giây"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d સેકંડ"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d सेकंद"
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d seconds"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d सेकंड"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d שנ׳"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d ث"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d с"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d வினாடி"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d sek."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d ਸਕਿੰਟ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d δευτ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d సెకను"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d sn"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d dtk"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d sek."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d с"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d ಸೆಕೆಂಡ್"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d സെക്കൻഡ്"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d সেকেন্ড"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d mp"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d วินาที"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d s"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d seconds"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d초"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d seconds"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d سیکنڈ"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d 秒"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "%d ସେକେଣ୍ଡ୍"
           }
         }
       }

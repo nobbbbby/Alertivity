@@ -62,6 +62,7 @@ struct AlertivityApp: App {
                     get: { settings.effectiveMenuIconAutoSwitchPriority },
                     set: { if settings.canCustomizeMetricPriority { settings.menuIconAutoSwitchPriority = $0 } }
                 ),
+                activationLevel: settings.effectiveAutoSwitchActivationLevel,
                 initialize: performInitialSetup
             )
             .background(OnboardingLauncher(settings: settings))
@@ -239,6 +240,7 @@ struct AlertivityApp: App {
 
     private func applyMonitoringConfiguration(_ configuration: MonitoringConfiguration) {
         notificationManager.notificationCooldown = TimeInterval(configuration.cooldownMinutes * 60)
+        monitor.setSamplingInterval(configuration.samplingInterval)
         monitor.highActivityDuration = TimeInterval(configuration.durationSeconds)
         notificationManager.highActivityDuration = TimeInterval(configuration.durationSeconds)
         if monitor.activityThresholds != configuration.thresholds {
@@ -412,10 +414,9 @@ private struct MenuBarLabelLifecycleView: View {
     @Binding var isMenuIconTinted: Bool
     @Binding var autoSwitchEnabled: Bool
     @Binding var autoSwitchPriority: [MetricMenuSelection]
+    let activationLevel: AutoSwitchActivationLevel
     let initialize: () -> Void
-    @State private var autoSwitchSelection: MetricMenuSelection?
-    @State private var pendingAutoSwitchSelection: MetricMenuSelection?
-    @State private var pendingAutoSwitchSamples: Int = 0
+    @State private var autoSwitchState = AutoSwitchState()
 
     var body: some View {
         MetricMenuBarLabel(
@@ -434,18 +435,19 @@ private struct MenuBarLabelLifecycleView: View {
             updateAutoSwitchSelection(for: metrics)
         }
         .onChange(of: isCapturePreview) {
-            autoSwitchSelection = nil
-            pendingAutoSwitchSelection = nil
-            pendingAutoSwitchSamples = 0
+            autoSwitchState.reset()
             updateAutoSwitchSelection(for: metrics)
         }
         .onChange(of: autoSwitchEnabled) {
             updateAutoSwitchSelection(for: metrics)
         }
+        .onChange(of: activationLevel) {
+            autoSwitchState.reset()
+            updateAutoSwitchSelection(for: metrics)
+        }
         .onChange(of: autoSwitchPriority) {
             // A new order must earn two fresh matching samples.
-            pendingAutoSwitchSelection = nil
-            pendingAutoSwitchSamples = 0
+            autoSwitchState.reset()
             updateAutoSwitchSelection(for: metrics)
         }
     }
@@ -459,8 +461,8 @@ private struct MenuBarLabelLifecycleView: View {
     private var resolvedIconType: MenuIconType {
         // A frozen snapshot has no second sample to satisfy live Auto Switch hysteresis.
         let selection = isCapturePreview
-            ? metrics.highestSeverityMetric(allowedSeverities: [.critical], priority: autoSwitchPriority)?.0
-            : autoSwitchSelection
+            ? metrics.highestSeverityMetric(allowedSeverities: activationLevel.allowedSeverities, priority: autoSwitchPriority)?.0
+            : autoSwitchState.selection
         return resolveMenuIconType(
             autoSwitchEnabled: autoSwitchEnabled,
             defaultIconType: menuIconType,
@@ -475,32 +477,11 @@ private struct MenuBarLabelLifecycleView: View {
 
     private func updateAutoSwitchSelection(for metrics: ActivityMetrics) {
         guard autoSwitchEnabled && !isCapturePreview else {
-            autoSwitchSelection = nil
-            pendingAutoSwitchSelection = nil
-            pendingAutoSwitchSamples = 0
+            autoSwitchState.reset()
             return
         }
 
-        let candidate = metrics.highestSeverityMetric(allowedSeverities: [.critical], priority: autoSwitchPriority)?.0
-
-        if candidate == autoSwitchSelection {
-            pendingAutoSwitchSelection = nil
-            pendingAutoSwitchSamples = 0
-            return
-        }
-
-        if pendingAutoSwitchSelection == candidate {
-            pendingAutoSwitchSamples += 1
-        } else {
-            pendingAutoSwitchSelection = candidate
-            pendingAutoSwitchSamples = 1
-        }
-
-        if pendingAutoSwitchSamples >= 2 {
-            autoSwitchSelection = candidate
-            pendingAutoSwitchSelection = nil
-            pendingAutoSwitchSamples = 0
-        }
+        autoSwitchState.ingest(metrics: metrics, activationLevel: activationLevel, priority: autoSwitchPriority)
     }
 
     private var displayStatus: ActivityStatus {

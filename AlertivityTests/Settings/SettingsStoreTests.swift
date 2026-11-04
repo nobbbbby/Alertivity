@@ -11,6 +11,53 @@ private func makeIsolatedDefaults(_ name: String = UUID().uuidString) -> UserDef
 
 @Suite struct SettingsStoreTests {
     @Test
+    func samplingAndActivationPersistAndRespectAccess() {
+        let defaults = makeIsolatedDefaults()
+        let source = SettingsStore(userDefaults: defaults, distribution: .openSource)
+        #expect(source.samplingIntervalSeconds == 5)
+        #expect(source.autoSwitchActivationLevel == .critical)
+        #expect(source.updateSamplingInterval(3))
+        source.autoSwitchActivationLevel = .elevated
+        let reloaded = SettingsStore(userDefaults: defaults, distribution: .appStore)
+        #expect(reloaded.samplingIntervalSeconds == 3)
+        #expect(reloaded.autoSwitchActivationLevel == .elevated)
+        #expect(reloaded.monitoringConfiguration.samplingInterval == 5)
+        #expect(reloaded.effectiveAutoSwitchActivationLevel == .critical)
+        reloaded.setProAccess(true)
+        #expect(reloaded.monitoringConfiguration.samplingInterval == 3)
+        #expect(reloaded.effectiveAutoSwitchActivationLevel == .elevated)
+        reloaded.setProAccess(false)
+        #expect(reloaded.monitoringConfiguration.samplingInterval == 5)
+        #expect(reloaded.samplingIntervalSeconds == 3)
+        #expect(reloaded.effectiveAutoSwitchActivationLevel == .critical)
+        #expect(reloaded.updateSamplingInterval(5))
+        reloaded.autoSwitchActivationLevel = .critical
+        let reset = SettingsStore(userDefaults: defaults, distribution: .openSource)
+        #expect(reset.samplingIntervalSeconds == 5)
+        #expect(reset.autoSwitchActivationLevel == .critical)
+    }
+
+    @Test
+    func invalidSamplingEditsPreserveLastValidValueAndInvalidSavedValuesFallBack() {
+        for value: Double in [.nan, .infinity, -.infinity, 0, -5, 1, 2.5, 4, 60, .greatestFiniteMagnitude] {
+            let defaults = makeIsolatedDefaults()
+            let store = SettingsStore(userDefaults: defaults, distribution: .openSource)
+            #expect(store.updateSamplingInterval(10))
+            #expect(!store.updateSamplingInterval(value))
+            #expect(store.samplingIntervalSeconds == 10)
+            #expect(SettingsStore(userDefaults: defaults).samplingIntervalSeconds == 10)
+            defaults.set(value, forKey: "monitor.samplingIntervalSeconds")
+            #expect(SettingsStore(userDefaults: defaults).samplingIntervalSeconds == 5)
+        }
+        for value: Double in [3, 5, 10] {
+            #expect(MonitoringPreferences.isValidSamplingInterval(value))
+        }
+        let defaults = makeIsolatedDefaults()
+        defaults.set("normal", forKey: "notice.menu.autoSwitchActivationLevel")
+        #expect(SettingsStore(userDefaults: defaults).autoSwitchActivationLevel == .critical)
+    }
+
+    @Test
     func autoSwitchPriorityPersistsAndRepairsInvalidValues() {
         let defaults = makeIsolatedDefaults()
         expectEqual(SettingsStore(userDefaults: defaults).menuIconAutoSwitchPriority, [.cpu, .memory, .disk, .network])

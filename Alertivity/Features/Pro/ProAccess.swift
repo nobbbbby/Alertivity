@@ -18,4 +18,5 @@ struct MonitoringConfiguration: Equatable {
     let thresholds: ActivityThresholds
     let cooldownMinutes: Int
     let durationSeconds: Int
+    var samplingInterval: TimeInterval = MonitoringPreferences.defaultSamplingInterval
 }
