@@ -19,6 +19,8 @@ final class SettingsStore: ObservableObject {
         static let tintedMenuIcon = "notice.menu.tintedIcon"
         static let showMetricIcon = "notice.menu.showMetricIcon"
         static let autoSwitchPriority = "notice.menu.autoSwitchPriority"
+        static let autoSwitchActivationLevel = "notice.menu.autoSwitchActivationLevel"
+        static let samplingInterval = "monitor.samplingIntervalSeconds"
         static let autoSwitch = "notice.menu.autoSwitch"
         static let highActivityDuration = "monitor.topProcesses.duration"
         static let highActivityCPUThreshold = "monitor.topProcesses.cpuThresholdPercent"
@@ -40,12 +42,17 @@ final class SettingsStore: ObservableObject {
         canCustomizeMetricPriority ? menuIconAutoSwitchPriority : MetricMenuSelection.autoSwitchPriority
     }
 
+    var effectiveAutoSwitchActivationLevel: AutoSwitchActivationLevel {
+        canCustomizeMonitoring ? autoSwitchActivationLevel : .critical
+    }
+
     /// Only this configuration may drive monitoring and alerts; saved custom values remain untouched.
     var monitoringConfiguration: MonitoringConfiguration {
         MonitoringConfiguration(
             thresholds: canCustomizeMonitoring ? activityThresholds : .default,
             cooldownMinutes: canCustomizeMonitoring ? notificationCooldownMinutes : MonitoringPreferences.defaultNotificationCooldownMinutes,
-            durationSeconds: canCustomizeMonitoring ? MonitoringPreferences.normalizedDuration(highActivityDurationSeconds) : 60
+            durationSeconds: canCustomizeMonitoring ? MonitoringPreferences.normalizedDuration(highActivityDurationSeconds) : 60,
+            samplingInterval: canCustomizeMonitoring ? samplingIntervalSeconds : MonitoringPreferences.defaultSamplingInterval
         )
     }
 
@@ -138,6 +145,35 @@ final class SettingsStore: ObservableObject {
         }
     }
 
+    @Published var autoSwitchActivationLevel: AutoSwitchActivationLevel {
+        didSet {
+            defaults.set(autoSwitchActivationLevel.rawValue, forKey: Keys.autoSwitchActivationLevel)
+            if autoSwitchActivationLevel != oldValue {
+                AppLogger.metrics.info("Auto switch activation updated; level: \(self.autoSwitchActivationLevel.rawValue, privacy: .public)")
+            }
+        }
+    }
+
+    @Published private(set) var samplingIntervalSeconds: TimeInterval {
+        didSet {
+            defaults.set(samplingIntervalSeconds, forKey: Keys.samplingInterval)
+            if samplingIntervalSeconds != oldValue {
+                AppLogger.metrics.info("Sampling interval updated; seconds: \(self.samplingIntervalSeconds, privacy: .public)")
+            }
+        }
+    }
+
+    /// Only picker options may be persisted; unsupported programmatic updates preserve the last value.
+    @discardableResult
+    func updateSamplingInterval(_ seconds: TimeInterval) -> Bool {
+        guard MonitoringPreferences.isValidSamplingInterval(seconds) else {
+            AppLogger.metrics.error("Rejected unsupported sampling interval")
+            return false
+        }
+        samplingIntervalSeconds = seconds
+        return true
+    }
+
     @Published var highActivityDurationSeconds: Int {
         didSet { defaults.set(highActivityDurationSeconds, forKey: Keys.highActivityDuration) }
     }
@@ -195,6 +231,17 @@ final class SettingsStore: ObservableObject {
         isMenuIconAutoSwitchEnabled = defaults.object(forKey: Keys.autoSwitch) as? Bool ?? true
         menuIconAutoSwitchPriority = MetricMenuSelection.normalizedAutoSwitchPriority(
             (defaults.stringArray(forKey: Keys.autoSwitchPriority) ?? []).compactMap(MetricMenuSelection.init(rawValue:))
+        )
+        if let rawLevel = defaults.string(forKey: Keys.autoSwitchActivationLevel) {
+            autoSwitchActivationLevel = AutoSwitchActivationLevel(rawValue: rawLevel) ?? .critical
+            if AutoSwitchActivationLevel(rawValue: rawLevel) == nil {
+                AppLogger.metrics.error("Invalid saved auto switch activation level; using Critical")
+            }
+        } else {
+            autoSwitchActivationLevel = .critical
+        }
+        samplingIntervalSeconds = MonitoringPreferences.normalizedSamplingInterval(
+            defaults.object(forKey: Keys.samplingInterval) as? Double ?? MonitoringPreferences.defaultSamplingInterval
         )
         highActivityDurationSeconds = defaults.object(forKey: Keys.highActivityDuration) as? Int ?? 60
         highActivityCPUThresholdPercent = defaults.object(forKey: Keys.highActivityCPUThreshold) as? Int ?? 80

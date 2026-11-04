@@ -502,3 +502,34 @@ private enum MenuBarStackedRenderer {
     .frame(width: 340, alignment: .leading)
 }
 #endif
+
+/// Confirm both activation and fallback with two matching samples, independent of sampling frequency.
+struct AutoSwitchState {
+    private(set) var selection: MetricMenuSelection?
+    private var pending: MetricMenuSelection?
+    private var matchingSamples = 0
+
+    mutating func reset() { self = AutoSwitchState() }
+
+    mutating func ingest(
+        metrics: ActivityMetrics,
+        activationLevel: AutoSwitchActivationLevel,
+        priority: [MetricMenuSelection]
+    ) {
+        let candidate = metrics.highestSeverityMetric(
+            allowedSeverities: activationLevel.allowedSeverities, priority: priority
+        )?.0
+        guard candidate != selection else {
+            pending = nil
+            matchingSamples = 0
+            return
+        }
+        if candidate == pending { matchingSamples += 1 }
+        else { pending = candidate; matchingSamples = 1 }
+        if matchingSamples >= 2 {
+            selection = candidate
+            pending = nil
+            matchingSamples = 0
+        }
+    }
+}
