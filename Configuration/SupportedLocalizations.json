@@ -1,0 +1,256 @@
+{
+  "reference": "https://developer.apple.com/documentation/appstoreconnectapi/managing-metadata-in-your-app-by-using-locale-shortcodes",
+  "verifiedOn": "2026-11-04",
+  "locales": [
+    {
+      "name": "Arabic",
+      "appStore": "ar-SA",
+      "bundle": "ar"
+    },
+    {
+      "name": "Bengali",
+      "appStore": "bn-BD",
+      "bundle": "bn"
+    },
+    {
+      "name": "Catalan",
+      "appStore": "ca",
+      "bundle": "ca"
+    },
+    {
+      "name": "Chinese (Simplified)",
+      "appStore": "zh-Hans",
+      "bundle": "zh-Hans"
+    },
+    {
+      "name": "Chinese (Traditional)",
+      "appStore": "zh-Hant",
+      "bundle": "zh-Hant"
+    },
+    {
+      "name": "Croatian",
+      "appStore": "hr",
+      "bundle": "hr"
+    },
+    {
+      "name": "Czech",
+      "appStore": "cs",
+      "bundle": "cs"
+    },
+    {
+      "name": "Danish",
+      "appStore": "da",
+      "bundle": "da"
+    },
+    {
+      "name": "Dutch",
+      "appStore": "nl-NL",
+      "bundle": "nl"
+    },
+    {
+      "name": "English (Australia)",
+      "appStore": "en-AU",
+      "bundle": "en-AU"
+    },
+    {
+      "name": "English (Canada)",
+      "appStore": "en-CA",
+      "bundle": "en-CA"
+    },
+    {
+      "name": "English (U.K.)",
+      "appStore": "en-GB",
+      "bundle": "en-GB"
+    },
+    {
+      "name": "English (U.S.)",
+      "appStore": "en-US",
+      "bundle": "en"
+    },
+    {
+      "name": "Finnish",
+      "appStore": "fi",
+      "bundle": "fi"
+    },
+    {
+      "name": "French",
+      "appStore": "fr-FR",
+      "bundle": "fr"
+    },
+    {
+      "name": "French (Canada)",
+      "appStore": "fr-CA",
+      "bundle": "fr-CA"
+    },
+    {
+      "name": "German",
+      "appStore": "de-DE",
+      "bundle": "de"
+    },
+    {
+      "name": "Greek",
+      "appStore": "el",
+      "bundle": "el"
+    },
+    {
+      "name": "Gujarati",
+      "appStore": "gu-IN",
+      "bundle": "gu"
+    },
+    {
+      "name": "Hebrew",
+      "appStore": "he",
+      "bundle": "he"
+    },
+    {
+      "name": "Hindi",
+      "appStore": "hi",
+      "bundle": "hi"
+    },
+    {
+      "name": "Hungarian",
+      "appStore": "hu",
+      "bundle": "hu"
+    },
+    {
+      "name": "Indonesian",
+      "appStore": "id",
+      "bundle": "id"
+    },
+    {
+      "name": "Italian",
+      "appStore": "it",
+      "bundle": "it"
+    },
+    {
+      "name": "Japanese",
+      "appStore": "ja",
+      "bundle": "ja"
+    },
+    {
+      "name": "Kannada",
+      "appStore": "kn-IN",
+      "bundle": "kn"
+    },
+    {
+      "name": "Korean",
+      "appStore": "ko",
+      "bundle": "ko"
+    },
+    {
+      "name": "Malay",
+      "appStore": "ms",
+      "bundle": "ms"
+    },
+    {
+      "name": "Malayalam",
+      "appStore": "ml-IN",
+      "bundle": "ml"
+    },
+    {
+      "name": "Marathi",
+      "appStore": "mr-IN",
+      "bundle": "mr"
+    },
+    {
+      "name": "Norwegian",
+      "appStore": "no",
+      "bundle": "nb"
+    },
+    {
+      "name": "Oriya",
+      "appStore": "or-IN",
+      "bundle": "or"
+    },
+    {
+      "name": "Polish",
+      "appStore": "pl",
+      "bundle": "pl"
+    },
+    {
+      "name": "Portuguese (Brazil)",
+      "appStore": "pt-BR",
+      "bundle": "pt-BR"
+    },
+    {
+      "name": "Portuguese (Portugal)",
+      "appStore": "pt-PT",
+      "bundle": "pt-PT"
+    },
+    {
+      "name": "Punjabi",
+      "appStore": "pa-IN",
+      "bundle": "pa"
+    },
+    {
+      "name": "Romanian",
+      "appStore": "ro",
+      "bundle": "ro"
+    },
+    {
+      "name": "Russian",
+      "appStore": "ru",
+      "bundle": "ru"
+    },
+    {
+      "name": "Slovak",
+      "appStore": "sk",
+      "bundle": "sk"
+    },
+    {
+      "name": "Slovenian",
+      "appStore": "sl-SI",
+      "bundle": "sl"
+    },
+    {
+      "name": "Spanish (Mexico)",
+      "appStore": "es-MX",
+      "bundle": "es-MX"
+    },
+    {
+      "name": "Spanish (Spain)",
+      "appStore": "es-ES",
+      "bundle": "es"
+    },
+    {
+      "name": "Swedish",
+      "appStore": "sv",
+      "bundle": "sv"
+    },
+    {
+      "name": "Tamil",
+      "appStore": "ta-IN",
+      "bundle": "ta"
+    },
+    {
+      "name": "Telugu",
+      "appStore": "te-IN",
+      "bundle": "te"
+    },
+    {
+      "name": "Thai",
+      "appStore": "th",
+      "bundle": "th"
+    },
+    {
+      "name": "Turkish",
+      "appStore": "tr",
+      "bundle": "tr"
+    },
+    {
+      "name": "Ukrainian",
+      "appStore": "uk",
+      "bundle": "uk"
+    },
+    {
+      "name": "Urdu",
+      "appStore": "ur-PK",
+      "bundle": "ur"
+    },
+    {
+      "name": "Vietnamese",
+      "appStore": "vi",
+      "bundle": "vi"
+    }
+  ]
+}

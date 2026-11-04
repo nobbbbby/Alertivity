@@ -11,6 +11,7 @@ struct SettingsView: View {
     var proStore: ProStore? = nil
     var metrics: ActivityMetrics = .placeholder
     @State private var selectedTab: SettingsTabSelection = .general
+    @State private var tabWidth: CGFloat = 400
 
     var body: some View {
         Group {
@@ -34,7 +35,8 @@ struct SettingsView: View {
                 .background(SettingsTabHelp(descriptions: tabDescriptions))
             }
         }
-        .frame(minWidth: 420)
+        .frame(width: tabWidth)
+        .background(SettingsTabWidth(width: $tabWidth))
     }
 
     private var availableTabs: [SettingsTabSelection] {
@@ -61,7 +63,7 @@ struct SettingsView: View {
     }
 
     private var generalPane: some View {
-        SettingsPane {
+        SettingsPane(width: tabWidth) {
             Toggle("settings.toggle.hideDockIcon", isOn: $settings.hideDockIcon)
             Toggle("settings.toggle.launchAtLogin", isOn: $settings.launchAtLogin)
             Divider()
@@ -77,7 +79,7 @@ struct SettingsView: View {
     }
 
     private var menuBarPane: some View {
-        SettingsPane {
+        SettingsPane(width: tabWidth) {
             MenuBarSettingsFields(
                 isMenuIconEnabled: $settings.isMenuIconEnabled,
                 menuIconOnlyWhenHigh: $settings.menuIconOnlyWhenHigh,
@@ -100,7 +102,7 @@ struct SettingsView: View {
     }
 
     private var notificationsPane: some View {
-        SettingsPane {
+        SettingsPane(width: tabWidth) {
             NotificationPermissionView(manager: notificationManager, showsAuthorizedStatus: false)
             NotificationSettingsFields(
                 settings: settings,
@@ -111,13 +113,13 @@ struct SettingsView: View {
     }
 
     private var thresholdsPane: some View {
-        SettingsPane {
+        SettingsPane(width: tabWidth) {
             SystemThresholdSettingsView(settings: settings, showsDescription: false)
         }
     }
 
     private var proPane: some View {
-        SettingsPane {
+        SettingsPane(width: tabWidth) {
             if let proStore {
                 ProSettingsPane(store: proStore)
             }
@@ -125,7 +127,7 @@ struct SettingsView: View {
     }
 
     private var detectionPane: some View {
-        SettingsPane {
+        SettingsPane(width: tabWidth) {
             DetectionSettingsFields(
                 highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
                 highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
@@ -253,6 +255,7 @@ struct NoticePreferencesView: View {
 }
 
 private struct SettingsPane<Content: View>: View {
+    let width: CGFloat
     @ViewBuilder var content: Content
 
     var body: some View {
@@ -261,6 +264,8 @@ private struct SettingsPane<Content: View>: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(settingsTabPadding)
+        // Propose the selected tab's width to its content before native hosting measures the pane.
+        .frame(width: width, alignment: .leading)
     }
 }
 
@@ -362,6 +367,7 @@ private struct MenuBarSettingsFields: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Toggle("settings.menuBar.autoSwitch", isOn: autoSwitchBinding)
+                    .accessibilityIdentifier("settings.menuBar.autoSwitch")
                     .help(activationHelp)
                     .disabled(!isMenuIconEnabled)
 
@@ -593,9 +599,13 @@ private struct SystemThresholdSettingsView: View {
                 GridRow {
                     Text("")
                     Text("settings.thresholds.elevated")
+                        .fixedSize(horizontal: false, vertical: true)
                         .frame(width: 60, alignment: .trailing)
+                        .gridColumnAlignment(.trailing)
                     Text("settings.thresholds.critical")
+                        .fixedSize(horizontal: false, vertical: true)
                         .frame(width: 60, alignment: .trailing)
+                        .gridColumnAlignment(.trailing)
                     Text("")
                 }
                 .font(.caption.weight(.medium))

@@ -82,4 +82,4 @@ Read the [Privacy Policy](https://github.com/nobbbbby/Alertivity/wiki/Privacy-Po
 
 ## Languages
 
-English, German, French, Japanese, and Simplified Chinese. See the [localization guide](wiki/Localization.md) to maintain translations.
+The native string catalogs cover all 50 App Store locales, including regional English, French, Spanish, and Portuguese variants. New translations are drafts pending language and layout review. See the [localization guide](wiki/Localization.md) for the full list and validation workflow.

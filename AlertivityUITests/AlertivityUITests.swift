@@ -180,7 +180,7 @@ final class AlertivityUITests: XCTestCase {
         XCTAssertTrue(menuBar.waitForExistence(timeout: 5))
         menuBar.click()
         XCTAssertEqual(app.popUpButtons["waveform.path.ecg"].value as? String, "Status icon")
-        let savedAutoSwitch = app.checkBoxes["Auto switch to busiest metric"]
+        let savedAutoSwitch = app.checkBoxes["settings.menuBar.autoSwitch"]
         XCTAssertTrue(savedAutoSwitch.exists)
         XCTAssertFalse(checkboxIsOn(savedAutoSwitch))
         let indicator = app.descendants(matching: .statusItem).firstMatch

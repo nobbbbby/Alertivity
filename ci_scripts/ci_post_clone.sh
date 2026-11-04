@@ -8,4 +8,5 @@ cd "$repository_directory"
 
 printf '%s\n' '{"level":"info","event":"project_inputs_validation_started"}'
 plutil -lint Alertivity.xcodeproj/project.pbxproj Configuration/Info.plist
+python3 scripts/validate-localizations.py
 printf '%s\n' '{"level":"info","event":"project_inputs_validation_completed"}'

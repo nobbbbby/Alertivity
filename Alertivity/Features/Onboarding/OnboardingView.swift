@@ -198,7 +198,7 @@ private struct OnboardingOptionsStyle: DisclosureGroupStyle {
         VStack(alignment: .leading, spacing: 0) {
             Button { configuration.isExpanded.toggle() } label: {
                 HStack(spacing: 8) {
-                    Image(systemName: configuration.isExpanded ? "chevron.down" : "chevron.right")
+                    Image(systemName: configuration.isExpanded ? "chevron.down" : "chevron.forward")
                         .font(.caption.weight(.semibold))
                         .foregroundStyle(.secondary)
                         .accessibilityHidden(true)
@@ -349,6 +349,11 @@ private struct OnboardingWindowRestoration: NSViewRepresentable {
         override func viewDidMoveToWindow() {
             super.viewDidMoveToWindow()
             window?.isRestorable = false
+#if DEBUG
+            DispatchQueue.main.async { [weak window] in
+                if let window { UITestWindowPlacement.placeOnPrimaryScreen(window) }
+            }
+#endif
         }
     }
 

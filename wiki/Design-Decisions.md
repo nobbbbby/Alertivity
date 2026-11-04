@@ -10,7 +10,7 @@ When several metrics have the same severity, the trigger order is CPU, memory, d
 
 A short spike changes the displayed reading but does not immediately send a notification. System alerts require sustained Critical activity. A shared cooldown then limits how often system and process notifications are attempted. It defaults to ten minutes and can be changed in Settings. This also means a second problem can occur without a second alert.
 
-Auto switch waits for two matching samples before changing the displayed metric. It follows Critical activity and returns to the selected default when that activity ends. See [notification timing](https://github.com/nobbbbby/Alertivity/wiki/Notifications-and-Permissions#when-alerts-are-sent).
+Auto switch waits for two matching samples before changing the displayed metric. It follows the configured activation level and metric priority, and returns to the selected default when no metric qualifies. See [notification timing](https://github.com/nobbbbby/Alertivity/wiki/Notifications-and-Permissions#when-alerts-are-sent).
 
 ## System and process thresholds
 
