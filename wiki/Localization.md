@@ -1,6 +1,6 @@
 # Localization
 
-Alertivity’s native catalogs cover the 50 locales listed by Apple for App Store metadata as of November 4, 2026. English, German, French, Japanese, and Simplified Chinese form the original baseline. New and corrected translations remain marked `needs_review` until language and visual review is complete. Regional English variants preserve the source meaning with local spelling. The interface follows the language selected by macOS for the app. The wiki is maintained in English; its menu paths use the English interface labels.
+Alertivity’s native catalogs cover the 50 locales listed by Apple for App Store metadata as of November 4, 2026. English, German, French, Japanese, and Simplified Chinese form the original baseline. All catalog entries are marked `translated` following the completed AI linguistic and technical review. Native-speaker certification and complete visual verification remain separate follow-ups. Regional English variants preserve the source meaning with local spelling. The interface follows the language selected by macOS for the app. The wiki is maintained in English; its menu paths use the English interface labels.
 
 ## Locale coverage
 
@@ -33,7 +33,7 @@ The notification footer combines a duration (`%d`) with a localized cooldown (`%
 
 ## Validation
 
-Run `python3 scripts/validate-localizations.py` to check both catalogs for valid JSON, coverage of the manifest’s locales, matching format arguments (including positional reordering), accidentally escaped XML entities, and project language registration. The command logs translation-state counts; `needs_review` entries compile and remain explicitly pending review. Xcode Cloud runs this check after checkout. Use `python3 scripts/validate-localizations.py --require-reviewed` as a release check: it fails while any translation is still marked `needs_review`. Run `python3 scripts/test-validate-localizations.py` when changing the validator. Scan Swift references, including dynamically selected keys, against the catalog. Empty layout strings and separators are intentional; brand names and format-only strings may be identical across languages.
+Run `python3 scripts/validate-localizations.py` to check both catalogs for valid JSON, coverage of the manifest’s locales, matching format arguments (including positional reordering), accidentally escaped XML entities, and project language registration. The command logs translation-state counts; future changes awaiting language review should use `needs_review`, which still compiles. Xcode Cloud runs this check after checkout. Use `python3 scripts/validate-localizations.py --require-reviewed` to require every catalog entry to have completed language review. This state check does not certify visual fit or native fluency. Run `python3 scripts/test-validate-localizations.py` when changing the validator. Scan Swift references, including dynamically selected keys, against the catalog. Empty layout strings and separators are intentional; brand names and format-only strings may be identical across languages.
 
 Build both **Alertivity** and **Alertivity (Non-sandboxed)** to compile the shared catalogs. Review Settings, onboarding, purchase messages, threshold errors, notifications, and accessibility descriptions in each language when changing their layout or meaning. A successful build verifies catalog compilation, not visual fit or native-speaker review.
 
@@ -55,7 +55,7 @@ Enable `TEST_RUNNER_ALERTIVITY_REQUIRE_VISIBLE_TABS=1` to require tabs without o
 
 ### Review status
 
-New locale values remain `needs_review`. Automated coverage, format checks, compiled-bundle tests, and UI navigation checks do not establish native fluency. Native-speaker review and complete visual review remain pending before release; `--require-reviewed` enforces the catalog review state.
+Following the completed AI linguistic and technical review, all 11,143 explicit catalog values are marked `translated` (10,063 review markers updated at the user’s request). Automated coverage, format checks, compiled-bundle tests, and UI navigation checks do not establish native fluency. Native-speaker certification and complete visual review remain pending before release; `--require-reviewed` checks catalog state only.
 
 ### AI language review — November 4, 2026
 
@@ -63,7 +63,7 @@ All 223 catalog keys were reviewed in every supported locale, including the orig
 
 Two source-copy changes apply across all locales: automatic metric selection is labeled **Automatically switch metrics**, matching its severity/priority behavior, and the shared notification-purpose description now describes system activity without promising process monitoring in the App Store build. Notification metric lists use the native localized list formatter. A new validator regression rejects unescaped percent signs in format strings while allowing percent signs in ordinary text.
 
-This AI review does not replace native-speaker certification or complete visual verification. New and corrected translations retain their review markers.
+This AI review does not replace native-speaker certification or complete visual verification. After this review, the catalog states were updated to `translated` at the user’s request.
 
 | Locale | Reviewed keys | Corrected values |
 | --- | ---: | ---: |
