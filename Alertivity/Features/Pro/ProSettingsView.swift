@@ -47,22 +47,15 @@ struct ProSettingsPane: View {
                 .font(.headline)
             ProFeatureList()
             VStack(alignment: .trailing, spacing: 4) {
-                HStack {
-                    Spacer()
-                    if !store.hasProAccess {
-                        if let product = store.product {
-                            Button(L10n.format("pro.buy", product.displayPrice)) {
-                                Task { await store.purchase() }
-                            }
-                            .accessibilityIdentifier("pro.purchase")
-                        } else {
-                            Button("pro.retry") { Task { await store.loadProduct() } }
-                        }
+                // Keep full action labels and the price visible in compact localized windows.
+                ViewThatFits(in: .horizontal) {
+                    HStack { purchaseActions }
+                        .fixedSize(horizontal: true, vertical: false)
+                    VStack(alignment: .trailing) {
+                        purchaseActions
                     }
-                    Button("pro.restore") { Task { await store.restore() } }
-                        .accessibilityIdentifier("pro.restore")
-                    if store.isBusy { ProgressView().controlSize(.small) }
                 }
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 .disabled(store.isBusy)
 
                 if let key = store.messageKey {
@@ -75,5 +68,21 @@ struct ProSettingsPane: View {
             }
             .multilineTextAlignment(.trailing)
         }
+    }
+
+    @ViewBuilder private var purchaseActions: some View {
+        if !store.hasProAccess {
+            if let product = store.product {
+                Button(L10n.format("pro.buy", product.displayPrice)) {
+                    Task { await store.purchase() }
+                }
+                .accessibilityIdentifier("pro.purchase")
+            } else {
+                Button("pro.retry") { Task { await store.loadProduct() } }
+            }
+        }
+        Button("pro.restore") { Task { await store.restore() } }
+            .accessibilityIdentifier("pro.restore")
+        if store.isBusy { ProgressView().controlSize(.small) }
     }
 }

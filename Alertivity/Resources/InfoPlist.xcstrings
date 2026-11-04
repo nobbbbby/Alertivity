@@ -33,6 +33,276 @@
             "state" : "translated",
             "value" : "Alertivity"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity"
+          }
         }
       }
     },
@@ -67,6 +337,276 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "根据 GPL-3.0 许可证开源。"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "مفتوح المصدر بموجب ترخيص GPL-3.0."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 লাইসেন্সে ওপেন সোর্স।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Codi obert amb llicència GPL-3.0."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Otevřený zdrojový kód pod licencí GPL-3.0."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Åben kildekode under GPL-3.0-licensen."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Λογισμικό ανοιχτού κώδικα με άδεια GPL-3.0."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Open source under GPL-3.0 licence."
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Open source under GPL-3.0 license."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Open source under GPL-3.0 licence."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Código abierto bajo la licencia GPL-3.0."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Código abierto bajo la licencia GPL-3.0."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Avoin lähdekoodi GPL-3.0-lisenssillä."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Logiciel libre sous licence GPL-3.0."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 લાઇસન્સ હેઠળ ઓપન સોર્સ."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "קוד פתוח תחת רישיון GPL-3.0."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 लाइसेंस के तहत ओपन सोर्स।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Otvoreni izvorni kod pod licencom GPL-3.0."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nyílt forráskód a GPL-3.0 licenc alatt."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sumber terbuka di bawah lisensi GPL-3.0."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Open source con licenza GPL-3.0."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 ಪರವಾನಗಿಯ ಮುಕ್ತ ಮೂಲ ಸಾಫ್ಟ್‌ವೇರ್."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 라이선스로 공개된 오픈 소스입니다."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 ലൈസൻസിലുള്ള ഓപ്പൺ സോഴ്സ്."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 परवान्याअंतर्गत मुक्त स्रोत."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sumber terbuka di bawah lesen GPL-3.0."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Åpen kildekode under GPL-3.0-lisensen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Open source onder de GPL-3.0-licentie."
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 ଲାଇସେନ୍ସ୍ ଅଧୀନରେ ଓପନ୍ ସୋର୍ସ୍।"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 ਲਾਇਸੈਂਸ ਹੇਠ ਓਪਨ ਸੋਰਸ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Otwarty kod źródłowy na licencji GPL-3.0."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Código aberto sob a licença GPL-3.0."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Código aberto sob a licença GPL-3.0."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cod sursă deschis sub licența GPL-3.0."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Открытый исходный код по лицензии GPL-3.0."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Otvorený zdrojový kód pod licenciou GPL-3.0."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Odprta izvorna koda pod licenco GPL-3.0."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Öppen källkod under GPL-3.0-licensen."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 உரிமத்தின் கீழ் திறந்த மூல மென்பொருள்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 లైసెన్స్ కింద ఓపెన్ సోర్స్."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "โอเพนซอร์สภายใต้ใบอนุญาต GPL-3.0"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 lisansı altında açık kaynak."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Відкритий код за ліцензією GPL-3.0."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GPL-3.0 لائسنس کے تحت اوپن سورس۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mã nguồn mở theo giấy phép GPL-3.0."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "依 GPL-3.0 授權條款開放原始碼。"
           }
         }
       }
@@ -103,6 +643,276 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "当系统活动达到严重级别或进程出现异常时，Alertivity 会发送提醒。"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يرسل Alertivity تنبيهات عند وصول نشاط النظام إلى مستوى حرج أو عند وجود مشكلة في عملية."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "সিস্টেম অ্যাক্টিভিটি সংকটজনক হলে বা কোনও প্রসেস অস্বাভাবিক আচরণ করলে Alertivity থেকে সতর্কতা পাঠানো হয়।"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "L’Alertivity envia avisos quan l’activitat del sistema és crítica o un procés funciona malament."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity posílá upozornění při kritické aktivitě systému nebo nesprávném chování procesu."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity sender advarsler, når systemaktiviteten er kritisk, eller en proces ikke fungerer korrekt."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Το Alertivity στέλνει ειδοποιήσεις όταν η δραστηριότητα του συστήματος είναι κρίσιμη ή μια διεργασία δυσλειτουργεί."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity sends alerts when system activity is critical or a process is misbehaving."
+          }
+        },
+        "en-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity sends alerts when system activity is critical or a process is misbehaving."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity sends alerts when system activity is critical or a process is misbehaving."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity envía alertas cuando la actividad del sistema es crítica o un proceso funciona mal."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity envía alertas cuando la actividad del sistema es crítica o un proceso funciona mal."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity lähettää ilmoituksia järjestelmän aktiivisuuden ollessa kriittistä tai prosessin toimiessa virheellisesti."
+          }
+        },
+        "fr-CA": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity envoie des alertes lorsque l’activité du système est critique ou qu’un processus fonctionne mal."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "સિસ્ટમ પ્રવૃત્તિ ગંભીર હોય અથવા પ્રક્રિયા અસામાન્ય હોય ત્યારે Alertivity ચેતવણી મોકલે છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity שולח התראות כשפעילות המערכת קריטית או כשתהליך פועל באופן לא תקין."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सिस्टम गतिविधि गंभीर होने या प्रोसेस में समस्या आने पर Alertivity अलर्ट भेजता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity šalje upozorenja kad je aktivnost sustava kritična ili proces ne radi ispravno."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az Alertivity riasztást küld, ha a rendszer aktivitása kritikus, vagy egy folyamat hibásan működik."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity mengirim peringatan saat aktivitas sistem kritis atau proses bermasalah."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity invia avvisi quando l’attività di sistema è critica o un processo non funziona correttamente."
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ಸಿಸ್ಟಂ ಚಟುವಟಿಕೆ ಗಂಭೀರವಾಗಿದ್ದಾಗ ಅಥವಾ ಪ್ರಕ್ರಿಯೆ ಅಸಹಜವಾಗಿದ್ದಾಗ Alertivity ಎಚ್ಚರಿಕೆಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "시스템 활동이 심각하거나 프로세스에 문제가 있을 때 Alertivity가 알림을 보냅니다."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "സിസ്റ്റം ആക്റ്റിവിറ്റി ഗുരുതരമാകുമ്പോഴോ പ്രോസസ് തെറ്റായി പ്രവർത്തിക്കുമ്പോഴോ Alertivity മുന്നറിയിപ്പുകൾ അയയ്ക്കുന്നു."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "सिस्टमची ॲक्टिव्हिटी गंभीर असल्यास किंवा प्रक्रियेमध्ये समस्या असल्यास Alertivity सूचना पाठवते."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity menghantar isyarat apabila aktiviti sistem kritikal atau proses bermasalah."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity sender varsler når systemaktiviteten er kritisk eller en prosess ikke fungerer riktig."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity verstuurt waarschuwingen bij kritieke systeemactiviteit of als een proces niet goed werkt."
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ସିଷ୍ଟମ୍ କାର୍ଯ୍ୟକଳାପ ଗୁରୁତର ହେଲେ କିମ୍ବା ପ୍ରୋସେସ୍ ଅସାମାନ୍ୟ ହେଲେ Alertivity ଚେତାବନୀ ପଠାଏ।"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ਸਿਸਟਮ ਸਰਗਰਮੀ ਗੰਭੀਰ ਹੋਣ ਜਾਂ ਪ੍ਰੋਸੈੱਸ ਵਿੱਚ ਸਮੱਸਿਆ ਆਉਣ ਉੱਤੇ Alertivity ਅਲਰਟ ਭੇਜਦਾ ਹੈ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity wysyła alerty, gdy aktywność systemu jest krytyczna lub proces działa nieprawidłowo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O Alertivity envia alertas quando a atividade do sistema é crítica ou um processo apresenta problemas."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "O Alertivity envia alertas quando a atividade do sistema é crítica ou um processo apresenta problemas."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity trimite alerte când activitatea sistemului este critică sau un proces funcționează incorect."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity отправляет предупреждения при критической активности системы или неполадках в работе процесса."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity posiela upozornenia pri kritickej aktivite systému alebo nesprávnom správaní procesu."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity pošilja opozorila, ko je sistemska dejavnost kritična ali proces ne deluje pravilno."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity skickar varningar när systemaktiviteten är kritisk eller en process inte fungerar korrekt."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "கணினிச் செயல்பாடு தீவிரமாகும்போதோ செயல்முறை தவறாகச் செயல்படும்போதோ Alertivity விழிப்பூட்டல்களை அனுப்பும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "సిస్టమ్ కార్యకలాపం తీవ్ర స్థాయిలో ఉన్నప్పుడు లేదా ప్రాసెస్ తప్పుగా పనిచేసినప్పుడు Alertivity హెచ్చరికలు పంపుతుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity ส่งการแจ้งเตือนเมื่อกิจกรรมระบบอยู่ในระดับวิกฤตหรือกระบวนการทำงานผิดปกติ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity, sistem etkinliği kritik olduğunda veya bir işlem sorun yaşadığında uyarı gönderir."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity надсилає попередження за критичної активності системи або збоїв у роботі процесу."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "سسٹم کی سرگرمی نازک ہونے یا کسی پراسیس کے خراب رویے پر Alertivity اطلاعات بھیجتا ہے۔"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alertivity gửi cảnh báo khi hoạt động hệ thống ở mức tới hạn hoặc tiến trình gặp vấn đề."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "系統活動達到嚴重等級或程序出現異常時，Alertivity 會傳送通知。"
           }
         }
       }

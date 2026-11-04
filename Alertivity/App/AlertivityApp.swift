@@ -130,7 +130,6 @@ struct AlertivityApp: App {
                 proStore: proStore,
                 metrics: monitor.metrics
             )
-                .frame(width: 400)
                 .background(SettingsWindowAccessor())
                 .task { await proStore.start() }
                 .onAppear {
@@ -588,6 +587,9 @@ private struct SettingsWindowAccessor: NSViewRepresentable {
             // Ordinary view updates must not steal focus from another application.
             DispatchQueue.main.async { [weak window] in
                 guard let window, SettingsWindowTracker.shared.window === window else { return }
+#if DEBUG
+                UITestWindowPlacement.placeOnPrimaryScreen(window)
+#endif
                 SettingsWindowCoordinator.focusExistingWindow()
             }
         }
