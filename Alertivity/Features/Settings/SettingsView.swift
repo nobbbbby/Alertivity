@@ -367,6 +367,7 @@ private struct MenuBarSettingsFields: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 Toggle("settings.menuBar.autoSwitch", isOn: autoSwitchBinding)
+                    .accessibilityIdentifier("settings.menuBar.autoSwitch")
                     .help(activationHelp)
                     .disabled(!isMenuIconEnabled)
 

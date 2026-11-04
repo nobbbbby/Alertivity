@@ -33,6 +33,14 @@ class FormatArgumentsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validator.arguments('%2$@ %@')
 
+    def test_literal_percent_in_formatted_text_requires_escaping(self):
+        with self.assertRaises(ValueError):
+            validator.arguments('%@%', strict=True)
+        self.assertEqual(validator.arguments('%@%%', strict=True), validator.arguments('%@'))
+
+    def test_plain_text_percent_is_not_a_format_error(self):
+        self.assertEqual(validator.arguments('1%–100%'), {})
+
 
 if __name__ == '__main__':
     unittest.main()

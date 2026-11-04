@@ -198,7 +198,7 @@ struct ActivityStatus: Sendable, Equatable {
             return L10n.string("status.message.healthy")
         }
 
-        return metricSummaries.joined(separator: ", ")
+        return L10n.list(metricSummaries)
     }
 
     /// Explains which configured alert thresholds were reached, rather than repeating live readings.

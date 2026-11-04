@@ -42,6 +42,15 @@ import Testing
     }
 
     @Test
+    func notificationMessageUsesLocalizedListConjunction() {
+        let metrics = makeMetrics(cpu: 0.88, memory: 0.8)
+        expectEqual(
+            ActivityStatus(metrics: metrics).message(for: metrics),
+            "CPU 88% (crit) and Memory 80% (elev)"
+        )
+    }
+
+    @Test
     func normalMetricsReturnStableTitleAndSummary() {
         let metrics = makeMetrics(cpu: 0.1, memory: 0.1)
         let status = ActivityStatus(metrics: metrics)

@@ -23,7 +23,7 @@ Choose **Help → Send Feedback…** to open a new GitHub issue in your default 
 | Indicator visibility | Settings → Menu Bar → Show indicator | Turning this off hides the indicator even during Critical activity. |
 | Icon color | Settings → Menu Bar → Tinted icon | Enabled by default. Turn off to use a monochrome status or metric icon; activity levels and automatic metric selection are unchanged. |
 | Default reading | Settings → Menu Bar → Default icon type | Choose Status, CPU, memory, disk, or network. |
-| Automatic metric selection | Settings → Menu Bar → Auto switch to busiest metric | Follows a metric at the selected activation level, then returns to the default. |
+| Automatic metric selection | Settings → Menu Bar → Automatically switch metrics | Follows a metric at the selected activation level, then returns to the default. |
 | Auto-switch activation | Settings → Menu Bar → Activation level | Pro in the App Store build; unlocked in source builds. Choose Elevated or higher, or Critical only (default). |
 | Auto-switch priority | Settings → Menu Bar → Metric priority | Requires Pro in the App Store build. Expand Metric priority, then use the up/down arrows to order CPU, memory, disk, and network. The highest severity wins; at equal severity, the highest listed eligible metric wins. Reset Priority restores CPU → Memory → Disk → Network. |
 | Show only during Critical activity | Settings → Menu Bar → Only show on high activity | Hides the indicator at Normal and Elevated status. |

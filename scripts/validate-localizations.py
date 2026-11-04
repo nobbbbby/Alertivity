@@ -11,8 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 FORMAT = re.compile(r'%(?:(\d+)\$)?[-+#0 ]*(?:\d+)?(?:\.\d+)?(lld|llu|ld|lu|d|u|f|g|@|%)')
 
 
-def arguments(value):
+def arguments(value, strict=False):
     """Compare argument positions and types, allowing translated word order."""
+    if strict and '%' in FORMAT.sub('', value):
+        raise ValueError('unescaped or unsupported percent format')
     result = collections.Counter()
     position = 1
     positioning = set()
@@ -71,7 +73,8 @@ def main(require_reviewed=False):
                     if not value.strip() and original.strip():
                         errors.append(f'{path.name}: {key!r}: empty {locale}')
                     try:
-                        if arguments(value) != arguments(original):
+                        original_arguments = arguments(original)
+                        if arguments(value, strict=bool(original_arguments)) != original_arguments:
                             errors.append(f'{path.name}: {key!r}: arguments differ for {locale}')
                     except ValueError as error:
                         errors.append(f'{path.name}: {key!r}: {locale}: {error}')

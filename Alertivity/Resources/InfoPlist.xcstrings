@@ -612,307 +612,307 @@
       }
     },
     "NSUserNotificationUsageDescription" : {
-      "comment" : "Explains activity alerts. Process alerts are available only in the non-sandboxed source build.",
+      "comment" : "Explains system activity alerts for both app variants.",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alertivity sendet Warnungen, wenn die Systemaktivität kritisch ist oder ein Prozess Probleme verursacht."
+            "state" : "needs_review",
+            "value" : "Alertivity sendet Warnungen zur Systemaktivität auf deinem Mac."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alertivity sends alerts when system activity is critical or a process is misbehaving."
+            "value" : "Alertivity sends alerts about system activity on your Mac."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alertivity envoie des alertes lorsque l’activité du système est critique ou qu’un processus fonctionne mal."
+            "state" : "needs_review",
+            "value" : "Alertivity envoie des alertes sur l’activité du système sur votre Mac."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alertivityは、システムのアクティビティが重大な状態になった場合や、プロセスに問題が発生した場合に通知します。"
+            "state" : "needs_review",
+            "value" : "AlertivityはMacのシステムアクティビティに関する通知を送信します。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "当系统活动达到严重级别或进程出现异常时，Alertivity 会发送提醒。"
+            "state" : "needs_review",
+            "value" : "Alertivity 会发送有关 Mac 系统活动的提醒。"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "يرسل Alertivity تنبيهات عند وصول نشاط النظام إلى مستوى حرج أو عند وجود مشكلة في عملية."
+            "value": "يرسل Alertivity تنبيهات حول نشاط النظام على Mac."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "সিস্টেম অ্যাক্টিভিটি সংকটজনক হলে বা কোনও প্রসেস অস্বাভাবিক আচরণ করলে Alertivity থেকে সতর্কতা পাঠানো হয়।"
+            "value": "আপনার Mac-এর সিস্টেম অ্যাক্টিভিটি সম্পর্কে Alertivity থেকে সতর্কতা পাঠানো হয়।"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "L’Alertivity envia avisos quan l’activitat del sistema és crítica o un procés funciona malament."
+            "value": "L’Alertivity envia avisos sobre l’activitat del sistema al teu Mac."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity posílá upozornění při kritické aktivitě systému nebo nesprávném chování procesu."
+            "value": "Alertivity posílá upozornění na aktivitu systému na vašem Macu."
           }
         },
         "da": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity sender advarsler, når systemaktiviteten er kritisk, eller en proces ikke fungerer korrekt."
+            "value": "Alertivity sender advarsler om systemaktivitet på din Mac."
           }
         },
         "el": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Το Alertivity στέλνει ειδοποιήσεις όταν η δραστηριότητα του συστήματος είναι κρίσιμη ή μια διεργασία δυσλειτουργεί."
+            "value": "Το Alertivity στέλνει ειδοποιήσεις για τη δραστηριότητα του συστήματος στο Mac σας."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity sends alerts when system activity is critical or a process is misbehaving."
+            "value": "Alertivity sends alerts about system activity on your Mac."
           }
         },
         "en-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity sends alerts when system activity is critical or a process is misbehaving."
+            "value": "Alertivity sends alerts about system activity on your Mac."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity sends alerts when system activity is critical or a process is misbehaving."
+            "value": "Alertivity sends alerts about system activity on your Mac."
           }
         },
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity envía alertas cuando la actividad del sistema es crítica o un proceso funciona mal."
+            "value": "Alertivity envía alertas sobre la actividad del sistema en tu Mac."
           }
         },
         "es-MX": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity envía alertas cuando la actividad del sistema es crítica o un proceso funciona mal."
+            "value": "Alertivity envía alertas sobre la actividad del sistema en tu Mac."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity lähettää ilmoituksia järjestelmän aktiivisuuden ollessa kriittistä tai prosessin toimiessa virheellisesti."
+            "value": "Alertivity lähettää ilmoituksia Macisi järjestelmän aktiivisuudesta."
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity envoie des alertes lorsque l’activité du système est critique ou qu’un processus fonctionne mal."
+            "value": "Alertivity envoie des alertes sur l’activité du système de votre Mac."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "સિસ્ટમ પ્રવૃત્તિ ગંભીર હોય અથવા પ્રક્રિયા અસામાન્ય હોય ત્યારે Alertivity ચેતવણી મોકલે છે."
+            "value": "Alertivity તમારા Mac પરની સિસ્ટમ પ્રવૃત્તિ વિશે ચેતવણીઓ મોકલે છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity שולח התראות כשפעילות המערכת קריטית או כשתהליך פועל באופן לא תקין."
+            "value": "Alertivity שולח התראות על פעילות המערכת ב-Mac."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "सिस्टम गतिविधि गंभीर होने या प्रोसेस में समस्या आने पर Alertivity अलर्ट भेजता है।"
+            "value": "Alertivity आपके Mac पर सिस्टम गतिविधि के बारे में अलर्ट भेजता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity šalje upozorenja kad je aktivnost sustava kritična ili proces ne radi ispravno."
+            "value": "Alertivity šalje upozorenja o aktivnosti sustava na tvom Macu."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Az Alertivity riasztást küld, ha a rendszer aktivitása kritikus, vagy egy folyamat hibásan működik."
+            "value": "Az Alertivity riasztásokat küld a Mac rendszertevékenységéről."
           }
         },
         "id": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity mengirim peringatan saat aktivitas sistem kritis atau proses bermasalah."
+            "value": "Alertivity mengirim peringatan tentang aktivitas sistem di Mac Anda."
           }
         },
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity invia avvisi quando l’attività di sistema è critica o un processo non funziona correttamente."
+            "value": "Alertivity invia avvisi sull’attività di sistema del Mac."
           }
         },
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ಸಿಸ್ಟಂ ಚಟುವಟಿಕೆ ಗಂಭೀರವಾಗಿದ್ದಾಗ ಅಥವಾ ಪ್ರಕ್ರಿಯೆ ಅಸಹಜವಾಗಿದ್ದಾಗ Alertivity ಎಚ್ಚರಿಕೆಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ."
+            "value": "Alertivity ನಿಮ್ಮ Mac ನ ಸಿಸ್ಟಂ ಚಟುವಟಿಕೆಯ ಕುರಿತು ಎಚ್ಚರಿಕೆಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "시스템 활동이 심각하거나 프로세스에 문제가 있을 때 Alertivity가 알림을 보냅니다."
+            "value": "Alertivity가 Mac의 시스템 활동에 대한 알림을 보냅니다."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "സിസ്റ്റം ആക്റ്റിവിറ്റി ഗുരുതരമാകുമ്പോഴോ പ്രോസസ് തെറ്റായി പ്രവർത്തിക്കുമ്പോഴോ Alertivity മുന്നറിയിപ്പുകൾ അയയ്ക്കുന്നു."
+            "value": "നിങ്ങളുടെ Mac-ലെ സിസ്റ്റം ആക്റ്റിവിറ്റിയെക്കുറിച്ച് Alertivity മുന്നറിയിപ്പുകൾ അയയ്ക്കുന്നു."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "सिस्टमची ॲक्टिव्हिटी गंभीर असल्यास किंवा प्रक्रियेमध्ये समस्या असल्यास Alertivity सूचना पाठवते."
+            "value": "Alertivity तुमच्या Mac वरील सिस्टमच्या ॲक्टिव्हिटीबद्दल सूचना पाठवते."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity menghantar isyarat apabila aktiviti sistem kritikal atau proses bermasalah."
+            "value": "Alertivity menghantar amaran tentang aktiviti sistem pada Mac anda."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity sender varsler når systemaktiviteten er kritisk eller en prosess ikke fungerer riktig."
+            "value": "Alertivity sender varsler om systemaktiviteten på Macen din."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity verstuurt waarschuwingen bij kritieke systeemactiviteit of als een proces niet goed werkt."
+            "value": "Alertivity verstuurt waarschuwingen over systeemactiviteit op je Mac."
           }
         },
         "or": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ସିଷ୍ଟମ୍ କାର୍ଯ୍ୟକଳାପ ଗୁରୁତର ହେଲେ କିମ୍ବା ପ୍ରୋସେସ୍ ଅସାମାନ୍ୟ ହେଲେ Alertivity ଚେତାବନୀ ପଠାଏ।"
+            "value": "Alertivity ଆପଣଙ୍କ Mac ର ସିଷ୍ଟମ୍ କାର୍ଯ୍ୟକଳାପ ବିଷୟରେ ଚେତାବନୀ ପଠାଏ।"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਸਿਸਟਮ ਸਰਗਰਮੀ ਗੰਭੀਰ ਹੋਣ ਜਾਂ ਪ੍ਰੋਸੈੱਸ ਵਿੱਚ ਸਮੱਸਿਆ ਆਉਣ ਉੱਤੇ Alertivity ਅਲਰਟ ਭੇਜਦਾ ਹੈ।"
+            "value": "Alertivity ਤੁਹਾਡੇ Mac ਉੱਤੇ ਸਿਸਟਮ ਦੀ ਸਰਗਰਮੀ ਬਾਰੇ ਅਲਰਟ ਭੇਜਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity wysyła alerty, gdy aktywność systemu jest krytyczna lub proces działa nieprawidłowo."
+            "value": "Alertivity wysyła alerty dotyczące aktywności systemu na Twoim Macu."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "O Alertivity envia alertas quando a atividade do sistema é crítica ou um processo apresenta problemas."
+            "value": "O Alertivity envia alertas sobre a atividade do sistema no seu Mac."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "O Alertivity envia alertas quando a atividade do sistema é crítica ou um processo apresenta problemas."
+            "value": "O Alertivity envia alertas sobre a atividade do sistema no Mac."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity trimite alerte când activitatea sistemului este critică sau un proces funcționează incorect."
+            "value": "Alertivity trimite alerte despre activitatea sistemului pe Mac-ul tău."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity отправляет предупреждения при критической активности системы или неполадках в работе процесса."
+            "value": "Alertivity отправляет предупреждения об активности системы на вашем Mac."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity posiela upozornenia pri kritickej aktivite systému alebo nesprávnom správaní procesu."
+            "value": "Alertivity posiela upozornenia na aktivitu systému na vašom Macu."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity pošilja opozorila, ko je sistemska dejavnost kritična ali proces ne deluje pravilno."
+            "value": "Alertivity pošilja opozorila o dejavnosti sistema v tvojem Macu."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity skickar varningar när systemaktiviteten är kritisk eller en process inte fungerar korrekt."
+            "value": "Alertivity skickar varningar om systemaktiviteten på din Mac."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "கணினிச் செயல்பாடு தீவிரமாகும்போதோ செயல்முறை தவறாகச் செயல்படும்போதோ Alertivity விழிப்பூட்டல்களை அனுப்பும்."
+            "value": "உங்கள் Mac இன் கணினிச் செயல்பாடு குறித்த விழிப்பூட்டல்களை Alertivity அனுப்பும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "సిస్టమ్ కార్యకలాపం తీవ్ర స్థాయిలో ఉన్నప్పుడు లేదా ప్రాసెస్ తప్పుగా పనిచేసినప్పుడు Alertivity హెచ్చరికలు పంపుతుంది."
+            "value": "Alertivity మీ Mac లోని సిస్టమ్ కార్యకలాపం గురించి హెచ్చరికలు పంపుతుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity ส่งการแจ้งเตือนเมื่อกิจกรรมระบบอยู่ในระดับวิกฤตหรือกระบวนการทำงานผิดปกติ"
+            "value": "Alertivity ส่งการแจ้งเตือนเกี่ยวกับกิจกรรมระบบบน Mac ของคุณ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity, sistem etkinliği kritik olduğunda veya bir işlem sorun yaşadığında uyarı gönderir."
+            "value": "Alertivity, Mac’inizdeki sistem etkinliği hakkında uyarılar gönderir."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity надсилає попередження за критичної активності системи або збоїв у роботі процесу."
+            "value": "Alertivity надсилає сповіщення про активність системи на вашому Mac."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "سسٹم کی سرگرمی نازک ہونے یا کسی پراسیس کے خراب رویے پر Alertivity اطلاعات بھیجتا ہے۔"
+            "value": "Alertivity آپ کے Mac پر سسٹم کی سرگرمی کے بارے میں اطلاعات بھیجتا ہے۔"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alertivity gửi cảnh báo khi hoạt động hệ thống ở mức tới hạn hoặc tiến trình gặp vấn đề."
+            "value": "Alertivity gửi cảnh báo về hoạt động hệ thống trên máy Mac của bạn."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "系統活動達到嚴重等級或程序出現異常時，Alertivity 會傳送通知。"
+            "value": "Alertivity 會傳送 Mac 系統活動的通知。"
           }
         }
       }

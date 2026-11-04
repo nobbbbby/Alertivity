@@ -3189,7 +3189,7 @@
       "hr": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Pro možeš otključati bilo kada u Postavke → Pro."
+          "value": "Pro možeš otključati bilo kada u odjeljku Postavke → Pro."
         }
       },
       "hu": {
@@ -3267,7 +3267,7 @@
       "pl": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Możesz odblokować Pro w dowolnej chwili w Ustawienia → Pro."
+          "value": "Możesz odblokować Pro w dowolnej chwili w sekcji Ustawienia → Pro."
         }
       },
       "pt-BR": {
@@ -3297,13 +3297,13 @@
       "sk": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Pro môžete kedykoľvek odomknúť v Nastavenia → Pro."
+          "value": "Pro môžete kedykoľvek odomknúť v časti Nastavenia → Pro."
         }
       },
       "sl": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Pro lahko kadar koli odkleneš v Nastavitve → Pro."
+          "value": "Pro lahko kadar koli odkleneš v razdelku Nastavitve → Pro."
         }
       },
       "sv": {
@@ -4598,8 +4598,8 @@
       },
       "de": {
         "stringUnit": {
-          "state": "translated",
-          "value": "Erfordert Pro. Kostenlos gilt CPU → Arbeitsspeicher → Festplatte → Netzwerk. Freischalten unter Einstellungen → Pro."
+          "state": "needs_review",
+          "value": "Erfordert Pro. Kostenlos gilt CPU → Speicher → Datenträger → Netzwerk. Freischalten unter Einstellungen → Pro."
         }
       },
       "fr": {
@@ -4719,7 +4719,7 @@
       "hr": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Zahtijeva Pro. Besplatna verzija koristi CPU → Memorija → Disk → Mreža. Otključaj u Postavke → Pro."
+          "value": "Zahtijeva Pro. Besplatna verzija koristi CPU → Memorija → Disk → Mreža. Otključaj u odjeljku Postavke → Pro."
         }
       },
       "hu": {
@@ -4797,7 +4797,7 @@
       "pl": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Wymaga Pro. Wersja bezpłatna używa kolejności CPU → Pamięć → Dysk → Sieć. Odblokuj w Ustawienia → Pro."
+          "value": "Wymaga Pro. Wersja bezpłatna używa kolejności CPU → Pamięć → Dysk → Sieć. Odblokuj w sekcji Ustawienia → Pro."
         }
       },
       "pt-BR": {
@@ -4827,13 +4827,13 @@
       "sk": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Vyžaduje Pro. Bezplatná verzia používa CPU → Pamäť → Disk → Sieť. Odomknite v Nastavenia → Pro."
+          "value": "Vyžaduje Pro. Bezplatná verzia používa CPU → Pamäť → Disk → Sieť. Odomknite v časti Nastavenia → Pro."
         }
       },
       "sl": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Zahteva Pro. Brezplačna različica uporablja CPU → Pomnilnik → Disk → Omrežje. Odkleni v Nastavitve → Pro."
+          "value": "Zahteva Pro. Brezplačna različica uporablja CPU → Pomnilnik → Disk → Omrežje. Odkleni v razdelku Nastavitve → Pro."
         }
       },
       "sv": {
@@ -6105,7 +6105,7 @@
       "vi": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "Mua một lần. Không đăng ký."
+          "value": "Mua một lần. Không có gói đăng ký."
         }
       },
       "zh-Hant": {
@@ -8655,13 +8655,13 @@
       "es": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "No se ha encontrado ninguna compra de Pro para tu cuenta del App Store."
+          "value": "No se ha encontrado ninguna compra de Pro para tu cuenta de App Store."
         }
       },
       "es-MX": {
         "stringUnit": {
           "state": "needs_review",
-          "value": "No se ha encontrado ninguna compra de Pro para tu cuenta del App Store."
+          "value": "No se ha encontrado ninguna compra de Pro para tu cuenta de App Store."
         }
       },
       "fi": {
@@ -9573,13 +9573,13 @@
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "No se ha podido abrir el App Store. Inténtalo más tarde."
+            "value": "No se ha podido abrir App Store. Inténtalo más tarde."
           }
         },
         "es-MX": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "No se ha podido abrir el App Store. Inténtalo más tarde."
+            "value": "No se ha podido abrir App Store. Inténtalo más tarde."
           }
         },
         "fi": {
@@ -13472,7 +13472,7 @@
         "bn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (মোট %@/s)"
           }
         },
         "ca": {
@@ -13496,7 +13496,7 @@
         "el": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (σύνολο %@/s)"
           }
         },
         "en-AU": {
@@ -13544,7 +13544,7 @@
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (કુલ %@/s)"
           }
         },
         "he": {
@@ -13574,7 +13574,7 @@
         "id": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/d)"
+            "value": "%@ (total %@/dtk)"
           }
         },
         "it": {
@@ -13586,7 +13586,7 @@
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (ಒಟ್ಟು %@/s)"
           }
         },
         "ko": {
@@ -13598,7 +13598,7 @@
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (മൊത്തം %@/s)"
           }
         },
         "mr": {
@@ -13628,7 +13628,7 @@
         "or": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (ମୋଟ %@/s)"
           }
         },
         "pa": {
@@ -13688,19 +13688,19 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (மொத்தம் %@/s)"
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (మొత్తం %@/s)"
           }
         },
         "th": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (รวม %@/s)"
           }
         },
         "tr": {
@@ -13718,7 +13718,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@ (کل %@/s)"
           }
         },
         "vi": {
@@ -13730,7 +13730,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ (total %@/s)"
+            "value": "%@（總計 %@/秒）"
           }
         }
       }
@@ -14598,7 +14598,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "வட்டு வரம்புகள் வாசிப்பு மற்றும் எழுதுதலின் கூட்டு தரவுப் பரிமாற்றத்தைப் பயன்படுத்தும்."
+            "value": "வட்டு வரம்புகள் வாசிப்பு மற்றும் எழுதுதலின் கூட்டு தரவுப் பரிமாற்ற வேகத்தைப் பயன்படுத்தும்."
           }
         },
         "te": {
@@ -14628,7 +14628,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ڈسک کی حدود پڑھنے اور لکھنے کی مجموعی ترسیل پر مبنی ہیں۔"
+            "value": "ڈسک کی حدود پڑھنے اور لکھنے کی مجموعی رفتار پر مبنی ہیں۔"
           }
         },
         "vi": {
@@ -14640,7 +14640,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "磁碟閾值以讀取與寫入的合計傳輸量為準。"
+            "value": "磁碟閾值以讀取與寫入的合計傳輸速率為準。"
           }
         }
       }
@@ -15381,7 +15381,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Procesi s visokom aktivnosti"
+            "value": "Procesi s visokom aktivnošću"
           }
         },
         "hu": {
@@ -16117,7 +16117,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "வட்டுத் தரவுப் பரிமாற்றம்"
+            "value": "வட்டுத் தரவுப் பரிமாற்ற வேகம்"
           }
         },
         "te": {
@@ -16147,7 +16147,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ڈسک کی ترسیل"
+            "value": "ڈسک کی منتقلی کی رفتار"
           }
         },
         "vi": {
@@ -16159,7 +16159,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "磁碟傳輸量"
+            "value": "磁碟傳輸速率"
           }
         }
       }
@@ -16727,7 +16727,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "நெட்வொர்க் தரவுப் பரிமாற்றம்"
+            "value": "நெட்வொர்க் தரவுப் பரிமாற்ற வேகம்"
           }
         },
         "te": {
@@ -16757,7 +16757,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "نیٹ ورک کی ترسیل"
+            "value": "نیٹ ورک کی منتقلی کی رفتار"
           }
         },
         "vi": {
@@ -16769,7 +16769,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "網路傳輸量"
+            "value": "網路傳輸速率"
           }
         }
       }
@@ -17312,7 +17312,7 @@
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Показатели появятся после получения первого образца."
+            "value": "Показатели появятся после получения первого измерения."
           }
         },
         "sk": {
@@ -17360,7 +17360,7 @@
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Показники зʼявляться після отримання першого зразка."
+            "value": "Показники зʼявляться після отримання першого вимірювання."
           }
         },
         "ur": {
@@ -18591,7 +18591,7 @@
         "vi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "NHỚ"
+            "value": "RAM"
           }
         },
         "zh-Hant": {
@@ -19470,7 +19470,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "வட்டுத் தரவுப் பரிமாற்றம்"
+            "value": "வட்டுத் தரவுப் பரிமாற்ற வேகம்"
           }
         },
         "te": {
@@ -19500,7 +19500,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ڈسک کی ترسیل"
+            "value": "ڈسک کی منتقلی کی رفتار"
           }
         },
         "vi": {
@@ -19512,7 +19512,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "磁碟傳輸量"
+            "value": "磁碟傳輸速率"
           }
         }
       }
@@ -20080,7 +20080,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "நெட்வொர்க் தரவுப் பரிமாற்றம்"
+            "value": "நெட்வொர்க் தரவுப் பரிமாற்ற வேகம்"
           }
         },
         "te": {
@@ -20110,7 +20110,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "نیٹ ورک کی ترسیل"
+            "value": "نیٹ ورک کی منتقلی کی رفتار"
           }
         },
         "vi": {
@@ -20122,7 +20122,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "網路傳輸量"
+            "value": "網路傳輸速率"
           }
         }
       }
@@ -20380,7 +20380,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "நெட்வொர்க் வரம்புகள் பதிவிறக்கம் மற்றும் பதிவேற்றத்தின் கூட்டு தரவுப் பரிமாற்றத்தைப் பயன்படுத்தும்."
+            "value": "நெட்வொர்க் வரம்புகள் பதிவிறக்கம் மற்றும் பதிவேற்றத்தின் கூட்டு தரவுப் பரிமாற்ற வேகத்தைப் பயன்படுத்தும்."
           }
         },
         "te": {
@@ -20410,7 +20410,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "نیٹ ورک کی حدود ڈاؤن لوڈ اور اپ لوڈ کی مجموعی ترسیل پر مبنی ہیں۔"
+            "value": "نیٹ ورک کی حدود ڈاؤن لوڈ اور اپ لوڈ کی مجموعی رفتار پر مبنی ہیں۔"
           }
         },
         "vi": {
@@ -20422,7 +20422,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "網路閾值以下載與上傳的合計傳輸量為準。"
+            "value": "網路閾值以下載與上傳的合計傳輸速率為準。"
           }
         }
       }
@@ -21042,8 +21042,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Im Aktivitätsmonitor anzeigen"
+            "state" : "needs_review",
+            "value" : "In der Aktivitätsanzeige anzeigen"
           }
         },
         "en" : {
@@ -21384,7 +21384,7 @@
         "bn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d সেকেন্ড"
           }
         },
         "ca": {
@@ -21408,7 +21408,7 @@
         "el": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d δευτ."
           }
         },
         "en-AU": {
@@ -21456,7 +21456,7 @@
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d સેકંડ"
           }
         },
         "he": {
@@ -21498,7 +21498,7 @@
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d ಸೆಕೆಂಡ್"
           }
         },
         "ko": {
@@ -21510,7 +21510,7 @@
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d സെക്കൻഡ്"
           }
         },
         "mr": {
@@ -21540,7 +21540,7 @@
         "or": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d ସେକେଣ୍ଡ୍"
           }
         },
         "pa": {
@@ -21600,19 +21600,19 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d வினாடி"
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d సెకన్లు"
           }
         },
         "th": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d วินาที"
           }
         },
         "tr": {
@@ -21630,7 +21630,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d سیکنڈ"
           }
         },
         "vi": {
@@ -21642,7 +21642,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%ds"
+            "value": "%d 秒"
           }
         }
       }
@@ -21935,7 +21935,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "مسلسل %@ سے زیادہ سرگرمی۔"
+            "value": "زیادہ سرگرمی مسلسل %@ جاری رہی۔"
           }
         },
         "vi": {
@@ -22240,7 +22240,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "مسلسل %2$@ سے %1$@ استعمال ہو رہا ہے۔"
+            "value": "%1$@ کا استعمال مسلسل %2$@ جاری رہا۔"
           }
         },
         "vi": {
@@ -22999,7 +22999,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Otkriven proces s visokom aktivnosti"
+            "value": "Otkriven proces s visokom aktivnošću"
           }
         },
         "hu": {
@@ -24823,7 +24823,7 @@
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "बिना सूचनाओं के भी निगरानी जारी रख सकते हैं। सहायता मेनू से शुरुआत करें फिर खोलें।"
+            "value": "बिना सूचनाओं के भी निगरानी जारी रख सकते हैं। सहायता मेनू से “शुरुआत करें” फिर से खोलें।"
           }
         },
         "hr": {
@@ -24871,7 +24871,7 @@
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "सूचनांशिवायही निरीक्षण सुरू ठेवता येते. मदत मेनूमधून सुरुवात करा पुन्हा उघडा."
+            "value": "सूचनांशिवायही निरीक्षण सुरू ठेवता येते. मदत मेनूमधून ‘सुरुवात करा’ पुन्हा उघडा."
           }
         },
         "ms": {
@@ -24901,7 +24901,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਸੂਚਨਾਵਾਂ ਤੋਂ ਬਿਨਾਂ ਵੀ ਨਿਗਰਾਨੀ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਮਦਦ ਮੀਨੂ ਵਿੱਚੋਂ ਸ਼ੁਰੂਆਤ ਕਰੋ ਮੁੜ ਖੋਲ੍ਹੋ।"
+            "value": "ਸੂਚਨਾਵਾਂ ਤੋਂ ਬਿਨਾਂ ਵੀ ਨਿਗਰਾਨੀ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਮਦਦ ਮੀਨੂ ਵਿੱਚੋਂ “ਸ਼ੁਰੂਆਤ ਕਰੋ” ਮੁੜ ਖੋਲ੍ਹੋ।"
           }
         },
         "pl": {
@@ -25439,7 +25439,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ako macOS zahtijeva odobrenje, dopusti Alertivity u Postavke sustava → Općenito → Stavke za prijavu."
+            "value": "Ako macOS zahtijeva odobrenje, dopusti Alertivity u odjeljku Postavke sustava → Općenito → Stavke za prijavu."
           }
         },
         "hu": {
@@ -25517,7 +25517,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Jeśli macOS wymaga zgody, zezwól na Alertivity w Ustawienia systemowe → Ogólne → Rzeczy do otwarcia."
+            "value": "Jeśli macOS wymaga zgody, zezwól na Alertivity w sekcji Ustawienia systemowe → Ogólne → Rzeczy do otwarcia."
           }
         },
         "pt-BR": {
@@ -25547,13 +25547,13 @@
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ak macOS vyžaduje schválenie, povoľte Alertivity v Systémové nastavenia → Všeobecné → Prihlasovacie položky."
+            "value": "Ak macOS vyžaduje schválenie, povoľte Alertivity v časti Systémové nastavenia → Všeobecné → Prihlasovacie položky."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Če macOS zahteva odobritev, dovoli Alertivity v Nastavitve sistema → Splošno → Prijavni elementi."
+            "value": "Če macOS zahteva odobritev, dovoli Alertivity v razdelku Nastavitve sistema → Splošno → Prijavni elementi."
           }
         },
         "sv": {
@@ -27006,7 +27006,7 @@
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "सिस्टम सेटिंग्जमध्ये सूचना → Alertivity निवडा आणि सूचनांना परवानगी द्या सुरू करा. स्थिती रीफ्रेश करण्यासाठी येथे परत या."
+            "value": "सिस्टम सेटिंग्जमध्ये सूचना → Alertivity निवडा आणि ‘सूचनांना परवानगी द्या’ सुरू करा. स्थिती रीफ्रेश करण्यासाठी येथे परत या."
           }
         },
         "ms": {
@@ -27054,7 +27054,7 @@
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Nos Definições do Sistema, escolha Notificações → Alertivity e ative Permitir Notificações. Volte aqui para atualizar o estado."
+            "value": "Nas Definições do Sistema, escolha Notificações → Alertivity e ative Permitir Notificações. Volte aqui para atualizar o estado."
           }
         },
         "ro": {
@@ -27197,7 +27197,7 @@
         "da": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Tilladelse kunne ikke anmodes. Prøv igen, eller tjek Notifikationer i Systemindstillinger."
+            "value": "Der kunne ikke anmodes om tilladelse. Prøv igen, eller tjek Notifikationer i Systemindstillinger."
           }
         },
         "el": {
@@ -27359,7 +27359,7 @@
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Não foi possível solicitar permissão. Tente novamente ou verifique Notificações nos Definições do Sistema."
+            "value": "Não foi possível solicitar permissão. Tente novamente ou verifique Notificações nas Definições do Sistema."
           }
         },
         "ro": {
@@ -28274,7 +28274,7 @@
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Verifique a permissão para notificações nos Definições do Sistema."
+            "value": "Verifique a permissão para notificações nas Definições do Sistema."
           }
         },
         "ro": {
@@ -28667,8 +28667,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reduziert"
+            "state" : "needs_review",
+            "value" : "Eingeklappt"
           }
         },
         "en" : {
@@ -28836,13 +28836,13 @@
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "आवळलेले"
+            "value": "संकुचित"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Diruntuhkan"
+            "value": "Dikuncupkan"
           }
         },
         "nb": {
@@ -28914,7 +28914,7 @@
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Minimerad"
+            "value": "Hopfälld"
           }
         },
         "ta": {
@@ -28972,8 +28972,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erweitert"
+            "state" : "needs_review",
+            "value" : "Ausgeklappt"
           }
         },
         "en" : {
@@ -29219,7 +29219,7 @@
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Utökad"
+            "value": "Utfälld"
           }
         },
         "ta": {
@@ -29277,8 +29277,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Öffne die Menüleistenanzeige für CPU-, Speicher-, Festplatten- und Netzwerkaktivität. Die Überwachung läuft bereits."
+            "state" : "needs_review",
+            "value" : "Öffne die Menüleistenanzeige für CPU-, Speicher-, Datenträger- und Netzwerkaktivität. Die Überwachung läuft bereits."
           }
         },
         "en" : {
@@ -30660,13 +30660,13 @@
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ശൈലി പരീക്ഷിച്ച് സംരക്ഷിക്കാൻ ഇത് ഉപയോഗിക്കൂ തിരഞ്ഞെടുക്കൂ."
+            "value": "ശൈലി പരീക്ഷിച്ച ശേഷം അത് സംരക്ഷിക്കാൻ ‘ഇത് ഉപയോഗിക്കൂ’ തിരഞ്ഞെടുക്കൂ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "शैली वापरून पहा आणि जतन करण्यासाठी ही वापरा निवडा."
+            "value": "शैली वापरून पहा आणि जतन करण्यासाठी ‘ही वापरा’ निवडा."
           }
         },
         "ms": {
@@ -30696,7 +30696,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਕੋਈ ਸ਼ੈਲੀ ਅਜ਼ਮਾਓ ਅਤੇ ਸੰਭਾਲਣ ਲਈ ਇਹ ਵਰਤੋ ਚੁਣੋ।"
+            "value": "ਕੋਈ ਸ਼ੈਲੀ ਅਜ਼ਮਾਓ ਅਤੇ ਸੰਭਾਲਣ ਲਈ “ਇਹ ਵਰਤੋ” ਚੁਣੋ।"
           }
         },
         "pl": {
@@ -32849,13 +32849,13 @@
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Não foi possível abrir os Definições do Sistema. Abra pelo menu Apple."
+            "value": "Não foi possível abrir as Definições do Sistema. Abra pelo menu Apple."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Configurări sistem nu poate fi deschis. Deschide-l din meniul Apple."
+            "value": "Aplicația Configurări sistem nu poate fi deschisă. Deschide-o din meniul Apple."
           }
         },
         "ru": {
@@ -34441,7 +34441,7 @@
         "vi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Nhớ %@"
+            "value": "Bộ nhớ %@"
           }
         },
         "zh-Hant": {
@@ -35699,8 +35699,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "当进程在 %3$d 秒内 CPU 超过 %1$@ 或内存超过 %2$@ 时标记。"
+            "state" : "needs_review",
+            "value" : "当进程的 CPU 使用率超过 %1$@ 或内存使用率超过 %2$@，并持续 %3$d 秒时标记。"
           }
         },
         "ar": {
@@ -37069,7 +37069,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Proses yang dibenarkan tidak akan muncul dalam isyarat aktiviti tinggi, tetapi penggunaannya masih dikira dalam metrik keseluruhan sistem."
+            "value": "Proses yang dibenarkan tidak akan muncul dalam amaran aktiviti tinggi, tetapi penggunaannya masih dikira dalam metrik keseluruhan sistem."
           }
         },
         "nb": {
@@ -37937,7 +37937,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Odaberi aplikaciju ili izvršnu datoteku za izuzimanje iz praćenja procesa s visokom aktivnosti."
+            "value": "Odaberi aplikaciju ili izvršnu datoteku za izuzimanje iz praćenja procesa s visokom aktivnošću."
           }
         },
         "hu": {
@@ -38724,302 +38724,302 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisch zur meistbeschäftigten Metrik wechseln"
+            "state" : "needs_review",
+            "value" : "Automatisch zwischen Messwerten wechseln"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auto switch to busiest metric"
+            "value" : "Automatically switch metrics"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Basculer automatiquement vers la métrique la plus chargée"
+            "state" : "needs_review",
+            "value" : "Basculer automatiquement entre les métriques"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "最も負荷の高い指標に自動切替"
+            "state" : "needs_review",
+            "value" : "指標を自動切替"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "自动切换到最繁忙指标"
+            "state" : "needs_review",
+            "value" : "自动切换指标"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "التبديل تلقائيًا إلى المقياس الأكثر انشغالًا"
+            "value": "تبديل المقاييس تلقائيًا"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "সবচেয়ে ব্যস্ত মেট্রিকে অটো সুইচ করুন"
+            "value": "মেট্রিক স্বয়ংক্রিয়ভাবে বদলান"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Canvia automàticament a la mètrica més activa"
+            "value": "Canvia automàticament entre mètriques"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automaticky přepínat na nejvytíženější metriku"
+            "value": "Automaticky přepínat metriky"
           }
         },
         "da": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Skift automatisk til den mest aktive metrik"
+            "value": "Skift automatisk mellem metrikker"
           }
         },
         "el": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Αυτόματη εναλλαγή στην πιο ενεργή μέτρηση"
+            "value": "Αυτόματη εναλλαγή μετρήσεων"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Auto switch to busiest metric"
+            "value": "Automatically switch metrics"
           }
         },
         "en-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Auto switch to busiest metric"
+            "value": "Automatically switch metrics"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Auto switch to busiest metric"
+            "value": "Automatically switch metrics"
           }
         },
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Cambiar automáticamente a la métrica más activa"
+            "value": "Cambiar métricas automáticamente"
           }
         },
         "es-MX": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Cambiar automáticamente a la métrica más activa"
+            "value": "Cambiar métricas automáticamente"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Vaihda automaattisesti aktiivisimpaan mittariin"
+            "value": "Vaihda mittaria automaattisesti"
           }
         },
         "fr-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Basculer automatiquement vers la métrique la plus chargée"
+            "value": "Basculer automatiquement entre les métriques"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "સૌથી વ્યસ્ત માપદંડ પર આપમેળે બદલો"
+            "value": "માપદંડ આપમેળે બદલો"
           }
         },
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "מעבר אוטומטי למדד העמוס ביותר"
+            "value": "מעבר אוטומטי בין מדדים"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "सबसे व्यस्त मेट्रिक पर अपने-आप स्विच करें"
+            "value": "मेट्रिक के बीच अपने-आप स्विच करें"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatski prebaci na najaktivniji mjerni podatak"
+            "value": "Automatski prebacuj između mjernih podataka"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatikus váltás a legaktívabb mérőszámra"
+            "value": "Mérőszámok automatikus váltása"
           }
         },
         "id": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alihkan otomatis ke metrik tersibuk"
+            "value": "Alihkan metrik secara otomatis"
           }
         },
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Passa automaticamente alla metrica più attiva"
+            "value": "Cambia metrica automaticamente"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ಅತ್ಯಂತ ಕಾರ್ಯನಿರತ ಮಾಪನಕ್ಕೆ ಸ್ವಯಂ ಬದಲಿಸಿ"
+            "value": "ಮಾಪನಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಬದಲಿಸಿ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "가장 바쁜 지표로 자동 전환"
+            "value": "지표 자동 전환"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ഏറ്റവും തിരക്കുള്ള മെട്രിക്കിലേക്ക് സ്വയം മാറൂ"
+            "value": "മെട്രിക്കുകൾ സ്വയം മാറ്റൂ"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "सर्वाधिक व्यस्त मेट्रिकवर आपोआप बदला"
+            "value": "मेट्रिक आपोआप बदला"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Tukar secara automatik kepada metrik paling sibuk"
+            "value": "Tukar metrik secara automatik"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Bytt automatisk til den mest aktive målingen"
+            "value": "Bytt automatisk mellom målinger"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Schakel automatisch naar de drukste metriek"
+            "value": "Schakel automatisch tussen metrieken"
           }
         },
         "or": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ସବୁଠୁ ବ୍ୟସ୍ତ ମାପକକୁ ସ୍ୱୟଂଚାଳିତ ବଦଳାନ୍ତୁ"
+            "value": "ମାପକ ସ୍ୱୟଂଚାଳିତ ଭାବେ ବଦଳାନ୍ତୁ"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਸਭ ਤੋਂ ਰੁੱਝੇ ਮੈਟ੍ਰਿਕ ਉੱਤੇ ਆਪਣੇ-ਆਪ ਸਵਿੱਚ ਕਰੋ"
+            "value": "ਮੈਟ੍ਰਿਕ ਆਪਣੇ-ਆਪ ਬਦਲੋ"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automatycznie przełączaj na najbardziej aktywny wskaźnik"
+            "value": "Automatycznie przełączaj wskaźniki"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alternar automaticamente para a métrica mais ativa"
+            "value": "Alternar métricas automaticamente"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Alternar automaticamente para a métrica mais ativa"
+            "value": "Alternar métricas automaticamente"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Comută automat la cel mai activ indicator"
+            "value": "Comutare automată între indicatori"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Автопереключение на самый загруженный показатель"
+            "value": "Автоматически переключать показатели"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Automaticky prepínať na najvyťaženejšiu metriku"
+            "value": "Automaticky prepínať metriky"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Samodejno preklopi na najbolj dejavno meritev"
+            "value": "Samodejno preklapljaj med meritvami"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Byt automatiskt till det mest aktiva mätvärdet"
+            "value": "Byt mätvärde automatiskt"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "மிகவும் செயலில் உள்ள அளவீட்டிற்குத் தானாக மாறு"
+            "value": "அளவீடுகளைத் தானாக மாற்று"
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "అత్యంత చురుకైన కొలమానానికి ఆటో స్విచ్ చేయండి"
+            "value": "కొలమానాలను ఆటోమేటిక్‌గా మార్చండి"
           }
         },
         "th": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "สลับไปยังตัววัดที่ทำงานหนักที่สุดโดยอัตโนมัติ"
+            "value": "สลับตัววัดโดยอัตโนมัติ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "En yoğun ölçüme otomatik geç"
+            "value": "Ölçümler arasında otomatik geçiş yap"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Автоперемикання на найактивніший показник"
+            "value": "Автоматично перемикати показники"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "خودکار طور پر مصروف ترین پیمانے پر جائیں"
+            "value": "پیمانے خودکار طور پر تبدیل کریں"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Tự chuyển sang chỉ số bận nhất"
+            "value": "Tự động chuyển đổi chỉ số"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "自動切換至最忙碌的指標"
+            "value": "自動切換指標"
           }
         }
       }
@@ -39227,7 +39227,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਆਟੋ ਸਵਿੱਚ ਚੁਣੇ ਸਰਗਰਮੀ ਪੱਧਰ ਅਤੇ ਮੈਟ੍ਰਿਕ ਤਰਜੀਹ ਅਨੁਸਾਰ ਚੱਲਦਾ ਹੈ, ਫਿਰ ਡਿਫ਼ੌਲਟ ਆਈਕਨ ’ਤੇ ਵਾਪਸ ਆਉਂਦਾ ਹੈ।"
+            "value": "ਆਟੋ ਸਵਿੱਚ ਚਾਲੂ ਹੋਣ ਲਈ ਚੁਣੇ ਪੱਧਰ ਅਤੇ ਮੈਟ੍ਰਿਕ ਤਰਜੀਹ ਅਨੁਸਾਰ ਚੱਲਦਾ ਹੈ, ਫਿਰ ਡਿਫ਼ੌਲਟ ਆਈਕਨ ’ਤੇ ਵਾਪਸ ਆਉਂਦਾ ਹੈ।"
           }
         },
         "pl": {
@@ -39654,8 +39654,8 @@
         },
         "ja": {
           "stringUnit": {
-            "state": "translated",
-            "value": "同じ重要度では、最初の対象指標が優先されます。"
+            "state": "needs_review",
+            "value": "アクティビティレベルが同じ場合は、条件を満たす最初の指標が優先されます。"
           }
         },
         "zh-Hans": {
@@ -39865,7 +39865,7 @@
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "При одинаковой степени важности приоритет у первого подходящего показателя."
+            "value": "При одинаковой степени серьёзности приоритет у первого подходящего показателя."
           }
         },
         "sk": {
@@ -39989,7 +39989,7 @@
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Snížit prioritu %@"
+            "value": "Snížit prioritu: %@"
           }
         },
         "da": {
@@ -40067,7 +40067,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Smanji prioritet za %@"
+            "value": "Smanji prioritet: %@"
           }
         },
         "hu": {
@@ -40145,7 +40145,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Obniż priorytet %@"
+            "value": "Obniż priorytet: %@"
           }
         },
         "pt-BR": {
@@ -40175,7 +40175,7 @@
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Znížiť prioritu %@"
+            "value": "Znížiť prioritu: %@"
           }
         },
         "sl": {
@@ -40193,7 +40193,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@-ன் முன்னுரிமையைக் குறை"
+            "value": "%@ அளவீட்டின் முன்னுரிமையைக் குறை"
           }
         },
         "te": {
@@ -40293,7 +40293,7 @@
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Zvýšit prioritu %@"
+            "value": "Zvýšit prioritu: %@"
           }
         },
         "da": {
@@ -40371,7 +40371,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Povećaj prioritet za %@"
+            "value": "Povećaj prioritet: %@"
           }
         },
         "hu": {
@@ -40449,7 +40449,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Podnieś priorytet %@"
+            "value": "Podnieś priorytet: %@"
           }
         },
         "pt-BR": {
@@ -40479,7 +40479,7 @@
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Zvýšiť prioritu %@"
+            "value": "Zvýšiť prioritu: %@"
           }
         },
         "sl": {
@@ -40497,7 +40497,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@-ன் முன்னுரிமையை உயர்த்து"
+            "value": "%@ அளவீட்டின் முன்னுரிமையை உயர்த்து"
           }
         },
         "te": {
@@ -41157,8 +41157,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wählen Sie, wann der Indikator erscheint und was er anzeigt."
+            "state" : "needs_review",
+            "value" : "Wähle, wann der Indikator erscheint und was er anzeigt."
           }
         },
         "en" : {
@@ -43438,7 +43438,7 @@
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%d ನಿಮಿಷಗಳು"
+            "value": "%d ನಿಮಿಷ"
           }
         },
         "ko": {
@@ -43456,7 +43456,7 @@
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%d मिनिटे"
+            "value": "%d मि."
           }
         },
         "ms": {
@@ -43540,13 +43540,13 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%d நிமிடங்கள்"
+            "value": "%d நிமிடம்"
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%d నిమిషాలు"
+            "value": "%d నిమి."
           }
         },
         "th": {
@@ -43767,7 +43767,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Masa minimum antara pemberitahuan aktiviti. Digunakan untuk semua isyarat sistem dan proses."
+            "value": "Masa minimum antara pemberitahuan aktiviti. Digunakan untuk semua amaran sistem dan proses."
           }
         },
         "nb": {
@@ -44328,7 +44328,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Upozorava nakon %d s kritične aktivnosti, s razmakom od najmanje %@. Uključuje procese s visokom aktivnosti."
+            "value": "Upozorava nakon %d s kritične aktivnosti, s razmakom od najmanje %@. Uključuje procese s visokom aktivnošću."
           }
         },
         "hu": {
@@ -44376,7 +44376,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Isyarat selepas %d s aktiviti Kritikal, dengan sela sekurang-kurangnya %@. Termasuk proses beraktiviti tinggi."
+            "value": "Amaran selepas %d s aktiviti Kritikal, dengan sela sekurang-kurangnya %@. Termasuk proses beraktiviti tinggi."
           }
         },
         "nb": {
@@ -44681,7 +44681,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Isyarat selepas %d s aktiviti Kritikal, dengan sela sekurang-kurangnya %@."
+            "value": "Amaran selepas %d s aktiviti Kritikal, dengan sela sekurang-kurangnya %@."
           }
         },
         "nb": {
@@ -45808,13 +45808,13 @@
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Controla la visibilidad en el Dock y el inicio de sesión."
+            "value": "Controla la visibilidad en el Dock y la apertura al iniciar sesión."
           }
         },
         "es-MX": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Controla la visibilidad en el Dock y el inicio de sesión."
+            "value": "Controla la visibilidad en el Dock y la apertura al iniciar sesión."
           }
         },
         "fi": {
@@ -46811,7 +46811,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Konfigurasikan pemberitahuan aktiviti dan masa isyarat."
+            "value": "Konfigurasikan pemberitahuan aktiviti dan masa amaran."
           }
         },
         "nb": {
@@ -48106,7 +48106,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "வட்டுத் தரவுப் பரிமாற்றம்"
+            "value": "வட்டுத் தரவுப் பரிமாற்ற வேகம்"
           }
         },
         "te": {
@@ -48136,7 +48136,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ڈسک کی ترسیل"
+            "value": "ڈسک کی منتقلی کی رفتار"
           }
         },
         "vi": {
@@ -48148,7 +48148,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "磁碟傳輸量"
+            "value": "磁碟傳輸速率"
           }
         }
       }
@@ -48874,7 +48874,7 @@
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "CPU અને મેમરીનાં મૂલ્ય 1 થી 100 વચ્ચે હોવાં જોઈએ."
+            "value": "CPU અને મેમરીનાં મૂલ્યો 1 થી 100 વચ્ચે હોવાં જોઈએ."
           }
         },
         "he": {
@@ -49106,7 +49106,7 @@
         "bn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ডিস্ক ও নেটওয়ার্কের মান 0.1 থেকে 100,000 MB/s-এর মধ্যে হতে হবে।"
+            "value": "ডিস্ক ও নেটওয়ার্কের মান 0.1 থেকে 1,00,000 MB/s-এর মধ্যে হতে হবে।"
           }
         },
         "ca": {
@@ -49178,7 +49178,7 @@
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ડિસ્ક અને નેટવર્કનાં મૂલ્ય 0.1 થી 100,000 MB/s વચ્ચે હોવાં જોઈએ."
+            "value": "ડિસ્ક અને નેટવર્કનાં મૂલ્યો 0.1 થી 1,00,000 MB/s વચ્ચે હોવાં જોઈએ."
           }
         },
         "he": {
@@ -49220,7 +49220,7 @@
         "kn": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ಡಿಸ್ಕ್ ಮತ್ತು ನೆಟ್‌ವರ್ಕ್ ಮೌಲ್ಯಗಳು 0.1 ರಿಂದ 100,000 MB/s ನಡುವೆ ಇರಬೇಕು."
+            "value": "ಡಿಸ್ಕ್ ಮತ್ತು ನೆಟ್‌ವರ್ಕ್ ಮೌಲ್ಯಗಳು 0.1 ರಿಂದ 1,00,000 MB/s ನಡುವೆ ಇರಬೇಕು."
           }
         },
         "ko": {
@@ -49232,7 +49232,7 @@
         "ml": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ഡിസ്ക്, നെറ്റ്‌വർക്ക് മൂല്യങ്ങൾ 0.1 മുതൽ 100,000 MB/s വരെ ആയിരിക്കണം."
+            "value": "ഡിസ്ക്, നെറ്റ്‌വർക്ക് മൂല്യങ്ങൾ 0.1 മുതൽ 1,00,000 MB/s വരെ ആയിരിക്കണം."
           }
         },
         "mr": {
@@ -49262,7 +49262,7 @@
         "or": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ଡିସ୍କ୍ ଓ ନେଟୱର୍କ୍ ମୂଲ୍ୟ 0.1 ରୁ 100,000 MB/s ମଧ୍ୟରେ ରହିବା ଆବଶ୍ୟକ।"
+            "value": "ଡିସ୍କ୍ ଓ ନେଟୱର୍କ୍ ମୂଲ୍ୟ 0.1 ରୁ 1,00,000 MB/s ମଧ୍ୟରେ ରହିବା ଆବଶ୍ୟକ।"
           }
         },
         "pa": {
@@ -49322,13 +49322,13 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "வட்டு மற்றும் நெட்வொர்க் மதிப்புகள் 0.1 முதல் 100,000 MB/s வரை இருக்க வேண்டும்."
+            "value": "வட்டு மற்றும் நெட்வொர்க் மதிப்புகள் 0.1 முதல் 1,00,000 MB/s வரை இருக்க வேண்டும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "డిస్క్, నెట్‌వర్క్ విలువలు 0.1 నుండి 100,000 MB/s మధ్య ఉండాలి."
+            "value": "డిస్క్, నెట్‌వర్క్ విలువలు 0.1 నుండి 1,00,000 MB/s మధ్య ఉండాలి."
           }
         },
         "th": {
@@ -49352,7 +49352,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ڈسک اور نیٹ ورک کی قدریں 0.1 سے 100,000 MB/s کے درمیان ہونی چاہئیں۔"
+            "value": "ڈسک اور نیٹ ورک کی قدریں 0.1 سے 1,00,000 MB/s کے درمیان ہونی چاہئیں۔"
           }
         },
         "vi": {
@@ -50234,7 +50234,7 @@
         "ta": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "நெட்வொர்க் தரவுப் பரிமாற்றம்"
+            "value": "நெட்வொர்க் தரவுப் பரிமாற்ற வேகம்"
           }
         },
         "te": {
@@ -50264,7 +50264,7 @@
         "ur": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "نیٹ ورک کی ترسیل"
+            "value": "نیٹ ورک کی منتقلی کی رفتار"
           }
         },
         "vi": {
@@ -50276,7 +50276,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "網路傳輸量"
+            "value": "網路傳輸速率"
           }
         }
       }
@@ -52467,7 +52467,7 @@
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Využití %@ přes %@ (%@)"
+            "value": "Využití (%@) přes %@ (%@)"
           }
         },
         "da": {
@@ -52545,7 +52545,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Korištenje %@ iznad %@ (%@)"
+            "value": "Korištenje (%@) iznad %@ (%@)"
           }
         },
         "hu": {
@@ -52623,7 +52623,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Użycie %@ ponad %@ (%@)"
+            "value": "Użycie (%@) ponad %@ (%@)"
           }
         },
         "pt-BR": {
@@ -52641,25 +52641,25 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Utilizare %@ peste %@ (%@)"
+            "value": "Utilizare (%@) peste %@ (%@)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Использование %@ выше %@ (%@)"
+            "value": "%@: использование выше %@ (%@)"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Využitie %@ nad %@ (%@)"
+            "value": "Využitie (%@) nad %@ (%@)"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Poraba %@ nad %@ (%@)"
+            "value": "Poraba (%@) nad %@ (%@)"
           }
         },
         "sv": {
@@ -52695,7 +52695,7 @@
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Використання %@ понад %@ (%@)"
+            "value": "%@: використання понад %@ (%@)"
           }
         },
         "ur": {
@@ -52772,7 +52772,7 @@
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivita %@ přes %@ MB/s (%@)"
+            "value": "Aktivita (%@) přes %@ MB/s (%@)"
           }
         },
         "da": {
@@ -52850,7 +52850,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivnost %@ iznad %@ MB/s (%@)"
+            "value": "Aktivnost (%@) iznad %@ MB/s (%@)"
           }
         },
         "hu": {
@@ -52928,7 +52928,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktywność %@ ponad %@ MB/s (%@)"
+            "value": "Aktywność (%@) ponad %@ MB/s (%@)"
           }
         },
         "pt-BR": {
@@ -52946,25 +52946,25 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Activitate %@ peste %@ MB/s (%@)"
+            "value": "Activitate (%@) peste %@ MB/s (%@)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Активность %@ выше %@ МБ/с (%@)"
+            "value": "%@: активность выше %@ МБ/с (%@)"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivita %@ nad %@ MB/s (%@)"
+            "value": "Aktivita (%@) nad %@ MB/s (%@)"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dejavnost %@ nad %@ MB/s (%@)"
+            "value": "Dejavnost (%@) nad %@ MB/s (%@)"
           }
         },
         "sv": {
@@ -53000,7 +53000,7 @@
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Активність %@ понад %@ МБ/с (%@)"
+            "value": "%@: активність понад %@ МБ/с (%@)"
           }
         },
         "ur": {
@@ -54248,8 +54248,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@aktivität hat den Schwellenwert für %@ überschritten und eine Auslastung von mehr als %@ Prozent erreicht."
+            "state" : "needs_review",
+            "value" : "%@-Aktivität hat den Schwellenwert für %@ überschritten und eine Auslastung von mehr als %@ Prozent erreicht."
           }
         },
         "en" : {
@@ -54297,7 +54297,7 @@
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivita %@ překročila práh %@ s využitím přes %@ procent."
+            "value": "Aktivita (%1$@) překročila práh (úroveň: %2$@); využití přesahuje %3$@ procent."
           }
         },
         "da": {
@@ -54345,7 +54345,7 @@
         "fi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Mittarin %@ aktiivisuus ylitti kynnyksen %@ käyttöasteella yli %@ prosenttia."
+            "value": "Mittarin %1$@ aktiivisuus ylitti kynnyksen (taso: %2$@), ja käyttöaste on yli %3$@ prosenttia."
           }
         },
         "fr-CA": {
@@ -54375,7 +54375,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivnost %@ premašila je prag %@, uz korištenje veće od %@ posto."
+            "value": "Aktivnost (%1$@) premašila je prag (razina: %2$@), uz korištenje veće od %3$@ posto."
           }
         },
         "hu": {
@@ -54393,7 +54393,7 @@
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "L’attività di %@ ha superato la soglia %@, con un utilizzo superiore al %@ percento."
+            "value": "L’attività di %1$@ ha superato la soglia di livello %2$@, con un utilizzo superiore al %3$@ percento."
           }
         },
         "kn": {
@@ -54453,7 +54453,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktywność %@ przekroczyła próg %@, osiągając użycie ponad %@ procent."
+            "value": "Aktywność (%1$@) przekroczyła próg %2$@, osiągając użycie ponad %3$@ procent."
           }
         },
         "pt-BR": {
@@ -54471,25 +54471,25 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Activitatea %@ a depășit pragul %@, atingând o utilizare de peste %@ la sută."
+            "value": "Activitatea (%@) a depășit pragul %@, atingând o utilizare de peste %@ la sută."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Активность %@ превысила порог %@, достигнув использования более %@ процентов."
+            "value": "%@: активность превысила порог %@, достигнув использования более %@ процентов."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivita %@ prekročila prah %@ s využitím viac ako %@ percent."
+            "value": "Aktivita (%1$@) prekročila prah (úroveň: %2$@) s využitím viac ako %3$@ percent."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dejavnost %@ je presegla prag %@ s porabo nad %@ odstotkov."
+            "value": "Dejavnost (%1$@) je presegla prag (raven: %2$@) s porabo nad %3$@ odstotkov."
           }
         },
         "sv": {
@@ -54525,7 +54525,7 @@
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Активність %@ перевищила поріг %@, досягнувши використання понад %@ відсотків."
+            "value": "%@: активність перевищила поріг %@, досягнувши використання понад %@ відсотків."
           }
         },
         "ur": {
@@ -54543,7 +54543,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%1$@ 活動已超過%2$@閾值，使用率超過 %3$@%。"
+            "value": "%1$@ 活動已超過%2$@閾值，使用率超過 %3$@%%。"
           }
         }
       }
@@ -54602,7 +54602,7 @@
         "cs": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivita %@ překročila práh %@ s celkovou rychlostí ≥%@ MB/s."
+            "value": "Aktivita (%1$@) překročila práh (úroveň: %2$@); celková rychlost dosáhla ≥%3$@ MB/s."
           }
         },
         "da": {
@@ -54650,7 +54650,7 @@
         "fi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Mittarin %@ aktiivisuus ylitti kynnyksen %@ kokonaisnopeudella ≥%@ MB/s."
+            "value": "Mittarin %1$@ aktiivisuus ylitti kynnyksen (taso: %2$@), ja kokonaisnopeus on ≥%3$@ MB/s."
           }
         },
         "fr-CA": {
@@ -54680,7 +54680,7 @@
         "hr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivnost %@ premašila je prag %@, uz ukupnu brzinu ≥%@ MB/s."
+            "value": "Aktivnost (%1$@) premašila je prag (razina: %2$@), uz ukupnu brzinu ≥%3$@ MB/s."
           }
         },
         "hu": {
@@ -54698,7 +54698,7 @@
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "L’attività di %@ ha superato la soglia %@, con una velocità totale di ≥%@ MB/s."
+            "value": "L’attività di %1$@ ha superato la soglia di livello %2$@, con una velocità totale di ≥%3$@ MB/s."
           }
         },
         "kn": {
@@ -54758,7 +54758,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktywność %@ przekroczyła próg %@, osiągając łączną szybkość ≥%@ MB/s."
+            "value": "Aktywność (%1$@) przekroczyła próg %2$@, osiągając łączną szybkość ≥%3$@ MB/s."
           }
         },
         "pt-BR": {
@@ -54776,25 +54776,25 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Activitatea %@ a depășit pragul %@, atingând o viteză totală de ≥%@ MB/s."
+            "value": "Activitatea (%@) a depășit pragul %@, atingând o viteză totală de ≥%@ MB/s."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Активность %@ превысила порог %@, достигнув суммарной скорости ≥%@ МБ/с."
+            "value": "%@: активность превысила порог %@, достигнув суммарной скорости ≥%@ МБ/с."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aktivita %@ prekročila prah %@ s celkovou rýchlosťou ≥%@ MB/s."
+            "value": "Aktivita (%1$@) prekročila prah (úroveň: %2$@) s celkovou rýchlosťou ≥%3$@ MB/s."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dejavnost %@ je presegla prag %@ s skupno hitrostjo ≥%@ MB/s."
+            "value": "Dejavnost (%1$@) je presegla prag (raven: %2$@) s skupno hitrostjo ≥%3$@ MB/s."
           }
         },
         "sv": {
@@ -54830,7 +54830,7 @@
         "uk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Активність %@ перевищила поріг %@, досягнувши сумарної швидкості ≥%@ МБ/с."
+            "value": "%@: активність перевищила поріг %@, досягнувши сумарної швидкості ≥%@ МБ/с."
           }
         },
         "ur": {
@@ -55064,7 +55064,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Sprawdzanie aktywności systemu…"
+            "value": "Sprawdzam aktywność systemu…"
           }
         },
         "pt-BR": {
@@ -55340,7 +55340,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Semua metrik di bawah ambang isyarat."
+            "value": "Semua metrik di bawah ambang amaran."
           }
         },
         "nb": {
@@ -55646,7 +55646,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ambang isyarat dicapai: %@."
+            "value": "Ambang amaran dicapai: %@."
           }
         },
         "nb": {
@@ -55952,7 +55952,7 @@
         "ms": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ambang isyarat dicapai: %@."
+            "value": "Ambang amaran dicapai: %@."
           }
         },
         "nb": {
@@ -56809,7 +56809,7 @@
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "איסוף מדדים חיים…"
+            "value": "איסוף מדדים בזמן אמת…"
           }
         },
         "hi": {
@@ -56899,7 +56899,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Zbieranie wskaźników na żywo…"
+            "value": "Zbieram wskaźniki na żywo…"
           }
         },
         "pt-BR": {
@@ -60049,8 +60049,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kritisch %@"
+            "state" : "needs_review",
+            "value" : "%@: kritisch"
           }
         },
         "en" : {
@@ -60080,7 +60080,7 @@
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ حرج"
+            "value": "%@: مستوى حرج"
           }
         },
         "bn": {
@@ -60092,7 +60092,7 @@
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: crític"
+            "value": "Activitat crítica: %@"
           }
         },
         "cs": {
@@ -60164,7 +60164,7 @@
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ קריטי"
+            "value": "%@: פעילות קריטית"
           }
         },
         "hi": {
@@ -60194,7 +60194,7 @@
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: critico"
+            "value": "Attività critica: %@"
           }
         },
         "kn": {
@@ -60272,7 +60272,7 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: critic"
+            "value": "Activitate critică: %@"
           }
         },
         "ru": {
@@ -60296,7 +60296,7 @@
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: kritisk"
+            "value": "Kritisk aktivitet: %@"
           }
         },
         "ta": {
@@ -60354,8 +60354,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Erhöht"
+            "state" : "needs_review",
+            "value" : "%@: erhöht"
           }
         },
         "en" : {
@@ -60366,8 +60366,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ élevé"
+            "state" : "needs_review",
+            "value" : "Activité élevée : %@"
           }
         },
         "ja" : {
@@ -60385,7 +60385,7 @@
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ مرتفع"
+            "value": "%@: مستوى مرتفع"
           }
         },
         "bn": {
@@ -60397,7 +60397,7 @@
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: elevat"
+            "value": "Activitat elevada: %@"
           }
         },
         "cs": {
@@ -60457,25 +60457,25 @@
         "fr-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ élevé"
+            "value": "%@ : niveau élevé"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ વધેલું"
+            "value": "%@ : વધેલું સ્તર"
           }
         },
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ מוגבר"
+            "value": "%@: פעילות מוגברת"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ बढ़ा हुआ"
+            "value": "%@: बढ़ी हुई गतिविधि"
           }
         },
         "hr": {
@@ -60499,7 +60499,7 @@
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: elevato"
+            "value": "Attività elevata: %@"
           }
         },
         "kn": {
@@ -60523,7 +60523,7 @@
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ वाढलेला"
+            "value": "%@ : वाढलेला स्तर"
           }
         },
         "ms": {
@@ -60553,7 +60553,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ ਵਧਿਆ ਹੋਇਆ"
+            "value": "%@: ਵਧਿਆ ਹੋਇਆ ਪੱਧਰ"
           }
         },
         "pl": {
@@ -60577,7 +60577,7 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: ridicat"
+            "value": "Activitate ridicată: %@"
           }
         },
         "ru": {
@@ -60601,7 +60601,7 @@
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: förhöjd"
+            "value": "Förhöjd aktivitet: %@"
           }
         },
         "ta": {
@@ -60659,8 +60659,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ erhöht"
+            "state" : "needs_review",
+            "value" : "%@: erhöht"
           }
         },
         "en" : {
@@ -60671,8 +60671,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ élevé"
+            "state" : "needs_review",
+            "value" : "Activité élevée : %@"
           }
         },
         "ja" : {
@@ -60690,7 +60690,7 @@
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ مرتفع"
+            "value": "%@: مستوى مرتفع"
           }
         },
         "bn": {
@@ -60702,7 +60702,7 @@
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: elevat"
+            "value": "Activitat elevada: %@"
           }
         },
         "cs": {
@@ -60762,25 +60762,25 @@
         "fr-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ élevé"
+            "value": "%@ : niveau élevé"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ વધેલું"
+            "value": "%@ : વધેલું સ્તર"
           }
         },
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ מוגבר"
+            "value": "%@: פעילות מוגברת"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ बढ़ा हुआ"
+            "value": "%@: बढ़ी हुई गतिविधि"
           }
         },
         "hr": {
@@ -60804,7 +60804,7 @@
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: elevato"
+            "value": "Attività elevata: %@"
           }
         },
         "kn": {
@@ -60828,7 +60828,7 @@
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ वाढलेला"
+            "value": "%@ : वाढलेला स्तर"
           }
         },
         "ms": {
@@ -60858,7 +60858,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ ਵਧਿਆ ਹੋਇਆ"
+            "value": "%@: ਵਧਿਆ ਹੋਇਆ ਪੱਧਰ"
           }
         },
         "pl": {
@@ -60882,7 +60882,7 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: ridicat"
+            "value": "Activitate ridicată: %@"
           }
         },
         "ru": {
@@ -60906,7 +60906,7 @@
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: förhöjd"
+            "value": "Förhöjd aktivitet: %@"
           }
         },
         "ta": {
@@ -60964,8 +60964,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erhöht %@"
+            "state" : "needs_review",
+            "value" : "%@: erhöht"
           }
         },
         "en" : {
@@ -60976,8 +60976,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ élevé"
+            "state" : "needs_review",
+            "value" : "Activité élevée : %@"
           }
         },
         "ja" : {
@@ -60995,7 +60995,7 @@
         "ar": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ مرتفع"
+            "value": "%@: مستوى مرتفع"
           }
         },
         "bn": {
@@ -61007,7 +61007,7 @@
         "ca": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: elevat"
+            "value": "Activitat elevada: %@"
           }
         },
         "cs": {
@@ -61067,25 +61067,25 @@
         "fr-CA": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ élevé"
+            "value": "%@ : niveau élevé"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "વધેલું %@"
+            "value": "%@ : વધેલું સ્તર"
           }
         },
         "he": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ מוגבר"
+            "value": "%@: פעילות מוגברת"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ बढ़ा हुआ"
+            "value": "%@: बढ़ी हुई गतिविधि"
           }
         },
         "hr": {
@@ -61109,7 +61109,7 @@
         "it": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: elevato"
+            "value": "Attività elevata: %@"
           }
         },
         "kn": {
@@ -61133,7 +61133,7 @@
         "mr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ वाढलेला"
+            "value": "%@ : वाढलेला स्तर"
           }
         },
         "ms": {
@@ -61163,7 +61163,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@ ਵਧਿਆ ਹੋਇਆ"
+            "value": "%@: ਵਧਿਆ ਹੋਇਆ ਪੱਧਰ"
           }
         },
         "pl": {
@@ -61187,7 +61187,7 @@
         "ro": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: ridicat"
+            "value": "Activitate ridicată: %@"
           }
         },
         "ru": {
@@ -61211,7 +61211,7 @@
         "sv": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%@: förhöjd"
+            "value": "Förhöjd aktivitet: %@"
           }
         },
         "ta": {
@@ -64019,14 +64019,14 @@
         },
         "de": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Messintervall und automatische Aktivierung anpassen"
+            "state": "needs_review",
+            "value": "Anpassbares Messintervall und anpassbare Aktivierungsstufe für den automatischen Wechsel"
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Intervalle de mesure et activation personnalisables"
+            "state": "needs_review",
+            "value": "Intervalle de mesure et activation du basculement automatique personnalisables"
           }
         },
         "ja": {
@@ -64146,7 +64146,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਨਮੂਨੇ ਲੈਣ ਦਾ ਕਸਟਮ ਅੰਤਰਾਲ ਅਤੇ ਆਟੋ ਸਵਿੱਚ ਸਰਗਰਮੀ"
+            "value": "ਨਮੂਨੇ ਲੈਣ ਦਾ ਕਸਟਮ ਅੰਤਰਾਲ ਅਤੇ ਆਟੋ ਸਵਿੱਚ ਚਾਲੂ ਹੋਣ ਦਾ ਕਸਟਮ ਪੱਧਰ"
           }
         },
         "el": {
@@ -64324,14 +64324,14 @@
         },
         "de": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Pro schaltet die Anpassung der automatischen Aktivierung frei."
+            "state": "needs_review",
+            "value": "Mit Pro lässt sich die Aktivierungsstufe für den automatischen Wechsel anpassen."
           }
         },
         "fr": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Pro permet de personnaliser le niveau d’activation."
+            "state": "needs_review",
+            "value": "Pro permet de personnaliser le niveau d’activation du basculement automatique."
           }
         },
         "ja": {
@@ -64451,7 +64451,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Pro ਨਾਲ ਆਟੋ ਸਵਿੱਚ ਦੀ ਸਰਗਰਮੀ ਕਸਟਮਾਈਜ਼ ਕਰ ਸਕਦੇ ਹੋ।"
+            "value": "Pro ਨਾਲ ਆਟੋ ਸਵਿੱਚ ਚਾਲੂ ਹੋਣ ਦਾ ਪੱਧਰ ਬਦਲ ਸਕਦੇ ਹੋ।"
           }
         },
         "el": {
@@ -65061,7 +65061,7 @@
         "pa": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "ਸਰਗਰਮੀ ਪੱਧਰ"
+            "value": "ਚਾਲੂ ਹੋਣ ਦਾ ਪੱਧਰ"
           }
         },
         "el": {
@@ -65276,7 +65276,7 @@
         "sk": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Prepínať pri úrovni %@; inak použiť predvolenú ikonu."
+            "value": "Úroveň prepínania: %@; inak sa použije predvolená ikona."
           }
         },
         "it": {
@@ -65372,7 +65372,7 @@
         "el": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Εναλλαγή σε %@, διαφορετικά χρήση του προεπιλεγμένου εικονιδίου."
+            "value": "Εναλλαγή στο επίπεδο «%@»· διαφορετικά χρήση του προεπιλεγμένου εικονιδίου."
           }
         },
         "te": {
@@ -65492,7 +65492,7 @@
         "pl": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Przełączaj przy poziomie %@; w innym przypadku używaj domyślnej ikony."
+            "value": "Poziom przełączania: %@; w innym przypadku używaj domyślnej ikony."
           }
         },
         "en-AU": {
@@ -65809,7 +65809,7 @@
         "ko": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "심각만"
+            "value": "심각 수준만"
           }
         },
         "en-GB": {
@@ -66904,7 +66904,7 @@
         "te": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "%d సెకను"
+            "value": "%d సెకన్లు"
           }
         },
         "pt-BR": {

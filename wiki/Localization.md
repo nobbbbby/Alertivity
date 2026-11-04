@@ -1,6 +1,6 @@
 # Localization
 
-Alertivity’s native catalogs cover the 50 locales listed by Apple for App Store metadata as of November 4, 2026. The original English, German, French, Japanese, and Simplified Chinese translations are preserved; additions are drafts marked `needs_review` until language and visual review is complete. Regional English variants preserve the source meaning with local spelling. The interface follows the language selected by macOS for the app. The wiki is maintained in English; its menu paths use the English interface labels.
+Alertivity’s native catalogs cover the 50 locales listed by Apple for App Store metadata as of November 4, 2026. English, German, French, Japanese, and Simplified Chinese form the original baseline. New and corrected translations remain marked `needs_review` until language and visual review is complete. Regional English variants preserve the source meaning with local spelling. The interface follows the language selected by macOS for the app. The wiki is maintained in English; its menu paths use the English interface labels.
 
 ## Locale coverage
 
@@ -56,3 +56,66 @@ Enable `TEST_RUNNER_ALERTIVITY_REQUIRE_VISIBLE_TABS=1` to require tabs without o
 ### Review status
 
 New locale values remain `needs_review`. Automated coverage, format checks, compiled-bundle tests, and UI navigation checks do not establish native fluency. Native-speaker review and complete visual review remain pending before release; `--require-reviewed` enforces the catalog review state.
+
+### AI language review — November 4, 2026
+
+All 223 catalog keys were reviewed in every supported locale, including the original five languages and all regional variants (11,150 key/locale pairs). The review produced 333 corrections covering composed-title agreement, terminology, time units and cooldown plurals, process-duration wording, throughput versus transferred volume, platform names, and format-string escaping. Existing locale tone was retained.
+
+Two source-copy changes apply across all locales: automatic metric selection is labeled **Automatically switch metrics**, matching its severity/priority behavior, and the shared notification-purpose description now describes system activity without promising process monitoring in the App Store build. Notification metric lists use the native localized list formatter. A new validator regression rejects unescaped percent signs in format strings while allowing percent signs in ordinary text.
+
+This AI review does not replace native-speaker certification or complete visual verification. New and corrected translations retain their review markers.
+
+| Locale | Reviewed keys | Corrected values |
+| --- | ---: | ---: |
+| `ar` | 223 | 6 |
+| `bn` | 223 | 5 |
+| `ca` | 223 | 6 |
+| `cs` | 223 | 8 |
+| `da` | 223 | 3 |
+| `de` | 223 | 15 |
+| `el` | 223 | 5 |
+| `en` | 223 | 2 |
+| `en-AU` | 223 | 2 |
+| `en-CA` | 223 | 2 |
+| `en-GB` | 223 | 2 |
+| `es` | 223 | 5 |
+| `es-MX` | 223 | 5 |
+| `fi` | 223 | 4 |
+| `fr` | 223 | 7 |
+| `fr-CA` | 223 | 5 |
+| `gu` | 223 | 9 |
+| `he` | 223 | 7 |
+| `hi` | 223 | 6 |
+| `hr` | 223 | 15 |
+| `hu` | 223 | 2 |
+| `id` | 223 | 3 |
+| `it` | 223 | 8 |
+| `ja` | 223 | 3 |
+| `kn` | 223 | 6 |
+| `ko` | 223 | 3 |
+| `ml` | 223 | 6 |
+| `mr` | 223 | 10 |
+| `ms` | 223 | 11 |
+| `nb` | 223 | 2 |
+| `nl` | 223 | 2 |
+| `or` | 223 | 5 |
+| `pa` | 223 | 11 |
+| `pl` | 223 | 14 |
+| `pt-BR` | 223 | 2 |
+| `pt-PT` | 223 | 6 |
+| `ro` | 223 | 11 |
+| `ru` | 223 | 8 |
+| `sk` | 223 | 12 |
+| `sl` | 223 | 9 |
+| `sv` | 223 | 8 |
+| `ta` | 223 | 16 |
+| `te` | 223 | 7 |
+| `th` | 223 | 4 |
+| `tr` | 223 | 2 |
+| `uk` | 223 | 7 |
+| `ur` | 223 | 15 |
+| `vi` | 223 | 5 |
+| `zh-Hans` | 223 | 3 |
+| `zh-Hant` | 223 | 13 |
+
+The review changes pass both app variants’ Debug and Release builds, checkout validation, and all eight validator regression tests. A headless Foundation check verified all 50 compiled locale bundles (11,143 explicit entries plus English source fallbacks), including literal-percent output and native list conjunctions. The app-hosted unit attempt stalled before its suites began and was canceled; fresh app-hosted unit/UI execution remains unverified in this session. Two runtime regression cases cover native percent output and localized notification lists when the test host is available.

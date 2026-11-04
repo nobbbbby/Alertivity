@@ -40,4 +40,14 @@ import Testing
         let fallback = Bundle.preferredLocalizations(from: Bundle.main.localizations, forPreferences: ["zz", "en"])
         #expect(fallback == ["en"])
     }
+
+    @Test
+    func traditionalChinesePercentFormatEscapesLiteralPercent() throws {
+        let path = try #require(Bundle.main.path(forResource: "zh-Hant", ofType: "lproj"))
+        let bundle = try #require(Bundle(path: path))
+        let format = bundle.localizedString(forKey: "status.menu.single.percent.custom", value: nil, table: "Localizable")
+        let rendered = String(format: format, "CPU", "嚴重", "80")
+        #expect(rendered.contains("80%"))
+        #expect(!rendered.contains("80%%"))
+    }
 }
