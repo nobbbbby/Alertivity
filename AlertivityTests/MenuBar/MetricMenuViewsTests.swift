@@ -124,3 +124,47 @@ import Testing
         expectEqual(MetricMenuSelection.highestPriorityHighActivity(in: metrics), .cpu)
     }
 }
+
+@Suite struct AutoSwitchOptionsTests {
+    @Test
+    func activationSeverityPriorityStabilizationAndFallback() {
+        var state = AutoSwitchState()
+        let priority: [MetricMenuSelection] = [.memory, .cpu, .disk, .network]
+        let elevated = makeMetrics(cpu: 0.6, memory: 0.75)
+        state.ingest(metrics: elevated, activationLevel: .critical, priority: priority)
+        state.ingest(metrics: elevated, activationLevel: .critical, priority: priority)
+        #expect(state.selection == nil)
+        state.ingest(metrics: elevated, activationLevel: .elevated, priority: priority)
+        #expect(state.selection == nil)
+        state.ingest(metrics: elevated, activationLevel: .elevated, priority: priority)
+        #expect(state.selection == .memory)
+        let criticalCPU = makeMetrics(cpu: 0.9, memory: 0.75)
+        state.ingest(metrics: criticalCPU, activationLevel: .elevated, priority: priority)
+        #expect(state.selection == .memory)
+        state.ingest(metrics: criticalCPU, activationLevel: .elevated, priority: priority)
+        #expect(state.selection == .cpu, "Severity outranks custom priority")
+        let normal = makeMetrics(cpu: 0.1, memory: 0.1)
+        state.ingest(metrics: normal, activationLevel: .elevated, priority: priority)
+        #expect(state.selection == .cpu)
+        state.ingest(metrics: normal, activationLevel: .elevated, priority: priority)
+        #expect(state.selection == nil)
+        #expect(resolveMenuIconType(autoSwitchEnabled: true, defaultIconType: .network,
+                                    autoSwitchSelection: state.selection) == .network)
+    }
+
+    @Test
+    func interruptedCandidatesAndResetRequireFreshConfirmation() {
+        var state = AutoSwitchState()
+        let cpu = makeMetrics(cpu: 0.9, memory: 0.1)
+        let memory = makeMetrics(cpu: 0.1, memory: 0.9)
+        let priority = MetricMenuSelection.autoSwitchPriority
+        state.ingest(metrics: cpu, activationLevel: .critical, priority: priority)
+        state.ingest(metrics: memory, activationLevel: .critical, priority: priority)
+        #expect(state.selection == nil)
+        state.reset()
+        state.ingest(metrics: memory, activationLevel: .critical, priority: priority)
+        #expect(state.selection == nil)
+        state.ingest(metrics: memory, activationLevel: .critical, priority: priority)
+        #expect(state.selection == .memory)
+    }
+}

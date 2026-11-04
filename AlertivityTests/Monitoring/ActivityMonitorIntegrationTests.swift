@@ -21,6 +21,36 @@ private final class StubMetricsProvider: SystemMetricsProviding {
 }
 
 @Suite struct ActivityMonitorIntegrationTests {
+    @Test @MainActor
+    func samplingReconfigurationReplacesOnlyTheActiveTimer() {
+        var timers: [Timer] = []
+        var intervals: [TimeInterval] = []
+        let monitor = ActivityMonitor(autoStart: false, provider: StubMetricsProvider(), scheduleTimer: { interval, _ in
+            let timer = Timer(timeInterval: interval, repeats: true) { _ in }
+            timers.append(timer)
+            intervals.append(interval)
+            return timer
+        })
+        monitor.setSamplingInterval(3)
+        #expect(timers.isEmpty, "A stopped monitor must stay stopped")
+        monitor.startMonitoring(interval: 3)
+        #expect(timers.count == 1)
+        monitor.setSamplingInterval(3)
+        #expect(timers.count == 1, "Applying the same configuration must be idempotent")
+        monitor.setSamplingInterval(10)
+        #expect(!timers[0].isValid)
+        #expect(timers[1].isValid)
+        #expect(intervals == [3, 10])
+        monitor.setSamplingInterval(.nan)
+        #expect(monitor.samplingInterval == 5)
+        #expect(timers.filter(\.isValid).count == 1)
+        monitor.stopMonitoring()
+        #expect(timers.allSatisfy { !$0.isValid })
+        monitor.setSamplingInterval(10)
+        #expect(timers.count == 3)
+        #expect(!monitor.isMonitoring)
+    }
+
     @Test
     func statusTransitionRequiresConsecutiveSamples() {
         let provider = StubMetricsProvider()

@@ -24,6 +24,7 @@ struct ProFeatureList: View {
             featureRow("pro.feature.cooldown")
             featureRow("pro.feature.duration")
             featureRow("pro.feature.metricPriority")
+            featureRow("pro.feature.samplingActivation")
         }
     }
 

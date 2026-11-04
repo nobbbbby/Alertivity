@@ -2,6 +2,21 @@ import Foundation
 
 /// Defines the supported monitoring controls in one place so settings UI and runtime validation cannot drift apart.
 enum MonitoringPreferences {
+    static let samplingIntervalOptions: [TimeInterval] = [3, 5, 10]
+    static let defaultSamplingInterval: TimeInterval = 5
+
+    static func isValidSamplingInterval(_ value: TimeInterval) -> Bool {
+        value.isFinite && samplingIntervalOptions.contains(value)
+    }
+
+    static func normalizedSamplingInterval(_ value: TimeInterval) -> TimeInterval {
+        guard isValidSamplingInterval(value) else {
+            AppLogger.metrics.error("Invalid sampling interval; using 5-second default")
+            return defaultSamplingInterval
+        }
+        return value
+    }
+
     static let notificationCooldownOptions = [1, 5, 10, 15, 30, 60]
     static let defaultNotificationCooldownMinutes = 10
 
@@ -29,6 +44,17 @@ enum MonitoringPreferences {
     static func normalizedMemoryThreshold(_ value: Int) -> Int {
         value.clamped(to: memoryThresholdRange)
     }
+}
+
+/// The minimum severity eligible for automatic metric selection; normal never activates it.
+enum AutoSwitchActivationLevel: String, CaseIterable {
+    case elevated, critical
+
+    var allowedSeverities: Set<ActivityMetrics.MetricSeverity> {
+        self == .elevated ? [.elevated, .critical] : [.critical]
+    }
+
+    var title: String { L10n.string("settings.autoSwitch.level." + rawValue) }
 }
 
 struct ActivityThresholds: Codable, Equatable, Sendable {

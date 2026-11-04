@@ -4466,34 +4466,34 @@
     },
     "settings.menuBar.autoSwitch.help" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatisch zur meistbeschäftigten Metrik wechseln schaltet nur um, wenn eine Metrik kritisch wird; andernfalls wird Ihr Standard-Symboltyp verwendet."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auto switch to busiest metric only switches when a metric reaches critical; otherwise it uses your Default icon type."
+            "value" : "Auto switch follows the selected activation level and metric priority, then returns to the default icon."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisches Umschalten folgt der gewählten Aktivierungsstufe und Metrikpriorität und kehrt dann zum Standardsymbol zurück."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le basculement automatique vers la métrique la plus chargée ne s'active que lorsqu'une métrique atteint le niveau critique ; sinon, il utilise votre type d'icône par défaut."
+            "value" : "Le basculement suit le niveau d’activation et la priorité choisis, puis revient à l’icône par défaut."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最も負荷の高い指標に自動切替は、指標が重大レベルに達したときのみ切り替え、通常時は既定のアイコンタイプを使用します。"
+            "value" : "選択した開始レベルと指標の優先順位に従って切り替え、その後既定のアイコンに戻ります。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自动切换到最繁忙指标仅在其达到严重级别时切换；否则使用你的默认图标类型。"
+            "value" : "自动切换遵循所选激活级别和指标优先级，随后返回默认图标。"
           }
         }
       }
@@ -4534,34 +4534,34 @@
     },
     "settings.menuBar.autoSwitch.priority.help" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Weiter oben stehende Messwerte haben Vorrang, wenn mehrere kritisch sind. Ändern Sie die Reihenfolge mit den Pfeilen."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Higher metrics take priority when several metrics are Critical. Use the arrows to change the order."
+            "value" : "At equal severity, the first eligible metric wins."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei gleichem Schweregrad gewinnt die erste passende Metrik."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les métriques en haut sont prioritaires lorsque plusieurs sont critiques. Utilisez les flèches pour modifier l’ordre."
+            "value" : "À gravité égale, la première métrique admissible est choisie."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "複数の指標が重大レベルの場合、上の指標を優先します。矢印で順序を変更できます。"
+            "value" : "同じ重要度では、最初の対象指標が優先されます。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "多个指标达到严重级别时，优先显示靠上的指标。使用箭头调整顺序。"
+            "value" : "严重程度相同时，优先选择排序靠前的符合条件的指标。"
           }
         }
       }
@@ -7305,6 +7305,356 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alertivity UI 测试"
+          }
+        }
+      }
+    },
+    "pro.feature.samplingActivation" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom sampling interval and auto-switch activation"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messintervall und automatische Aktivierung anpassen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalle de mesure et activation personnalisables"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプリング間隔と自動切替の開始レベルを変更"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定义采样间隔和自动切换激活级别"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "pro.lock.activation" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro unlocks custom auto-switch activation."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro schaltet die Anpassung der automatischen Aktivierung frei."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro permet de personnaliser le niveau d’activation."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proで自動切替の開始レベルを変更できます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro 可自定义自动切换激活级别。"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "pro.lock.sampling" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro unlocks a custom sampling interval."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro schaltet ein eigenes Messintervall frei."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro permet de personnaliser l’intervalle de mesure."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proでサンプリング間隔を変更できます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro 可自定义采样间隔。"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.activation" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activation level"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivierungsstufe"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niveau d’activation"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始レベル"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "激活级别"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.activation.help" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switch at %@; otherwise use the default icon."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei %@ umschalten; sonst das Standardsymbol verwenden."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basculer au niveau %@ ; sinon utiliser l’icône par défaut."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@で切り替え、それ以外は既定のアイコンを使います。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在%@时切换；否则使用默认图标。"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.level.critical" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Critical only"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur kritisch"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Critique uniquement"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重大のみ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仅严重"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.autoSwitch.level.elevated" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elevated or higher"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erhöht oder höher"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Élevé ou supérieur"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上昇以上"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "升高及以上"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.sampling.help" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shorter intervals respond sooner and use more resources."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kürzere Intervalle reagieren schneller und benötigen mehr Ressourcen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un intervalle court améliore la réactivité et consomme plus de ressources."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "間隔を短くすると応答が速くなり、リソース使用量が増えます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "较短间隔响应更快，也会使用更多资源。"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.sampling.interval" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sampling interval"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messintervall"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalle de mesure"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプリング間隔"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "采样间隔"
+          }
+        }
+      },
+      "extractionState" : "manual"
+    },
+    "settings.sampling.value" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d seconds"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Sekunden"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d secondes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d秒"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 秒"
           }
         }
       }
