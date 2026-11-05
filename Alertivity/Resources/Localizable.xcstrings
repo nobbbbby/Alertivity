@@ -36,272 +36,272 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "حدود مخصصة لاستخدام CPU والذاكرة والقرص والشبكة · الفاصل بين العينات"
+        "state": "translated",
+        "value": "حدود استخدام CPU والذاكرة والقرص والشبكة؛ والفاصل بين العينات."
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, মেমরি, ডিস্ক ও নেটওয়ার্কের কাস্টম সীমা · নমুনা সংগ্রহের বিরতি"
+        "state": "translated",
+        "value": "CPU, মেমরি, ডিস্ক ও নেটওয়ার্কের সীমা এবং নমুনা সংগ্রহের বিরতি।"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Llindars personalitzats de CPU, memòria, disc i xarxa · Interval de mostreig"
+        "state": "translated",
+        "value": "Llindars de CPU, memòria, disc i xarxa; interval de mostreig."
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "自訂 CPU、記憶體、磁碟和網路閾值 · 取樣間隔"
+        "state": "translated",
+        "value": "CPU、記憶體、磁碟和網路閾值，以及取樣間隔。"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Prilagođeni pragovi za CPU, memoriju, disk i mrežu · Interval uzorkovanja"
+        "state": "translated",
+        "value": "Pragovi za CPU, memoriju, disk i mrežu te interval uzorkovanja."
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Vlastní prahy CPU, paměti, disku a sítě · Interval vzorkování"
+        "state": "translated",
+        "value": "Prahy CPU, paměti, disku a sítě; interval vzorkování."
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Tilpassede grænser for CPU, hukommelse, disk og netværk · Måleinterval"
+        "state": "translated",
+        "value": "Grænser for CPU, hukommelse, disk og netværk samt måleinterval."
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Aangepaste drempels voor CPU, geheugen, schijf en netwerk · Meetinterval"
+        "state": "translated",
+        "value": "Drempels voor CPU, geheugen, schijf en netwerk; meetinterval."
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "CPU, memory, disk, and network thresholds; sampling interval."
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "CPU, memory, disk, and network thresholds; sampling interval."
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "CPU, memory, disk, and network thresholds; sampling interval."
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU:n, muistin, levyn ja verkon mukautetut kynnysarvot · Näytteenottoväli"
+        "state": "translated",
+        "value": "CPU:n, muistin, levyn ja verkon kynnysarvot sekä näytteenottoväli."
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Seuils du processeur, de la mémoire, du disque et du réseau ; intervalle de mesure."
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Προσαρμοσμένα όρια CPU, μνήμης, δίσκου και δικτύου · Διάστημα δειγματοληψίας"
+        "state": "translated",
+        "value": "Όρια CPU, μνήμης, δίσκου και δικτύου και διάστημα δειγματοληψίας."
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, મેમરી, ડિસ્ક અને નેટવર્કની કસ્ટમ મર્યાદા · નમૂના લેવાનો અંતરાલ"
+        "state": "translated",
+        "value": "CPU, મેમરી, ડિસ્ક અને નેટવર્કની મર્યાદાઓ તથા નમૂના લેવાનો અંતરાલ."
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ספים מותאמים ל-CPU, לזיכרון, לכונן ולרשת · מרווח דגימה"
+        "state": "translated",
+        "value": "ספי CPU, זיכרון, כונן ורשת ומרווח הדגימה."
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, मेमोरी, डिस्क और नेटवर्क की सीमाएँ बदलें · सैंपलिंग अंतराल"
+        "state": "translated",
+        "value": "CPU, मेमोरी, डिस्क और नेटवर्क की सीमाएँ और सैंपलिंग अंतराल।"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Egyéni CPU-, memória-, lemez- és hálózati küszöbök · Mintavételi időköz"
+        "state": "translated",
+        "value": "CPU-, memória-, lemez- és hálózati küszöbök, valamint mintavételi időköz."
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Ambang CPU, memori, disk, dan jaringan khusus · Interval pengambilan sampel"
+        "state": "translated",
+        "value": "Ambang CPU, memori, disk, dan jaringan serta interval pengambilan sampel."
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Soglie personalizzate per CPU, memoria, disco e rete · Intervallo di campionamento"
+        "state": "translated",
+        "value": "Soglie per CPU, memoria, disco e rete; intervallo di campionamento."
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, ಮೆಮೊರಿ, ಡಿಸ್ಕ್ ಮತ್ತು ನೆಟ್‌ವರ್ಕ್‌ನ ಕಸ್ಟಮ್ ಮಿತಿಗಳು · ಮಾದರಿ ಸಂಗ್ರಹ ಅಂತರ"
+        "state": "translated",
+        "value": "CPU, ಮೆಮೊರಿ, ಡಿಸ್ಕ್ ಮತ್ತು ನೆಟ್‌ವರ್ಕ್ ಮಿತಿಗಳು ಹಾಗೂ ಮಾದರಿ ಸಂಗ್ರಹ ಅಂತರ."
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, 메모리, 디스크 및 네트워크 임계값 사용자화 · 샘플링 간격"
+        "state": "translated",
+        "value": "CPU, 메모리, 디스크 및 네트워크 임계값과 샘플링 간격."
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Ambang CPU, memori, cakera dan rangkaian tersuai · Sela pensampelan"
+        "state": "translated",
+        "value": "Ambang CPU, memori, cakera dan rangkaian serta sela pensampelan."
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, മെമ്മറി, ഡിസ്ക്, നെറ്റ്‌വർക്ക് എന്നിവയുടെ ഇഷ്ടാനുസൃത പരിധികൾ · സാമ്പിൾ ഇടവേള"
+        "state": "translated",
+        "value": "CPU, മെമ്മറി, ഡിസ്ക്, നെറ്റ്‌വർക്ക് എന്നിവയുടെ പരിധികളും സാമ്പിൾ ഇടവേളയും."
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, मेमरी, डिस्क आणि नेटवर्कच्या सानुकूल मर्यादा · नमुना अंतर"
+        "state": "translated",
+        "value": "CPU, मेमरी, डिस्क आणि नेटवर्कच्या मर्यादा आणि नमुना अंतर."
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Egendefinerte grenser for CPU, minne, disk og nettverk · Måleintervall"
+        "state": "translated",
+        "value": "Grenser for CPU, minne, disk og nettverk samt måleintervall."
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, ମେମୋରି, ଡିସ୍କ୍ ଓ ନେଟୱର୍କ୍‌ର କଷ୍ଟମ୍ ସୀମା · ନମୁନା ସଂଗ୍ରହ ବ୍ୟବଧାନ"
+        "state": "translated",
+        "value": "CPU, ମେମୋରି, ଡିସ୍କ୍ ଓ ନେଟୱର୍କ୍‌ର ସୀମା ଏବଂ ନମୁନା ସଂଗ୍ରହ ବ୍ୟବଧାନ।"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Własne progi CPU, pamięci, dysku i sieci · Interwał próbkowania"
+        "state": "translated",
+        "value": "Progi CPU, pamięci, dysku i sieci oraz interwał próbkowania."
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Limites personalizados de CPU, memória, disco e rede · Intervalo de amostragem"
+        "state": "translated",
+        "value": "Limites de CPU, memória, disco e rede e intervalo de amostragem."
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Limites personalizados de CPU, memória, disco e rede · Intervalo de amostragem"
+        "state": "translated",
+        "value": "Limites de CPU, memória, disco e rede e intervalo de amostragem."
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, ਮੈਮੋਰੀ, ਡਿਸਕ ਅਤੇ ਨੈੱਟਵਰਕ ਦੀਆਂ ਹੱਦਾਂ ਬਦਲੋ · ਨਮੂਨੇ ਲੈਣ ਦਾ ਅੰਤਰਾਲ"
+        "state": "translated",
+        "value": "CPU, ਮੈਮੋਰੀ, ਡਿਸਕ ਅਤੇ ਨੈੱਟਵਰਕ ਦੀਆਂ ਹੱਦਾਂ ਅਤੇ ਨਮੂਨੇ ਲੈਣ ਦਾ ਅੰਤਰਾਲ।"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Praguri personalizate pentru CPU, memorie, disc și rețea · Interval de eșantionare"
+        "state": "translated",
+        "value": "Praguri pentru CPU, memorie, disc și rețea și intervalul de eșantionare."
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Свои пороги CPU, памяти, диска и сети · Интервал измерений"
+        "state": "translated",
+        "value": "Пороги CPU, памяти, диска и сети; интервал измерений."
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Vlastné prahy CPU, pamäte, disku a siete · Interval vzorkovania"
+        "state": "translated",
+        "value": "Prahy CPU, pamäte, disku a siete; interval vzorkovania."
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Pragovi za CPU, pomnilnik, disk in omrežje po meri · Interval vzorčenja"
+        "state": "translated",
+        "value": "Pragovi za CPU, pomnilnik, disk in omrežje ter interval vzorčenja."
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Umbrales personalizados de CPU, memoria, disco y red · Intervalo de muestreo"
+        "state": "translated",
+        "value": "Umbrales de CPU, memoria, disco y red; intervalo de muestreo."
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Umbrales personalizados de CPU, memoria, disco y red · Intervalo de muestreo"
+        "state": "translated",
+        "value": "Umbrales de CPU, memoria, disco y red; intervalo de muestreo."
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Anpassade gränser för CPU, minne, skiva och nätverk · Mätintervall"
+        "state": "translated",
+        "value": "Gränser för CPU, minne, skiva och nätverk samt mätintervall."
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, நினைவகம், வட்டு, நெட்வொர்க்கிற்கான தனிப்பயன் வரம்புகள் · மாதிரி இடைவெளி"
+        "state": "translated",
+        "value": "CPU, நினைவகம், வட்டு, நெட்வொர்க்கிற்கான வரம்புகள் மற்றும் மாதிரி இடைவெளி."
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU, మెమరీ, డిస్క్, నెట్‌వర్క్ అనుకూల పరిమితులు · నమూనా సేకరణ విరామం"
+        "state": "translated",
+        "value": "CPU, మెమరీ, డిస్క్, నెట్‌వర్క్ పరిమితులు మరియు నమూనా సేకరణ విరామం."
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "เกณฑ์ CPU หน่วยความจำ ดิสก์ และเครือข่ายที่ปรับแต่งได้ · ช่วงเวลาเก็บตัวอย่าง"
+        "state": "translated",
+        "value": "เกณฑ์ CPU หน่วยความจำ ดิสก์ และเครือข่าย รวมถึงช่วงเวลาเก็บตัวอย่าง"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Özel CPU, bellek, disk ve ağ eşikleri · Örnekleme aralığı"
+        "state": "translated",
+        "value": "CPU, bellek, disk ve ağ eşikleri ile örnekleme aralığı."
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Власні пороги CPU, памʼяті, диска й мережі · Інтервал вимірювань"
+        "state": "translated",
+        "value": "Пороги CPU, пам’яті, диска й мережі та інтервал вимірювань."
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "CPU، میموری، ڈسک اور نیٹ ورک کی حسب ضرورت حدود · نمونے لینے کا وقفہ"
+        "state": "translated",
+        "value": "CPU، میموری، ڈسک اور نیٹ ورک کی حدود اور نمونے لینے کا وقفہ۔"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Tùy chỉnh ngưỡng CPU, bộ nhớ, ổ đĩa và mạng · Khoảng lấy mẫu"
+        "state": "translated",
+        "value": "Ngưỡng CPU, bộ nhớ, ổ đĩa và mạng; khoảng lấy mẫu."
       }
     }
   }
@@ -341,272 +341,272 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "فاصل مخصص بين الإشعارات · مدة مخصصة للنشاط المرتفع"
+        "state": "translated",
+        "value": "الفاصل بين الإشعارات ومدة النشاط المرتفع."
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "নোটিফিকেশনের কাস্টম বিরতি · উচ্চ অ্যাক্টিভিটির কাস্টম সময়সীমা"
+        "state": "translated",
+        "value": "নোটিফিকেশনের মধ্যবর্তী বিরতি এবং উচ্চ অ্যাক্টিভিটির সময়সীমা।"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Interval personalitzat entre notificacions · Durada personalitzada de l’activitat alta"
+        "state": "translated",
+        "value": "Interval entre notificacions i durada de l’activitat alta."
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "自訂通知間隔 · 自訂高活動持續時間"
+        "state": "translated",
+        "value": "通知間隔和高活動持續時間。"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Prilagođeni razmak između obavijesti · Prilagođeno trajanje visoke aktivnosti"
+        "state": "translated",
+        "value": "Razmak između obavijesti i trajanje visoke aktivnosti."
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Vlastní odstup oznámení · Vlastní doba vysoké aktivity"
+        "state": "translated",
+        "value": "Odstup mezi oznámeními a doba vysoké aktivity."
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Tilpasset pause mellem notifikationer · Tilpasset varighed af høj aktivitet"
+        "state": "translated",
+        "value": "Pause mellem notifikationer og varighed af høj aktivitet."
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Aangepast meldingsinterval · Aangepaste duur van hoge activiteit"
+        "state": "translated",
+        "value": "Interval tussen meldingen en duur van hoge activiteit."
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Alert cooldown and high-activity duration."
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Alert cooldown and high-activity duration."
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Alert cooldown and high-activity duration."
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Mukautettu ilmoitusväli · Suuren aktiivisuuden mukautettu kesto"
+        "state": "translated",
+        "value": "Ilmoitusten välinen aika ja suuren aktiivisuuden kesto."
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Délai entre les alertes et durée d’activité élevée."
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Προσαρμοσμένο διάστημα ειδοποιήσεων · Προσαρμοσμένη διάρκεια υψηλής δραστηριότητας"
+        "state": "translated",
+        "value": "Διάστημα μεταξύ ειδοποιήσεων και διάρκεια υψηλής δραστηριότητας."
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "સૂચનાઓ વચ્ચે કસ્ટમ વિરામ · ઊંચી પ્રવૃત્તિનો કસ્ટમ સમયગાળો"
+        "state": "translated",
+        "value": "સૂચનાઓ વચ્ચેનો વિરામ અને ઊંચી પ્રવૃત્તિનો સમયગાળો."
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "מרווח מותאם בין עדכונים · משך מותאם לפעילות גבוהה"
+        "state": "translated",
+        "value": "מרווח בין עדכונים ומשך הפעילות הגבוהה."
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "सूचनाओं का अंतराल बदलें · अधिक गतिविधि की अवधि बदलें"
+        "state": "translated",
+        "value": "सूचनाओं के बीच का अंतराल और अधिक गतिविधि की अवधि।"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Egyéni értesítési időköz · A magas aktivitás egyéni időtartama"
+        "state": "translated",
+        "value": "Értesítések közötti idő és a magas aktivitás időtartama."
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Jeda notifikasi khusus · Durasi aktivitas tinggi khusus"
+        "state": "translated",
+        "value": "Jeda antar notifikasi dan durasi aktivitas tinggi."
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Intervallo minimo personalizzato tra le notifiche · Durata personalizzata dell’attività elevata"
+        "state": "translated",
+        "value": "Intervallo minimo tra le notifiche e durata dell’attività elevata."
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ಸೂಚನೆಗಳ ಕಸ್ಟಮ್ ಅಂತರ · ಹೆಚ್ಚಿನ ಚಟುವಟಿಕೆಯ ಕಸ್ಟಮ್ ಅವಧಿ"
+        "state": "translated",
+        "value": "ಸೂಚನೆಗಳ ನಡುವಿನ ಅಂತರ ಮತ್ತು ಹೆಚ್ಚಿನ ಚಟುವಟಿಕೆಯ ಅವಧಿ."
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "알림 간격 사용자화 · 높은 활동 지속 시간 사용자화"
+        "state": "translated",
+        "value": "알림 간격과 높은 활동 지속 시간."
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Sela pemberitahuan tersuai · Tempoh aktiviti tinggi tersuai"
+        "state": "translated",
+        "value": "Sela antara pemberitahuan dan tempoh aktiviti tinggi."
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "അറിയിപ്പുകളുടെ ഇഷ്ടാനുസൃത ഇടവേള · ഉയർന്ന ആക്റ്റിവിറ്റിയുടെ ഇഷ്ടാനുസൃത ദൈർഘ്യം"
+        "state": "translated",
+        "value": "അറിയിപ്പുകൾക്കിടയിലെ ഇടവേളയും ഉയർന്ന ആക്റ്റിവിറ്റിയുടെ ദൈർഘ്യവും."
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "सूचनांमधील सानुकूल अंतर · उच्च ॲक्टिव्हिटीचा सानुकूल कालावधी"
+        "state": "translated",
+        "value": "सूचनांमधील अंतर आणि उच्च ॲक्टिव्हिटीचा कालावधी."
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Egendefinert pause mellom varslinger · Egendefinert varighet for høy aktivitet"
+        "state": "translated",
+        "value": "Pause mellom varslinger og varighet for høy aktivitet."
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ସୂଚନାର କଷ୍ଟମ୍ ବିରତି · ଅଧିକ କାର୍ଯ୍ୟକଳାପର କଷ୍ଟମ୍ ଅବଧି"
+        "state": "translated",
+        "value": "ସୂଚନାଗୁଡ଼ିକ ମଧ୍ୟରେ ବିରତି ଏବଂ ଅଧିକ କାର୍ଯ୍ୟକଳାପର ଅବଧି।"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Własny odstęp powiadomień · Własny czas wysokiej aktywności"
+        "state": "translated",
+        "value": "Odstęp między powiadomieniami i czas wysokiej aktywności."
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Intervalo personalizado entre notificações · Duração personalizada de alta atividade"
+        "state": "translated",
+        "value": "Intervalo entre notificações e duração da alta atividade."
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Intervalo personalizado entre notificações · Duração personalizada de atividade elevada"
+        "state": "translated",
+        "value": "Intervalo entre notificações e duração da atividade elevada."
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ਸੂਚਨਾਵਾਂ ਦਾ ਵਕਫ਼ਾ ਬਦਲੋ · ਵੱਧ ਸਰਗਰਮੀ ਦੀ ਮਿਆਦ ਬਦਲੋ"
+        "state": "translated",
+        "value": "ਸੂਚਨਾਵਾਂ ਵਿਚਕਾਰ ਵਕਫ਼ਾ ਅਤੇ ਵੱਧ ਸਰਗਰਮੀ ਦੀ ਮਿਆਦ।"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Pauză personalizată între notificări · Durată personalizată a activității intense"
+        "state": "translated",
+        "value": "Pauza dintre notificări și durata activității intense."
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Свой интервал между уведомлениями · Своя длительность высокой активности"
+        "state": "translated",
+        "value": "Интервал между уведомлениями и длительность высокой активности."
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Vlastný odstup hlásení · Vlastný čas vysokej aktivity"
+        "state": "translated",
+        "value": "Odstup medzi hláseniami a čas vysokej aktivity."
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Premor med obvestili po meri · Trajanje visoke dejavnosti po meri"
+        "state": "translated",
+        "value": "Premor med obvestili in trajanje visoke dejavnosti."
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Intervalo personalizado entre notificaciones · Duración personalizada de actividad elevada"
+        "state": "translated",
+        "value": "Intervalo entre notificaciones y duración de la actividad elevada."
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Intervalo personalizado entre notificaciones · Duración personalizada de actividad elevada"
+        "state": "translated",
+        "value": "Intervalo entre notificaciones y duración de la actividad elevada."
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Anpassad paus mellan notiser · Anpassad varaktighet för hög aktivitet"
+        "state": "translated",
+        "value": "Paus mellan notiser och varaktighet för hög aktivitet."
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "அறிவிப்புகளுக்கான தனிப்பயன் இடைவெளி · அதிகச் செயல்பாட்டின் தனிப்பயன் கால அளவு"
+        "state": "translated",
+        "value": "அறிவிப்புகளுக்கு இடையிலான இடைவெளி மற்றும் அதிகச் செயல்பாட்டின் கால அளவு."
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "నోటిఫికేషన్‌ల అనుకూల విరామం · అధిక కార్యకలాప అనుకూల వ్యవధి"
+        "state": "translated",
+        "value": "నోటిఫికేషన్‌ల మధ్య విరామం మరియు అధిక కార్యకలాప వ్యవధి."
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ช่วงพักการแจ้งเตือนที่ปรับแต่งได้ · ระยะเวลากิจกรรมสูงที่ปรับแต่งได้"
+        "state": "translated",
+        "value": "ช่วงพักระหว่างการแจ้งเตือนและระยะเวลากิจกรรมสูง"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Özel bildirim aralığı · Özel yüksek etkinlik süresi"
+        "state": "translated",
+        "value": "Bildirimler arasındaki süre ve yüksek etkinlik süresi."
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Власний інтервал сповіщень · Власна тривалість високої активності"
+        "state": "translated",
+        "value": "Інтервал між сповіщеннями та тривалість високої активності."
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "اطلاعات کا حسب ضرورت وقفہ · زیادہ سرگرمی کا حسب ضرورت دورانیہ"
+        "state": "translated",
+        "value": "اطلاعات کے درمیان وقفہ اور زیادہ سرگرمی کا دورانیہ۔"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Tùy chỉnh khoảng cách thông báo · Tùy chỉnh thời lượng hoạt động cao"
+        "state": "translated",
+        "value": "Khoảng cách giữa các thông báo và thời lượng hoạt động cao."
       }
     }
   }
@@ -646,272 +646,272 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "مستوى التنشيط · أولوية مقاييس مخصصة للتبديل التلقائي"
+        "state": "translated",
+        "value": "مستوى التنشيط وأولوية المقاييس للتبديل التلقائي."
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "সক্রিয়করণ স্তর · অটো সুইচের জন্য মেট্রিকের কাস্টম অগ্রাধিকার"
+        "state": "translated",
+        "value": "স্বয়ংক্রিয় পরিবর্তনের সক্রিয়করণ স্তর এবং মেট্রিকের অগ্রাধিকার।"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Nivell d’activació · Prioritat personalitzada de les mètriques per al canvi automàtic"
+        "state": "translated",
+        "value": "Nivell d’activació i prioritat de les mètriques per al canvi automàtic."
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "啟用等級 · 自訂自動切換的指標優先順序"
+        "state": "translated",
+        "value": "自動切換的啟用等級和指標優先順序。"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Razina aktivacije · Prilagođeni prioritet mjernih podataka za automatsko prebacivanje"
+        "state": "translated",
+        "value": "Razina aktivacije i prioritet mjernih podataka za automatsko prebacivanje."
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Úroveň aktivace · Vlastní priorita metrik pro automatické přepínání"
+        "state": "translated",
+        "value": "Úroveň aktivace a priorita metrik pro automatické přepínání."
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Aktiveringsniveau · Tilpasset metrikprioritet ved automatisk skift"
+        "state": "translated",
+        "value": "Aktiveringsniveau og metrikprioritet ved automatisk skift."
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Activeringsniveau · Aangepaste metriekprioriteit voor automatisch schakelen"
+        "state": "translated",
+        "value": "Activeringsniveau en metriekprioriteit voor automatisch schakelen."
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Auto-switch activation level and metric priority."
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Auto-switch activation level and metric priority."
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Auto-switch activation level and metric priority."
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Aktivointitaso · Mittareiden mukautettu tärkeysjärjestys automaattisessa vaihdossa"
+        "state": "translated",
+        "value": "Automaattisen vaihdon aktivointitaso ja mittareiden tärkeysjärjestys."
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Niveau d’activation et priorité des mesures pour le basculement automatique."
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Επίπεδο ενεργοποίησης · Προσαρμοσμένη προτεραιότητα μετρήσεων για αυτόματη εναλλαγή"
+        "state": "translated",
+        "value": "Επίπεδο ενεργοποίησης και προτεραιότητα μετρήσεων για την αυτόματη εναλλαγή."
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "સક્રિયકરણ સ્તર · આપમેળે બદલવા માટે માપદંડની કસ્ટમ પ્રાથમિકતા"
+        "state": "translated",
+        "value": "આપમેળે ફેરબદલ માટે સક્રિયકરણ સ્તર અને માપદંડોની પ્રાથમિકતા."
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "רמת הפעלה · עדיפות מדדים מותאמת למעבר האוטומטי"
+        "state": "translated",
+        "value": "רמת הפעלה ועדיפות מדדים למעבר האוטומטי."
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "सक्रियण स्तर · ऑटो स्विच के लिए मेट्रिक की प्राथमिकता बदलें"
+        "state": "translated",
+        "value": "अपने आप बदलने के लिए सक्रियण स्तर और मेट्रिक की प्राथमिकता।"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Aktiválási szint · Egyéni mérőszám-prioritás az automatikus váltáshoz"
+        "state": "translated",
+        "value": "Aktiválási szint és a mérőszámok prioritása az automatikus váltáshoz."
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Tingkat aktivasi · Prioritas metrik khusus untuk pengalihan otomatis"
+        "state": "translated",
+        "value": "Tingkat aktivasi dan prioritas metrik untuk peralihan otomatis."
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Livello di attivazione · Priorità personalizzata delle metriche per il cambio automatico"
+        "state": "translated",
+        "value": "Livello di attivazione e priorità delle metriche per il cambio automatico."
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ಸಕ್ರಿಯಗೊಳಿಸುವ ಮಟ್ಟ · ಸ್ವಯಂ ಬದಲಾವಣೆಗೆ ಮಾಪನಗಳ ಕಸ್ಟಮ್ ಆದ್ಯತೆ"
+        "state": "translated",
+        "value": "ಸ್ವಯಂಚಾಲಿತ ಬದಲಾವಣೆಗೆ ಸಕ್ರಿಯಗೊಳಿಸುವ ಮಟ್ಟ ಮತ್ತು ಮಾಪನಗಳ ಆದ್ಯತೆ."
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "활성화 수준 · 자동 전환 시 지표 우선순위 사용자화"
+        "state": "translated",
+        "value": "자동 전환의 활성화 수준과 지표 우선순위."
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Tahap pengaktifan · Keutamaan metrik tersuai untuk pertukaran automatik"
+        "state": "translated",
+        "value": "Tahap pengaktifan dan keutamaan metrik untuk pertukaran automatik."
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "സജീവമാക്കൽ നില · ഓട്ടോ സ്വിച്ചിനുള്ള മെട്രിക്കുകളുടെ ഇഷ്ടാനുസൃത മുൻഗണന"
+        "state": "translated",
+        "value": "സ്വയമേവ മാറുന്നതിനുള്ള സജീവമാക്കൽ നിലയും മെട്രിക്കുകളുടെ മുൻഗണനയും."
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "सक्रियता पातळी · आपोआप बदलण्यासाठी मेट्रिकचा सानुकूल प्राधान्यक्रम"
+        "state": "translated",
+        "value": "आपोआप बदलण्यासाठी सक्रियता पातळी आणि मेट्रिकचा प्राधान्यक्रम."
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Aktiveringsnivå · Egendefinert måleprioritet for automatisk bytte"
+        "state": "translated",
+        "value": "Aktiveringsnivå og måleprioritet for automatisk bytte."
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ସକ୍ରିୟକରଣ ସ୍ତର · ସ୍ୱୟଂଚାଳିତ ବଦଳ ପାଇଁ ମାପକର କଷ୍ଟମ୍ ପ୍ରାଥମିକତା"
+        "state": "translated",
+        "value": "ସ୍ୱୟଂଚାଳିତ ପରିବର୍ତ୍ତନ ପାଇଁ ସକ୍ରିୟକରଣ ସ୍ତର ଏବଂ ମାପକଗୁଡ଼ିକର ପ୍ରାଥମିକତା।"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Poziom aktywacji · Własny priorytet wskaźników przy automatycznym przełączaniu"
+        "state": "translated",
+        "value": "Poziom aktywacji i priorytet wskaźników przy automatycznym przełączaniu."
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Nível de ativação · Prioridade de métricas personalizada para a alternância automática"
+        "state": "translated",
+        "value": "Nível de ativação e prioridade das métricas para a alternância automática."
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Nível de ativação · Prioridade de métricas personalizada para a alternância automática"
+        "state": "translated",
+        "value": "Nível de ativação e prioridade das métricas para a alternância automática."
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ਚਾਲੂ ਹੋਣ ਦਾ ਪੱਧਰ · ਆਟੋ ਸਵਿੱਚ ਲਈ ਮੈਟ੍ਰਿਕ ਦੀ ਤਰਜੀਹ ਬਦਲੋ"
+        "state": "translated",
+        "value": "ਆਪਣੇ ਆਪ ਬਦਲਣ ਲਈ ਚਾਲੂ ਹੋਣ ਦਾ ਪੱਧਰ ਅਤੇ ਮੈਟ੍ਰਿਕ ਦੀ ਤਰਜੀਹ।"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Nivel de activare · Prioritate personalizată a indicatorilor pentru comutarea automată"
+        "state": "translated",
+        "value": "Nivelul de activare și prioritatea indicatorilor pentru comutarea automată."
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Уровень активации · Свой приоритет показателей для автопереключения"
+        "state": "translated",
+        "value": "Уровень активации и приоритет показателей для автопереключения."
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Úroveň aktivácie · Vlastná priorita metrík pre automatické prepínanie"
+        "state": "translated",
+        "value": "Úroveň aktivácie a priorita metrík pre automatické prepínanie."
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Raven aktivacije · Prednost meritev po meri za samodejno preklapljanje"
+        "state": "translated",
+        "value": "Raven aktivacije in prednost meritev za samodejno preklapljanje."
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Nivel de activación · Prioridad de métricas personalizada para el cambio automático"
+        "state": "translated",
+        "value": "Nivel de activación y prioridad de las métricas para el cambio automático."
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Nivel de activación · Prioridad de métricas personalizada para el cambio automático"
+        "state": "translated",
+        "value": "Nivel de activación y prioridad de las métricas para el cambio automático."
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Aktiveringsnivå · Anpassad mätvärdesprioritet för automatiskt byte"
+        "state": "translated",
+        "value": "Aktiveringsnivå och mätvärdesprioritet för automatiskt byte."
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "செயல்படுத்தும் நிலை · தானியங்கி மாற்றத்திற்கான தனிப்பயன் அளவீட்டு முன்னுரிமை"
+        "state": "translated",
+        "value": "தானாக மாறுவதற்கான செயல்படுத்தும் நிலை மற்றும் அளவீட்டு முன்னுரிமை."
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ప్రారంభ స్థాయి · ఆటో స్విచ్ కోసం కొలమానాల అనుకూల ప్రాధాన్యత"
+        "state": "translated",
+        "value": "స్వయంచాలక మార్పు కోసం ప్రారంభ స్థాయి మరియు కొలమానాల ప్రాధాన్యత."
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ระดับการเริ่มทำงาน · ลำดับความสำคัญของตัววัดสำหรับการสลับอัตโนมัติ"
+        "state": "translated",
+        "value": "ระดับการเริ่มทำงานและลำดับความสำคัญของตัววัดสำหรับการสลับอัตโนมัติ"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Etkinleştirme düzeyi · Otomatik geçiş için özel ölçüm önceliği"
+        "state": "translated",
+        "value": "Otomatik geçiş için etkinleştirme düzeyi ve ölçüm önceliği."
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Рівень активації · Власний пріоритет показників для автоперемикання"
+        "state": "translated",
+        "value": "Рівень активації та пріоритет показників для автоматичного перемикання."
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "فعالی سطح · خودکار تبدیلی کے لیے پیمانوں کی حسب ضرورت ترجیح"
+        "state": "translated",
+        "value": "خودکار تبدیلی کے لیے فعالی سطح اور پیمانوں کی ترجیح۔"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Mức kích hoạt · Tùy chỉnh ưu tiên chỉ số cho chuyển tự động"
+        "state": "translated",
+        "value": "Mức kích hoạt và mức ưu tiên chỉ số khi tự động chuyển."
       }
     }
   }
@@ -37534,271 +37534,271 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "سلوك التطبيق"
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "অ্যাপের আচরণ"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportament de l’app"
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "App 行為"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Ponašanje aplikacije"
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Chování aplikace"
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Appens adfærd"
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Appgedrag"
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "App behavior"
+        "state": "translated",
+        "value": "App behaviour"
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "App behavior"
+        "state": "translated",
+        "value": "App behaviour"
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "App behavior"
+        "state": "translated",
+        "value": "App behaviour"
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Sovelluksen toiminta"
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportement de l’app"
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Συμπεριφορά εφαρμογής"
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ઍપનું વર્તન"
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "התנהגות היישום"
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ऐप का व्यवहार"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Alkalmazás működése"
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Perilaku aplikasi"
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportamento dell’app"
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ಆ್ಯಪ್ ನಡವಳಿಕೆ"
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "앱 동작"
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Tingkah laku app"
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ആപ്പിന്റെ പ്രവർത്തനം"
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "अ‍ॅपचे वर्तन"
+        "state": "translated",
+        "value": "ॲपचे वर्तन"
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Appens oppførsel"
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ଆପ୍‌ର ଆଚରଣ"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Działanie aplikacji"
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportamento do app"
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportamento da aplicação"
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ਐਪ ਦਾ ਵਿਹਾਰ"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportamentul aplicației"
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Поведение приложения"
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Správanie aplikácie"
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Delovanje aplikacije"
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportamiento de la app"
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comportamiento de la app"
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Appens beteende"
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "செயலியின் நடத்தை"
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "యాప్ ప్రవర్తన"
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ลักษณะการทำงานของแอป"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Uygulama davranışı"
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Поведінка програми"
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ایپ کا رویہ"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Hoạt động của ứng dụng"
       }
     }
@@ -37839,271 +37839,271 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "المظهر"
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "চেহারা"
+        "state": "translated",
+        "value": "রূপ"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aparença"
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "外觀"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Izgled"
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Vzhled"
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Udseende"
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Weergave"
+        "state": "translated",
+        "value": "Uiterlijk"
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Appearance"
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Appearance"
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Appearance"
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Ulkoasu"
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Apparence"
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Εμφάνιση"
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "દેખાવ"
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "מראה"
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "दिखावट"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Megjelenés"
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Tampilan"
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aspetto"
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ಗೋಚರತೆ"
+        "state": "translated",
+        "value": "ನೋಟ"
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "모양"
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Penampilan"
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "രൂപഭാവം"
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "दिसणे"
+        "state": "translated",
+        "value": "स्वरूप"
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Utseende"
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ରୂପ"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Wygląd"
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aparência"
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aspeto"
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ਦਿੱਖ"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aspect"
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Оформление"
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Vzhľad"
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Videz"
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Apariencia"
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Apariencia"
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Utseende"
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "தோற்றம்"
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "రూపం"
+        "state": "translated",
+        "value": "స్వరూపం"
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ลักษณะปรากฏ"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Görünüm"
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Вигляд"
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ظاہری شکل"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Giao diện"
       }
     }
@@ -38144,271 +38144,271 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "التبديل التلقائي"
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "স্বয়ংক্রিয় পরিবর্তন"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Canvi automàtic"
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "自動切換"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatsko prebacivanje"
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatické přepínání"
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatisk skift"
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "Automatisch wisselen"
+        "state": "translated",
+        "value": "Automatisch schakelen"
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Auto switching"
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Auto switching"
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Auto switching"
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automaattinen vaihto"
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Basculement automatique"
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Αυτόματη εναλλαγή"
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "આપમેળે ફેરબદલ"
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "החלפה אוטומטית"
+        "state": "translated",
+        "value": "מעבר אוטומטי"
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "अपने आप बदलना"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatikus váltás"
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Peralihan otomatis"
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Cambio automatico"
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ಸ್ವಯಂಚಾಲಿತ ಬದಲಾವಣೆ"
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "자동 전환"
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Pertukaran automatik"
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "സ്വയമേവ മാറൽ"
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "आपोआप बदल"
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatisk bytte"
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ସ୍ୱୟଂଚାଳିତ ପରିବର୍ତ୍ତନ"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatyczne przełączanie"
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Alternância automática"
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Alternância automática"
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ਆਪਣੇ ਆਪ ਬਦਲਣਾ"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Comutare automată"
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Автопереключение"
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatické prepínanie"
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Samodejno preklapljanje"
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Cambio automático"
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Cambio automático"
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Automatiskt byte"
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "தானாக மாறுதல்"
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "స్వయంచాలక మార్పు"
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "การสลับอัตโนมัติ"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Otomatik geçiş"
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Автоматичне перемикання"
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "خودکار تبدیلی"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Tự động chuyển"
       }
     }
@@ -38449,271 +38449,271 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "المراقبة"
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "পর্যবেক্ষণ"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitoratge"
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "監測"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Praćenje"
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitorování"
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Overvågning"
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Bewaking"
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitoring"
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitoring"
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitoring"
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Seuranta"
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Surveillance"
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Παρακολούθηση"
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "નિરીક્ષણ"
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ניטור"
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "निगरानी"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Figyelés"
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Pemantauan"
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitoraggio"
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ಮೇಲ್ವಿಚಾರಣೆ"
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "모니터링"
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Pemantauan"
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "നിരീക്ഷണം"
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "निरीक्षण"
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Overvåking"
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ନିରୀକ୍ଷଣ"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitorowanie"
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitoramento"
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitorização"
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ਨਿਗਰਾਨੀ"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitorizare"
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Мониторинг"
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitorovanie"
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Spremljanje"
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitoreo"
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Monitorización"
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Övervakning"
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "கண்காணிப்பு"
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "పర్యవేక్షణ"
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "การตรวจสอบ"
+        "state": "translated",
+        "value": "การติดตาม"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "İzleme"
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Моніторинг"
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "نگرانی"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Giám sát"
       }
     }
@@ -38754,271 +38754,271 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "الظهور"
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "দৃশ্যমানতা"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilitat"
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "顯示"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Vidljivost"
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Viditelnost"
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Synlighed"
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Zichtbaarheid"
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibility"
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibility"
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibility"
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Näkyvyys"
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilité"
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Ορατότητα"
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "દૃશ્યતા"
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "נראות"
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "दृश्यता"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Láthatóság"
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilitas"
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilità"
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ಗೋಚರಿಸುವಿಕೆ"
+        "state": "translated",
+        "value": "ಗೋಚರತೆ"
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "표시"
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Keterlihatan"
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ദൃശ്യത"
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "दृश्यमानता"
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Synlighet"
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ଦୃଶ୍ୟମାନତା"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Widoczność"
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilidade"
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilidade"
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "ਦਿੱਖਯੋਗਤਾ"
+        "state": "translated",
+        "value": "ਦਿਖਾਈ ਦੇਣਾ"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Vizibilitate"
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Видимость"
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Viditeľnosť"
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Vidnost"
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilidad"
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Visibilidad"
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Synlighet"
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "தெரிவுநிலை"
+        "state": "translated",
+        "value": "காட்சித்தன்மை"
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "దృశ్యమానత"
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "การแสดงผล"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Görünürlük"
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Видимість"
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "مرئیت"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Hiển thị"
       }
     }
@@ -39059,271 +39059,271 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "نشاط العمليات"
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "প্রক্রিয়ার কার্যকলাপ"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Activitat dels processos"
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "程序活動"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aktivnost procesa"
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aktivita procesů"
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Procesaktivitet"
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Procesactiviteit"
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Process activity"
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Process activity"
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Process activity"
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Prosessien toiminta"
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Activité des processus"
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Δραστηριότητα διεργασιών"
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "પ્રક્રિયાની પ્રવૃત્તિ"
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "פעילות תהליכים"
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "प्रक्रिया गतिविधि"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Folyamatok tevékenysége"
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aktivitas proses"
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Attività dei processi"
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ಪ್ರಕ್ರಿಯೆಯ ಚಟುವಟಿಕೆ"
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "프로세스 활동"
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aktiviti proses"
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "പ്രോസസ്സ് പ്രവർത്തനം"
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "प्रक्रिया क्रियाकलाप"
+        "state": "translated",
+        "value": "प्रक्रियांची सक्रियता"
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Prosessaktivitet"
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ପ୍ରକ୍ରିୟା କାର୍ଯ୍ୟକଳାପ"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aktywność procesów"
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Atividade dos processos"
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Atividade dos processos"
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ਪ੍ਰਕਿਰਿਆ ਦੀ ਸਰਗਰਮੀ"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Activitatea proceselor"
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Активность процессов"
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aktivita procesov"
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Dejavnost procesov"
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Actividad de los procesos"
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Actividad de los procesos"
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Processaktivitet"
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "செயல்முறைச் செயல்பாடு"
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ప్రాసెస్ కార్యకలాపం"
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "กิจกรรมของกระบวนการ"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "İşlem etkinliği"
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Активність процесів"
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "پروسیس کی سرگرمی"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Hoạt động của tiến trình"
       }
     }
@@ -39669,271 +39669,271 @@
     },
     "ar": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "لا توجد عمليات متجاهلة"
       }
     },
     "bn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "কোনো উপেক্ষিত প্রক্রিয়া নেই"
       }
     },
     "ca": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "No hi ha processos ignorats"
       }
     },
     "zh-Hant": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "沒有忽略的程序"
       }
     },
     "hr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Nema zanemarenih procesa"
       }
     },
     "cs": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Žádné ignorované procesy"
       }
     },
     "da": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Ingen ignorerede processer"
       }
     },
     "nl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Geen genegeerde processen"
       }
     },
     "en-AU": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "No ignored processes"
       }
     },
     "en-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "No ignored processes"
       }
     },
     "en-GB": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "No ignored processes"
       }
     },
     "fi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Ei ohitettuja prosesseja"
       }
     },
     "fr-CA": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Aucun processus ignoré"
       }
     },
     "el": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Δεν υπάρχουν διεργασίες που αγνοούνται"
       }
     },
     "gu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "કોઈ અવગણેલી પ્રક્રિયા નથી"
       }
     },
     "he": {
       "stringUnit": {
-        "state": "needs_review",
-        "value": "אין תהליכים שהתעלמו מהם"
+        "state": "translated",
+        "value": "אין תהליכים ברשימת ההתעלמות"
       }
     },
     "hi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "कोई अनदेखी प्रक्रिया नहीं"
       }
     },
     "hu": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Nincsenek figyelmen kívül hagyott folyamatok"
       }
     },
     "id": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Tidak ada proses yang diabaikan"
       }
     },
     "it": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Nessun processo ignorato"
       }
     },
     "kn": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ನಿರ್ಲಕ್ಷಿಸಿದ ಪ್ರಕ್ರಿಯೆಗಳಿಲ್ಲ"
       }
     },
     "ko": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "무시된 프로세스 없음"
       }
     },
     "ms": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Tiada proses diabaikan"
       }
     },
     "ml": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "അവഗണിച്ച പ്രോസസ്സുകളൊന്നുമില്ല"
       }
     },
     "mr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "दुर्लक्षित प्रक्रिया नाहीत"
       }
     },
     "nb": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Ingen ignorerte prosesser"
       }
     },
     "or": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "କୌଣସି ଅଣଦେଖା ପ୍ରକ୍ରିୟା ନାହିଁ"
       }
     },
     "pl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Brak ignorowanych procesów"
       }
     },
     "pt-BR": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Nenhum processo ignorado"
       }
     },
     "pt-PT": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Nenhum processo ignorado"
       }
     },
     "pa": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ਕੋਈ ਅਣਡਿੱਠੀ ਪ੍ਰਕਿਰਿਆ ਨਹੀਂ"
       }
     },
     "ro": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Niciun proces ignorat"
       }
     },
     "ru": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Нет игнорируемых процессов"
       }
     },
     "sk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Žiadne ignorované procesy"
       }
     },
     "sl": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Ni prezrtih procesov"
       }
     },
     "es-MX": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "No hay procesos ignorados"
       }
     },
     "es": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "No hay procesos ignorados"
       }
     },
     "sv": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Inga ignorerade processer"
       }
     },
     "ta": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "புறக்கணிக்கப்பட்ட செயல்முறைகள் இல்லை"
       }
     },
     "te": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "విస్మరించిన ప్రాసెస్‌లు లేవు"
       }
     },
     "th": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "ไม่มีกระบวนการที่ละเว้น"
       }
     },
     "tr": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Yok sayılan işlem yok"
       }
     },
     "uk": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Немає ігнорованих процесів"
       }
     },
     "ur": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "کوئی نظرانداز کردہ پروسیس نہیں"
       }
     },
     "vi": {
       "stringUnit": {
-        "state": "needs_review",
+        "state": "translated",
         "value": "Không có tiến trình bị bỏ qua"
       }
     }
