@@ -5,6 +5,76 @@ final class AlertivityUITests: XCTestCase {
         continueAfterFailure = false
     }
 
+    func testGroupedSettingsRowsAndDependencies() {
+        let app = launchApp()
+        app.launch()
+        let skip = app.buttons["onboarding.skip"]
+        XCTAssertTrue(skip.waitForExistence(timeout: 8))
+        skip.click()
+        XCTAssertTrue(skip.waitForNonExistence(timeout: 3))
+        app.activate()
+        app.menuBars.menuBarItems["Alertivity"].click()
+        app.menuItems["Settings…"].click()
+        let sampling = app.popUpButtons["settings.samplingInterval"]
+        XCTAssertTrue(sampling.waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertTrue(app.staticTexts["App behavior"].exists)
+        XCTAssertTrue(app.staticTexts["Monitoring"].exists)
+        sampling.click()
+        for value in ["3 seconds", "5 seconds", "10 seconds"] {
+            XCTAssertTrue(app.menuItems[value].exists)
+        }
+        app.menuItems["3 seconds"].click()
+        XCTAssertEqual(sampling.value as? String, "3 seconds")
+        saveBoundaryScreenshot(app, name: "Grouped General")
+
+        app.buttons["Menu Bar"].click()
+        for heading in ["Visibility", "Appearance", "Auto switching"] {
+            XCTAssertTrue(app.staticTexts[heading].waitForExistence(timeout: 3))
+        }
+        let activation = app.popUpButtons["settings.autoSwitchActivation"]
+        XCTAssertTrue(activation.exists)
+        let priority = app.descendants(matching: .disclosureTriangle)["settings.metricPriority"]
+        XCTAssertTrue(priority.exists)
+        func togglePriority() {
+            // Expanded accessibility bounds include the rows, so click the header's chevron.
+            let chevronInset = min(26, priority.frame.width / 2)
+            let chevronY = min(8, priority.frame.height / 2)
+            priority.coordinate(withNormalizedOffset: .zero)
+                .withOffset(CGVector(dx: chevronInset, dy: chevronY)).click()
+        }
+        let settingsWindow = app.windows.containing(.popUpButton, identifier: "settings.autoSwitchActivation").firstMatch
+        let windowFrame = settingsWindow.frame
+        let closeButtonY = settingsWindow.buttons[XCUIIdentifierCloseWindow].frame.minY
+        let indicatorFrame = settingsToggle(app, "Show indicator").frame
+        saveBoundaryScreenshot(app, name: "Menu Bar Before Disclosure")
+        togglePriority()
+        XCTAssertTrue(app.buttons["Reset Priority"].waitForExistence(timeout: 3), app.debugDescription)
+        XCTAssertTrue(checkboxIsOn(priority))
+        print("Metric priority expanded: collapsed=\(windowFrame), expanded=\(settingsWindow.frame)")
+        XCTAssertGreaterThan(settingsWindow.frame.height, windowFrame.height)
+        XCTAssertEqual(settingsWindow.buttons[XCUIIdentifierCloseWindow].frame.minY, closeButtonY, accuracy: 1)
+        XCTAssertEqual(settingsToggle(app, "Show indicator").frame.minY, indicatorFrame.minY, accuracy: 1)
+        togglePriority()
+        XCTAssertFalse(checkboxIsOn(priority))
+        print("Metric priority collapsed: original=\(windowFrame), restored=\(settingsWindow.frame)")
+        XCTAssertEqual(settingsWindow.frame.height, windowFrame.height, accuracy: 1)
+        XCTAssertEqual(settingsWindow.buttons[XCUIIdentifierCloseWindow].frame.minY, closeButtonY, accuracy: 1)
+        XCTAssertEqual(settingsToggle(app, "Show indicator").frame.minY, indicatorFrame.minY, accuracy: 1)
+        togglePriority()
+        XCTAssertTrue(app.buttons["Reset Priority"].waitForExistence(timeout: 3), app.debugDescription)
+        saveBoundaryScreenshot(app, name: "Grouped Menu Bar Expanded")
+        let autoSwitch = settingsToggle(app, "Auto switch to busiest metric")
+        autoSwitch.click()
+        XCTAssertFalse(activation.isEnabled)
+        autoSwitch.click()
+        XCTAssertTrue(activation.isEnabled)
+        let indicator = settingsToggle(app, "Show indicator")
+        indicator.click()
+        XCTAssertFalse(settingsToggle(app, "Tinted icon").isEnabled)
+        XCTAssertFalse(activation.isEnabled)
+        indicator.click()
+    }
+
     func testActivitySimulatorWindowAndCustomCommandGroups() {
         let app = launchApp()
         app.launch()
@@ -65,7 +135,7 @@ final class AlertivityUITests: XCTestCase {
         next.click()
         XCTAssertEqual(app.staticTexts["onboarding.step"].value as? String, "Step 3 of 3")
         XCTAssertTrue(app.staticTexts["onboarding.pro.introduction"].waitForExistence(timeout: 3))
-        for key in ["pro.feature.thresholds", "pro.feature.cooldown", "pro.feature.duration"] {
+        for key in ["pro.summary.monitoring", "pro.summary.notifications", "pro.summary.menuBar"] {
             XCTAssertTrue(app.staticTexts[key].exists)
         }
         XCTAssertFalse(app.buttons["pro.purchase"].exists)
@@ -93,7 +163,7 @@ final class AlertivityUITests: XCTestCase {
         XCTAssertTrue(cooldown.waitForExistence(timeout: 3))
         XCTAssertEqual(cooldown.isEnabled, !appStoreFree)
         XCTAssertEqual(duration.isEnabled, !appStoreFree)
-        XCTAssertTrue(app.checkBoxes["Enable system notifications"].isEnabled)
+        XCTAssertTrue(settingsToggle(app, "Enable system notifications").isEnabled)
         for key in ["pro.lock.cooldown", "pro.lock.duration"] {
             let hint = app.images[key]
             XCTAssertEqual(hint.exists, appStoreFree)
@@ -180,11 +250,11 @@ final class AlertivityUITests: XCTestCase {
         XCTAssertTrue(menuBar.waitForExistence(timeout: 5))
         menuBar.click()
         XCTAssertEqual(app.popUpButtons["waveform.path.ecg"].value as? String, "Status icon")
-        let savedAutoSwitch = app.checkBoxes["settings.menuBar.autoSwitch"]
+        let savedAutoSwitch = settingsToggle(app, "Auto switch to busiest metric")
         XCTAssertTrue(savedAutoSwitch.exists)
         XCTAssertFalse(checkboxIsOn(savedAutoSwitch))
         let indicator = app.descendants(matching: .statusItem).firstMatch
-        let showIndicator = app.checkBoxes["Show indicator"]
+        let showIndicator = settingsToggle(app, "Show indicator")
         showIndicator.click()
         XCTAssertTrue(indicator.waitForNonExistence(timeout: 3))
         showIndicator.click()
@@ -262,6 +332,19 @@ final class AlertivityUITests: XCTestCase {
             XCTAssertFalse(next.waitForExistence(timeout: 3))
             app.terminate()
         }
+    }
+
+    private func settingsToggle(_ app: XCUIApplication, _ label: String) -> XCUIElement {
+        let identifier = [
+            "Show indicator": "settings.menuBar.showIndicator",
+            "Auto switch to busiest metric": "settings.menuBar.autoSwitch",
+            "Tinted icon": "settings.menuBar.tintedIcon",
+            "Enable system notifications": "settings.notifications.enable"
+        ][label] ?? label
+        let nativeSwitch = app.switches[identifier]
+        if nativeSwitch.exists { return nativeSwitch }
+        let toggle = app.toggles[identifier]
+        return toggle.exists ? toggle : app.checkBoxes[identifier]
     }
 
     private func checkboxIsOn(_ checkbox: XCUIElement) -> Bool {

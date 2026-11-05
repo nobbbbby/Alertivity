@@ -140,6 +140,7 @@ struct AlertivityApp: App {
                     }
                 }
         }
+        .windowResizability(.contentSize)
 
 #if DEBUG
         Window(Text(verbatim: "Activity Simulator"), id: "activity-simulator") {
@@ -547,9 +548,60 @@ private struct MenuWindowBackground: NSViewRepresentable {
 }
 
 /// Shares the actual settings window for focus restoration and safe review presentation.
+@MainActor
 final class SettingsWindowTracker {
     static let shared = SettingsWindowTracker()
-    weak var window: NSWindow?
+    weak var window: NSWindow? {
+        didSet {
+            if window !== oldValue { resizeTopEdge = nil }
+        }
+    }
+    private var resizeTopEdge: CGFloat?
+    private var resizeGeneration = 0
+    private var isRestoringOrigin = false
+    private var resizeObserver: NSObjectProtocol?
+
+    private init() {
+        resizeObserver = NotificationCenter.default.addObserver(
+            forName: NSWindow.didResizeNotification, object: nil, queue: .main
+        ) { [weak self] notification in
+            MainActor.assumeIsolated { self?.preserveTopEdge(after: notification) }
+        }
+    }
+
+    deinit {
+        if let resizeObserver { NotificationCenter.default.removeObserver(resizeObserver) }
+    }
+
+    /// SwiftUI owns the new height; retain the top edge only for this content-driven resize.
+    func prepareForAdaptiveContentResize() {
+        guard let window, !window.inLiveResize else { return }
+        resizeTopEdge = window.frame.maxY
+        resizeGeneration += 1
+        let generation = resizeGeneration
+        Task { [weak self] in
+            try? await Task.sleep(for: .milliseconds(500))
+            guard let self, self.resizeGeneration == generation else { return }
+            self.resizeTopEdge = nil
+        }
+    }
+
+    private func preserveTopEdge(after notification: Notification) {
+        guard let window, notification.object as? NSWindow === window,
+              let resizeTopEdge, !isRestoringOrigin else { return }
+        guard !window.inLiveResize else {
+            self.resizeTopEdge = nil
+            return
+        }
+        let correction = resizeTopEdge - window.frame.maxY
+        guard abs(correction) > 0.5 else { return }
+        isRestoringOrigin = true
+        defer { isRestoringOrigin = false }
+        var origin = window.frame.origin
+        origin.y += correction
+        window.setFrameOrigin(origin)
+        AppLogger.lifecycle.debug("Anchored adaptive Settings resize; verticalCorrection: \(correction, privacy: .public)")
+    }
 }
 
 private struct SettingsWindowAccessor: NSViewRepresentable {

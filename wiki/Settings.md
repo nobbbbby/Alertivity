@@ -1,8 +1,12 @@
 # Settings
 
-Open **Alertivity’s menu bar indicator → Open Settings…**. Paths below use the app’s English labels. Hover over a tab for its description. Notification and detection notes that include configured values remain visible below the controls.
+Open **Alertivity’s menu bar indicator → Open Settings…**. Paths below use the app’s English labels. Hover over a tab for its description. General, Menu Bar, Notifications, and Detection use grouped rows. Thresholds uses an aligned table; Pro uses a feature-and-purchase panel. Both sit on adaptive rounded backgrounds with inner spacing matching the grouped rows. Notification and detection notes that include configured values remain visible below their groups. All panes use 20-point outer margins. Panes size to their content. Opening or closing Metric priority resizes the window downward from its top edge. Scroll indicators stay hidden during tab changes.
 
 ## General
+
+**App behavior** groups Dock visibility and launch at login. **Monitoring** contains the sampling interval.
+
+![General settings](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-general.png)
 
 | Setting | Path | Notes |
 | --- | --- | --- |
@@ -18,6 +22,10 @@ Choose **Help → Send Feedback…** to open a new GitHub issue in your default 
 
 ## Menu bar
 
+Controls are grouped under **Visibility**, **Appearance**, and **Auto switching**. Expand **Metric priority** within Auto switching to change its order.
+
+![Menu Bar settings with Metric priority expanded](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-menu-bar.png)
+
 | Setting | Path | Notes |
 | --- | --- | --- |
 | Indicator visibility | Settings → Menu Bar → Show indicator | Turning this off hides the indicator even during Critical activity. |
@@ -27,11 +35,15 @@ Choose **Help → Send Feedback…** to open a new GitHub issue in your default 
 | Auto-switch activation | Settings → Menu Bar → Activation level | Pro in the App Store build; unlocked in source builds. Choose Elevated or higher, or Critical only (default). |
 | Auto-switch priority | Settings → Menu Bar → Metric priority | Requires Pro in the App Store build. Expand Metric priority, then use the up/down arrows to order CPU, memory, disk, and network. The highest severity wins; at equal severity, the highest listed eligible metric wins. Reset Priority restores CPU → Memory → Disk → Network. |
 | Show only during Critical activity | Settings → Menu Bar → Only show on high activity | Hides the indicator at Normal and Elevated status. |
-| Metric symbols | Settings → Menu Bar → Show metric icon | Available when the default icon type is a metric. Shows a symbol beside the value. Auto switch keeps this on and disables editing; the explanation appears directly below the control. |
+| Metric symbols | Settings → Menu Bar → Show metric icon | Available when the default icon type is a metric. Shows a symbol beside the value. Auto switch keeps this on and disables editing; hover over the control for the explanation. |
 
 If the indicator is hidden, reopen Alertivity to access Settings. Auto-switch timing is described in [Metrics and status](https://github.com/nobbbbby/Alertivity/wiki/Metrics-and-Status).
 
 ## System thresholds
+
+![System threshold table](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-thresholds.png)
+
+The threshold table fills its background, aligning each metric with its Elevated and Critical values. Reset to Defaults sits below the table.
 
 Open **Settings → Thresholds**, then edit the Elevated and Critical columns for the relevant row:
 
@@ -49,6 +61,10 @@ Default values are listed in [Metrics and status](https://github.com/nobbbbby/Al
 
 ## Notifications
 
+![Grouped notification settings](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-notifications.png)
+
+Permission guidance and notification controls share one group without repeating the tab title. Hover over Cooldown for additional help.
+
 | Setting | Path | Notes |
 | --- | --- | --- |
 | App notification toggle | Settings → Notifications → Enable system notifications | Requires macOS notification permission as well. |
@@ -60,18 +76,26 @@ The footer shows the effective duration and minimum interval between alerts, inc
 
 ## Process detection and whitelist
 
+![Grouped process detection settings](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-detection.png)
+
+**Process activity** groups CPU and memory thresholds. **Whitelist** lists ignored processes. Use the **+** beside its heading to add an application or executable.
+
 These paths appear only when process sampling is available in the non-sandboxed build.
 
 | Setting | Path | Notes |
 | --- | --- | --- |
 | Process CPU limit | Settings → Detection → CPU threshold | Enter 1–100%; the default is 80%. |
 | Process memory limit | Settings → Detection → Memory threshold | Enter 5–50% of physical memory; the default is 25%. |
-| Exclude an application or executable | Settings → Detection → Whitelist → Add | Choose an application or executable file, then confirm Add. |
+| Exclude an application or executable | Settings → Detection → Whitelist → + | Choose an application or executable file, then confirm Add. |
 | Resume detection for an ignored process | Settings → Detection → Whitelist → the process’s minus button | Remove its saved executable-path rule. The button’s accessibility label is Remove ignored process. |
 
 See [Process insights](https://github.com/nobbbbby/Alertivity/wiki/Process-Insights) for how the list and actions work.
 
 ## Free and Pro in the Mac App Store build
+
+![Pro feature and purchase panel](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-pro.png)
+
+The Pro panel groups its features into Monitoring, Notifications, and Menu Bar, with a concise summary for each.
 
 Alertivity Pro unlocks customization of system CPU, memory, disk, and network thresholds,
 notification cooldown, high-activity duration, sampling interval, Auto-switch activation level, and Auto-switch metric priority. Other current monitoring, notification,
