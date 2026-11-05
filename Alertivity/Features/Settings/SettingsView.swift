@@ -1,6 +1,9 @@
 import AppKit
 import SwiftUI
 
+private let settingsPaneMargin: CGFloat = 20
+private let settingsGroupContentInset: CGFloat = 10
+
 private let settingsTabPadding = EdgeInsets(top: 24, leading: 45, bottom: 28, trailing: 45)
 
 struct SettingsView: View {
@@ -11,7 +14,7 @@ struct SettingsView: View {
     var proStore: ProStore? = nil
     var metrics: ActivityMetrics = .placeholder
     @State private var selectedTab: SettingsTabSelection = .general
-    @State private var tabWidth: CGFloat = 400
+    @State private var tabWidth: CGFloat = 420
 
     var body: some View {
         Group {
@@ -37,6 +40,8 @@ struct SettingsView: View {
         }
         .frame(width: tabWidth)
         .background(SettingsTabWidth(width: $tabWidth))
+        // Report a finite vertical size so the Settings window also shrinks after collapse.
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var availableTabs: [SettingsTabSelection] {
@@ -64,10 +69,17 @@ struct SettingsView: View {
 
     private var generalPane: some View {
         SettingsPane(width: tabWidth) {
-            Toggle("settings.toggle.hideDockIcon", isOn: $settings.hideDockIcon)
-            Toggle("settings.toggle.launchAtLogin", isOn: $settings.launchAtLogin)
-            Divider()
-            SamplingIntervalSettingsView(settings: settings)
+            Section("settings.group.appBehavior") {
+                Toggle("settings.toggle.hideDockIcon", isOn: $settings.hideDockIcon)
+                    .accessibilityLabel(Text("settings.toggle.hideDockIcon"))
+                    .accessibilityIdentifier("settings.toggle.hideDockIcon")
+                Toggle("settings.toggle.launchAtLogin", isOn: $settings.launchAtLogin)
+                    .accessibilityLabel(Text("settings.toggle.launchAtLogin"))
+                    .accessibilityIdentifier("settings.toggle.launchAtLogin")
+            }
+            Section("settings.group.monitoring") {
+                SamplingIntervalSettingsView(settings: settings)
+            }
         }
         .modifier(AutomaticReviewRequest(
             store: reviewStore,
@@ -96,30 +108,31 @@ struct SettingsView: View {
                     set: { if settings.canCustomizeMonitoring { settings.autoSwitchActivationLevel = $0 } }
                 ),
                 canCustomizeActivation: settings.canCustomizeMonitoring,
-                canCustomizeMetricPriority: settings.canCustomizeMetricPriority
+                canCustomizeMetricPriority: settings.canCustomizeMetricPriority,
+                usesGroupedSections: true
             )
         }
     }
 
     private var notificationsPane: some View {
         SettingsPane(width: tabWidth) {
-            NotificationPermissionView(manager: notificationManager, showsAuthorizedStatus: false)
             NotificationSettingsFields(
                 settings: settings,
                 processSamplingAvailable: processSamplingAvailable,
-                emphasizesFooter: true
+                usesGroupedRows: true,
+                notificationManager: notificationManager
             )
         }
     }
 
     private var thresholdsPane: some View {
-        SettingsPane(width: tabWidth) {
+        SettingsContentPane(width: tabWidth) {
             SystemThresholdSettingsView(settings: settings, showsDescription: false)
         }
     }
 
     private var proPane: some View {
-        SettingsPane(width: tabWidth) {
+        SettingsContentPane(width: tabWidth) {
             if let proStore {
                 ProSettingsPane(store: proStore)
             }
@@ -128,23 +141,22 @@ struct SettingsView: View {
 
     private var detectionPane: some View {
         SettingsPane(width: tabWidth) {
-            DetectionSettingsFields(
-                highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
-                highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
-            )
+            Section {
+                DetectionSettingsFields(
+                    highActivityCPUThresholdPercent: $settings.highActivityCPUThresholdPercent,
+                    highActivityMemoryThresholdPercent: $settings.highActivityMemoryThresholdPercent
+                )
+            } header: {
+                Text("settings.group.processActivity")
+            } footer: {
+                DetectionSettingsFooter(
+                    highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
+                    highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
+                    highActivityDurationSeconds: settings.highActivityDurationSeconds
+                )
+            }
 
-            Divider()
-
-            IgnoredProcessSettingsView(settings: settings)
-
-            FooterDivider()
-
-            DetectionSettingsFooter(
-                highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
-                highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
-                highActivityDurationSeconds: settings.highActivityDurationSeconds,
-                emphasizesFooter: true
-            )
+            IgnoredProcessSettingsView(settings: settings, usesGroupedRows: true)
         }
     }
 
@@ -223,8 +235,7 @@ struct NoticePreferencesView: View {
         Section("settings.tab.notifications") {
             NotificationSettingsFields(
                 settings: settings,
-                processSamplingAvailable: processSamplingAvailable,
-                emphasizesFooter: false
+                processSamplingAvailable: processSamplingAvailable
             )
         }
 
@@ -246,36 +257,70 @@ struct NoticePreferencesView: View {
                 DetectionSettingsFooter(
                     highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
                     highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
-                    highActivityDurationSeconds: settings.highActivityDurationSeconds,
-                    emphasizesFooter: false
+                    highActivityDurationSeconds: settings.highActivityDurationSeconds
                 )
             }
         }
     }
 }
 
+/// Keep each tab at its content height without flashing scroll indicators during window resizing.
+/// Native scrolling remains available when the window cannot accommodate all rows.
 private struct SettingsPane<Content: View>: View {
     let width: CGFloat
     @ViewBuilder var content: Content
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            content
+        SettingsFormLayout { form }
+            .frame(width: width, alignment: .leading)
+    }
+
+    private var form: some View {
+        Form { content }
+            .formStyle(.grouped)
+            // Grouped forms already supply the native 20-point outer inset.
+            .contentMargins(0, for: .scrollContent)
+            .scrollIndicators(.hidden)
+            .scrollBounceBehavior(.basedOnSize)
+    }
+}
+
+/// Keep table and purchase layouts inside a semantic surface matching native grouped-row insets.
+private struct SettingsContentPane<Content: View>: View {
+    let width: CGFloat
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        SettingsFormLayout {
+            VStack(alignment: .leading, spacing: 20) { content }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(settingsGroupContentInset)
+                .background(.quaternary.opacity(0.35), in: RoundedRectangle(cornerRadius: 12))
+                .padding(settingsPaneMargin)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(settingsTabPadding)
-        // Propose the selected tab's width to its content before native hosting measures the pane.
         .frame(width: width, alignment: .leading)
+    }
+}
+
+/// Round natural pane heights up so fractional points cannot create native scroll overflow.
+private struct SettingsFormLayout: Layout {
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        guard let form = subviews.first else { return .zero }
+        let size = form.sizeThatFits(ProposedViewSize(width: proposal.width, height: nil))
+        return CGSize(width: size.width, height: ceil(size.height))
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        subviews.first?.place(at: bounds.origin, proposal: ProposedViewSize(bounds.size))
     }
 }
 
 struct SettingsFootnote: View {
     let key: LocalizedStringKey
-    var weight: Font.Weight = .regular
 
     var body: some View {
         Text(key)
-            .font(.footnote.weight(weight))
+            .font(.footnote)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -329,68 +374,120 @@ private struct MenuBarSettingsFields: View {
     let canCustomizeActivation: Bool
     let canCustomizeMetricPriority: Bool
 
+    // Shared preferences keep their existing layout outside the Settings panes.
+    var usesGroupedSections = false
+    @State private var isPriorityExpanded = false
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            VStack(alignment: .leading, spacing: 10) {
-                Toggle("settings.menuBar.showIndicator", isOn: $isMenuIconEnabled)
-
-                Toggle("settings.menuBar.onlyShowHigh", isOn: $menuIconOnlyWhenHigh)
-                    .disabled(!isMenuIconEnabled)
-
-                Toggle("settings.menuBar.tintedIcon", isOn: $isMenuIconTinted)
-                    .disabled(!isMenuIconEnabled)
-                    .help("settings.menuBar.tintedIcon.help")
-
-                Picker("settings.menuBar.defaultIconType", selection: $menuIconType) {
-                    ForEach(MenuIconType.allCases) { iconType in
-                        Label(iconType.title, systemImage: iconType.symbolName)
-                            .tag(iconType)
-                    }
+        if usesGroupedSections {
+            Section("settings.group.visibility") { visibilityRows }
+            Section("settings.group.appearance") { appearanceRows }
+            Section("settings.group.autoSwitching") { autoSwitchRows }
+        } else {
+            VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
+                    visibilityRows
+                    tintedIconRow
+                    defaultIconRow
+                    metricIconRow
                 }
-                .disabled(!isMenuIconEnabled)
-                .pickerStyle(.menu)
-
-                if menuIconType.metricSelection != nil {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Toggle("settings.menuBar.showMetricIcon", isOn: $showMetricIcon)
-                            .disabled(!isMenuIconEnabled || autoSwitchEnabled)
-                            .help("settings.menuBar.showMetricIcon.help")
-
-                        if autoSwitchEnabled {
-                            SettingsFootnote(key: "settings.menuBar.showMetricIcon.autoSwitchHelp")
-                        }
-                    }
-                }
-            }
-
-            Divider()
-
-            VStack(alignment: .leading, spacing: 10) {
-                Toggle("settings.menuBar.autoSwitch", isOn: autoSwitchBinding)
-                    .accessibilityIdentifier("settings.menuBar.autoSwitch")
-                    .help(activationHelp)
-                    .disabled(!isMenuIconEnabled)
-
-                LabeledContent {
-                    Picker("settings.autoSwitch.activation", selection: $activationLevel) {
-                        ForEach(AutoSwitchActivationLevel.allCases, id: \.self) { level in
-                            Text(level.title).tag(level)
-                        }
-                    }
-                    .labelsHidden()
-                    .disabled(!isMenuIconEnabled || !autoSwitchEnabled || !canCustomizeActivation)
-                    .accessibilityIdentifier("settings.autoSwitchActivation")
-                } label: {
-                    HStack(spacing: 6) {
-                        Text("settings.autoSwitch.activation")
-                        if !canCustomizeActivation {
-                            ProLockHint(help: "pro.lock.activation", identifier: "pro.lock.activation")
-                        }
-                    }
-                }
-                priorityEditor
+                Divider()
+                VStack(alignment: .leading, spacing: 10) { autoSwitchRows }
             }
         }
+    }
+
+    @ViewBuilder
+    private var visibilityRows: some View {
+        Toggle("settings.menuBar.showIndicator", isOn: $isMenuIconEnabled)
+            .accessibilityLabel(Text("settings.menuBar.showIndicator"))
+            .accessibilityIdentifier("settings.menuBar.showIndicator")
+
+        Toggle("settings.menuBar.onlyShowHigh", isOn: $menuIconOnlyWhenHigh)
+            .accessibilityLabel(Text("settings.menuBar.onlyShowHigh"))
+            .accessibilityIdentifier("settings.menuBar.onlyShowHigh")
+            .disabled(!isMenuIconEnabled)
+    }
+
+    private var appearanceRows: some View {
+        Group {
+            defaultIconRow
+            tintedIconRow
+            metricIconRow
+        }
+    }
+
+    private var defaultIconRow: some View {
+        Picker("settings.menuBar.defaultIconType", selection: $menuIconType) {
+            ForEach(MenuIconType.allCases) { iconType in
+                Label(iconType.title, systemImage: iconType.symbolName)
+                    .tag(iconType)
+            }
+        }
+        .disabled(!isMenuIconEnabled)
+        .pickerStyle(.menu)
+    }
+
+    private var tintedIconRow: some View {
+        Toggle("settings.menuBar.tintedIcon", isOn: $isMenuIconTinted)
+            .accessibilityLabel(Text("settings.menuBar.tintedIcon"))
+            .accessibilityIdentifier("settings.menuBar.tintedIcon")
+            .disabled(!isMenuIconEnabled)
+            .help("settings.menuBar.tintedIcon.help")
+    }
+
+    @ViewBuilder
+    private var metricIconRow: some View {
+        if menuIconType.metricSelection != nil {
+            if usesGroupedSections {
+                metricIconToggle
+            } else {
+                VStack(alignment: .leading, spacing: 2) {
+                    metricIconToggle
+                    if autoSwitchEnabled {
+                        SettingsFootnote(key: "settings.menuBar.showMetricIcon.autoSwitchHelp")
+                    }
+                }
+            }
+        }
+    }
+
+    private var metricIconToggle: some View {
+        Toggle("settings.menuBar.showMetricIcon", isOn: $showMetricIcon)
+            .accessibilityLabel(Text("settings.menuBar.showMetricIcon"))
+            .accessibilityIdentifier("settings.menuBar.showMetricIcon")
+            .disabled(!isMenuIconEnabled || autoSwitchEnabled)
+            .help(L10n.string(autoSwitchEnabled
+                ? "settings.menuBar.showMetricIcon.autoSwitchHelp"
+                : "settings.menuBar.showMetricIcon.help"))
+    }
+
+    @ViewBuilder
+    private var autoSwitchRows: some View {
+        Toggle("settings.menuBar.autoSwitch", isOn: autoSwitchBinding)
+            .accessibilityLabel(Text("settings.menuBar.autoSwitch"))
+            .accessibilityIdentifier("settings.menuBar.autoSwitch")
+            .help(activationHelp)
+            .disabled(!isMenuIconEnabled)
+
+        LabeledContent {
+            Picker("settings.autoSwitch.activation", selection: $activationLevel) {
+                ForEach(AutoSwitchActivationLevel.allCases, id: \.self) { level in
+                    Text(level.title).tag(level)
+                }
+            }
+            .labelsHidden()
+            .disabled(!isMenuIconEnabled || !autoSwitchEnabled || !canCustomizeActivation)
+            .accessibilityIdentifier("settings.autoSwitchActivation")
+        } label: {
+            HStack(spacing: 6) {
+                Text("settings.autoSwitch.activation")
+                if !canCustomizeActivation {
+                    ProLockHint(help: "pro.lock.activation", identifier: "pro.lock.activation")
+                }
+            }
+        }
+        priorityEditor
     }
 
     private var activationHelp: String {
@@ -398,7 +495,7 @@ private struct MenuBarSettingsFields: View {
     }
 
     private var priorityEditor: some View {
-        DisclosureGroup {
+        DisclosureGroup(isExpanded: priorityExpansion) {
             VStack(alignment: .leading, spacing: 6) {
                 ForEach(autoSwitchPriority, id: \.self) { metric in
                     HStack {
@@ -439,7 +536,24 @@ private struct MenuBarSettingsFields: View {
                 }
             }
         }
+        .accessibilityIdentifier("settings.metricPriority")
         .help("settings.menuBar.autoSwitch.priority.help")
+    }
+
+    /// Avoid animating the measured form height while the Settings window resizes to fit it.
+    private var priorityExpansion: Binding<Bool> {
+        var transaction = Transaction(animation: nil)
+        transaction.disablesAnimations = true
+        return Binding(
+            get: { isPriorityExpanded },
+            set: { expanded in
+                guard expanded != isPriorityExpanded else { return }
+                if usesGroupedSections {
+                    SettingsWindowTracker.shared.prepareForAdaptiveContentResize()
+                }
+                withTransaction(transaction) { isPriorityExpanded = expanded }
+            }
+        )
     }
 
     private func move(_ metric: MetricMenuSelection, by offset: Int) {
@@ -466,36 +580,66 @@ private struct MenuBarSettingsFields: View {
 private struct NotificationSettingsFields: View {
     @ObservedObject var settings: SettingsStore
     let processSamplingAvailable: Bool
-    let emphasizesFooter: Bool
+
+    var usesGroupedRows = false
+    var notificationManager: NotificationManager? = nil
 
     var body: some View {
-        Toggle("settings.notifications.enable", isOn: $settings.notificationsEnabled)
-
-        VStack(alignment: .leading, spacing: 2) {
-            LabeledContent {
-                Picker("settings.notifications.cooldown", selection: Binding(
-                    get: { settings.monitoringConfiguration.cooldownMinutes },
-                    set: { if settings.canCustomizeMonitoring { settings.notificationCooldownMinutes = $0 } }
-                )) {
-                    ForEach(MonitoringPreferences.notificationCooldownOptions, id: \.self) { value in
-                        Text(L10n.format("settings.notifications.cooldownValue", value)).tag(value)
-                    }
+        if usesGroupedRows {
+            Section {
+                if let notificationManager {
+                    NotificationPermissionView(manager: notificationManager, showsAuthorizedStatus: false)
                 }
-                .labelsHidden()
-                .pickerStyle(.menu)
-                .disabled(!settings.notificationsEnabled || !settings.canCustomizeMonitoring)
-                .accessibilityIdentifier("settings.notificationCooldown")
-            } label: {
-                HStack(spacing: 6) {
-                    Text("settings.notifications.cooldown")
-                    if !settings.canCustomizeMonitoring {
-                        ProLockHint(help: "pro.lock.cooldown", identifier: "pro.lock.cooldown")
-                    }
+                enableRow
+                cooldownRow
+                durationRow
+            } footer: {
+                notificationNote
+            }
+        } else {
+            enableRow
+            VStack(alignment: .leading, spacing: 2) {
+                cooldownRow
+                SettingsFootnote(key: "settings.notifications.cooldown.help")
+            }
+            durationRow
+            FooterDivider()
+            notificationNote
+        }
+    }
+
+    private var enableRow: some View {
+        Toggle("settings.notifications.enable", isOn: $settings.notificationsEnabled)
+            .accessibilityLabel(Text("settings.notifications.enable"))
+            .accessibilityIdentifier("settings.notifications.enable")
+    }
+
+    private var cooldownRow: some View {
+        LabeledContent {
+            Picker("settings.notifications.cooldown", selection: Binding(
+                get: { settings.monitoringConfiguration.cooldownMinutes },
+                set: { if settings.canCustomizeMonitoring { settings.notificationCooldownMinutes = $0 } }
+            )) {
+                ForEach(MonitoringPreferences.notificationCooldownOptions, id: \.self) { value in
+                    Text(L10n.format("settings.notifications.cooldownValue", value)).tag(value)
                 }
             }
-            SettingsFootnote(key: "settings.notifications.cooldown.help")
+            .labelsHidden()
+            .pickerStyle(.menu)
+            .disabled(!settings.notificationsEnabled || !settings.canCustomizeMonitoring)
+            .accessibilityIdentifier("settings.notificationCooldown")
+        } label: {
+            HStack(spacing: 6) {
+                Text("settings.notifications.cooldown")
+                if !settings.canCustomizeMonitoring {
+                    ProLockHint(help: "pro.lock.cooldown", identifier: "pro.lock.cooldown")
+                }
+            }
         }
+        .help("settings.notifications.cooldown.help")
+    }
 
+    private var durationRow: some View {
         LabeledContent {
             Picker("settings.detection.duration", selection: Binding(
                 get: { settings.monitoringConfiguration.durationSeconds },
@@ -517,15 +661,15 @@ private struct NotificationSettingsFields: View {
                 }
             }
         }
+    }
 
-        FooterDivider()
-
+    private var notificationNote: some View {
         Text(L10n.format(
             notificationNoteKey,
             settings.monitoringConfiguration.durationSeconds,
             L10n.format("settings.notifications.cooldownValue", settings.monitoringConfiguration.cooldownMinutes)
         ))
-            .font(.footnote.weight(emphasizesFooter ? .semibold : .regular))
+            .font(.footnote)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -543,16 +687,18 @@ private struct DetectionSettingsFields: View {
 
     var body: some View {
         LabeledContent("settings.detection.cpuThreshold") {
-            HStack(spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
                 TextField("", value: $highActivityCPUThresholdPercent, format: .number)
+                    .multilineTextAlignment(.trailing)
                     .frame(width: 64)
                 Text(verbatim: "%")
             }
         }
 
         LabeledContent("settings.detection.memoryThreshold") {
-            HStack(spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
                 TextField("", value: $highActivityMemoryThresholdPercent, format: .number)
+                    .multilineTextAlignment(.trailing)
                     .frame(width: 64)
                 Text(verbatim: "%")
             }
@@ -598,6 +744,7 @@ private struct SystemThresholdSettingsView: View {
             Grid(alignment: .leading, horizontalSpacing: 12, verticalSpacing: 8) {
                 GridRow {
                     Text("")
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     Text("settings.thresholds.elevated")
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(width: 60, alignment: .trailing)
@@ -701,6 +848,8 @@ private struct SystemThresholdSettingsView: View {
                     ProLockHint(help: "pro.lock.thresholds", identifier: lockIdentifier)
                 }
             }
+            // Give surplus width to the metric column so values and units reach the trailing inset.
+            .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .contain)
             thresholdField(value: elevated)
                 .disabled(!settings.canCustomizeMonitoring)
@@ -763,7 +912,6 @@ private struct DetectionSettingsFooter: View {
     let highActivityCPUThresholdPercent: Int
     let highActivityMemoryThresholdPercent: Int
     let highActivityDurationSeconds: Int
-    let emphasizesFooter: Bool
 
     var body: some View {
         Text(L10n.format(
@@ -772,7 +920,7 @@ private struct DetectionSettingsFooter: View {
             formattedPercent(highActivityMemoryThresholdPercent),
             highActivityDurationSeconds
         ))
-            .font(.footnote.weight(emphasizesFooter ? .semibold : .regular))
+            .font(.footnote)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -787,8 +935,48 @@ private func formattedPercent(_ wholePercent: Int) -> String {
 private struct IgnoredProcessSettingsView: View {
     @ObservedObject var settings: SettingsStore
     @State private var isShowingInvalidSelectionAlert = false
+    var usesGroupedRows = false
 
     var body: some View {
+        Group {
+            if usesGroupedRows {
+                Section {
+                    if settings.ignoredProcessPaths.isEmpty {
+                        Text("settings.ignoredProcesses.empty")
+                            .foregroundStyle(.secondary)
+                    }
+                    ForEach(settings.ignoredProcessPaths, id: \.self) { path in
+                        IgnoredProcessRow(path: path) { settings.removeIgnoredProcess(at: path) }
+                    }
+                } header: {
+                    HStack {
+                        Text("settings.ignoredProcesses.title")
+                        Spacer()
+                        Button { chooseProcess() } label: {
+                            Label("settings.ignoredProcesses.add", systemImage: "plus")
+                                .labelStyle(.iconOnly)
+                                .fontWeight(.bold)
+                        }
+                        .buttonStyle(.borderless)
+                        .controlSize(.small)
+                        .accessibilityIdentifier("settings.ignoredProcesses.add")
+                        .accessibilityHint(Text("settings.ignoredProcesses.picker.message"))
+                        .help("settings.ignoredProcesses.add")
+                    }
+                    .help("settings.ignoredProcesses.help")
+                }
+            } else {
+                legacyContent
+            }
+        }
+        .alert("settings.ignoredProcesses.invalid.title", isPresented: $isShowingInvalidSelectionAlert) {
+            Button("general.ok", role: .cancel) {}
+        } message: {
+            Text("settings.ignoredProcesses.invalid.message")
+        }
+    }
+
+    private var legacyContent: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("settings.ignoredProcesses.title")
@@ -822,11 +1010,6 @@ private struct IgnoredProcessSettingsView: View {
                 }
                 .background(.quaternary.opacity(0.35), in: RoundedRectangle(cornerRadius: 8))
             }
-        }
-        .alert("settings.ignoredProcesses.invalid.title", isPresented: $isShowingInvalidSelectionAlert) {
-            Button("general.ok", role: .cancel) {}
-        } message: {
-            Text("settings.ignoredProcesses.invalid.message")
         }
     }
 

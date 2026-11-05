@@ -60,7 +60,7 @@ final class LocalizationReviewTests: XCTestCase {
                         if environment["ALERTIVITY_REQUIRE_VISIBLE_TABS"] == "1" {
                             XCTAssertTrue(button.exists || button.waitForExistence(timeout: 5), "Tab should fit without overflow: \(title)")
                             if locale == "en" {
-                                XCTAssertEqual(app.windows.firstMatch.frame.width, 400, accuracy: 1)
+                                XCTAssertEqual(app.windows.firstMatch.frame.width, 420, accuracy: 1)
                             }
                             button.click()
                         } else if button.exists {

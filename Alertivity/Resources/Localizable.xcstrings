@@ -1,6 +1,921 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+  "pro.summary.monitoring": {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, memory, disk, and network thresholds; sampling interval."
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Schwellenwerte für CPU, Arbeitsspeicher, Festplatte und Netzwerk sowie Messintervall."
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Seuils du processeur, de la mémoire, du disque et du réseau ; intervalle de mesure."
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU、メモリ、ディスク、ネットワークのしきい値とサンプリング間隔。"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU、内存、磁盘和网络阈值，以及采样间隔。"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "حدود استخدام CPU والذاكرة والقرص والشبكة؛ والفاصل بين العينات."
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, মেমরি, ডিস্ক ও নেটওয়ার্কের সীমা এবং নমুনা সংগ্রহের বিরতি।"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Llindars de CPU, memòria, disc i xarxa; interval de mostreig."
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU、記憶體、磁碟和網路閾值，以及取樣間隔。"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pragovi za CPU, memoriju, disk i mrežu te interval uzorkovanja."
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Prahy CPU, paměti, disku a sítě; interval vzorkování."
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Grænser for CPU, hukommelse, disk og netværk samt måleinterval."
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Drempels voor CPU, geheugen, schijf en netwerk; meetinterval."
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, memory, disk, and network thresholds; sampling interval."
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, memory, disk, and network thresholds; sampling interval."
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, memory, disk, and network thresholds; sampling interval."
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU:n, muistin, levyn ja verkon kynnysarvot sekä näytteenottoväli."
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Seuils du processeur, de la mémoire, du disque et du réseau ; intervalle de mesure."
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Όρια CPU, μνήμης, δίσκου και δικτύου και διάστημα δειγματοληψίας."
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, મેમરી, ડિસ્ક અને નેટવર્કની મર્યાદાઓ તથા નમૂના લેવાનો અંતરાલ."
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ספי CPU, זיכרון, כונן ורשת ומרווח הדגימה."
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, मेमोरी, डिस्क और नेटवर्क की सीमाएँ और सैंपलिंग अंतराल।"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU-, memória-, lemez- és hálózati küszöbök, valamint mintavételi időköz."
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ambang CPU, memori, disk, dan jaringan serta interval pengambilan sampel."
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Soglie per CPU, memoria, disco e rete; intervallo di campionamento."
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, ಮೆಮೊರಿ, ಡಿಸ್ಕ್ ಮತ್ತು ನೆಟ್‌ವರ್ಕ್ ಮಿತಿಗಳು ಹಾಗೂ ಮಾದರಿ ಸಂಗ್ರಹ ಅಂತರ."
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, 메모리, 디스크 및 네트워크 임계값과 샘플링 간격."
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ambang CPU, memori, cakera dan rangkaian serta sela pensampelan."
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, മെമ്മറി, ഡിസ്ക്, നെറ്റ്‌വർക്ക് എന്നിവയുടെ പരിധികളും സാമ്പിൾ ഇടവേളയും."
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, मेमरी, डिस्क आणि नेटवर्कच्या मर्यादा आणि नमुना अंतर."
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Grenser for CPU, minne, disk og nettverk samt måleintervall."
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, ମେମୋରି, ଡିସ୍କ୍ ଓ ନେଟୱର୍କ୍‌ର ସୀମା ଏବଂ ନମୁନା ସଂଗ୍ରହ ବ୍ୟବଧାନ।"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Progi CPU, pamięci, dysku i sieci oraz interwał próbkowania."
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Limites de CPU, memória, disco e rede e intervalo de amostragem."
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Limites de CPU, memória, disco e rede e intervalo de amostragem."
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, ਮੈਮੋਰੀ, ਡਿਸਕ ਅਤੇ ਨੈੱਟਵਰਕ ਦੀਆਂ ਹੱਦਾਂ ਅਤੇ ਨਮੂਨੇ ਲੈਣ ਦਾ ਅੰਤਰਾਲ।"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Praguri pentru CPU, memorie, disc și rețea și intervalul de eșantionare."
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Пороги CPU, памяти, диска и сети; интервал измерений."
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Prahy CPU, pamäte, disku a siete; interval vzorkovania."
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pragovi za CPU, pomnilnik, disk in omrežje ter interval vzorčenja."
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Umbrales de CPU, memoria, disco y red; intervalo de muestreo."
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Umbrales de CPU, memoria, disco y red; intervalo de muestreo."
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Gränser för CPU, minne, skiva och nätverk samt mätintervall."
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, நினைவகம், வட்டு, நெட்வொர்க்கிற்கான வரம்புகள் மற்றும் மாதிரி இடைவெளி."
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, మెమరీ, డిస్క్, నెట్‌వర్క్ పరిమితులు మరియు నమూనా సేకరణ విరామం."
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "เกณฑ์ CPU หน่วยความจำ ดิสก์ และเครือข่าย รวมถึงช่วงเวลาเก็บตัวอย่าง"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU, bellek, disk ve ağ eşikleri ile örnekleme aralığı."
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Пороги CPU, пам’яті, диска й мережі та інтервал вимірювань."
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "CPU، میموری، ڈسک اور نیٹ ورک کی حدود اور نمونے لینے کا وقفہ۔"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ngưỡng CPU, bộ nhớ, ổ đĩa và mạng; khoảng lấy mẫu."
+      }
+    }
+  }
+},
+  "pro.summary.notifications": {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Alert cooldown and high-activity duration."
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Benachrichtigungsabstand und Dauer hoher Aktivität."
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Délai entre les alertes et durée d’activité élevée."
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "通知間隔と高負荷の継続時間。"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "通知冷却时间和高活动持续时间。"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "الفاصل بين الإشعارات ومدة النشاط المرتفع."
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "নোটিফিকেশনের মধ্যবর্তী বিরতি এবং উচ্চ অ্যাক্টিভিটির সময়সীমা।"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Interval entre notificacions i durada de l’activitat alta."
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "通知間隔和高活動持續時間。"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Razmak između obavijesti i trajanje visoke aktivnosti."
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Odstup mezi oznámeními a doba vysoké aktivity."
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pause mellem notifikationer og varighed af høj aktivitet."
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Interval tussen meldingen en duur van hoge activiteit."
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Alert cooldown and high-activity duration."
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Alert cooldown and high-activity duration."
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Alert cooldown and high-activity duration."
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ilmoitusten välinen aika ja suuren aktiivisuuden kesto."
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Délai entre les alertes et durée d’activité élevée."
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Διάστημα μεταξύ ειδοποιήσεων και διάρκεια υψηλής δραστηριότητας."
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "સૂચનાઓ વચ્ચેનો વિરામ અને ઊંચી પ્રવૃત્તિનો સમયગાળો."
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "מרווח בין עדכונים ומשך הפעילות הגבוהה."
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "सूचनाओं के बीच का अंतराल और अधिक गतिविधि की अवधि।"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Értesítések közötti idő és a magas aktivitás időtartama."
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Jeda antar notifikasi dan durasi aktivitas tinggi."
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Intervallo minimo tra le notifiche e durata dell’attività elevata."
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ಸೂಚನೆಗಳ ನಡುವಿನ ಅಂತರ ಮತ್ತು ಹೆಚ್ಚಿನ ಚಟುವಟಿಕೆಯ ಅವಧಿ."
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "알림 간격과 높은 활동 지속 시간."
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Sela antara pemberitahuan dan tempoh aktiviti tinggi."
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "അറിയിപ്പുകൾക്കിടയിലെ ഇടവേളയും ഉയർന്ന ആക്റ്റിവിറ്റിയുടെ ദൈർഘ്യവും."
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "सूचनांमधील अंतर आणि उच्च ॲक्टिव्हिटीचा कालावधी."
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pause mellom varslinger og varighet for høy aktivitet."
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ସୂଚନାଗୁଡ଼ିକ ମଧ୍ୟରେ ବିରତି ଏବଂ ଅଧିକ କାର୍ଯ୍ୟକଳାପର ଅବଧି।"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Odstęp między powiadomieniami i czas wysokiej aktywności."
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Intervalo entre notificações e duração da alta atividade."
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Intervalo entre notificações e duração da atividade elevada."
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਸੂਚਨਾਵਾਂ ਵਿਚਕਾਰ ਵਕਫ਼ਾ ਅਤੇ ਵੱਧ ਸਰਗਰਮੀ ਦੀ ਮਿਆਦ।"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pauza dintre notificări și durata activității intense."
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Интервал между уведомлениями и длительность высокой активности."
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Odstup medzi hláseniami a čas vysokej aktivity."
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Premor med obvestili in trajanje visoke dejavnosti."
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Intervalo entre notificaciones y duración de la actividad elevada."
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Intervalo entre notificaciones y duración de la actividad elevada."
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Paus mellan notiser och varaktighet för hög aktivitet."
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "அறிவிப்புகளுக்கு இடையிலான இடைவெளி மற்றும் அதிகச் செயல்பாட்டின் கால அளவு."
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "నోటిఫికేషన్‌ల మధ్య విరామం మరియు అధిక కార్యకలాప వ్యవధి."
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ช่วงพักระหว่างการแจ้งเตือนและระยะเวลากิจกรรมสูง"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Bildirimler arasındaki süre ve yüksek etkinlik süresi."
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Інтервал між сповіщеннями та тривалість високої активності."
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "اطلاعات کے درمیان وقفہ اور زیادہ سرگرمی کا دورانیہ۔"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Khoảng cách giữa các thông báo và thời lượng hoạt động cao."
+      }
+    }
+  }
+},
+  "pro.summary.menuBar": {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto-switch activation level and metric priority."
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktivierungsstufe und Metrikpriorität für den automatischen Wechsel."
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Niveau d’activation et priorité des mesures pour le basculement automatique."
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "自動切り替えの開始レベルとメトリクスの優先順位。"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "自动切换的激活级别和指标优先级。"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "مستوى التنشيط وأولوية المقاييس للتبديل التلقائي."
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "স্বয়ংক্রিয় পরিবর্তনের সক্রিয়করণ স্তর এবং মেট্রিকের অগ্রাধিকার।"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nivell d’activació i prioritat de les mètriques per al canvi automàtic."
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "自動切換的啟用等級和指標優先順序。"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Razina aktivacije i prioritet mjernih podataka za automatsko prebacivanje."
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Úroveň aktivace a priorita metrik pro automatické přepínání."
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktiveringsniveau og metrikprioritet ved automatisk skift."
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Activeringsniveau en metriekprioriteit voor automatisch schakelen."
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto-switch activation level and metric priority."
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto-switch activation level and metric priority."
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto-switch activation level and metric priority."
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automaattisen vaihdon aktivointitaso ja mittareiden tärkeysjärjestys."
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Niveau d’activation et priorité des mesures pour le basculement automatique."
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Επίπεδο ενεργοποίησης και προτεραιότητα μετρήσεων για την αυτόματη εναλλαγή."
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "આપમેળે ફેરબદલ માટે સક્રિયકરણ સ્તર અને માપદંડોની પ્રાથમિકતા."
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "רמת הפעלה ועדיפות מדדים למעבר האוטומטי."
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "अपने आप बदलने के लिए सक्रियण स्तर और मेट्रिक की प्राथमिकता।"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktiválási szint és a mérőszámok prioritása az automatikus váltáshoz."
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Tingkat aktivasi dan prioritas metrik untuk peralihan otomatis."
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Livello di attivazione e priorità delle metriche per il cambio automatico."
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ಸ್ವಯಂಚಾಲಿತ ಬದಲಾವಣೆಗೆ ಸಕ್ರಿಯಗೊಳಿಸುವ ಮಟ್ಟ ಮತ್ತು ಮಾಪನಗಳ ಆದ್ಯತೆ."
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "자동 전환의 활성화 수준과 지표 우선순위."
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Tahap pengaktifan dan keutamaan metrik untuk pertukaran automatik."
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "സ്വയമേവ മാറുന്നതിനുള്ള സജീവമാക്കൽ നിലയും മെട്രിക്കുകളുടെ മുൻഗണനയും."
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "आपोआप बदलण्यासाठी सक्रियता पातळी आणि मेट्रिकचा प्राधान्यक्रम."
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktiveringsnivå og måleprioritet for automatisk bytte."
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ସ୍ୱୟଂଚାଳିତ ପରିବର୍ତ୍ତନ ପାଇଁ ସକ୍ରିୟକରଣ ସ୍ତର ଏବଂ ମାପକଗୁଡ଼ିକର ପ୍ରାଥମିକତା।"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Poziom aktywacji i priorytet wskaźników przy automatycznym przełączaniu."
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nível de ativação e prioridade das métricas para a alternância automática."
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nível de ativação e prioridade das métricas para a alternância automática."
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਆਪਣੇ ਆਪ ਬਦਲਣ ਲਈ ਚਾਲੂ ਹੋਣ ਦਾ ਪੱਧਰ ਅਤੇ ਮੈਟ੍ਰਿਕ ਦੀ ਤਰਜੀਹ।"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nivelul de activare și prioritatea indicatorilor pentru comutarea automată."
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Уровень активации и приоритет показателей для автопереключения."
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Úroveň aktivácie a priorita metrík pre automatické prepínanie."
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Raven aktivacije in prednost meritev za samodejno preklapljanje."
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nivel de activación y prioridad de las métricas para el cambio automático."
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nivel de activación y prioridad de las métricas para el cambio automático."
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktiveringsnivå och mätvärdesprioritet för automatiskt byte."
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "தானாக மாறுவதற்கான செயல்படுத்தும் நிலை மற்றும் அளவீட்டு முன்னுரிமை."
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "స్వయంచాలక మార్పు కోసం ప్రారంభ స్థాయి మరియు కొలమానాల ప్రాధాన్యత."
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ระดับการเริ่มทำงานและลำดับความสำคัญของตัววัดสำหรับการสลับอัตโนมัติ"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Otomatik geçiş için etkinleştirme düzeyi ve ölçüm önceliği."
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Рівень активації та пріоритет показників для автоматичного перемикання."
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "خودکار تبدیلی کے لیے فعالی سطح اور پیمانوں کی ترجیح۔"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Mức kích hoạt và mức ưu tiên chỉ số khi tự động chuyển."
+      }
+    }
+  }
+},
   "settings.menuBar.tintedIcon.help": {
     "extractionState": "manual",
     "localizations": {
@@ -36584,6 +37499,1836 @@
         }
       }
     },
+    "settings.group.appBehavior" : {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "App behavior"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "应用行为"
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "App-Verhalten"
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportement de l’app"
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "アプリの動作"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "سلوك التطبيق"
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "অ্যাপের আচরণ"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportament de l’app"
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "App 行為"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ponašanje aplikacije"
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Chování aplikace"
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appens adfærd"
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appgedrag"
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "App behaviour"
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "App behaviour"
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "App behaviour"
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Sovelluksen toiminta"
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportement de l’app"
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Συμπεριφορά εφαρμογής"
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ઍપનું વર્તન"
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "התנהגות היישום"
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ऐप का व्यवहार"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Alkalmazás működése"
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Perilaku aplikasi"
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportamento dell’app"
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ಆ್ಯಪ್ ನಡವಳಿಕೆ"
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "앱 동작"
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Tingkah laku app"
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ആപ്പിന്റെ പ്രവർത്തനം"
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ॲपचे वर्तन"
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appens oppførsel"
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ଆପ୍‌ର ଆଚରଣ"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Działanie aplikacji"
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportamento do app"
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportamento da aplicação"
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਐਪ ਦਾ ਵਿਹਾਰ"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportamentul aplicației"
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Поведение приложения"
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Správanie aplikácie"
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Delovanje aplikacije"
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportamiento de la app"
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comportamiento de la app"
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appens beteende"
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "செயலியின் நடத்தை"
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "యాప్ ప్రవర్తన"
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ลักษณะการทำงานของแอป"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Uygulama davranışı"
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Поведінка програми"
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ایپ کا رویہ"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Hoạt động của ứng dụng"
+      }
+    }
+  }
+},
+    "settings.group.appearance" : {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appearance"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "外观"
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Darstellung"
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Apparence"
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "外観"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "المظهر"
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "রূপ"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aparença"
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "外觀"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Izgled"
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Vzhled"
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Udseende"
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Uiterlijk"
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appearance"
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appearance"
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Appearance"
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ulkoasu"
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Apparence"
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Εμφάνιση"
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "દેખાવ"
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "מראה"
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "दिखावट"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Megjelenés"
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Tampilan"
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aspetto"
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ನೋಟ"
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "모양"
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Penampilan"
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "രൂപഭാവം"
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "स्वरूप"
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Utseende"
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ରୂପ"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Wygląd"
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aparência"
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aspeto"
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਦਿੱਖ"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aspect"
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Оформление"
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Vzhľad"
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Videz"
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Apariencia"
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Apariencia"
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Utseende"
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "தோற்றம்"
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "స్వరూపం"
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ลักษณะปรากฏ"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Görünüm"
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Вигляд"
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ظاہری شکل"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Giao diện"
+      }
+    }
+  }
+},
+    "settings.group.autoSwitching" : {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto switching"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "自动切换"
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatischer Wechsel"
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Basculement automatique"
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "自動切り替え"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "التبديل التلقائي"
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "স্বয়ংক্রিয় পরিবর্তন"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Canvi automàtic"
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "自動切換"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatsko prebacivanje"
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatické přepínání"
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatisk skift"
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatisch schakelen"
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto switching"
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto switching"
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Auto switching"
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automaattinen vaihto"
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Basculement automatique"
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Αυτόματη εναλλαγή"
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "આપમેળે ફેરબદલ"
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "מעבר אוטומטי"
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "अपने आप बदलना"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatikus váltás"
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Peralihan otomatis"
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Cambio automatico"
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ಸ್ವಯಂಚಾಲಿತ ಬದಲಾವಣೆ"
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "자동 전환"
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pertukaran automatik"
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "സ്വയമേവ മാറൽ"
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "आपोआप बदल"
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatisk bytte"
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ସ୍ୱୟଂଚାଳିତ ପରିବର୍ତ୍ତନ"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatyczne przełączanie"
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Alternância automática"
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Alternância automática"
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਆਪਣੇ ਆਪ ਬਦਲਣਾ"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Comutare automată"
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Автопереключение"
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatické prepínanie"
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Samodejno preklapljanje"
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Cambio automático"
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Cambio automático"
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Automatiskt byte"
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "தானாக மாறுதல்"
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "స్వయంచాలక మార్పు"
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "การสลับอัตโนมัติ"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Otomatik geçiş"
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Автоматичне перемикання"
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "خودکار تبدیلی"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Tự động chuyển"
+      }
+    }
+  }
+},
+    "settings.group.monitoring" : {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoring"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "监测"
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Überwachung"
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Surveillance"
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "監視"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "المراقبة"
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "পর্যবেক্ষণ"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoratge"
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "監測"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Praćenje"
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitorování"
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Overvågning"
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Bewaking"
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoring"
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoring"
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoring"
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Seuranta"
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Surveillance"
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Παρακολούθηση"
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "નિરીક્ષણ"
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ניטור"
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "निगरानी"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Figyelés"
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pemantauan"
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoraggio"
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ಮೇಲ್ವಿಚಾರಣೆ"
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "모니터링"
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Pemantauan"
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "നിരീക്ഷണം"
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "निरीक्षण"
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Overvåking"
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ନିରୀକ୍ଷଣ"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitorowanie"
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoramento"
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitorização"
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਨਿਗਰਾਨੀ"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitorizare"
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Мониторинг"
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitorovanie"
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Spremljanje"
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitoreo"
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Monitorización"
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Övervakning"
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "கண்காணிப்பு"
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "పర్యవేక్షణ"
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "การติดตาม"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "İzleme"
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Моніторинг"
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "نگرانی"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Giám sát"
+      }
+    }
+  }
+},
+    "settings.group.visibility" : {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibility"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "显示"
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Sichtbarkeit"
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilité"
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "表示"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "الظهور"
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "দৃশ্যমানতা"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilitat"
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "顯示"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Vidljivost"
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Viditelnost"
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Synlighed"
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Zichtbaarheid"
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibility"
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibility"
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibility"
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Näkyvyys"
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilité"
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ορατότητα"
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "દૃશ્યતા"
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "נראות"
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "दृश्यता"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Láthatóság"
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilitas"
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilità"
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ಗೋಚರತೆ"
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "표시"
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Keterlihatan"
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ദൃശ്യത"
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "दृश्यमानता"
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Synlighet"
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ଦୃଶ୍ୟମାନତା"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Widoczność"
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilidade"
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilidade"
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਦਿਖਾਈ ਦੇਣਾ"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Vizibilitate"
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Видимость"
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Viditeľnosť"
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Vidnost"
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilidad"
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Visibilidad"
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Synlighet"
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "காட்சித்தன்மை"
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "దృశ్యమానత"
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "การแสดงผล"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Görünürlük"
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Видимість"
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "مرئیت"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Hiển thị"
+      }
+    }
+  }
+},
+    "settings.group.processActivity" : {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Process activity"
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Prozessaktivität"
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Activité des processus"
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "プロセスのアクティビティ"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "进程活动"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "نشاط العمليات"
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "প্রক্রিয়ার কার্যকলাপ"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Activitat dels processos"
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "程序活動"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktivnost procesa"
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktivita procesů"
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Procesaktivitet"
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Procesactiviteit"
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Process activity"
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Process activity"
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Process activity"
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Prosessien toiminta"
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Activité des processus"
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Δραστηριότητα διεργασιών"
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "પ્રક્રિયાની પ્રવૃત્તિ"
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "פעילות תהליכים"
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "प्रक्रिया गतिविधि"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Folyamatok tevékenysége"
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktivitas proses"
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Attività dei processi"
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ಪ್ರಕ್ರಿಯೆಯ ಚಟುವಟಿಕೆ"
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "프로세스 활동"
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktiviti proses"
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "പ്രോസസ്സ് പ്രവർത്തനം"
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "प्रक्रियांची सक्रियता"
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Prosessaktivitet"
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ପ୍ରକ୍ରିୟା କାର୍ଯ୍ୟକଳାପ"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktywność procesów"
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Atividade dos processos"
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Atividade dos processos"
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਪ੍ਰਕਿਰਿਆ ਦੀ ਸਰਗਰਮੀ"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Activitatea proceselor"
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Активность процессов"
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aktivita procesov"
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Dejavnost procesov"
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Actividad de los procesos"
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Actividad de los procesos"
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Processaktivitet"
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "செயல்முறைச் செயல்பாடு"
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ప్రాసెస్ కార్యకలాపం"
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "กิจกรรมของกระบวนการ"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "İşlem etkinliği"
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Активність процесів"
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "پروسیس کی سرگرمی"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Hoạt động của tiến trình"
+      }
+    }
+  }
+},
     "settings.ignoredProcesses.add" : {
       "comment" : "Button and file-picker confirmation label for adding an ignored process.",
       "localizations" : {
@@ -36889,6 +39634,311 @@
         }
       }
     },
+    "settings.ignoredProcesses.empty" : {
+  "extractionState": "manual",
+  "localizations": {
+    "en": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "No ignored processes"
+      }
+    },
+    "de": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Keine ignorierten Prozesse"
+      }
+    },
+    "fr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aucun processus ignoré"
+      }
+    },
+    "ja": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "無視するプロセスはありません"
+      }
+    },
+    "zh-Hans": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "没有忽略的进程"
+      }
+    },
+    "ar": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "لا توجد عمليات متجاهلة"
+      }
+    },
+    "bn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "কোনো উপেক্ষিত প্রক্রিয়া নেই"
+      }
+    },
+    "ca": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "No hi ha processos ignorats"
+      }
+    },
+    "zh-Hant": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "沒有忽略的程序"
+      }
+    },
+    "hr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nema zanemarenih procesa"
+      }
+    },
+    "cs": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Žádné ignorované procesy"
+      }
+    },
+    "da": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ingen ignorerede processer"
+      }
+    },
+    "nl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Geen genegeerde processen"
+      }
+    },
+    "en-AU": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "No ignored processes"
+      }
+    },
+    "en-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "No ignored processes"
+      }
+    },
+    "en-GB": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "No ignored processes"
+      }
+    },
+    "fi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ei ohitettuja prosesseja"
+      }
+    },
+    "fr-CA": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Aucun processus ignoré"
+      }
+    },
+    "el": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Δεν υπάρχουν διεργασίες που αγνοούνται"
+      }
+    },
+    "gu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "કોઈ અવગણેલી પ્રક્રિયા નથી"
+      }
+    },
+    "he": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "אין תהליכים ברשימת ההתעלמות"
+      }
+    },
+    "hi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "कोई अनदेखी प्रक्रिया नहीं"
+      }
+    },
+    "hu": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nincsenek figyelmen kívül hagyott folyamatok"
+      }
+    },
+    "id": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Tidak ada proses yang diabaikan"
+      }
+    },
+    "it": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nessun processo ignorato"
+      }
+    },
+    "kn": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ನಿರ್ಲಕ್ಷಿಸಿದ ಪ್ರಕ್ರಿಯೆಗಳಿಲ್ಲ"
+      }
+    },
+    "ko": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "무시된 프로세스 없음"
+      }
+    },
+    "ms": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Tiada proses diabaikan"
+      }
+    },
+    "ml": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "അവഗണിച്ച പ്രോസസ്സുകളൊന്നുമില്ല"
+      }
+    },
+    "mr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "दुर्लक्षित प्रक्रिया नाहीत"
+      }
+    },
+    "nb": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ingen ignorerte prosesser"
+      }
+    },
+    "or": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "କୌଣସି ଅଣଦେଖା ପ୍ରକ୍ରିୟା ନାହିଁ"
+      }
+    },
+    "pl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Brak ignorowanych procesów"
+      }
+    },
+    "pt-BR": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nenhum processo ignorado"
+      }
+    },
+    "pt-PT": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Nenhum processo ignorado"
+      }
+    },
+    "pa": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ਕੋਈ ਅਣਡਿੱਠੀ ਪ੍ਰਕਿਰਿਆ ਨਹੀਂ"
+      }
+    },
+    "ro": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Niciun proces ignorat"
+      }
+    },
+    "ru": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Нет игнорируемых процессов"
+      }
+    },
+    "sk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Žiadne ignorované procesy"
+      }
+    },
+    "sl": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Ni prezrtih procesov"
+      }
+    },
+    "es-MX": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "No hay procesos ignorados"
+      }
+    },
+    "es": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "No hay procesos ignorados"
+      }
+    },
+    "sv": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Inga ignorerade processer"
+      }
+    },
+    "ta": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "புறக்கணிக்கப்பட்ட செயல்முறைகள் இல்லை"
+      }
+    },
+    "te": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "విస్మరించిన ప్రాసెస్‌లు లేవు"
+      }
+    },
+    "th": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "ไม่มีกระบวนการที่ละเว้น"
+      }
+    },
+    "tr": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Yok sayılan işlem yok"
+      }
+    },
+    "uk": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Немає ігнорованих процесів"
+      }
+    },
+    "ur": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "کوئی نظرانداز کردہ پروسیس نہیں"
+      }
+    },
+    "vi": {
+      "stringUnit": {
+        "state": "translated",
+        "value": "Không có tiến trình bị bỏ qua"
+      }
+    }
+  }
+},
     "settings.ignoredProcesses.help" : {
       "comment" : "Explains the effect and limits of ignoring a process.",
       "localizations" : {
