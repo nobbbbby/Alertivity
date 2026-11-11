@@ -79,6 +79,7 @@ struct SettingsView: View {
             }
             Section("settings.group.monitoring") {
                 SamplingIntervalSettingsView(settings: settings)
+                HighActivityDurationSettingsView(settings: settings, processSamplingAvailable: processSamplingAvailable)
             }
         }
         .modifier(AutomaticReviewRequest(
@@ -152,8 +153,9 @@ struct SettingsView: View {
                 DetectionSettingsFooter(
                     highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
                     highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
-                    highActivityDurationSeconds: settings.highActivityDurationSeconds
+                    highActivityDurationSeconds: settings.monitoringConfiguration.durationSeconds
                 )
+                SettingsFootnote(key: "settings.detection.durationLocation")
             }
 
             IgnoredProcessSettingsView(settings: settings, usesGroupedRows: true)
@@ -208,8 +210,9 @@ struct NoticePreferencesView: View {
 
     @ViewBuilder
     var body: some View {
-        Section("settings.tab.general") {
+        Section("settings.group.monitoring") {
             SamplingIntervalSettingsView(settings: settings)
+            HighActivityDurationSettingsView(settings: settings, processSamplingAvailable: processSamplingAvailable)
         }
         Section("settings.tab.menuBar") {
             MenuBarSettingsFields(
@@ -257,7 +260,7 @@ struct NoticePreferencesView: View {
                 DetectionSettingsFooter(
                     highActivityCPUThresholdPercent: settings.highActivityCPUThresholdPercent,
                     highActivityMemoryThresholdPercent: settings.highActivityMemoryThresholdPercent,
-                    highActivityDurationSeconds: settings.highActivityDurationSeconds
+                    highActivityDurationSeconds: settings.monitoringConfiguration.durationSeconds
                 )
             }
         }
@@ -356,6 +359,49 @@ private struct SamplingIntervalSettingsView: View {
                 Text("settings.sampling.interval")
                 if !settings.canCustomizeMonitoring {
                     ProLockHint(help: "pro.lock.sampling", identifier: "pro.lock.sampling")
+                }
+            }
+        }
+    }
+}
+
+private struct HighActivityDurationSettingsView: View {
+    @ObservedObject var settings: SettingsStore
+    let processSamplingAvailable: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            pickerRow
+            SettingsFootnote(key: processSamplingAvailable
+                ? "settings.monitoring.duration.sharedHelp"
+                : "settings.monitoring.duration.alertHelp")
+        }
+    }
+
+    private var pickerRow: some View {
+        LabeledContent {
+            Picker("settings.detection.duration", selection: Binding(
+                get: { settings.monitoringConfiguration.durationSeconds },
+                set: { if settings.canCustomizeMonitoring { settings.highActivityDurationSeconds = $0 } }
+            )) {
+                // Keep a previously saved duration visible until a preset is chosen.
+                let duration = settings.monitoringConfiguration.durationSeconds
+                if !MonitoringPreferences.durationOptions.contains(duration) {
+                    Text(L10n.format("settings.detection.durationValue", duration)).tag(duration)
+                }
+                ForEach(MonitoringPreferences.durationOptions, id: \.self) { value in
+                    Text(L10n.format("settings.detection.durationValue", value)).tag(value)
+                }
+            }
+            .labelsHidden()
+            .pickerStyle(.menu)
+            .disabled(!settings.canCustomizeMonitoring)
+            .accessibilityIdentifier("settings.highActivityDuration")
+        } label: {
+            HStack(spacing: 6) {
+                Text("settings.detection.duration")
+                if !settings.canCustomizeMonitoring {
+                    ProLockHint(help: "pro.lock.duration", identifier: "pro.lock.duration")
                 }
             }
         }
@@ -592,7 +638,6 @@ private struct NotificationSettingsFields: View {
                 }
                 enableRow
                 cooldownRow
-                durationRow
             } footer: {
                 notificationNote
             }
@@ -602,7 +647,6 @@ private struct NotificationSettingsFields: View {
                 cooldownRow
                 SettingsFootnote(key: "settings.notifications.cooldown.help")
             }
-            durationRow
             FooterDivider()
             notificationNote
         }
@@ -637,30 +681,6 @@ private struct NotificationSettingsFields: View {
             }
         }
         .help("settings.notifications.cooldown.help")
-    }
-
-    private var durationRow: some View {
-        LabeledContent {
-            Picker("settings.detection.duration", selection: Binding(
-                get: { settings.monitoringConfiguration.durationSeconds },
-                set: { if settings.canCustomizeMonitoring { settings.highActivityDurationSeconds = $0 } }
-            )) {
-                ForEach(MonitoringPreferences.durationOptions, id: \.self) { value in
-                    Text(L10n.format("settings.detection.durationValue", value)).tag(value)
-                }
-            }
-            .labelsHidden()
-            .pickerStyle(.menu)
-            .disabled(!settings.canCustomizeMonitoring)
-            .accessibilityIdentifier("settings.highActivityDuration")
-        } label: {
-            HStack(spacing: 6) {
-                Text("settings.detection.duration")
-                if !settings.canCustomizeMonitoring {
-                    ProLockHint(help: "pro.lock.duration", identifier: "pro.lock.duration")
-                }
-            }
-        }
     }
 
     private var notificationNote: some View {

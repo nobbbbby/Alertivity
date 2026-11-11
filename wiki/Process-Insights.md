@@ -4,7 +4,7 @@ Process monitoring requires the non-sandboxed source build. See [Getting started
 
 ## Find sustained activity
 
-The menu bar lists processes with sustained high CPU or memory use. Set the limits and duration in [Settings](https://github.com/nobbbbby/Alertivity/wiki/Settings#process-detection-and-whitelist). Brief spikes do not appear. Changing the limits, duration, or ignore rules restarts the detection timer.
+The menu bar lists processes with sustained high CPU or memory use. Set CPU and memory limits in **Settings → Detection** and the shared **High activity duration** in **Settings → General → Monitoring**. Brief spikes do not appear. Changing the limits, duration, or ignore rules restarts the detection timer.
 
 The list shows up to twelve processes. It does not measure per-process network or disk activity, and the current menu hides the process section when disk is the selected system trigger. If the section is empty, check [Troubleshooting](https://github.com/nobbbbby/Alertivity/wiki/Troubleshooting#detection-or-processes-are-missing).
 

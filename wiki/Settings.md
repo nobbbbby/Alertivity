@@ -4,17 +4,20 @@ Open **Alertivity’s menu bar indicator → Open Settings…**. Paths below use
 
 ## General
 
-**App behavior** groups Dock visibility and launch at login. **Monitoring** contains the sampling interval.
+**App behavior** groups Dock visibility and launch at login. **Monitoring** groups the sampling interval and high activity duration.
 
 ![General settings](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-general.png)
 
 | Setting | Path | Notes |
 | --- | --- | --- |
 | Dock visibility | Settings → General → Hide app icon in Dock | Hides the Dock icon while monitoring continues. |
-| Sampling interval | Settings → General → Sampling interval | Pro in the App Store build; unlocked in source builds. Choose 3, 5 (default), or 10 seconds; changes apply immediately. |
+| Sampling interval | Settings → General → Monitoring → Sampling interval | Pro in the App Store build; unlocked in source builds. Choose 3, 5 (default), or 10 seconds; changes apply immediately. |
+| High activity duration | Settings → General → Monitoring → High activity duration | Pro in the App Store build and unlocked in source builds. Choose 30, 60 (default), 120, 240, or 600 seconds. |
 | Automatic startup | Settings → General → Launch at login | Starts Alertivity when you log in. |
 
 Changes apply without relaunching. Shorter sampling intervals improve responsiveness and increase CPU/energy use; longer intervals reduce sampling work and can miss short spikes. Saved Pro customizations remain stored when access is lost.
+
+High activity duration sets how long a system metric must stay Critical before it qualifies for an alert. When process sampling is available, a process must exceed its CPU or memory threshold for the same duration to be flagged. The setting applies immediately and remains editable for Pro and source-build users when notifications are disabled.
 
 If macOS requires login-item approval, open **Apple menu → System Settings → General → Login Items** and approve Alertivity. macOS section names can vary by version.
 
@@ -69,16 +72,17 @@ Permission guidance and notification controls share one group without repeating 
 | --- | --- | --- |
 | App notification toggle | Settings → Notifications → Enable system notifications | Requires macOS notification permission as well. |
 | Time between alerts | Settings → Notifications → Cooldown | Choose 1, 5, 10, 15, 30, or 60 minutes; the default is 10. Shared by system and process alerts. |
-| Sustained-activity duration | Settings → Notifications → High activity duration | Choose 30, 60, 120, 240, or 600 seconds; the default is 60 seconds. |
 | macOS notification delivery | Apple menu → System Settings → Notifications → Alertivity | macOS controls delivery, sounds, and previews here. |
 
-The footer shows the effective duration and minimum interval between alerts, including Free defaults when Pro is locked. Turning off notifications disables the Cooldown picker; high-activity duration remains available to Pro and source-build users because it also controls sustained process detection when available. See [Notifications and permissions](https://github.com/nobbbbby/Alertivity/wiki/Notifications-and-Permissions) for alert timing.
+The footer shows the effective duration and minimum interval between alerts, including Free defaults when Pro is locked. Turning off notifications disables the Cooldown picker. Set the shared duration under **General → Monitoring**. See [Notifications and permissions](https://github.com/nobbbbby/Alertivity/wiki/Notifications-and-Permissions) for alert timing.
 
 ## Process detection and whitelist
 
 ![Grouped process detection settings](https://raw.githubusercontent.com/nobbbbby/Alertivity/main/img/settings-detection.png)
 
 **Process activity** groups CPU and memory thresholds. **Whitelist** lists ignored processes. Use the **+** beside its heading to add an application or executable.
+
+Set how long a process must exceed either threshold under **General → Monitoring → High activity duration**.
 
 These paths appear only when process sampling is available in the non-sandboxed build.
 

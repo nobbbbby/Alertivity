@@ -162,15 +162,51 @@ final class AlertivityUITests: XCTestCase {
         let duration = app.popUpButtons["settings.highActivityDuration"]
         XCTAssertTrue(cooldown.waitForExistence(timeout: 3))
         XCTAssertEqual(cooldown.isEnabled, !appStoreFree)
-        XCTAssertEqual(duration.isEnabled, !appStoreFree)
-        XCTAssertTrue(settingsToggle(app, "Enable system notifications").isEnabled)
-        for key in ["pro.lock.cooldown", "pro.lock.duration"] {
-            let hint = app.images[key]
-            XCTAssertEqual(hint.exists, appStoreFree)
-            if appStoreFree { XCTAssertTrue(hint.isEnabled) }
-        }
+        XCTAssertFalse(duration.exists)
+        let notificationsToggle = settingsToggle(app, "Enable system notifications")
+        XCTAssertTrue(notificationsToggle.isEnabled)
+        let cooldownHint = app.images["pro.lock.cooldown"]
+        XCTAssertEqual(cooldownHint.exists, appStoreFree)
+        if appStoreFree { XCTAssertTrue(cooldownHint.isEnabled) }
         XCTAssertFalse(app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", "non-sandboxed")).firstMatch.exists)
         saveBoundaryScreenshot(app, name: appStoreFree ? "Free Notifications" : "Open Source Notifications")
+        if checkboxIsOn(notificationsToggle) { notificationsToggle.click() }
+        XCTAssertFalse(checkboxIsOn(notificationsToggle))
+        XCTAssertFalse(cooldown.isEnabled)
+
+        app.buttons["General"].click()
+        XCTAssertTrue(duration.waitForExistence(timeout: 3), app.debugDescription)
+        XCTAssertTrue(app.popUpButtons["settings.samplingInterval"].exists)
+        XCTAssertEqual(duration.isEnabled, !appStoreFree)
+        let durationHint = app.images["pro.lock.duration"]
+        XCTAssertEqual(durationHint.exists, appStoreFree)
+        if appStoreFree { XCTAssertTrue(durationHint.isEnabled) }
+        let alertHelp = "How long critical activity must last before an alert can be sent."
+        let sharedHelp = alertHelp + " A process must exceed its threshold for the same duration to be flagged."
+        let expectedHelp = appStoreFree ? alertHelp : sharedHelp
+        let helpText = NSPredicate(format: "label == %@ OR value == %@", expectedHelp, expectedHelp)
+        XCTAssertTrue(app.staticTexts.matching(helpText).firstMatch.exists, app.debugDescription)
+        if !appStoreFree {
+            duration.click()
+            for value in [30, 60, 120, 240, 600] {
+                XCTAssertTrue(app.menuItems["\(value) seconds"].exists)
+            }
+            app.menuItems["120 seconds"].click()
+            XCTAssertEqual(duration.value as? String, "120 seconds")
+
+            let detection = app.buttons["Detection"]
+            if detection.exists {
+                detection.click()
+            } else {
+                let overflow = app.toolbars.popUpButtons.firstMatch
+                XCTAssertTrue(overflow.exists)
+                overflow.click()
+                app.menuItems["Detection"].click()
+            }
+            XCTAssertTrue(app.staticTexts["Set the duration in General → Monitoring."].waitForExistence(timeout: 3))
+            XCTAssertTrue(app.staticTexts["Flags processes over 80% CPU or 25% memory for 120 seconds."].exists)
+        }
+
         app.buttons["Thresholds"].click()
         let fields = app.textFields.allElementsBoundByIndex
         XCTAssertEqual(fields.count, 8)

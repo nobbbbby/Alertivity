@@ -36280,6 +36280,310 @@
         }
       }
     },
+    "settings.detection.durationLocation" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضبط المدة في عام ← المراقبة."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "সাধারণ → পর্যবেক্ষণে সময়সীমা সেট করুন।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defineix la durada a General → Monitoratge."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobu nastavíte v části Obecné → Monitorování."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indstil varigheden under Generelt → Overvågning."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lege die Dauer unter Allgemein → Überwachung fest."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ορίστε τη διάρκεια στο Γενικά → Παρακολούθηση."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set the duration in General → Monitoring."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set the duration in General → Monitoring."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set the duration in General → Monitoring."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set the duration in General → Monitoring."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajusta la duración en General → Monitorización."
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajusta la duración en General → Monitoreo."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aseta kesto kohdassa Yleiset → Seuranta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglez la durée dans Général → Surveillance."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réglez la durée dans Général → Surveillance."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "સામાન્ય → નિરીક્ષણમાં સમયગાળો સેટ કરો."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הגדירו את משך הזמן תחת כללי ← ניטור."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य → निगरानी में अवधि सेट करें।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Postavi trajanje u odjeljku Općenito → Praćenje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az időtartam az Általános → Figyelés részen állítható be."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur durasinya di Umum → Pemantauan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imposta la durata in Generali → Monitoraggio."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "継続時間は「一般」→「監視」で設定します。"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಸಾಮಾನ್ಯ → ಮೇಲ್ವಿಚಾರಣೆಯಲ್ಲಿ ಅವಧಿಯನ್ನು ಹೊಂದಿಸಿ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반 → 모니터링에서 지속 시간을 설정하세요."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "പൊതുവായത് → നിരീക്ഷണം എന്നതിൽ ദൈർഘ്യം സജ്ജമാക്കുക."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य → निरीक्षण येथे कालावधी सेट करा."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetapkan tempoh dalam Umum → Pemantauan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angi varigheten under Generelt → Overvåking."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stel de duur in bij Algemeen → Bewaking."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ସାଧାରଣ → ନିରୀକ୍ଷଣରେ ଅବଧି ସେଟ୍ କରନ୍ତୁ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਆਮ → ਨਿਗਰਾਨੀ ਵਿੱਚ ਮਿਆਦ ਸੈੱਟ ਕਰੋ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ustaw czas w sekcji Ogólne → Monitorowanie."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defina a duração em Geral → Monitoramento."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defina a duração em Geral → Monitorização."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setează durata în General → Monitorizare."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задайте длительность в разделе «Основные» → «Мониторинг»."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trvanie nastavíte v časti Všeobecné → Monitorovanie."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trajanje nastavite v razdelku Splošno → Spremljanje."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ange varaktigheten under Allmänt → Övervakning."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பொதுவானவை → கண்காணிப்பில் கால அளவை அமைக்கவும்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "సాధారణం → పర్యవేక్షణలో వ్యవధిని సెట్ చేయండి."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ตั้งค่าระยะเวลาใน ทั่วไป → การติดตาม"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Süreyi Genel → İzleme bölümünde ayarlayın."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Установіть тривалість у розділі «Загальні» → «Моніторинг»."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عمومی ← نگرانی میں دورانیہ مقرر کریں۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đặt thời lượng trong Cài đặt chung → Giám sát."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在“通用”→“监测”中设置持续时间。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在「一般」→「監測」中設定持續時間。"
+          }
+        }
+      }
+    },
     "settings.detection.durationValue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -38414,6 +38718,614 @@
     }
   }
 },
+    "settings.monitoring.duration.alertHelp" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المدة التي يجب أن يستمر فيها النشاط الحرج قبل إرسال تنبيه."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "সতর্কতা পাঠানোর আগে সংকটজনক অ্যাক্টিভিটি কতক্ষণ চলতে হবে।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temps que ha de durar l’activitat crítica abans que es pugui enviar un avís."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jak dlouho musí trvat kritická aktivita, aby bylo možné odeslat upozornění."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor længe kritisk aktivitet skal vare, før der kan sendes en advarsel."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie lange kritische Aktivität anhalten muss, bevor eine Warnung gesendet werden kann."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πόσο πρέπει να διαρκεί η κρίσιμη δραστηριότητα για να μπορεί να σταλεί ειδοποίηση."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo que debe durar la actividad crítica para que se pueda enviar una alerta."
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo que debe durar la actividad crítica para que se pueda enviar una alerta."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuinka kauan kriittisen aktiivisuuden on jatkuttava, ennen kuin ilmoitus voidaan lähettää."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée minimale de l’activité critique avant qu’une alerte puisse être envoyée."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée minimale de l’activité critique avant qu’une alerte puisse être envoyée."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ચેતવણી મોકલી શકાય તે પહેલાં ગંભીર પ્રવૃત્તિ કેટલો સમય ચાલુ રહેવી જોઈએ."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "משך הזמן שבו פעילות קריטית צריכה להימשך לפני שניתן לשלוח התראה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अलर्ट भेजे जाने से पहले गंभीर गतिविधि कितनी देर तक बनी रहनी चाहिए।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koliko dugo kritična aktivnost mora trajati prije slanja upozorenja."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ennyi ideig kell tartania a kritikus aktivitásnak ahhoz, hogy riasztást lehessen küldeni."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berapa lama aktivitas kritis harus berlangsung sebelum peringatan dapat dikirim."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quanto deve durare l’attività critica prima che si possa inviare un avviso."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アラートの送信には、重大な状態がこの時間以上続く必要があります。"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಎಚ್ಚರಿಕೆ ಕಳುಹಿಸಲು ಗಂಭೀರ ಚಟುವಟಿಕೆ ಎಷ್ಟು ಕಾಲ ಮುಂದುವರಿಯಬೇಕು ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림을 보내기 전에 심각한 활동이 지속되어야 하는 시간입니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "മുന്നറിയിപ്പ് അയയ്‌ക്കുന്നതിന് മുമ്പ് ഗുരുതരമായ പ്രവർത്തനം എത്രനേരം തുടരണം എന്ന് നിർണ്ണയിക്കുന്നു."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इशारा पाठवता येण्यापूर्वी गंभीर ॲक्टिव्हिटी किती काळ टिकली पाहिजे."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempoh aktiviti kritikal mesti berterusan sebelum amaran boleh dihantar."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor lenge kritisk aktivitet må vare før et varsel kan sendes."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoelang kritieke activiteit moet aanhouden voordat er een waarschuwing kan worden verstuurd."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଚେତାବନୀ ପଠାଇବା ପୂର୍ବରୁ ଗୁରୁତର କାର୍ଯ୍ୟକଳାପ କେତେ ସମୟ ଜାରି ରହିବା ଆବଶ୍ୟକ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਅਲਰਟ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ ਗੰਭੀਰ ਸਰਗਰਮੀ ਕਿੰਨਾ ਚਿਰ ਜਾਰੀ ਰਹਿਣੀ ਚਾਹੀਦੀ ਹੈ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jak długo musi trwać krytyczna aktywność, aby można było wysłać alert."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por quanto tempo a atividade crítica precisa continuar antes que um alerta possa ser enviado."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempo durante o qual a atividade crítica tem de persistir para que possa ser enviado um alerta."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cât timp trebuie să persiste activitatea critică înainte de a putea trimite o alertă."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сколько должна длиться критическая активность, чтобы можно было отправить предупреждение."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ako dlho musí trvať kritická aktivita, aby bolo možné odoslať upozornenie."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kako dolgo mora trajati kritična dejavnost, da je mogoče poslati opozorilo."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hur länge kritisk aktivitet måste pågå innan en varning kan skickas."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "விழிப்பூட்டலை அனுப்புவதற்கு முன் தீவிரச் செயல்பாடு எவ்வளவு நேரம் நீடிக்க வேண்டும் என்பதைக் குறிக்கிறது."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "హెచ్చరిక పంపడానికి ముందు తీవ్ర కార్యకలాపం ఎంతసేపు కొనసాగాలి."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ระยะเวลาที่กิจกรรมระดับวิกฤตต้องดำเนินต่อเนื่องก่อนส่งการแจ้งเตือนได้"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uyarı gönderilebilmesi için kritik etkinliğin ne kadar sürmesi gerektiğini belirler."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скільки має тривати критична активність, перш ніж можна буде надіслати попередження."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اطلاع بھیجنے سے پہلے نازک سرگرمی کتنی دیر جاری رہنی چاہیے۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thời gian hoạt động tới hạn phải kéo dài trước khi có thể gửi cảnh báo."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "严重活动必须持续这么久，才可能发出提醒。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "嚴重活動須持續這麼久，才可能發出通知。"
+          }
+        }
+      }
+    },
+    "settings.monitoring.duration.sharedHelp" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المدة التي يجب أن يستمر فيها النشاط الحرج قبل إرسال تنبيه. يجب أن تتجاوز العملية حدها للمدة نفسها حتى يتم تمييزها."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "সতর্কতা পাঠানোর আগে সংকটজনক অ্যাক্টিভিটি কতক্ষণ চলতে হবে। কোনো প্রসেস চিহ্নিত হতে হলে একই সময় ধরে তার সীমা অতিক্রম করতে হবে।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temps que ha de durar l’activitat crítica abans que es pugui enviar un avís. Perquè es marqui un procés, ha de superar el seu llindar durant el mateix temps."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jak dlouho musí trvat kritická aktivita, aby bylo možné odeslat upozornění. Proces musí překračovat svůj práh po stejnou dobu, aby byl označen."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor længe kritisk aktivitet skal vare, før der kan sendes en advarsel. En proces skal overskride sin tærskel i lige så lang tid for at blive markeret."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wie lange kritische Aktivität anhalten muss, bevor eine Warnung gesendet werden kann. Ein Prozess muss seinen Schwellenwert genauso lange überschreiten, damit er markiert wird."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πόσο πρέπει να διαρκεί η κρίσιμη δραστηριότητα για να μπορεί να σταλεί ειδοποίηση. Μια διεργασία επισημαίνεται αν υπερβαίνει το όριό της για το ίδιο διάστημα."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent. A process must exceed its threshold for the same duration to be flagged."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent. A process must exceed its threshold for the same duration to be flagged."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent. A process must exceed its threshold for the same duration to be flagged."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How long critical activity must last before an alert can be sent. A process must exceed its threshold for the same duration to be flagged."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo que debe durar la actividad crítica para que se pueda enviar una alerta. Un proceso debe superar su umbral durante el mismo tiempo para que se marque."
+          }
+        },
+        "es-MX" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiempo que debe durar la actividad crítica para que se pueda enviar una alerta. Un proceso debe superar su umbral durante el mismo tiempo para que se marque."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuinka kauan kriittisen aktiivisuuden on jatkuttava, ennen kuin ilmoitus voidaan lähettää. Prosessi merkitään, jos se ylittää raja-arvonsa yhtä kauan."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée minimale de l’activité critique avant qu’une alerte puisse être envoyée. Un processus est signalé s’il dépasse son seuil pendant la même durée."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée minimale de l’activité critique avant qu’une alerte puisse être envoyée. Un processus est signalé s’il dépasse son seuil pendant la même durée."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ચેતવણી મોકલી શકાય તે પહેલાં ગંભીર પ્રવૃત્તિ કેટલો સમય ચાલુ રહેવી જોઈએ. પ્રક્રિયાને ચિહ્નિત કરવા માટે તેણે એટલા જ સમય સુધી તેની મર્યાદા વટાવવી જોઈએ."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "משך הזמן שבו פעילות קריטית צריכה להימשך לפני שניתן לשלוח התראה. תהליך יסומן אם הוא חורג מהסף שלו למשך אותו פרק זמן."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अलर्ट भेजे जाने से पहले गंभीर गतिविधि कितनी देर तक बनी रहनी चाहिए। किसी प्रोसेस को चिह्नित करने के लिए उसे उतनी ही देर तक अपनी सीमा से ऊपर रहना होगा।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koliko dugo kritična aktivnost mora trajati prije slanja upozorenja. Proces mora prekoračiti svoj prag jednako dugo da bi se označio."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ennyi ideig kell tartania a kritikus aktivitásnak ahhoz, hogy riasztást lehessen küldeni. A folyamat akkor kap jelölést, ha ugyanennyi ideig túllépi a küszöbértékét."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berapa lama aktivitas kritis harus berlangsung sebelum peringatan dapat dikirim. Proses harus melampaui ambangnya selama durasi yang sama agar ditandai."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quanto deve durare l’attività critica prima che si possa inviare un avviso. Un processo viene segnalato se supera la soglia per lo stesso intervallo di tempo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アラートの送信には、重大な状態がこの時間以上続く必要があります。プロセスも、しきい値を超えた状態が同じ時間続くと検出されます。"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಎಚ್ಚರಿಕೆ ಕಳುಹಿಸಲು ಗಂಭೀರ ಚಟುವಟಿಕೆ ಎಷ್ಟು ಕಾಲ ಮುಂದುವರಿಯಬೇಕು ಎಂಬುದನ್ನು ನಿರ್ಧರಿಸುತ್ತದೆ. ಪ್ರಕ್ರಿಯೆಯನ್ನು ಗುರುತಿಸಲು ಅದು ಅಷ್ಟೇ ಸಮಯ ತನ್ನ ಮಿತಿಯನ್ನು ಮೀರಿರಬೇಕು."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림을 보내기 전에 심각한 활동이 지속되어야 하는 시간입니다. 프로세스도 같은 시간 동안 임계값을 초과하면 표시됩니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "മുന്നറിയിപ്പ് അയയ്‌ക്കുന്നതിന് മുമ്പ് ഗുരുതരമായ പ്രവർത്തനം എത്രനേരം തുടരണം എന്ന് നിർണ്ണയിക്കുന്നു. ഒരു പ്രോസസ് അടയാളപ്പെടുത്താൻ അതേ സമയം വരെ അത് പരിധി കടന്നിരിക്കണം."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इशारा पाठवता येण्यापूर्वी गंभीर ॲक्टिव्हिटी किती काळ टिकली पाहिजे. प्रक्रियेला चिन्हांकित करण्यासाठी तिने तेवढाच वेळ तिची मर्यादा ओलांडलेली असावी."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempoh aktiviti kritikal mesti berterusan sebelum amaran boleh dihantar. Proses ditandai apabila melebihi ambangnya untuk tempoh yang sama."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvor lenge kritisk aktivitet må vare før et varsel kan sendes. En prosess må overskride terskelen sin like lenge for å bli merket."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoelang kritieke activiteit moet aanhouden voordat er een waarschuwing kan worden verstuurd. Een proces wordt gemarkeerd als het zijn drempel even lang overschrijdt."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଚେତାବନୀ ପଠାଇବା ପୂର୍ବରୁ ଗୁରୁତର କାର୍ଯ୍ୟକଳାପ କେତେ ସମୟ ଜାରି ରହିବା ଆବଶ୍ୟକ। ଏକ ପ୍ରୋସେସ୍ ଚିହ୍ନିତ ହେବାକୁ ସମାନ ସମୟ ଧରି ଏହାର ସୀମା ଅତିକ୍ରମ କରିବା ଆବଶ୍ୟକ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਅਲਰਟ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ ਗੰਭੀਰ ਸਰਗਰਮੀ ਕਿੰਨਾ ਚਿਰ ਜਾਰੀ ਰਹਿਣੀ ਚਾਹੀਦੀ ਹੈ। ਕਿਸੇ ਪ੍ਰੋਸੈੱਸ ਨੂੰ ਚਿੰਨ੍ਹਿਤ ਕਰਨ ਲਈ ਉਸ ਨੂੰ ਉੱਨੇ ਹੀ ਸਮੇਂ ਤੱਕ ਆਪਣੀ ਹੱਦ ਤੋਂ ਉੱਪਰ ਰਹਿਣਾ ਪਵੇਗਾ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jak długo musi trwać krytyczna aktywność, aby można było wysłać alert. Proces zostanie oznaczony, jeśli przekracza swój próg przez taki sam czas."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por quanto tempo a atividade crítica precisa continuar antes que um alerta possa ser enviado. Um processo precisa exceder seu limite pelo mesmo período para ser sinalizado."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempo durante o qual a atividade crítica tem de persistir para que possa ser enviado um alerta. Um processo é assinalado se ultrapassar o seu limiar durante o mesmo período."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cât timp trebuie să persiste activitatea critică înainte de a putea trimite o alertă. Un proces este semnalat dacă își depășește pragul pentru aceeași durată."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сколько должна длиться критическая активность, чтобы можно было отправить предупреждение. Процесс будет отмечен, если он превышает свой порог в течение того же времени."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ako dlho musí trvať kritická aktivita, aby bolo možné odoslať upozornenie. Proces musí prekračovať svoj prah rovnako dlho, aby sa označil."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kako dolgo mora trajati kritična dejavnost, da je mogoče poslati opozorilo. Proces se označi, če enako dolgo presega svoj prag."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hur länge kritisk aktivitet måste pågå innan en varning kan skickas. En process måste överskrida sitt tröskelvärde lika länge för att markeras."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "விழிப்பூட்டலை அனுப்புவதற்கு முன் தீவிரச் செயல்பாடு எவ்வளவு நேரம் நீடிக்க வேண்டும் என்பதைக் குறிக்கிறது. ஒரு செயல்முறை குறிக்கப்பட, அது அதே கால அளவுக்கு அதன் வரம்பை மீறியிருக்க வேண்டும்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "హెచ్చరిక పంపడానికి ముందు తీవ్ర కార్యకలాపం ఎంతసేపు కొనసాగాలి. ప్రాసెస్‌ను గుర్తించాలంటే అది అంతే సమయం పాటు తన పరిమితిని మించి ఉండాలి."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ระยะเวลาที่กิจกรรมระดับวิกฤตต้องดำเนินต่อเนื่องก่อนส่งการแจ้งเตือนได้ ระบบจะทำเครื่องหมายโปรเซสเมื่อกิจกรรมเกินเกณฑ์เป็นระยะเวลาเท่ากัน"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uyarı gönderilebilmesi için kritik etkinliğin ne kadar sürmesi gerektiğini belirler. Bir işlemin işaretlenmesi için eşiğini aynı süre boyunca aşması gerekir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скільки має тривати критична активність, перш ніж можна буде надіслати попередження. Процес позначається, якщо він перевищує свій поріг протягом такого самого часу."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اطلاع بھیجنے سے پہلے نازک سرگرمی کتنی دیر جاری رہنی چاہیے۔ کسی پراسیس کی نشاندہی کے لیے اسے اتنی ہی دیر اپنی حد سے اوپر رہنا چاہیے۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thời gian hoạt động tới hạn phải kéo dài trước khi có thể gửi cảnh báo. Tiến trình được đánh dấu nếu vượt ngưỡng trong cùng khoảng thời gian."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "严重活动必须持续这么久，才可能发出提醒。进程超过阈值并持续相同时长后，就会被标记。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "嚴重活動須持續這麼久，才可能發出通知。行程超過門檻並持續相同時間後，就會被標記。"
+          }
+        }
+      }
+    },
     "settings.group.monitoring" : {
   "extractionState": "manual",
   "localizations": {
