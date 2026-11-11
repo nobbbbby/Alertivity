@@ -14,7 +14,7 @@ In the source build, sustained [process activity](https://github.com/nobbbbby/Al
 
 Custom duration and cooldown require Pro in the Mac App Store build; Free uses 60 seconds and 10 minutes. The open-source build has no purchase requirement.
 
-Set **High activity duration** for how long activity must persist, and **Cooldown** for the gap between alerts, in [Settings](https://github.com/nobbbbby/Alertivity/wiki/Settings#notifications).
+Set **High activity duration** in **General → Monitoring** and **Cooldown** in **Notifications**. See [Settings](https://github.com/nobbbbby/Alertivity/wiki/Settings#general).
 
 ## Permissions by task
 
