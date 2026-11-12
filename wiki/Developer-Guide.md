@@ -136,9 +136,8 @@ log categories.
 ## App Store release preparation (AL-80)
 
 Keep App Store Connect metadata, product configuration, review instructions, upload receipts,
-and release checklists local under `AppStore/`; Git ignores them. Only the selected screenshot
-sources, artwork, and editable deck are tracked. IAP review images, generated editor files,
-exports, alternate captures, and working copies remain local too.
+release checklists, and screenshot assets local under `AppStore/`. Git ignores the entire directory,
+including screenshot sources, artwork, editable decks, and exports.
 
 Use Xcode Cloud as the primary release pipeline: PR Checks tests both schemes, Beta produces
 an internal-only archive, and Release tests both schemes and archives an App Store-eligible

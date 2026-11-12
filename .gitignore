@@ -4,13 +4,7 @@ DerivedDataBuild/
 # Local development notes are internal and excluded from the public repository.
 /docs/
 
-# App Store Connect records and generated screenshot work remain local.
+# App Store release files and screenshot assets remain local.
 /.asc/
 /scripts/validate-app-store-metadata.py
-/AppStore/*
-!/AppStore/Screenshots/
-/AppStore/Screenshots/*
-!/AppStore/Screenshots/app-store-screenshots.json
-!/AppStore/Screenshots/Source/
-/AppStore/Screenshots/Source/*
-!/AppStore/Screenshots/Source/public/
+/AppStore/
